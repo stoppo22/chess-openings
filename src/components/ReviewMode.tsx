@@ -355,13 +355,34 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                         Stockfish (d{currentNode.playerMove.engine.depth})
                       </div>
                       <div className="text-xs font-bold text-white mt-1">
-                        Eval Nero:{' '}
-                        {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
-                        {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
+                        Tua ({currentNode.playerMove.san}):{' '}
+                        <span className="text-emerald-400">
+                          {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
+                          {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
+                        </span>
                       </div>
+                      {currentNode.playerMove.engine.bestMoveSan !== currentNode.playerMove.san && (
+                        <div className="text-[11px] text-sky-300 mt-0.5">
+                          1ª scelta: <strong>{currentNode.playerMove.engine.bestMoveSan}</strong> (
+                          {-currentNode.playerMove.engine.bestEvalPawns >= 0 ? '+' : ''}
+                          {(-currentNode.playerMove.engine.bestEvalPawns).toFixed(2)})
+                        </div>
+                      )}
                       <div className="text-[11px] font-mono text-slate-400 mt-0.5 truncate">
                         PV: {currentNode.playerMove.engine.pvSan.join(' ')}
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {currentCard.cardType === 'punish' && currentCard.mistakeContext && (
+                  <div className="bg-slate-950/80 border border-rose-500/30 rounded-xl p-3 space-y-1">
+                    <div className="text-xs font-semibold text-rose-300">
+                      Errore avversario ({opening.buildConfig.ratingBandLabel}): {currentCard.mistakeContext.opponentMistakeSan}? (-{currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni • {currentCard.mistakeContext.severity} • Freq: {currentCard.mistakeContext.frequencyPct}%)
+                    </div>
+                    <div className="text-xs text-slate-300">
+                      Punizione: <strong className="text-emerald-400">{currentCard.correctMoveSan}</strong> • PV (d20):{' '}
+                      <span className="font-mono text-slate-400">{currentCard.mistakeContext.pvSan.join(' ')}</span>
                     </div>
                   </div>
                 )}

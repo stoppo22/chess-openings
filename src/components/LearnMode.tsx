@@ -255,11 +255,28 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
             {/* Quando tocca a ME: mostra l'UNICA mossa del repertorio + statistiche GM + valutazione Stockfish */}
             {currentNode.isPlayerTurn && currentNode.playerMove && (
               <div className="mt-3 space-y-3">
-                <div className="flex items-center justify-between bg-slate-900/90 border border-emerald-500/30 rounded-xl p-3.5">
+                <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 border border-emerald-500/30 rounded-xl p-3.5">
                   <div>
                     <div className="text-xs text-slate-400">La tua mossa scelta nel repertorio:</div>
-                    <div className="text-2xl font-extrabold text-emerald-400 mt-0.5">
-                      {currentNode.moveNumber}... {currentNode.playerMove.san}
+                    <div className="flex flex-wrap items-baseline gap-2.5 mt-0.5">
+                      <span className="text-2xl font-extrabold text-emerald-400">
+                        {currentNode.moveNumber}... {currentNode.playerMove.san}
+                      </span>
+                      <span className="text-xs font-mono font-semibold text-emerald-300">
+                        ({currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
+                        {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)})
+                      </span>
+                      {currentNode.playerMove.engine.bestMoveSan !== currentNode.playerMove.san && (
+                        <span className="text-xs px-2 py-0.5 rounded-md bg-sky-500/15 text-sky-300 border border-sky-500/30 font-medium">
+                          1ª scelta Stockfish:{' '}
+                          <strong className="font-bold text-white">
+                            {currentNode.playerMove.engine.bestMoveSan}
+                          </strong>{' '}
+                          (
+                          {-currentNode.playerMove.engine.bestEvalPawns >= 0 ? '+' : ''}
+                          {(-currentNode.playerMove.engine.bestEvalPawns).toFixed(2)})
+                        </span>
+                      )}
                     </div>
                   </div>
                   <button
@@ -363,16 +380,25 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                       Stockfish (depth {currentNode.playerMove.engine.depth})
                     </div>
                     <div className="text-sm font-bold text-white mt-1">
-                      Eval Nero:{' '}
+                      Tua ({currentNode.playerMove.san}):{' '}
                       <span className="text-emerald-400">
                         {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
                         {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
-                      </span>{' '}
-                      <span className="text-xs font-normal text-slate-400">
-                        (Best: {currentNode.playerMove.engine.bestMoveSan})
                       </span>
                     </div>
-                    <div className="text-[11px] font-mono text-slate-400 mt-1.5 truncate">
+                    {currentNode.playerMove.engine.bestMoveSan !== currentNode.playerMove.san ? (
+                      <div className="text-[11px] text-sky-300 mt-0.5">
+                        1ª scelta: <strong>{currentNode.playerMove.engine.bestMoveSan}</strong> (
+                        {-currentNode.playerMove.engine.bestEvalPawns >= 0 ? '+' : ''}
+                        {(-currentNode.playerMove.engine.bestEvalPawns).toFixed(2)}, loss{' '}
+                        {currentNode.playerMove.engine.evalLossVsBest.toFixed(2)})
+                      </div>
+                    ) : (
+                      <div className="text-[11px] text-emerald-400/80 mt-0.5">
+                        Coincide con la 1ª scelta del motore
+                      </div>
+                    )}
+                    <div className="text-[11px] font-mono text-slate-400 mt-1 truncate">
                       PV: {currentNode.playerMove.engine.pvSan.join(' ')}
                     </div>
                   </div>
