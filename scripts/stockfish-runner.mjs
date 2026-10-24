@@ -19,8 +19,8 @@ export function normalizeFenForKey(fen) {
   return `${parts[0]} ${parts[1]} ${parts[2]} ${parts[3]}`;
 }
 
-function getCacheFilePath(normalizedFen, depth, multipv) {
-  const key = `${normalizedFen}|depth=${depth}|multipv=${multipv}`;
+function getCacheFilePath(normalizedFen, depth, multipv, searchMovesKey = '') {
+  const key = `${normalizedFen}|depth=${depth}|multipv=${multipv}${searchMovesKey ? `|sm=${searchMovesKey}` : ''}`;
   const hash = crypto.createHash('sha256').update(key).digest('hex').slice(0, 24);
   return path.join(CACHE_DIR, `${hash}.json`);
 }
@@ -87,22 +87,29 @@ export class StockfishRunner {
   }
 
   /**
-   * Evaluates a FEN position at the given depth and multipv.
-   * All scores returned in `lines` are normalized to WHITE's perspective in pawns (+ = White better, - = Black better),
-   * AND also provided from the side-to-move's perspective (`scoreSideToMovePawns`).
+   * Evaluates a FEN position at the given depth and multipv (with optional `searchMoves` array of UCI moves).
+   * All scores in `lines` are provided both from White's perspective (`scoreWhitePawns`)
+   * and from the side-to-move's perspective (`scoreSideToMovePawns`).
    */
-  async evaluatePosition(fen, { depth = 14, multipv = 1, bypassCache = false } = {}) {
+  async evaluatePosition(fen, { depth = 18, multipv = 1, searchMoves = null, bypassCache = false } = {}) {
     await this.init();
     const normalizedFen = normalizeFenForKey(fen);
-    const cacheFile = getCacheFilePath(normalizedFen, depth, multipv);
+    const searchMovesKey = Array.isArray(searchMoves) && searchMoves.length > 0 ? [...searchMoves].sort().join(',') : '';
+    const cacheFile = getCacheFilePath(normalizedFen, depth, multipv, searchMovesKey);
 
     if (this.useCache && !bypassCache && fs.existsSync(cacheFile)) {
       try {
         const cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
-        if (cached && cached.normalizedFen === normalizedFen && cached.depth === depth && cached.multipv === multipv) {
+        if (
+          cached &&
+          cached.normalizedFen === normalizedFen &&
+          cached.depth === depth &&
+          cached.multipv === multipv &&
+          (cached.searchMovesKey || '') === searchMovesKey
+        ) {
           this.cacheHits += 1;
           this.totalEvalCalls += 1;
-          this.totalComputeMs += Number(cached.elapsedMs || 160);
+          this.totalComputeMs += Number(cached.elapsedMs || 250);
           return { ...cached, fromCache: true };
         }
       } catch {
@@ -111,27 +118,28 @@ export class StockfishRunner {
     }
 
     const startTime = performance.now();
-    const turn = normalizedFen.split(' ')[1]; // 'w' or 'b'
+    const turn = normalizedFen.split(' ')[1];
 
-    // Check if position is already game over (checkmate/stalemate)
     const chessCheck = new Chess(fen);
     if (chessCheck.isGameOver()) {
       const isMate = chessCheck.isCheckmate();
       const scoreSidePawns = isMate ? -99.0 : 0.0;
       const scoreWhitePawns = turn === 'w' ? scoreSidePawns : -scoreSidePawns;
-      const emptyResult = {
+      return {
         normalizedFen,
         fen,
         turn,
         depth,
         multipv,
+        searchMovesKey,
         bestMoveUci: null,
         bestMoveSan: null,
         scoreWhitePawns,
         scoreSideToMovePawns: scoreSidePawns,
         lines: [],
+        fromCache: false,
+        elapsedMs: 0,
       };
-      return { ...emptyResult, fromCache: false, elapsedMs: 0 };
     }
 
     this.send(`setoption name MultiPV value ${multipv}`);
@@ -139,6 +147,7 @@ export class StockfishRunner {
     this.send(`position fen ${fen}`);
 
     const multipvMap = new Map();
+    const goCmd = searchMovesKey ? `go depth ${depth} searchmoves ${searchMoves.join(' ')}` : `go depth ${depth}`;
 
     await new Promise((resolve) => {
       const handler = (line) => {
@@ -161,7 +170,10 @@ export class StockfishRunner {
             } else if (mateMatch) {
               isMate = true;
               mateIn = Number(mateMatch[1]);
-              scoreSidePawns = mateIn > 0 ? 99 - Math.min(Math.abs(mateIn), 20) * 0.1 : -99 + Math.min(Math.abs(mateIn), 20) * 0.1;
+              scoreSidePawns =
+                mateIn > 0
+                  ? 99 - Math.min(Math.abs(mateIn), 20) * 0.1
+                  : -99 + Math.min(Math.abs(mateIn), 20) * 0.1;
             }
 
             const scoreWhitePawns = Number((turn === 'w' ? scoreSidePawns : -scoreSidePawns).toFixed(2));
@@ -187,14 +199,13 @@ export class StockfishRunner {
         }
       };
       this.listeners.add(handler);
-      this.send(`go depth ${depth}`);
+      this.send(goCmd);
     });
 
     const elapsedMs = Math.round(performance.now() - startTime);
     this.totalEvalCalls += 1;
     this.totalComputeMs += elapsedMs;
 
-    // Convert UCI PVs to SAN using chess.js
     const sortedLines = Array.from(multipvMap.values())
       .sort((a, b) => a.multipv - b.multipv)
       .map((entry) => {
@@ -240,6 +251,7 @@ export class StockfishRunner {
       turn,
       depth,
       multipv,
+      searchMovesKey,
       bestMoveUci: topLine.moveUci,
       bestMoveSan: topLine.moveSan,
       scoreWhitePawns: topLine.scoreWhitePawns,

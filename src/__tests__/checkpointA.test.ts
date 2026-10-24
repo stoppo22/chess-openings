@@ -71,10 +71,10 @@ describe('FSRS (ts-fsrs) Rating & Interval Rules', () => {
 });
 
 describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A)', () => {
-  it('respects MAX_POSITIONS_CAP <= 150 and uses rating band 0-1400', () => {
+  it('respects MAX_POSITIONS_CAP <= 400 and uses rating band 0-1400', () => {
     const nodes = Object.values(caroKann.positions);
     expect(nodes.length).toBeGreaterThan(20);
-    expect(nodes.length).toBeLessThanOrEqual(150);
+    expect(nodes.length).toBeLessThanOrEqual(400);
     expect(caroKann.buildConfig.ratingBandLabel).toBe('0-1400');
   });
 
@@ -89,8 +89,8 @@ describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A)', () => {
         const move = chess.move(node.playerMove!.san);
         expect(move).not.toBeNull();
         expect(normalizeFen(chess.fen())).toBe(node.playerMove!.nextNormalizedFen);
-        // Nessuna mossa scelta perde più di 0.50 pedoni rispetto alla best move di Stockfish
         expect(node.playerMove!.engine.evalLossVsBest).toBeLessThanOrEqual(0.5);
+        expect(node.playerMove!.engine.evalLossVsBest).toBeGreaterThanOrEqual(0);
       } else {
         expect(node.playerMove).toBeUndefined();
         expect(Array.isArray(node.opponentMoves)).toBe(true);
@@ -98,7 +98,7 @@ describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A)', () => {
           const chess = new Chess(node.fullFen);
           const move = chess.move(opp.san);
           expect(move).not.toBeNull();
-          expect(opp.frequencyPct).toBeGreaterThanOrEqual(5.0);
+          expect(opp.frequencyPct).toBeGreaterThanOrEqual(3.0);
         }
       }
     }

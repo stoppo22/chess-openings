@@ -18,9 +18,6 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 
 /**
  * UNICO PARAMETRO DI CONFIGURAZIONE PER LA FASCIA DI RATING (0-1400)
- * Usato sia per l'albero delle mosse avversarie e le loro frequenze (Checkpoint A)
- * sia per gli errori comuni dell'avversario (Checkpoint B).
- * Nell'API Lichess (/lichess), i bucket 0, 1000, 1200 coprono 0-999, 1000-1199, 1200-1399 (ossia 0-1400).
  */
 export const RATING_BAND = {
   label: '0-1400',
@@ -32,18 +29,21 @@ export const RATING_BAND = {
 };
 
 /**
- * Default prudenti espliciti per la prima esecuzione (Fase 1 - Checkpoint A)
+ * Parametri di configurazione Checkpoint A aggiornati
  */
 export const BUILD_DEFAULTS = {
   RATING_BAND,
   MAX_MOVES_DEPTH: Number(process.env.MAX_MOVES_DEPTH || 8), // 8 mosse = 16 semimosse
-  MIN_BAND_GAMES: Number(process.env.MIN_BAND_GAMES || 5000), // partite minime nella fascia 0-1400 per espandere un ramo avversario
-  MIN_BRANCH_FREQ: Number(process.env.MIN_BRANCH_FREQ || 0.05), // frequenza minima nella posizione (default 5%)
-  MAX_POSITIONS_CAP: Number(process.env.MAX_POSITIONS_CAP || 150), // tetto massimo inderogabile di posizioni
-  STOCKFISH_DEPTH: Number(process.env.STOCKFISH_DEPTH || 14),
+  MIN_BAND_GAMES: Number(process.env.MIN_BAND_GAMES || 500), // 500 partite nella fascia 0-1400
+  MIN_BRANCH_FREQ: Number(process.env.MIN_BRANCH_FREQ || 0.03), // 3% frequenza minima locale nella posizione
+  MIN_REACH: Number(process.env.MIN_REACH || 0.005), // 0.5% probabilità cumulativa del ramo dall'inizio della variante
+  MAX_POSITIONS_CAP: Number(process.env.MAX_POSITIONS_CAP || 400), // tetto massimo 400 posizioni
+  STOCKFISH_DEPTH: Number(process.env.STOCKFISH_DEPTH || 18), // depth 18 per le mie mosse
+  STOCKFISH_MULTIPV: Number(process.env.STOCKFISH_MULTIPV || 6), // multipv unica alla stessa profondità
+  MIN_MASTERS_FOR_FREQ: Number(process.env.MIN_MASTERS_FOR_FREQ || 50), // sotto 50 partite Masters sceglie la migliore per il motore (depth 18)
   CANDIDATE_MAX_LOSS: 0.30, // entro 0.30 pedoni dalla migliore per review-moves.json
-  WARNING_MAX_LOSS: 0.50, // segnala se una mia mossa approvata perde > 0.50 pedoni
-  API_DELAY_MS: 350, // pausa tra richieste live a Lichess
+  WARNING_MAX_LOSS: 0.50, // segnala se una mia mossa perde > 0.50 pedoni
+  API_DELAY_MS: 350,
 };
 
 const LICHESS_CACHE_DIR = path.join(ROOT_DIR, '.cache', 'lichess');
@@ -135,7 +135,13 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
     }
 
     const json = await res.json();
-    const payload = { normFen, endpointType, ratingBand: RATING_BAND.label, fetchedAt: new Date().toISOString(), data: json };
+    const payload = {
+      normFen,
+      endpointType,
+      ratingBand: RATING_BAND.label,
+      fetchedAt: new Date().toISOString(),
+      data: json,
+    };
     fs.writeFileSync(cacheFile, JSON.stringify(payload, null, 2));
     return payload;
   }
@@ -193,17 +199,53 @@ function detectVariation(moveSequenceSan) {
   };
 }
 
+/**
+ * Valuta una mossa specifica alla STESSA profondità della ricerca multipv (depth 18).
+ * Se la mossa è già presente nelle prime N linee multipv, legge direttamente il suo punteggio.
+ * Altrimenti usa `searchmoves <uci>` alla stessa identica profondità (depth 18).
+ */
+async function getMoveEvalAtSameDepth(sfRunner, fullFen, moveSan, moveUci, multiPvEval, depth) {
+  const existingLine = (multiPvEval.lines || []).find(
+    (l) => l.moveUci === moveUci || l.moveSan === moveSan
+  );
+  if (existingLine) {
+    return {
+      scoreSideToMovePawns: existingLine.scoreSideToMovePawns,
+      scoreWhitePawns: existingLine.scoreWhitePawns,
+      pvSan: existingLine.pvSan,
+      fromMultiPv: true,
+    };
+  }
+
+  const smEval = await sfRunner.evaluatePosition(fullFen, {
+    depth,
+    multipv: 1,
+    searchMoves: [moveUci],
+  });
+  const smLine = smEval.lines?.[0];
+  return {
+    scoreSideToMovePawns: smLine ? smLine.scoreSideToMovePawns : smEval.scoreSideToMovePawns,
+    scoreWhitePawns: smLine ? smLine.scoreWhitePawns : smEval.scoreWhitePawns,
+    pvSan: smLine?.pvSan?.length ? smLine.pvSan : [moveSan],
+    fromMultiPv: false,
+  };
+}
+
 async function main() {
   console.log('==========================================================');
   console.log('🏗️  BUILD REPERTORIO — FASE 1 (CHECKPOINT A: CARO-KANN)');
   console.log('==========================================================');
-  console.log('Configurazione default prudenti:');
+  console.log('Configurazione parametri:');
   console.log(`  • Fascia di rating (unica): ${RATING_BAND.label} (buckets API: ${RATING_BAND.buckets.join(',')})`);
   console.log(`  • Profondità massima:       ${BUILD_DEFAULTS.MAX_MOVES_DEPTH} mosse (${BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2} semimosse)`);
   console.log(`  • MIN_BAND_GAMES (0-1400):  ${BUILD_DEFAULTS.MIN_BAND_GAMES}`);
   console.log(`  • MIN_BRANCH_FREQ (0-1400): ${(BUILD_DEFAULTS.MIN_BRANCH_FREQ * 100).toFixed(1)}%`);
+  console.log(`  • MIN_REACH (cumulativa):   ${(BUILD_DEFAULTS.MIN_REACH * 100).toFixed(2)}%`);
   console.log(`  • MAX_POSITIONS_CAP:        ${BUILD_DEFAULTS.MAX_POSITIONS_CAP}`);
-  console.log(`  • Stockfish Engine:         ${STOCKFISH_PACKAGE_INFO} (depth ${BUILD_DEFAULTS.STOCKFISH_DEPTH})`);
+  console.log(`  • MIN_MASTERS_FOR_FREQ:     ${BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ} partite GM`);
+  console.log(
+    `  • Stockfish Engine:         ${STOCKFISH_PACKAGE_INFO} (depth ${BUILD_DEFAULTS.STOCKFISH_DEPTH}, multipv ${BUILD_DEFAULTS.STOCKFISH_MULTIPV})`
+  );
   console.log('----------------------------------------------------------');
 
   const token = loadEnvToken();
@@ -225,6 +267,9 @@ async function main() {
   const rootFullFen = initialChess.fen();
   const rootNormalizedFen = normalizeFen(rootFullFen);
 
+  // Mappa della probabilità cumulativa (reach) dall'inizio della variante per ogni FEN normalizzato
+  const reachByFen = new Map([[rootNormalizedFen, 1.0]]);
+
   const queue = [
     {
       fullFen: rootFullFen,
@@ -238,13 +283,15 @@ async function main() {
   while (queue.length > 0) {
     if (visitedFens.size > BUILD_DEFAULTS.MAX_POSITIONS_CAP) {
       console.error(
-        `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP}). Alza MIN_BAND_GAMES o MIN_BRANCH_FREQ!`
+        `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP})!`
       );
       process.exit(1);
     }
 
     const current = queue.shift();
     const { fullFen, normalizedFen, moveSequenceSan, ply } = current;
+    const nodeReach = reachByFen.get(normalizedFen) ?? 1.0;
+
     const chess = new Chess(fullFen);
     const turn = chess.turn();
     const isPlayerTurn = turn === 'b'; // Nero nella Caro-Kann
@@ -272,13 +319,13 @@ async function main() {
       moveSequenceSan,
       variationId,
       variationName,
+      reachPct: Number((nodeReach * 100).toFixed(2)),
       ...(AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen]
         ? { aiCommentUnverified: AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen] }
         : {}),
     };
 
     if (isPlayerTurn) {
-      // Quando tocca a ME: usiamo il database Masters per statistiche GM e controllo qualità insieme a Stockfish
       const mastersRes = await fetchLichessEndpoint('masters', fullFen, token, statsCounter);
       const mastersData = mastersRes.data;
       const positionGmStats = formatMoveStats(mastersData);
@@ -288,18 +335,17 @@ async function main() {
         node.ecoName = mastersData.opening.name;
       }
 
-      const approvedSan = approvedMap.get(normalizedFen);
+      const approvedEntry = approvedMap.get(normalizedFen);
 
-      if (!approvedSan) {
-        // Posizione non coperta nei seed: proponiamo le mosse con Stockfish + Masters DB
+      if (!approvedEntry) {
+        // Posizione non coperta nei seed: ricerca multipv unica a depth 18
         const posEval = await sfRunner.evaluatePosition(fullFen, {
           depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
-          multipv: 4,
+          multipv: BUILD_DEFAULTS.STOCKFISH_MULTIPV,
         });
-        const bestBlackEval = Number((-posEval.scoreWhitePawns).toFixed(2));
+        const bestBlackEval = posEval.scoreSideToMovePawns;
 
         const rawMastersMoves = Array.isArray(mastersData.moves) ? mastersData.moves : [];
-        // Candidate pool: mosse giocate nel DB Masters + migliori mosse del motore (nel caso un ramo 0-1400 abbia poche partite GM)
         const candidateSanSet = new Set();
         for (const m of rawMastersMoves.slice(0, 6)) {
           candidateSanSet.add(m.san);
@@ -315,18 +361,22 @@ async function main() {
           if (!moveObj) continue;
 
           const uci = `${moveObj.from}${moveObj.to}${moveObj.promotion || ''}`;
-          const afterEval = await sfRunner.evaluatePosition(nextChess.fen(), {
-            depth: Math.max(12, BUILD_DEFAULTS.STOCKFISH_DEPTH - 1),
-            multipv: 1,
-          });
-          const moveBlackEval = Number((-afterEval.scoreWhitePawns).toFixed(2));
-          const evalLossVsBest =
-            posEval.bestMoveSan === moveObj.san
-              ? 0
-              : Number(Math.max(0, bestBlackEval - moveBlackEval).toFixed(2));
+          const sameDepthEval = await getMoveEvalAtSameDepth(
+            sfRunner,
+            fullFen,
+            moveObj.san,
+            uci,
+            posEval,
+            BUILD_DEFAULTS.STOCKFISH_DEPTH
+          );
+
+          const moveBlackEval = sameDepthEval.scoreSideToMovePawns;
+          const evalLossVsBest = Number((bestBlackEval - moveBlackEval).toFixed(2));
 
           const rawGmMove = rawMastersMoves.find((m) => m.san === moveObj.san || m.uci === uci);
-          const gmStats = rawGmMove ? formatMoveStats(rawGmMove) : { totalGames: 0, blackPct: 0, drawPct: 0, whitePct: 0 };
+          const gmStats = rawGmMove
+            ? formatMoveStats(rawGmMove)
+            : { totalGames: 0, blackPct: 0, drawPct: 0, whitePct: 0 };
 
           evaluatedCandidates.push({
             san: moveObj.san,
@@ -336,17 +386,24 @@ async function main() {
             gmDrawPct: gmStats.drawPct,
             gmWinWhitePct: gmStats.whitePct,
             evalForBlackPawns: moveBlackEval,
-            evalWhitePawns: afterEval.scoreWhitePawns,
+            evalWhitePawns: sameDepthEval.scoreWhitePawns,
             evalLossVsBest,
             within030Threshold: evalLossVsBest <= BUILD_DEFAULTS.CANDIDATE_MAX_LOSS,
-            pvSan: [moveObj.san, ...(afterEval.lines[0]?.pvSan?.slice(0, 5) || [])],
+            pvSan: sameDepthEval.pvSan,
           });
         }
 
-        // Proponi quelle entro 0.30 pedoni dalla migliore, ordinate per frequenza nel DB Masters (e poi minor perdita eval)
-        let recommended = evaluatedCandidates
-          .filter((c) => c.within030Threshold)
-          .sort((a, b) => b.masterGames - a.masterGames || a.evalLossVsBest - b.evalLossVsBest);
+        // REGOLA #3: Se nel database Masters la posizione ha meno di 50 partite,
+        // NON scegliere la più frequente ma la MIGLIORE secondo il motore (depth 18) tra le candidate entro 0.30!
+        const hasEnoughMasters = positionGmStats.totalGames >= BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ;
+        const selectionRule = hasEnoughMasters ? 'masters_freq' : 'engine_best_low_masters';
+
+        let recommended = evaluatedCandidates.filter((c) => c.within030Threshold);
+        if (hasEnoughMasters) {
+          recommended.sort((a, b) => b.masterGames - a.masterGames || a.evalLossVsBest - b.evalLossVsBest);
+        } else {
+          recommended.sort((a, b) => a.evalLossVsBest - b.evalLossVsBest || b.masterGames - a.masterGames);
+        }
 
         if (recommended.length === 0) {
           recommended = [...evaluatedCandidates].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
@@ -359,6 +416,7 @@ async function main() {
           moveSequenceSan,
           variationName,
           positionMasterGames: positionGmStats.totalGames,
+          selectionRule,
           engineBestMoveSan: posEval.bestMoveSan,
           engineBestEvalForBlack: bestBlackEval,
           proposedMoves: recommended,
@@ -369,7 +427,8 @@ async function main() {
         continue;
       }
 
-      // Mossa approvata nei seed: valida con Stockfish e allega statistiche GM
+      // Mossa approvata nei seed: verifichiamola con ricerca multipv unica a depth 18
+      const approvedSan = approvedEntry.san;
       const moveCheckChess = new Chess(fullFen);
       const moveObj = moveCheckChess.move(approvedSan);
       if (!moveObj) {
@@ -392,34 +451,65 @@ async function main() {
         ? formatMoveStats(rawBandMoveEntry)
         : { white: 0, draws: 0, black: 0, totalGames: 0, whitePct: 0, drawPct: 0, blackPct: 0 };
 
-      const beforeEval = await sfRunner.evaluatePosition(fullFen, {
+      // Ricerca multipv unica a depth 18 sulla posizione corrente
+      const multiPvEval = await sfRunner.evaluatePosition(fullFen, {
         depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
-        multipv: 2,
+        multipv: BUILD_DEFAULTS.STOCKFISH_MULTIPV,
       });
-      const afterEval = await sfRunner.evaluatePosition(nextFullFen, {
-        depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
-        multipv: 1,
-      });
+      const bestBlackEval = multiPvEval.scoreSideToMovePawns;
+      const bestWhiteEval = multiPvEval.scoreWhitePawns;
 
-      const bestBlackEval = Number((-beforeEval.scoreWhitePawns).toFixed(2));
-      const chosenBlackEval = Number((-afterEval.scoreWhitePawns).toFixed(2));
-      const evalLossVsBest =
-        beforeEval.bestMoveSan === moveObj.san
-          ? 0
-          : Number(Math.max(0, bestBlackEval - chosenBlackEval).toFixed(2));
+      const chosenSameDepth = await getMoveEvalAtSameDepth(
+        sfRunner,
+        fullFen,
+        moveObj.san,
+        uci,
+        multiPvEval,
+        BUILD_DEFAULTS.STOCKFISH_DEPTH
+      );
 
-      if (evalLossVsBest > BUILD_DEFAULTS.WARNING_MAX_LOSS) {
+      const chosenBlackEval = chosenSameDepth.scoreSideToMovePawns;
+      const chosenWhiteEval = chosenSameDepth.scoreWhitePawns;
+      // Niente Math.max(0, ...): differenza reale alla stessa profondità
+      const evalLossVsBest = Number((bestBlackEval - chosenBlackEval).toFixed(2));
+
+      if (evalLossVsBest < 0) {
+        const msg = `⚠️ Warning di incoerenza (${pgnPath}): la tua mossa ${moveObj.san} (${chosenBlackEval}) risulta migliore della bestMove ${multiPvEval.bestMoveSan} (${bestBlackEval}) di ${Math.abs(evalLossVsBest).toFixed(2)} pedoni.`;
+        console.warn(msg);
         buildWarnings.push({
+          type: 'inconsistency',
           normalizedFen,
           pgnPath,
           chosenMoveSan: moveObj.san,
-          engineBestMoveSan: beforeEval.bestMoveSan,
+          engineBestMoveSan: multiPvEval.bestMoveSan,
           chosenBlackEval,
           bestBlackEval,
           evalLossVsBest,
-          message: `La tua mossa scelta (${moveObj.san}) perde ${evalLossVsBest} pedoni rispetto a ${beforeEval.bestMoveSan}.`,
+          message: msg,
+        });
+      } else if (evalLossVsBest > BUILD_DEFAULTS.WARNING_MAX_LOSS) {
+        const msg = `⚠️ Warning perdita valutazione (${pgnPath}): la tua mossa ${moveObj.san} perde ${evalLossVsBest.toFixed(2)} pedoni rispetto a ${multiPvEval.bestMoveSan}.`;
+        console.warn(msg);
+        buildWarnings.push({
+          type: 'eval_loss_exceeded',
+          normalizedFen,
+          pgnPath,
+          chosenMoveSan: moveObj.san,
+          engineBestMoveSan: multiPvEval.bestMoveSan,
+          chosenBlackEval,
+          bestBlackEval,
+          evalLossVsBest,
+          message: msg,
         });
       }
+
+      // Determina il criterio di selezione effettivo per il report
+      const effectiveSelectionRule =
+        approvedEntry.source === 'seed'
+          ? 'seed'
+          : positionGmStats.totalGames < BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ
+          ? 'engine_best_low_masters'
+          : approvedEntry.selectionRule || 'masters_freq';
 
       node.playerMove = {
         san: moveObj.san,
@@ -429,17 +519,20 @@ async function main() {
         ...(moveObj.promotion ? { promotion: moveObj.promotion } : {}),
         nextNormalizedFen,
         nextFullFen,
+        selectionSource: approvedEntry.source,
+        selectionRule: effectiveSelectionRule,
+        acceptedVia: approvedEntry.acceptedVia || (approvedEntry.source === 'seed' ? 'seed' : 'manual'),
         gmStats: moveGmStats,
         bandStats: moveBandStats,
         engine: {
-          evalPawns: afterEval.scoreWhitePawns,
+          evalPawns: chosenWhiteEval,
           evalFromPlayerPerspective: chosenBlackEval,
-          bestMoveSan: beforeEval.bestMoveSan || moveObj.san,
-          bestMoveUci: beforeEval.bestMoveUci || uci,
-          bestEvalPawns: beforeEval.scoreWhitePawns,
+          bestMoveSan: multiPvEval.bestMoveSan || moveObj.san,
+          bestMoveUci: multiPvEval.bestMoveUci || uci,
+          bestEvalPawns: bestWhiteEval,
           evalLossVsBest,
           depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
-          pvSan: [moveObj.san, ...(afterEval.lines[0]?.pvSan?.slice(0, 5) || [])],
+          pvSan: chosenSameDepth.pvSan,
         },
         ...(ARROWS_BY_FEN[normalizedFen] ? { arrows: ARROWS_BY_FEN[normalizedFen] } : {}),
         ...(AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen]
@@ -449,11 +542,24 @@ async function main() {
 
       positions[normalizedFen] = node;
 
+      // Il giocatore gioca la sua unica mossa con probabilità 1.0 nel repertorio:
+      // se siamo sul tronco di ingresso (fino a 3...Bf5 o 4...Bf5), la radice della variante parte con reach = 1.0
+      const isVariationRootAfterMove =
+        (ply === 5 && moveObj.san === 'Bf5') || (ply === 7 && moveObj.san === 'Bf5');
+      const nextReach = isVariationRootAfterMove ? 1.0 : nodeReach;
+
+      reachByFen.set(
+        nextNormalizedFen,
+        isVariationRootAfterMove
+          ? 1.0
+          : Math.max(reachByFen.get(nextNormalizedFen) || 0, nextReach)
+      );
+
       if (ply + 1 <= maxPly && !visitedFens.has(nextNormalizedFen)) {
         visitedFens.add(nextNormalizedFen);
         if (visitedFens.size > BUILD_DEFAULTS.MAX_POSITIONS_CAP) {
           console.error(
-            `❌ STOP DI SICUREZZA: Il numero di posizioni stimate (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP}). Alza MIN_BAND_GAMES o MIN_BRANCH_FREQ!`
+            `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP})!`
           );
           process.exit(1);
         }
@@ -465,7 +571,7 @@ async function main() {
         });
       }
     } else {
-      // Turno dell'AVVERSARIO (Bianco): l'albero delle risposte e le loro frequenze provengono da /lichess fascia 0-1400!
+      // Turno dell'AVVERSARIO (Bianco): albero delle risposte dalla fascia 0-1400
       const bandRes = await fetchLichessEndpoint('lichess', fullFen, token, statsCounter);
       const bandData = bandRes.data;
       const positionBandStats = formatMoveStats(bandData);
@@ -484,18 +590,26 @@ async function main() {
           const mBandStats = formatMoveStats(m);
           const freq = totalPosBandGames > 0 ? mBandStats.totalGames / totalPosBandGames : 0;
 
+          // Calcola la probabilità cumulativa (reach) dall'inizio della variante
+          // Nei primi tratti di definizione della variante (ply 2 = 2.d4, ply 4 = 3.e5/Nc3, ply 6 in Classica = 4.Nxe4),
+          // se è la mossa che definisce la variante, reach parte da 1.0; altrimenti nodeReach * freq.
+          let branchReach = nodeReach * freq;
           let allowBranch = false;
+
           if (ply === 2) {
             allowBranch = m.san === 'd4';
+            if (allowBranch) branchReach = 1.0;
           } else if (ply === 4) {
             allowBranch =
               CARO_KANN_CONFIG.allowedWhiteMove3San.includes(m.san) &&
               mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&
               freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ;
+            if (allowBranch) branchReach = 1.0;
           } else {
             allowBranch =
               mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&
-              freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ;
+              freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ &&
+              branchReach >= BUILD_DEFAULTS.MIN_REACH;
           }
 
           if (!allowBranch) continue;
@@ -518,13 +632,19 @@ async function main() {
             nextFullFen,
             bandStats: mBandStats,
             frequencyPct: Number((freq * 100).toFixed(1)),
+            reachPct: Number((branchReach * 100).toFixed(2)),
           });
+
+          reachByFen.set(
+            nextNormalizedFen,
+            (reachByFen.get(nextNormalizedFen) || 0) + branchReach
+          );
 
           if (!visitedFens.has(nextNormalizedFen)) {
             visitedFens.add(nextNormalizedFen);
             if (visitedFens.size > BUILD_DEFAULTS.MAX_POSITIONS_CAP) {
               console.error(
-                `❌ STOP DI SICUREZZA: Il numero di posizioni stimate (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP}). Alza MIN_BAND_GAMES (${BUILD_DEFAULTS.MIN_BAND_GAMES}) o MIN_BRANCH_FREQ (${BUILD_DEFAULTS.MIN_BRANCH_FREQ})!`
+                `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP})!`
               );
               process.exit(1);
             }
@@ -544,15 +664,19 @@ async function main() {
   }
 
   const sfStats = sfRunner.getStats();
-  console.log(`\n📊 Posizioni stimate/esplorate nell'albero: ${Object.keys(positions).length} / ${BUILD_DEFAULTS.MAX_POSITIONS_CAP}`);
-  console.log(`🌐 Richieste Lichess API:     ${statsCounter.apiLiveCalls} live, ${statsCounter.apiCacheHits} da cache disco`);
   console.log(
-    `🤖 Valutazioni Stockfish:     ${sfStats.totalEvalCalls} calcolate (media ${sfStats.avgMsPerPosition} ms/pos), ${sfStats.cacheHits} da cache disco`
+    `\n📊 Posizioni stimate/esplorate nell'albero: ${Object.keys(positions).length} / ${BUILD_DEFAULTS.MAX_POSITIONS_CAP}`
+  );
+  console.log(
+    `🌐 Richieste Lichess API:     ${statsCounter.apiLiveCalls} live, ${statsCounter.apiCacheHits} da cache disco`
+  );
+  console.log(
+    `🤖 Valutazioni Stockfish:     ${sfStats.totalEvalCalls} totali (media ${sfStats.avgMsPerPosition} ms/pos), ${sfStats.cacheHits} da cache disco`
   );
 
   if (buildWarnings.length > 0) {
     fs.writeFileSync(BUILD_WARNINGS_PATH, JSON.stringify(buildWarnings, null, 2), 'utf8');
-    console.warn(`⚠️  Attenzione: ${buildWarnings.length} tue mosse superano la soglia di 0.50 pedoni! Vedi build-warnings.json`);
+    console.warn(`⚠️  Generato build-warnings.json con ${buildWarnings.length} segnalazioni.`);
   } else if (fs.existsSync(BUILD_WARNINGS_PATH)) {
     fs.unlinkSync(BUILD_WARNINGS_PATH);
   }
@@ -574,9 +698,13 @@ async function main() {
       'utf8'
     );
     console.log('\n==========================================================');
-    console.log(`🛑 BUILD FERMATO: Trovate ${unresolvedForReview.length} posizioni in cui tocca a te non ancora confermate nei seed.`);
+    console.log(
+      `🛑 BUILD FERMATO: Trovate ${unresolvedForReview.length} posizioni in cui tocca a te non ancora confermate nei seed.`
+    );
     console.log(`📄 Proposte salvate in: review-moves.json`);
-    console.log(`👉 Usa "npm run review:moves" per rivederle in blocco e salvarle in scripts/repertoire-seeds.mjs.`);
+    console.log(
+      `👉 Usa "npm run review:moves" per rivederle in blocco e salvarle in scripts/repertoire-seeds.mjs.`
+    );
     console.log('==========================================================');
     process.exit(2);
   }
@@ -608,6 +736,8 @@ async function main() {
       maxMovesDepth: BUILD_DEFAULTS.MAX_MOVES_DEPTH,
       minBandGames: BUILD_DEFAULTS.MIN_BAND_GAMES,
       minBranchFreq: BUILD_DEFAULTS.MIN_BRANCH_FREQ,
+      minReach: BUILD_DEFAULTS.MIN_REACH,
+      minMastersForFreq: BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ,
       maxPositionsCap: BUILD_DEFAULTS.MAX_POSITIONS_CAP,
       stockfishPackage: STOCKFISH_PACKAGE_INFO,
       stockfishDepth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
