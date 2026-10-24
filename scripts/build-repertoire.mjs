@@ -7,6 +7,8 @@ import {
   CARO_KANN_CONFIG,
   AI_COMMENTS_UNVERIFIED_BY_FEN,
   ARROWS_BY_FEN,
+  APPROVED_MOVES_BY_FEN,
+  APPROVED_META_BY_FEN,
   getApprovedSeedMap,
   normalizeFen,
 } from './repertoire-seeds.mjs';
@@ -15,6 +17,7 @@ import { StockfishRunner, STOCKFISH_PACKAGE_INFO } from './stockfish-runner.mjs'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
+const SEEDS_FILE_PATH = path.join(__dirname, 'repertoire-seeds.mjs');
 
 /**
  * UNICO PARAMETRO DI CONFIGURAZIONE PER LA FASCIA DI RATING (0-1400)
@@ -29,10 +32,23 @@ export const RATING_BAND = {
 };
 
 /**
- * Parametri di configurazione Checkpoint A aggiornati
+ * Fascia Lichess 2200+ usata per scegliere le mie mosse quando Masters < 50 partite
+ */
+export const HIGH_RATING_BAND = {
+  label: '2200+',
+  buckets: (process.env.HIGH_RATING_BUCKETS || '2200,2500')
+    .split(',')
+    .map((x) => Number(x.trim()))
+    .filter((n) => !Number.isNaN(n)),
+  speeds: ['blitz', 'rapid', 'classical'],
+};
+
+/**
+ * Parametri di configurazione Checkpoint A + B aggiornati
  */
 export const BUILD_DEFAULTS = {
   RATING_BAND,
+  HIGH_RATING_BAND,
   CHECKPOINT: process.env.CHECKPOINT || 'B',
   MAX_MOVES_DEPTH: Number(process.env.MAX_MOVES_DEPTH || 8), // 8 mosse = 16 semimosse
   MIN_BAND_GAMES: Number(process.env.MIN_BAND_GAMES || 500), // 500 partite nella fascia 0-1400
@@ -41,8 +57,11 @@ export const BUILD_DEFAULTS = {
   MAX_POSITIONS_CAP: Number(process.env.MAX_POSITIONS_CAP || 600), // tetto massimo 600 posizioni
   STOCKFISH_DEPTH: Number(process.env.STOCKFISH_DEPTH || 18), // depth 18 per le mie mosse
   STOCKFISH_MULTIPV: Number(process.env.STOCKFISH_MULTIPV || 6), // multipv unica alla stessa profondità
-  MIN_MASTERS_FOR_FREQ: Number(process.env.MIN_MASTERS_FOR_FREQ || 50), // sotto 50 partite Masters sceglie la migliore per il motore (depth 18)
-  CANDIDATE_MAX_LOSS: 0.30, // entro 0.30 pedoni dalla migliore per review-moves.json
+  MIN_MASTERS_FOR_FREQ: Number(process.env.MIN_MASTERS_FOR_FREQ || 50), // sotto 50 partite Masters usa regola 2200+ / 0-1400 / motore
+  LOW_MASTERS_MAX_LOSS: Number(process.env.LOW_MASTERS_MAX_LOSS || 0.15), // candidate con loss <= 0.15 rispetto alla best (depth 18, multipv 6)
+  MIN_HIGH_BAND_GAMES: Number(process.env.MIN_HIGH_BAND_GAMES || 100), // >= 100 partite in 2200+ (ratings=2200,2500)
+  MIN_LOW_BAND_GAMES_FOR_CHOICE: Number(process.env.MIN_LOW_BAND_GAMES_FOR_CHOICE || 100), // >= 100 partite in 0-1400
+  CANDIDATE_MAX_LOSS: 0.30, // entro 0.30 pedoni dalla migliore per posizioni Masters >= 50
   WARNING_MAX_LOSS: 0.50, // segnala se una mia mossa perde > 0.50 pedoni
   // Parametri Checkpoint B (Errori comuni dell'avversario nella fascia 0-1400)
   MIN_MISTAKE_FREQ: Number(process.env.MIN_MISTAKE_FREQ || 0.05), // 5% frequenza minima nella fascia 0-1400
@@ -52,7 +71,7 @@ export const BUILD_DEFAULTS = {
   MISTAKE_MIN_LOSS: 0.40, // >= 0.40 inaccuracy, >= 1.00 mistake, >= 2.50 blunder
   MAX_MISTAKES_PER_POS: 3, // primi 3 per posizione ordinati per frequenza * perdita
   MAX_PUNISH_PV_MOVES: 6, // PV max 6 mosse
-  API_DELAY_MS: 350,
+  API_DELAY_MS: 950,
 };
 
 const LICHESS_CACHE_DIR = path.join(ROOT_DIR, '.cache', 'lichess');
@@ -91,13 +110,14 @@ function sleep(ms) {
 async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
   fs.mkdirSync(LICHESS_CACHE_DIR, { recursive: true });
   const normFen = normalizeFen(fen);
-  const bucketsStr = RATING_BAND.buckets.join(',');
-  const speedsStr = RATING_BAND.speeds.join(',');
+  const bandObj = endpointType === 'lichess_high' ? HIGH_RATING_BAND : RATING_BAND;
+  const bucketsStr = bandObj.buckets.join(',');
+  const speedsStr = bandObj.speeds.join(',');
 
   const cacheKey =
     endpointType === 'masters'
       ? `masters|${normFen}`
-      : `lichess|band=${RATING_BAND.label}|buckets=${bucketsStr}|speeds=${speedsStr}|${normFen}`;
+      : `lichess|band=${bandObj.label}|buckets=${bucketsStr}|speeds=${speedsStr}|${normFen}`;
 
   const hash = crypto.createHash('sha256').update(cacheKey).digest('hex').slice(0, 24);
   const cacheFile = path.join(LICHESS_CACHE_DIR, `${endpointType}_${hash}.json`);
@@ -134,8 +154,8 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
     });
 
     if (res.status === 429) {
-      console.warn('⚠️  [Rate Limit 429] Lichess Explorer: attendo 60 secondi prima di riprovare...');
-      await sleep(60_000);
+      console.warn('⚠️  [Rate Limit 429] Lichess Explorer: attendo 61 secondi prima di riprovare...');
+      await sleep(61_000);
       continue;
     }
 
@@ -147,13 +167,30 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
     const payload = {
       normFen,
       endpointType,
-      ratingBand: RATING_BAND.label,
+      ratingBand: bandObj.label,
       fetchedAt: new Date().toISOString(),
       data: json,
     };
     fs.writeFileSync(cacheFile, JSON.stringify(payload, null, 2));
     return payload;
   }
+}
+
+function saveUpdatedSeedsFile(updatedMoves, updatedMeta) {
+  const currentContent = fs.readFileSync(SEEDS_FILE_PATH, 'utf8');
+  const beginMarker = '// BEGIN_APPROVED_BY_FEN';
+  const endMarker = '// END_APPROVED_BY_FEN';
+  const beginIdx = currentContent.indexOf(beginMarker);
+  const endIdx = currentContent.indexOf(endMarker);
+  if (beginIdx === -1 || endIdx === -1) {
+    throw new Error('Markers BEGIN_APPROVED_BY_FEN / END_APPROVED_BY_FEN non trovati');
+  }
+  const movesJson = JSON.stringify(updatedMoves, null, 2);
+  const metaJson = JSON.stringify(updatedMeta, null, 2);
+  const replacement = `${beginMarker}\nexport const APPROVED_MOVES_BY_FEN = ${movesJson};\n\nexport const APPROVED_META_BY_FEN = ${metaJson};\n${endMarker}`;
+  const nextContent =
+    currentContent.slice(0, beginIdx) + replacement + currentContent.slice(endIdx + endMarker.length);
+  fs.writeFileSync(SEEDS_FILE_PATH, nextContent, 'utf8');
 }
 
 function formatMoveStats(raw) {
@@ -270,7 +307,12 @@ async function main() {
   console.log('----------------------------------------------------------');
 
   const token = loadEnvToken();
+  const autoAccept = process.argv.includes('--auto-accept');
   const approvedMap = getApprovedSeedMap();
+  const updatedSeedMoves = { ...APPROVED_MOVES_BY_FEN };
+  const updatedSeedMeta = { ...APPROVED_META_BY_FEN };
+  let autoAcceptedCount = 0;
+
   const sfRunner = new StockfishRunner({ useCache: true });
   await sfRunner.init();
 
@@ -356,7 +398,7 @@ async function main() {
         node.ecoName = mastersData.opening.name;
       }
 
-      const approvedEntry = approvedMap.get(normalizedFen);
+      let approvedEntry = approvedMap.get(normalizedFen);
 
       if (!approvedEntry) {
         // Posizione non coperta nei seed: ricerca multipv unica a depth 18
@@ -365,87 +407,188 @@ async function main() {
           multipv: BUILD_DEFAULTS.STOCKFISH_MULTIPV,
         });
         const bestBlackEval = posEval.scoreSideToMovePawns;
-
-        const rawMastersMoves = Array.isArray(mastersData.moves) ? mastersData.moves : [];
-        const candidateSanSet = new Set();
-        for (const m of rawMastersMoves.slice(0, 6)) {
-          candidateSanSet.add(m.san);
-        }
-        for (const line of posEval.lines || []) {
-          if (line.moveSan) candidateSanSet.add(line.moveSan);
-        }
-
-        const evaluatedCandidates = [];
-        for (const san of candidateSanSet) {
-          const nextChess = new Chess(fullFen);
-          const moveObj = nextChess.move(san);
-          if (!moveObj) continue;
-
-          const uci = `${moveObj.from}${moveObj.to}${moveObj.promotion || ''}`;
-          const sameDepthEval = await getMoveEvalAtSameDepth(
-            sfRunner,
-            fullFen,
-            moveObj.san,
-            uci,
-            posEval,
-            BUILD_DEFAULTS.STOCKFISH_DEPTH
-          );
-
-          const moveBlackEval = sameDepthEval.scoreSideToMovePawns;
-          const evalLossVsBest = Number((bestBlackEval - moveBlackEval).toFixed(2));
-
-          const rawGmMove = rawMastersMoves.find((m) => m.san === moveObj.san || m.uci === uci);
-          const gmStats = rawGmMove
-            ? formatMoveStats(rawGmMove)
-            : { totalGames: 0, blackPct: 0, drawPct: 0, whitePct: 0 };
-
-          evaluatedCandidates.push({
-            san: moveObj.san,
-            uci,
-            masterGames: gmStats.totalGames,
-            gmWinBlackPct: gmStats.blackPct,
-            gmDrawPct: gmStats.drawPct,
-            gmWinWhitePct: gmStats.whitePct,
-            evalForBlackPawns: moveBlackEval,
-            evalWhitePawns: sameDepthEval.scoreWhitePawns,
-            evalLossVsBest,
-            within030Threshold: evalLossVsBest <= BUILD_DEFAULTS.CANDIDATE_MAX_LOSS,
-            pvSan: sameDepthEval.pvSan,
-          });
-        }
-
-        // REGOLA #3: Se nel database Masters la posizione ha meno di 50 partite,
-        // NON scegliere la più frequente ma la MIGLIORE secondo il motore (depth 18) tra le candidate entro 0.30!
         const hasEnoughMasters = positionGmStats.totalGames >= BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ;
-        const selectionRule = hasEnoughMasters ? 'masters_freq' : 'engine_best_low_masters';
 
-        let recommended = evaluatedCandidates.filter((c) => c.within030Threshold);
+        let selectionRule = 'masters_freq';
+        let recommended = [];
+        let evaluatedCandidates = [];
+
         if (hasEnoughMasters) {
-          recommended.sort((a, b) => b.masterGames - a.masterGames || a.evalLossVsBest - b.evalLossVsBest);
+          // >= 50 partite Masters: regola Masters invariata (più giocata nei GM entro 0.30)
+          const rawMastersMoves = Array.isArray(mastersData.moves) ? mastersData.moves : [];
+          const candidateSanSet = new Set();
+          for (const m of rawMastersMoves.slice(0, 6)) {
+            candidateSanSet.add(m.san);
+          }
+          for (const line of posEval.lines || []) {
+            if (line.moveSan) candidateSanSet.add(line.moveSan);
+          }
+
+          for (const san of candidateSanSet) {
+            const nextChess = new Chess(fullFen);
+            const moveObj = nextChess.move(san);
+            if (!moveObj) continue;
+
+            const uci = `${moveObj.from}${moveObj.to}${moveObj.promotion || ''}`;
+            const sameDepthEval = await getMoveEvalAtSameDepth(
+              sfRunner,
+              fullFen,
+              moveObj.san,
+              uci,
+              posEval,
+              BUILD_DEFAULTS.STOCKFISH_DEPTH
+            );
+
+            const moveBlackEval = sameDepthEval.scoreSideToMovePawns;
+            const evalLossVsBest = Number((bestBlackEval - moveBlackEval).toFixed(2));
+
+            const rawGmMove = rawMastersMoves.find((m) => m.san === moveObj.san || m.uci === uci);
+            const gmStats = rawGmMove
+              ? formatMoveStats(rawGmMove)
+              : { totalGames: 0, blackPct: 0, drawPct: 0, whitePct: 0 };
+
+            evaluatedCandidates.push({
+              san: moveObj.san,
+              uci,
+              masterGames: gmStats.totalGames,
+              gmWinBlackPct: gmStats.blackPct,
+              gmDrawPct: gmStats.drawPct,
+              gmWinWhitePct: gmStats.whitePct,
+              evalForBlackPawns: moveBlackEval,
+              evalWhitePawns: sameDepthEval.scoreWhitePawns,
+              evalLossVsBest,
+              within030Threshold: evalLossVsBest <= BUILD_DEFAULTS.CANDIDATE_MAX_LOSS,
+              pvSan: sameDepthEval.pvSan,
+            });
+          }
+
+          recommended = evaluatedCandidates
+            .filter((c) => c.within030Threshold)
+            .sort((a, b) => b.masterGames - a.masterGames || a.evalLossVsBest - b.evalLossVsBest);
+          if (recommended.length === 0) {
+            recommended = [...evaluatedCandidates].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
+          }
         } else {
-          recommended.sort((a, b) => a.evalLossVsBest - b.evalLossVsBest || b.masterGames - a.masterGames);
+          // < 50 partite Masters — NUOVA REGOLA A 4 PASSI:
+          // 1) candidate = mosse con loss <= 0.15 rispetto alla best (depth 18, multipv 6, stessa ricerca)
+          // 2) tra le candidate scegli la più giocata in Lichess 2200+ (ratings=2200,2500), se la posizione ha >= 100 partite lì
+          // 3) altrimenti la più giocata nella fascia 0-1400, se ha >= 100 partite
+          // 4) altrimenti la migliore del motore
+          const highBandRes = await fetchLichessEndpoint('lichess_high', fullFen, token, statsCounter);
+          const highBandData = highBandRes.data;
+          const highBandPosStats = formatMoveStats(highBandData);
+          const rawHighMoves = Array.isArray(highBandData.moves) ? highBandData.moves : [];
+
+          const lowBandRes = await fetchLichessEndpoint('lichess', fullFen, token, statsCounter);
+          const lowBandData = lowBandRes.data;
+          const lowBandPosStats = formatMoveStats(lowBandData);
+          const rawLowMoves = Array.isArray(lowBandData.moves) ? lowBandData.moves : [];
+          const rawMastersMoves = Array.isArray(mastersData.moves) ? mastersData.moves : [];
+
+          for (const line of posEval.lines || []) {
+            if (!line.moveSan) continue;
+            const nextChess = new Chess(fullFen);
+            const moveObj = nextChess.move(line.moveSan);
+            if (!moveObj) continue;
+
+            const uci = `${moveObj.from}${moveObj.to}${moveObj.promotion || ''}`;
+            const moveBlackEval = line.scoreSideToMovePawns;
+            const evalLossVsBest = Number((bestBlackEval - moveBlackEval).toFixed(2));
+
+            const rawGmMove = rawMastersMoves.find((m) => m.san === moveObj.san || m.uci === uci);
+            const gmStats = rawGmMove
+              ? formatMoveStats(rawGmMove)
+              : { totalGames: 0, blackPct: 0, drawPct: 0, whitePct: 0 };
+
+            const rawHighMove = rawHighMoves.find((m) => m.san === moveObj.san || m.uci === uci);
+            const highStats = rawHighMove ? formatMoveStats(rawHighMove) : { totalGames: 0 };
+
+            const rawLowMove = rawLowMoves.find((m) => m.san === moveObj.san || m.uci === uci);
+            const lowStats = rawLowMove ? formatMoveStats(rawLowMove) : { totalGames: 0 };
+
+            evaluatedCandidates.push({
+              san: moveObj.san,
+              uci,
+              masterGames: gmStats.totalGames,
+              highBandGames: highStats.totalGames,
+              lowBandGames: lowStats.totalGames,
+              gmWinBlackPct: gmStats.blackPct,
+              gmDrawPct: gmStats.drawPct,
+              gmWinWhitePct: gmStats.whitePct,
+              evalForBlackPawns: moveBlackEval,
+              evalWhitePawns: line.scoreWhitePawns,
+              evalLossVsBest,
+              within015Threshold: evalLossVsBest <= BUILD_DEFAULTS.LOW_MASTERS_MAX_LOSS,
+              pvSan: line.pvSan,
+            });
+          }
+
+          const candidates015 = evaluatedCandidates.filter((c) => c.within015Threshold);
+          const pool = candidates015.length > 0 ? candidates015 : evaluatedCandidates;
+
+          const byHighBand = [...pool].sort(
+            (a, b) => b.highBandGames - a.highBandGames || a.evalLossVsBest - b.evalLossVsBest
+          );
+          const byLowBand = [...pool].sort(
+            (a, b) => b.lowBandGames - a.lowBandGames || a.evalLossVsBest - b.evalLossVsBest
+          );
+          const byEngine = [...pool].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
+
+          if (
+            highBandPosStats.totalGames >= BUILD_DEFAULTS.MIN_HIGH_BAND_GAMES &&
+            byHighBand[0] &&
+            byHighBand[0].highBandGames > 0
+          ) {
+            selectionRule = 'lichess_2200_plus';
+            recommended = byHighBand;
+          } else if (
+            lowBandPosStats.totalGames >= BUILD_DEFAULTS.MIN_LOW_BAND_GAMES_FOR_CHOICE &&
+            byLowBand[0] &&
+            byLowBand[0].lowBandGames > 0
+          ) {
+            selectionRule = 'band_0_1400';
+            recommended = byLowBand;
+          } else {
+            selectionRule = 'engine_best';
+            recommended = byEngine;
+          }
         }
 
-        if (recommended.length === 0) {
-          recommended = [...evaluatedCandidates].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
+        if (autoAccept && recommended[0]) {
+          const topProposal = recommended[0];
+          approvedEntry = {
+            san: topProposal.san,
+            source: 'accepted_proposal',
+            selectionRule,
+            acceptedVia: 'accept-top',
+          };
+          approvedMap.set(normalizedFen, approvedEntry);
+          updatedSeedMoves[normalizedFen] = topProposal.san;
+          updatedSeedMeta[normalizedFen] = {
+            source: 'accepted_proposal',
+            selectionRule,
+            acceptedVia: 'accept-top',
+            masterGamesAtPosition: positionGmStats.totalGames,
+          };
+          autoAcceptedCount += 1;
+        } else {
+          unresolvedForReview.push({
+            normalizedFen,
+            fullFen,
+            pgnPath,
+            moveSequenceSan,
+            variationName,
+            positionMasterGames: positionGmStats.totalGames,
+            selectionRule,
+            engineBestMoveSan: posEval.bestMoveSan,
+            engineBestEvalForBlack: bestBlackEval,
+            proposedMoves: recommended,
+            allEvaluatedMoves: evaluatedCandidates,
+          });
+
+          positions[normalizedFen] = node;
+          continue;
         }
-
-        unresolvedForReview.push({
-          normalizedFen,
-          fullFen,
-          pgnPath,
-          moveSequenceSan,
-          variationName,
-          positionMasterGames: positionGmStats.totalGames,
-          selectionRule,
-          engineBestMoveSan: posEval.bestMoveSan,
-          engineBestEvalForBlack: bestBlackEval,
-          proposedMoves: recommended,
-          allEvaluatedMoves: evaluatedCandidates,
-        });
-
-        positions[normalizedFen] = node;
-        continue;
       }
 
       // Mossa approvata nei seed: verifichiamola con ricerca multipv unica a depth 18
@@ -528,9 +671,10 @@ async function main() {
       const effectiveSelectionRule =
         approvedEntry.source === 'seed'
           ? 'seed'
-          : positionGmStats.totalGames < BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ
-          ? 'engine_best_low_masters'
-          : approvedEntry.selectionRule || 'masters_freq';
+          : approvedEntry.selectionRule ||
+            (positionGmStats.totalGames >= BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ
+              ? 'masters_freq'
+              : 'engine_best');
 
       node.playerMove = {
         san: moveObj.san,
@@ -682,6 +826,11 @@ async function main() {
       node.opponentMoves = opponentMoves;
       positions[normalizedFen] = node;
     }
+  }
+
+  if (autoAcceptedCount > 0) {
+    saveUpdatedSeedsFile(updatedSeedMoves, updatedSeedMeta);
+    console.log(`💾 Salvate ${autoAcceptedCount} mosse in scripts/repertoire-seeds.mjs (--auto-accept).`);
   }
 
   const sfStats = sfRunner.getStats();

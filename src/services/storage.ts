@@ -60,13 +60,42 @@ export async function getAllCards(): Promise<StoredFSRSCard[]> {
   return db.getAll('cards');
 }
 
-export async function saveCards(cards: StoredFSRSCard[]): Promise<void> {
+/**
+ * Sincronizza le card in IndexedDB con l'elenco valido `cards`:
+ * - Rimuove in modo pulito tutte le card orfane (posizioni rimosse dal JSON o imprecisioni < 1.0)
+ *   e i relativi log orfani, senza errori.
+ * - Salva/aggiorna tutte le card valide.
+ */
+export async function saveCards(cards: StoredFSRSCard[]): Promise<{ removedOrphans: number }> {
   const db = await getDb();
-  const tx = db.transaction('cards', 'readwrite');
+  const validIds = new Set(cards.map((c) => c.id));
+  const tx = db.transaction(['cards', 'logs'], 'readwrite');
+  const cardStore = tx.objectStore('cards');
+  const logStore = tx.objectStore('logs');
+
+  const existingKeys = await cardStore.getAllKeys();
+  let removedOrphans = 0;
+  for (const key of existingKeys) {
+    if (!validIds.has(String(key))) {
+      await cardStore.delete(key);
+      removedOrphans += 1;
+    }
+  }
+
+  if (removedOrphans > 0) {
+    const allLogs = await logStore.getAll();
+    for (const l of allLogs) {
+      if (!validIds.has(l.cardId)) {
+        await logStore.delete(l.id);
+      }
+    }
+  }
+
   for (const c of cards) {
-    await tx.store.put(c);
+    await cardStore.put(c);
   }
   await tx.done;
+  return { removedOrphans };
 }
 
 export async function saveCardAndLog(card: StoredFSRSCard, log: ReviewLogEntry): Promise<void> {

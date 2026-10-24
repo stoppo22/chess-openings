@@ -81,9 +81,13 @@ export function syncOpeningCards(
       const cardId = buildCardId(opening.id, 'repertoire', node.normalizedFen);
       const priorityScore = Number(nodeReachProb.toFixed(6));
       const existing = existingByOpening.get(cardId);
-      if (existing) {
+      if (existing && existing.correctMoveSan === node.playerMove.san) {
         mapById.set(cardId, {
           ...existing,
+          variationId: node.variationId,
+          fullFen: node.fullFen,
+          pgnPath: node.pgnPath,
+          moveSequenceSan: node.moveSequenceSan,
           reachPct: nodeReachPct,
           priorityScore,
         });
@@ -137,9 +141,13 @@ export function syncOpeningCards(
         };
 
         const existing = existingByOpening.get(cardId);
-        if (existing) {
+        if (existing && existing.correctMoveSan === mistake.punishMoveSan) {
           mapById.set(cardId, {
             ...existing,
+            variationId: node.variationId,
+            fullFen: mistake.afterMistakeFullFen,
+            pgnPath: `${node.pgnPath} ${mistake.opponentMoveSan}`.trim(),
+            moveSequenceSan: [...node.moveSequenceSan, mistake.opponentMoveSan],
             reachPct: nodeReachPct,
             priorityScore,
             mistakeContext,

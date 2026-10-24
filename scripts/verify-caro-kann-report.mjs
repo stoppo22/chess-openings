@@ -97,16 +97,22 @@ function main() {
   // Conteggio origine/criterio mie mosse
   let fromSeedCount = 0;
   let fromMastersFreqCount = 0;
-  let fromEngineLowMastersCount = 0;
+  let from2200PlusCount = 0;
+  let fromBand01400Count = 0;
+  let fromEngineCount = 0;
 
   for (const n of playerNodes) {
     const rule = n.playerMove.selectionRule;
     if (n.playerMove.selectionSource === 'seed' || rule === 'seed') {
       fromSeedCount += 1;
-    } else if (rule === 'engine_best_low_masters') {
-      fromEngineLowMastersCount += 1;
-    } else {
+    } else if (rule === 'masters_freq') {
       fromMastersFreqCount += 1;
+    } else if (rule === 'lichess_2200_plus') {
+      from2200PlusCount += 1;
+    } else if (rule === 'band_0_1400') {
+      fromBand01400Count += 1;
+    } else {
+      fromEngineCount += 1;
     }
   }
 
@@ -147,8 +153,10 @@ function main() {
   console.log(`🔢 Numero totale posizioni:    ${nodes.length} (tetto max: ${data.buildConfig.maxPositionsCap})`);
   console.log(`♟️  Numero di MIE mosse:        ${playerNodes.length}`);
   console.log(`   • Da seed iniziali:         ${fromSeedCount}`);
-  console.log(`   • Da proposte (GM >= 50):   ${fromMastersFreqCount}`);
-  console.log(`   • Scelte col motore (< 50 GM, depth 18): ${fromEngineLowMastersCount}`);
+  console.log(`   • Da proposte Masters (GM >= 50):     ${fromMastersFreqCount}`);
+  console.log(`   • Da Lichess 2200+ (>= 100 partite):  ${from2200PlusCount}`);
+  console.log(`   • Dalla fascia 0-1400 (>= 100 part.): ${fromBand01400Count}`);
+  console.log(`   • Scelte col motore (fallback):       ${fromEngineCount}`);
   console.log(`⚠️  Mie mosse con warning:      ${warnings.length}`);
   if (warnings.length > 0) {
     warnings.forEach((w, idx) => {
@@ -188,6 +196,68 @@ function main() {
   console.log(
     `  • Classica (da 4.Nxe4 Bf5):       Mossa 5: ${covClassicaFrom4.dopo_mossa_5} | Mossa 6: ${covClassicaFrom4.dopo_mossa_6} | Mossa 8: ${covClassicaFrom4.dopo_mossa_8}`
   );
+
+  // Confronto con la versione precedente (.cache/caro-kann-before-rule.json)
+  const beforeFile = path.join(ROOT_DIR, '.cache', 'caro-kann-before-rule.json');
+  if (fs.existsSync(beforeFile)) {
+    const beforeData = JSON.parse(fs.readFileSync(beforeFile, 'utf8'));
+    const beforePositions = beforeData.positions || {};
+    const changedMoves = [];
+    let sharedPlayerNodes = 0;
+
+    for (const n of playerNodes) {
+      const prevNode = beforePositions[n.normalizedFen];
+      if (prevNode && prevNode.isPlayerTurn && prevNode.playerMove) {
+        sharedPlayerNodes += 1;
+        if (prevNode.playerMove.san !== n.playerMove.san) {
+          const bandData = getBandCache(n.fullFen, bandLabel, bucketsStr);
+          const totalPosGames = bandData
+            ? (bandData.white || 0) + (bandData.draws || 0) + (bandData.black || 0)
+            : 0;
+          const newBandGames = n.playerMove.bandStats?.totalGames || 0;
+          const oldBandGames = prevNode.playerMove.bandStats?.totalGames || 0;
+          const newFreqPct =
+            totalPosGames > 0 ? Number(((newBandGames / totalPosGames) * 100).toFixed(1)) : 0;
+          const oldFreqPct =
+            totalPosGames > 0 ? Number(((oldBandGames / totalPosGames) * 100).toFixed(1)) : 0;
+
+          changedMoves.push({
+            pgnPath: n.pgnPath,
+            reachPct: n.reachPct || 0,
+            totalPosGames,
+            oldSan: prevNode.playerMove.san,
+            oldLoss: prevNode.playerMove.engine.evalLossVsBest,
+            oldFreqPct,
+            newSan: n.playerMove.san,
+            newLoss: n.playerMove.engine.evalLossVsBest,
+            newFreqPct,
+            newGames: newBandGames,
+            newRule: n.playerMove.selectionRule,
+          });
+        }
+      }
+    }
+
+    const f4Fen = 'rn1qkbnr/pp2pppp/2p5/3pPb2/3P1P2/8/PPP3PP/RNBQKBNR b KQkq -';
+    const f4Node = positions[f4Fen];
+
+    console.log('\n------------------------------------------------------------------------');
+    console.log('🔄 CONFRONTO CON LA VERSIONE PRECEDENTE (CAMBIO REGOLA < 50 GM):');
+    console.log(
+      `  • Verifica dopo "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4": MIA MOSSA = ${f4Node?.playerMove?.san || 'N/A'} (origine: ${f4Node?.playerMove?.selectionRule || 'N/A'}, loss: ${f4Node?.playerMove?.engine?.evalLossVsBest?.toFixed(2) || '0.00'})`
+    );
+    console.log(
+      `  • Posizioni giocatore condivise: ${sharedPlayerNodes} | Mosse cambiate: ${changedMoves.length}`
+    );
+
+    changedMoves.sort((a, b) => b.totalPosGames - a.totalPosGames || b.reachPct - a.reachPct);
+    console.log('\n🔝 LE 10 MODIFICHE PIÙ RILEVANTI (ordinate per volume partite nella posizione):');
+    changedMoves.slice(0, 10).forEach((cm, idx) => {
+      console.log(
+        `  ${String(idx + 1).padStart(2, ' ')}. PGN: ${cm.pgnPath} | Vecchia: ${cm.oldSan} (loss: ${cm.oldLoss.toFixed(2)}, freq 0-1400: ${cm.oldFreqPct}%) -> Nuova: ${cm.newSan} (loss: ${cm.newLoss.toFixed(2)}, freq 0-1400: ${cm.newFreqPct}%, origine: ${cm.newRule})`
+      );
+    });
+  }
 
   // Top 5 risposte avversarie ancora escluse (dentro Advance e Classica, ply >= 6)
   const excluded = [];

@@ -111,6 +111,31 @@ describe('FSRS (ts-fsrs) Rating & Interval Rules', () => {
       );
     }
   });
+
+  it('cleanly removes orphaned cards and resets cards whose repertoire move changed during migration', () => {
+    const orphanCard = {
+      ...allCards[0],
+      id: 'caro-kann:repertoire:8/8/8/8/8/8/8/8 b - -',
+      normalizedFen: '8/8/8/8/8/8/8/8 b - -',
+      state: State.Review,
+      reps: 5,
+    };
+    const changedMoveCard = {
+      ...allCards[0],
+      correctMoveSan: 'a6',
+      state: State.Review,
+      reps: 4,
+    };
+
+    const migrated = syncOpeningCards(caroKann, [orphanCard, changedMoveCard], now);
+    expect(migrated.some((c) => c.id === orphanCard.id)).toBe(false);
+
+    const updatedFirst = migrated.find((c) => c.id === allCards[0].id);
+    expect(updatedFirst).toBeDefined();
+    expect(updatedFirst!.correctMoveSan).toBe(allCards[0].correctMoveSan);
+    expect(updatedFirst!.state).toBe(State.New);
+    expect(updatedFirst!.reps).toBe(0);
+  });
 });
 
 describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A + B)', () => {

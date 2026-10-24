@@ -40,11 +40,13 @@ export const App: React.FC = () => {
         const [storedCards, storedLogs] = await Promise.all([getAllCards(), getAllLogs()]);
         const syncedCards = syncOpeningCards(opening, storedCards);
         await saveCards(syncedCards);
+        const validIds = new Set(syncedCards.map((c) => c.id));
+        const validLogs = storedLogs.filter((l) => validIds.has(l.cardId));
 
         if (mounted) {
           setOpeningData(opening);
           setCards(syncedCards);
-          setLogs(storedLogs);
+          setLogs(validLogs);
         }
       } catch (err) {
         if (mounted) {
@@ -83,8 +85,9 @@ export const App: React.FC = () => {
     const [storedCards, storedLogs] = await Promise.all([getAllCards(), getAllLogs()]);
     const synced = syncOpeningCards(openingData, storedCards);
     await saveCards(synced);
+    const validIds = new Set(synced.map((c) => c.id));
     setCards(synced);
-    setLogs(storedLogs);
+    setLogs(storedLogs.filter((l) => validIds.has(l.cardId)));
   };
 
   if (error) {
