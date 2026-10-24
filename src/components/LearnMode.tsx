@@ -65,7 +65,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
   if (!currentNode) {
     return (
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-5xl mx-auto p-6">
         <button onClick={onBack} className="text-sm text-[#e8e6e3] hover:underline">
           ← Torna alla Dashboard
         </button>
@@ -239,31 +239,31 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   }, [currentNode.commonMistakes]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-4 space-y-4">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
       {/* Top Header Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#262421] border border-[#3c3934] rounded-md px-4 py-2.5">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#262421] border border-[#3c3934] rounded-md px-5 py-3.5">
+        <div className="flex items-center gap-4">
           <button
             onClick={onBack}
-            className="px-3 py-1.5 rounded bg-[#383633] hover:bg-[#45423e] text-xs font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
+            className="px-4 py-2 rounded bg-[#383633] hover:bg-[#45423e] text-sm font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
           >
             ← Dashboard
           </button>
-          <div className="h-4 w-px bg-[#3c3934]" />
+          <div className="h-5 w-px bg-[#3c3934]" />
           <div>
-            <div className="text-xs font-bold text-[#e8e6e3]">{currentNode.variationName}</div>
-            <div className="text-xs font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-md">
+            <div className="text-sm font-bold text-[#e8e6e3]">{currentNode.variationName}</div>
+            <div className="text-sm font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-xl">
               {currentNode.pgnPath || '1. e4'}
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           {opening.variations.map((v) => (
             <button
               key={v.id}
               onClick={() => handleResetToRoot(v.id)}
-              className={`px-3 py-1.5 rounded text-xs font-semibold border transition ${
+              className={`px-3.5 py-2 rounded text-sm font-semibold border transition ${
                 currentNode.variationId === v.id
                   ? 'bg-[#383633] text-[#ffffff] border-[#6b6966]'
                   : 'bg-[#1e1c1a] text-[#9e9c99] border-[#33302c] hover:text-[#e8e6e3]'
@@ -276,10 +276,10 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
       </div>
 
       {/* Main Layout: Board Left + Explorer/Trainer Panel Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         {/* Chessboard Column */}
-        <div className="lg:col-span-6 flex flex-col items-center">
-          <div className="w-full max-w-[460px] aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
+        <div className="lg:col-span-7 flex flex-col items-center">
+          <div className="w-full max-w-[min(78vh,680px)] aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
             <Chessboard
               id="learn-board"
               position={displayFen}
@@ -300,26 +300,26 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
           </div>
 
           {moveFeedback && (
-            <div className="w-full max-w-[460px] mt-2.5 bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-3.5 py-2 text-xs font-semibold">
+            <div className="w-full max-w-[min(78vh,680px)] mt-3 bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-4 py-2.5 text-sm font-semibold">
               {moveFeedback}
             </div>
           )}
 
           {/* Board Control Bar (Lichess / Chessable style) */}
-          <div className="flex items-center justify-between w-full max-w-[460px] mt-2.5 bg-[#262421] border border-[#3c3934] rounded-md p-1.5">
+          <div className="flex items-center justify-between w-full max-w-[min(78vh,680px)] mt-3 bg-[#262421] border border-[#3c3934] rounded-md p-2">
             <button
               onClick={() => handleResetToRoot()}
-              className="px-3 py-1.5 rounded bg-[#1e1c1a] hover:bg-[#312e2b] text-xs font-semibold text-[#bababa] transition"
+              className="px-4 py-2 rounded bg-[#1e1c1a] hover:bg-[#312e2b] text-sm font-semibold text-[#bababa] transition"
               title="Torna a 1.e4"
             >
               |◀ Inizio
             </button>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <button
                 onClick={handleStepBack}
                 disabled={historyFens.length <= 1}
-                className="px-3.5 py-1.5 rounded bg-[#383633] hover:bg-[#45423e] disabled:opacity-40 text-xs font-semibold text-[#e8e6e3] transition"
+                className="px-4 py-2 rounded bg-[#383633] hover:bg-[#45423e] disabled:opacity-40 text-sm font-semibold text-[#e8e6e3] transition"
               >
                 ◀ Indietro
               </button>
@@ -328,7 +328,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                 <button
                   onClick={() => navigateToFen(currentNode.playerMove!.nextNormalizedFen)}
                   disabled={!opening.positions[currentNode.playerMove.nextNormalizedFen]}
-                  className="px-4 py-1.5 rounded bg-[#81b64c] hover:bg-[#95bb4a] disabled:opacity-40 text-xs font-bold text-[#ffffff] transition"
+                  className="px-5 py-2 rounded bg-[#81b64c] hover:bg-[#95bb4a] disabled:opacity-40 text-sm font-bold text-[#ffffff] transition"
                 >
                   Gioca {currentNode.playerMove.san} ▶
                 </button>
@@ -338,20 +338,20 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
         </div>
 
         {/* Explorer & Repertoire Column */}
-        <div className="lg:col-span-6 space-y-4">
+        <div className="lg:col-span-5 space-y-5">
           {/* Main Panel */}
           <div className="bg-[#262421] border border-[#3c3934] rounded-md overflow-hidden">
             {/* Panel Header */}
-            <div className="px-4 py-3 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            <div className="px-5 py-3.5 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
                 <span
-                  className={`w-2.5 h-2.5 rounded-sm inline-block border ${
+                  className={`w-3 h-3 rounded-sm inline-block border ${
                     currentNode.isPlayerTurn
                       ? 'bg-[#161512] border-[#9e9c99]'
                       : 'bg-[#e8e6e3] border-[#9e9c99]'
                   }`}
                 />
-                <span className="text-xs font-bold uppercase tracking-wider text-[#e8e6e3]">
+                <span className="text-sm font-bold uppercase tracking-wider text-[#e8e6e3]">
                   Mossa {currentNode.moveNumber} •{' '}
                   {currentNode.isPlayerTurn
                     ? 'Tocca al Nero (Tua mossa)'
@@ -359,32 +359,32 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                 </span>
               </div>
               {currentNode.ecoCode && (
-                <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#262421] text-[#9e9c99] border border-[#3c3934]">
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#262421] text-[#9e9c99] border border-[#3c3934]">
                   {currentNode.ecoCode}
                 </span>
               )}
             </div>
 
-            <div className="p-4 space-y-4">
+            <div className="p-5 space-y-5">
               {/* PLAYER TURN: Show repertoire move + Opening Explorer bars + Engine */}
               {currentNode.isPlayerTurn && currentNode.playerMove && (
                 <>
-                  <div className="flex flex-wrap items-center justify-between gap-3 bg-[#1e1c1a] border border-[#33302c] rounded p-3.5">
+                  <div className="flex flex-wrap items-center justify-between gap-3 bg-[#1e1c1a] border border-[#33302c] rounded p-4">
                     <div>
-                      <div className="text-[11px] uppercase tracking-wider text-[#8c8a87]">
-                        Mossa del repertorio
+                      <div className="text-xs uppercase tracking-wider text-[#8c8a87]">
+                        Mossa del repertorio (giocala sulla scacchiera o premi Prosegui)
                       </div>
-                      <div className="flex flex-wrap items-center gap-2.5 mt-1">
-                        <span className="text-2xl font-bold text-[#ffffff] font-mono">
+                      <div className="flex flex-wrap items-center gap-3 mt-1.5">
+                        <span className="text-3xl font-bold text-[#ffffff] font-mono">
                           {currentNode.moveNumber}...{currentNode.playerMove.san}
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-[#312e2b] border border-[#4a4742] text-xs font-mono font-bold text-[#e8e6e3] tabular-nums">
+                        <span className="px-2.5 py-1 rounded bg-[#312e2b] border border-[#4a4742] text-sm font-mono font-bold text-[#e8e6e3] tabular-nums">
                           {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
                           {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
                         </span>
                         {currentNode.playerMove.engine.bestMoveSan !==
                           currentNode.playerMove.san && (
-                          <span className="text-xs text-[#9e9c99] font-mono">
+                          <span className="text-sm text-[#9e9c99] font-mono">
                             1ª scelta SF:{' '}
                             <strong className="text-[#e8e6e3]">
                               {currentNode.playerMove.engine.bestMoveSan}
@@ -400,7 +400,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                     <button
                       onClick={() => navigateToFen(currentNode.playerMove!.nextNormalizedFen)}
                       disabled={!opening.positions[currentNode.playerMove.nextNormalizedFen]}
-                      className="px-4 py-2 rounded bg-[#81b64c] hover:bg-[#95bb4a] disabled:opacity-40 text-white font-bold text-xs transition"
+                      className="px-5 py-2.5 rounded bg-[#81b64c] hover:bg-[#95bb4a] disabled:opacity-40 text-white font-bold text-sm transition"
                     >
                       Prosegui →
                     </button>
@@ -408,13 +408,13 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
                   {/* Opening Explorer Bars (Masters + Band 0-1400) */}
                   <div className="border border-[#33302c] rounded overflow-hidden">
-                    <div className="bg-[#1e1c1a] px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-[#8c8a87] border-b border-[#33302c]">
+                    <div className="bg-[#1e1c1a] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#8c8a87] border-b border-[#33302c]">
                       Database Partite & Risultati (Bianco / Patta / Nero)
                     </div>
 
-                    <div className="divide-y divide-[#33302c] text-xs">
+                    <div className="divide-y divide-[#33302c] text-sm">
                       {/* Masters Row */}
-                      <div className="p-3 space-y-1.5">
+                      <div className="p-4 space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="font-semibold text-[#e8e6e3]">Database Masters GM</span>
                           <span className="text-[#9e9c99] tabular-nums">
@@ -423,7 +423,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                           </span>
                         </div>
                         {currentNode.playerMove.gmStats.totalGames > 0 ? (
-                          <div className="w-full h-4 rounded-sm overflow-hidden flex text-[10px] font-bold tabular-nums border border-[#3c3934]">
+                          <div className="w-full h-5 rounded-sm overflow-hidden flex text-xs font-bold tabular-nums border border-[#3c3934]">
                             <div
                               style={{ width: `${currentNode.playerMove.gmStats.whitePct}%` }}
                               className="bg-[#e8e6e3] text-[#161512] flex items-center justify-center overflow-hidden"
@@ -450,14 +450,14 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                             </div>
                           </div>
                         ) : (
-                          <div className="text-[11px] text-[#8c8a87]">
+                          <div className="text-xs text-[#8c8a87]">
                             Linea rara tra Grandi Maestri (0 partite)
                           </div>
                         )}
                       </div>
 
                       {/* Band 0-1400 Row */}
-                      <div className="p-3 space-y-1.5">
+                      <div className="p-4 space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="font-semibold text-[#e8e6e3]">
                             Lichess Fascia {opening.buildConfig.ratingBandLabel}
@@ -471,7 +471,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                         </div>
                         {currentNode.playerMove.bandStats &&
                         currentNode.playerMove.bandStats.totalGames > 0 ? (
-                          <div className="w-full h-4 rounded-sm overflow-hidden flex text-[10px] font-bold tabular-nums border border-[#3c3934]">
+                          <div className="w-full h-5 rounded-sm overflow-hidden flex text-xs font-bold tabular-nums border border-[#3c3934]">
                             <div
                               style={{ width: `${currentNode.playerMove.bandStats.whitePct}%` }}
                               className="bg-[#e8e6e3] text-[#161512] flex items-center justify-center overflow-hidden"
@@ -498,16 +498,16 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                             </div>
                           </div>
                         ) : (
-                          <div className="text-[11px] text-[#8c8a87]">Dati non disponibili</div>
+                          <div className="text-xs text-[#8c8a87]">Dati non disponibili</div>
                         )}
                       </div>
 
                       {/* Engine Row */}
-                      <div className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 bg-[#1e1c1a]/60">
-                        <span className="text-[11px] text-[#8c8a87]">
+                      <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 bg-[#1e1c1a]/60">
+                        <span className="text-xs text-[#8c8a87]">
                           Stockfish 16 (depth {currentNode.playerMove.engine.depth})
                         </span>
-                        <span className="text-xs font-mono text-[#bababa] truncate">
+                        <span className="text-sm font-mono text-[#bababa] truncate">
                           PV: {currentNode.playerMove.engine.pvSan.join(' ')}
                         </span>
                       </div>
@@ -518,18 +518,18 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
               {/* OPPONENT TURN: Lichess Opening Explorer Table */}
               {!currentNode.isPlayerTurn && (
-                <div className="space-y-2">
-                  <div className="text-xs text-[#9e9c99]">
-                     Mosse più giocate dal Bianco nella fascia{' '}
+                <div className="space-y-3">
+                  <div className="text-sm text-[#9e9c99]">
+                    Mosse più giocate dal Bianco nella fascia{' '}
                     <strong className="text-[#e8e6e3]">
                       {opening.buildConfig.ratingBandLabel}
-                    </strong>
-                    :
+                    </strong>{' '}
+                    (clicca una riga o gioca la mossa sulla scacchiera):
                   </div>
 
                   {currentNode.opponentMoves && currentNode.opponentMoves.length > 0 ? (
                     <div className="border border-[#33302c] rounded overflow-hidden">
-                      <div className="grid grid-cols-12 bg-[#1e1c1a] px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#8c8a87] border-b border-[#33302c]">
+                      <div className="grid grid-cols-12 bg-[#1e1c1a] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#8c8a87] border-b border-[#33302c]">
                         <div className="col-span-3">Mossa</div>
                         <div className="col-span-2 text-right">Freq.</div>
                         <div className="col-span-3 text-right pr-3">Partite</div>
@@ -543,7 +543,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                               key={opp.san}
                               onClick={() => canFollow && navigateToFen(opp.nextNormalizedFen)}
                               disabled={!canFollow}
-                              className="w-full grid grid-cols-12 items-center px-3 py-2.5 text-left text-xs bg-[#262421] hover:bg-[#312e2b] disabled:opacity-45 transition"
+                              className="w-full grid grid-cols-12 items-center px-4 py-3 text-left text-sm bg-[#262421] hover:bg-[#312e2b] disabled:opacity-45 transition"
                             >
                               <div className="col-span-3 font-mono font-bold text-[#ffffff]">
                                 {currentNode.moveNumber}.{opp.san}
@@ -555,7 +555,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                 {opp.bandStats.totalGames.toLocaleString('it-IT')}
                               </div>
                               <div className="col-span-4">
-                                <div className="w-full h-3.5 rounded-sm overflow-hidden flex border border-[#3c3934]">
+                                <div className="w-full h-4 rounded-sm overflow-hidden flex border border-[#3c3934]">
                                   <div
                                     style={{ width: `${opp.bandStats.whitePct}%` }}
                                     className="bg-[#e8e6e3]"
@@ -579,7 +579,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                       </div>
                     </div>
                   ) : (
-                    <div className="text-xs text-[#9e9c99] bg-[#1e1c1a] rounded p-3 border border-[#33302c]">
+                    <div className="text-sm text-[#9e9c99] bg-[#1e1c1a] rounded p-4 border border-[#33302c]">
                       Fine della linea nel repertorio.
                     </div>
                   )}
@@ -592,11 +592,11 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
           {!activeMistakePreview &&
             currentNode.isPlayerTurn &&
             (currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified) && (
-              <div className="bg-[#262421] border border-[#3c3934] rounded-md p-4 space-y-1.5">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-[#9e9c99]">
+              <div className="bg-[#262421] border border-[#3c3934] rounded-md p-5 space-y-2">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#9e9c99]">
                   Piano strategico (Commento AI, non verificato)
                 </div>
-                <p className="text-xs text-[#bababa] leading-relaxed">
+                <p className="text-sm text-[#bababa] leading-relaxed">
                   {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
                 </p>
               </div>
@@ -607,12 +607,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
             currentNode.commonMistakes &&
             currentNode.commonMistakes.length > 0 && (
               <div className="bg-[#262421] border border-[#3c3934] rounded-md overflow-hidden">
-                <div className="px-4 py-2.5 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between gap-2 flex-wrap">
+                <div className="px-5 py-3 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between gap-2 flex-wrap">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#e8e6e3]">
                     Errori comuni avversario ({opening.buildConfig.ratingBandLabel})
                   </h3>
                   {hasHiddenInaccuracies && (
-                    <label className="inline-flex items-center gap-1.5 text-xs text-[#9e9c99] cursor-pointer">
+                    <label className="inline-flex items-center gap-2 text-xs text-[#9e9c99] cursor-pointer">
                       <input
                         type="checkbox"
                         checked={showInaccuracies}
@@ -624,35 +624,35 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                   )}
                 </div>
 
-                <div className="p-4">
+                <div className="p-5">
                   {visibleCommonMistakes.length === 0 ? (
-                    <p className="text-xs text-[#9e9c99]">
+                    <p className="text-sm text-[#9e9c99]">
                       Nessun errore &ge; 1.0 pedoni in questa posizione. Attiva &ldquo;Mostra
                       imprecisioni&rdquo; per vedere le imprecisioni minori.
                     </p>
                   ) : (
-                    <div className="space-y-2.5">
+                    <div className="space-y-3">
                       {visibleCommonMistakes.map((m) => {
                         const isSelected =
                           activeMistakePreview?.mistake.opponentMoveSan === m.opponentMoveSan;
                         return (
                           <div
                             key={m.opponentMoveSan}
-                            className={`rounded p-3 border transition ${
+                            className={`rounded p-4 border transition ${
                               isSelected
                                 ? 'bg-[#1e1c1a] border-[#b33430]'
                                 : 'bg-[#1e1c1a] border-[#33302c]'
                             }`}
                           >
                             <div className="flex items-center justify-between gap-2 flex-wrap">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-sm font-mono font-bold text-[#ffffff]">
+                              <div className="flex items-center gap-2.5 flex-wrap">
+                                <span className="text-base font-mono font-bold text-[#ffffff]">
                                   {currentNode.moveNumber}.{m.opponentMoveSan}?
                                 </span>
-                                <span className="text-xs px-2 py-0.5 rounded bg-[#b33430]/25 text-[#f29b98] border border-[#b33430]/50 font-semibold tabular-nums">
+                                <span className="text-xs px-2.5 py-0.5 rounded bg-[#b33430]/25 text-[#f29b98] border border-[#b33430]/50 font-semibold tabular-nums">
                                   {m.evalLoss.toFixed(2)} pedoni persi ({m.severity})
                                 </span>
-                                <span className="text-xs text-[#9e9c99] tabular-nums">
+                                <span className="text-sm text-[#9e9c99] tabular-nums">
                                   Freq: {m.frequencyPct}%
                                 </span>
                               </div>
@@ -662,13 +662,13 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                     isSelected ? null : { mistake: m, pvStep: 0 }
                                   )
                                 }
-                                className="px-3 py-1 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-xs font-semibold border border-[#4a4742] transition"
+                                className="px-3.5 py-1.5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-xs font-semibold border border-[#4a4742] transition"
                               >
                                 {isSelected ? 'Chiudi PV' : `Punisci con ${m.punishMoveSan}`}
                               </button>
                             </div>
 
-                            <div className="text-xs text-[#bababa] mt-2">
+                            <div className="text-sm text-[#bababa] mt-2">
                               Punizione:{' '}
                               <strong className="text-[#81b64c] font-mono">
                                 {m.punishMoveSan}
@@ -680,7 +680,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                             </div>
 
                             {isSelected && (
-                              <div className="flex items-center gap-2 mt-2.5 pt-2.5 border-t border-[#33302c]">
+                              <div className="flex items-center gap-2.5 mt-3 pt-3 border-t border-[#33302c]">
                                 <button
                                   onClick={() =>
                                     setActiveMistakePreview((prev) =>
@@ -689,7 +689,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                         : null
                                     )
                                   }
-                                  className="px-2.5 py-1 rounded bg-[#262421] hover:bg-[#312e2b] border border-[#3c3934] text-xs text-[#e8e6e3]"
+                                  className="px-3 py-1.5 rounded bg-[#262421] hover:bg-[#312e2b] border border-[#3c3934] text-xs text-[#e8e6e3]"
                                 >
                                   ◀ Mossa prec.
                                 </button>
@@ -707,7 +707,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                         : null
                                     )
                                   }
-                                  className="px-2.5 py-1 rounded bg-[#262421] hover:bg-[#312e2b] border border-[#3c3934] text-xs text-[#e8e6e3]"
+                                  className="px-3 py-1.5 rounded bg-[#262421] hover:bg-[#312e2b] border border-[#3c3934] text-xs text-[#e8e6e3]"
                                 >
                                   Mossa succ. ▶
                                 </button>
