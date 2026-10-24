@@ -4,7 +4,7 @@
   "playerColor": "black",
   "description": "Repertorio solido col Nero contro 1.e4 basato sul Database Grandi Maestri (Variante di Spinta 3...Bf5 e Variante Classica 4...Bf5).",
   "checkpoint": "A",
-  "generatedAt": "2026-10-24T15:03:51.546Z",
+  "generatedAt": "2026-10-24T15:08:08.693Z",
   "ratingBand": {
     "label": "0-1400",
     "buckets": [
@@ -31,7 +31,7 @@
     "maxPositionsCap": 150,
     "stockfishPackage": "stockfish@16.0.0 (stockfish-nnue-16-single.wasm)",
     "stockfishDepth": 14,
-    "avgStockfishMsPerPosition": 201
+    "avgStockfishMsPerPosition": 160
   },
   "variations": [
     {
@@ -76,7 +76,7 @@
       "ply": 1,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 *",
+      "pgnPath": "1. e4",
       "moveSequenceSan": [
         "e4"
       ],
@@ -181,7 +181,7 @@
       "ply": 2,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 *",
+      "pgnPath": "1. e4 c6",
       "moveSequenceSan": [
         "e4",
         "c6"
@@ -227,7 +227,7 @@
       "ply": 3,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 *",
+      "pgnPath": "1. e4 c6 2. d4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -334,7 +334,7 @@
       "ply": 4,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -390,24 +390,6 @@
             "blackPct": 45.6
           },
           "frequencyPct": 19
-        },
-        {
-          "san": "Nd2",
-          "uci": "b1d2",
-          "from": "b1",
-          "to": "d2",
-          "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq -",
-          "nextFullFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq - 1 3",
-          "bandStats": {
-            "white": 61864,
-            "draws": 3705,
-            "black": 48751,
-            "totalGames": 114320,
-            "whitePct": 54.1,
-            "drawPct": 3.2,
-            "blackPct": 42.6
-          },
-          "frequencyPct": 0.8
         }
       ]
     },
@@ -418,7 +400,7 @@
       "ply": 5,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -539,7 +521,7 @@
       "ply": 5,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -641,115 +623,6 @@
         "aiCommentUnverified": "Con 3...dxe4 eliminiamo la tensione centrale per poi sfidare subito il cavallo in e4 con ...Bf5."
       }
     },
-    "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq -": {
-      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq -",
-      "fullFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq - 1 3",
-      "moveNumber": 3,
-      "ply": 5,
-      "turn": "b",
-      "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nd2 *",
-      "moveSequenceSan": [
-        "e4",
-        "c6",
-        "d4",
-        "d5",
-        "Nd2"
-      ],
-      "variationId": "classical-bf5",
-      "variationName": "Variante Classica (4.Nxe4 Bf5)",
-      "aiCommentUnverified": "Anche contro 3.Nd2 cambiamo in e4 per rientrare nella Variante Classica con 4...Bf5.",
-      "positionGmStats": {
-        "white": 3633,
-        "draws": 5213,
-        "black": 2542,
-        "totalGames": 11388,
-        "whitePct": 31.9,
-        "drawPct": 45.8,
-        "blackPct": 22.3,
-        "topGames": [
-          {
-            "id": "l0GOEDHp",
-            "white": {
-              "name": "Caruana, Fabiano",
-              "rating": 2835
-            },
-            "black": {
-              "name": "So, Wesley",
-              "rating": 2770
-            },
-            "winner": "white",
-            "year": 2020,
-            "month": "2020-06"
-          },
-          {
-            "id": "5KVwagdf",
-            "white": {
-              "name": "Kasparov, Garry",
-              "rating": 2847
-            },
-            "black": {
-              "name": "Anand, Viswanathan",
-              "rating": 2753
-            },
-            "winner": "white",
-            "year": 2003,
-            "month": "2003-03"
-          },
-          {
-            "id": "I9Kpdufd",
-            "white": {
-              "name": "Kasparov, Garry",
-              "rating": 2825
-            },
-            "black": {
-              "name": "Anand, Viswanathan",
-              "rating": 2770
-            },
-            "winner": "white",
-            "year": 1998,
-            "month": "1998-02"
-          }
-        ]
-      },
-      "ecoCode": "B12",
-      "ecoName": "Caro-Kann Defense: Modern Variation",
-      "playerMove": {
-        "san": "dxe4",
-        "uci": "d5e4",
-        "from": "d5",
-        "to": "e4",
-        "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/8/PPPN1PPP/R1BQKBNR w KQkq -",
-        "nextFullFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/8/PPPN1PPP/R1BQKBNR w KQkq - 0 4",
-        "gmStats": {
-          "white": 3357,
-          "draws": 4963,
-          "black": 2373,
-          "totalGames": 10693,
-          "whitePct": 31.4,
-          "drawPct": 46.4,
-          "blackPct": 22.2
-        },
-        "engine": {
-          "evalPawns": 0.31,
-          "evalFromPlayerPerspective": -0.31,
-          "bestMoveSan": "dxe4",
-          "bestMoveUci": "d5e4",
-          "bestEvalPawns": 0.35,
-          "evalLossVsBest": 0,
-          "depth": 14,
-          "pvSan": [
-            "dxe4",
-            "Nxe4",
-            "Nd7",
-            "Nf3",
-            "Ngf6",
-            "Nxf6+"
-          ]
-        },
-        "aiCommentUnverified": "Anche contro 3.Nd2 cambiamo in e4 per rientrare nella Variante Classica con 4...Bf5."
-      }
-    },
     "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/8/PPP2PPP/RNBQKBNR w KQkq -": {
       "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/8/PPP2PPP/RNBQKBNR w KQkq -",
       "fullFen": "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/8/PPP2PPP/RNBQKBNR w KQkq - 1 4",
@@ -757,7 +630,7 @@
       "ply": 6,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -859,7 +732,7 @@
       "ply": 6,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -902,54 +775,6 @@
         }
       ]
     },
-    "rnbqkbnr/pp2pppp/2p5/8/3Pp3/8/PPPN1PPP/R1BQKBNR w KQkq -": {
-      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/8/PPPN1PPP/R1BQKBNR w KQkq -",
-      "fullFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/8/PPPN1PPP/R1BQKBNR w KQkq - 0 4",
-      "moveNumber": 4,
-      "ply": 6,
-      "turn": "w",
-      "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nd2 dxe4 *",
-      "moveSequenceSan": [
-        "e4",
-        "c6",
-        "d4",
-        "d5",
-        "Nd2",
-        "dxe4"
-      ],
-      "variationId": "classical-bf5",
-      "variationName": "Variante Classica (4.Nxe4 Bf5)",
-      "positionBandStats": {
-        "white": 33637,
-        "draws": 2025,
-        "black": 26960,
-        "totalGames": 62622,
-        "whitePct": 53.7,
-        "drawPct": 3.2,
-        "blackPct": 43.1
-      },
-      "opponentMoves": [
-        {
-          "san": "Nxe4",
-          "uci": "d2e4",
-          "from": "d2",
-          "to": "e4",
-          "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -",
-          "nextFullFen": "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq - 0 4",
-          "bandStats": {
-            "white": 33435,
-            "draws": 2003,
-            "black": 26720,
-            "totalGames": 62158,
-            "whitePct": 53.8,
-            "drawPct": 3.2,
-            "blackPct": 43
-          },
-          "frequencyPct": 99.3
-        }
-      ]
-    },
     "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq -": {
       "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq -",
       "fullFen": "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq - 2 4",
@@ -957,7 +782,7 @@
       "ply": 7,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1066,7 +891,7 @@
       "ply": 7,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1173,7 +998,7 @@
       "ply": 7,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1282,7 +1107,7 @@
       "ply": 7,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1389,7 +1214,7 @@
       "ply": 7,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1512,7 +1337,7 @@
       "ply": 8,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1652,7 +1477,7 @@
       "ply": 8,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1702,7 +1527,7 @@
       "ply": 8,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1806,7 +1631,7 @@
       "ply": 8,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -1910,7 +1735,7 @@
       "ply": 8,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2052,7 +1877,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2161,7 +1986,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2270,7 +2095,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2335,7 +2160,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2444,7 +2269,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2553,7 +2378,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2618,7 +2443,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2727,7 +2552,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2836,7 +2661,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bf4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bf4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2901,7 +2726,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. a3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. a3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -2982,7 +2807,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3091,7 +2916,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3156,7 +2981,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. g4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. g4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3221,7 +3046,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nc3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nc3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3286,7 +3111,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3395,7 +3220,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3504,7 +3329,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3569,7 +3394,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3678,7 +3503,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3787,7 +3612,7 @@
       "ply": 9,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3896,7 +3721,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -3948,7 +3773,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4072,7 +3897,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 Qb6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 Qb6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4124,7 +3949,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4176,7 +4001,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4264,7 +4089,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4316,7 +4141,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4404,7 +4229,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bd3 Bxd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bd3 Bxd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4456,7 +4281,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bf4 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. Bf4 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4489,7 +4314,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. a3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nc3 e6 5. a3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4522,7 +4347,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4628,7 +4453,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Bd3 Nh6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Bd3 Nh6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4661,7 +4486,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. g4 Qh4+ *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. g4 Qh4+",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4694,7 +4519,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nc3 Be7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nc3 Be7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4727,7 +4552,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4833,7 +4658,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -4939,7 +4764,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5009,7 +4834,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5061,7 +4886,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng5 Bg6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng5 Bg6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5094,7 +4919,7 @@
       "ply": 10,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc5 b6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc5 b6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5127,7 +4952,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5238,7 +5063,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5349,7 +5174,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bg5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bg5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5416,7 +5241,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bf4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bf4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5483,7 +5308,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Be2 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Be2",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5594,7 +5419,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. h3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. h3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5661,7 +5486,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 Qb6 6. b3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 Qb6 6. b3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5728,7 +5553,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5839,7 +5664,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -5950,7 +5775,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bg5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bg5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6017,7 +5842,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Be2 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Be2",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6128,7 +5953,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 Nd7 6. g4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 Nd7 6. g4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6195,7 +6020,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6306,7 +6131,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6417,7 +6242,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6514,7 +6339,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6597,7 +6422,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bb5+ *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bb5+",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6664,7 +6489,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Be3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Be3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6775,7 +6600,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6886,7 +6711,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Be3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Be3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -6953,7 +6778,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Qf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Qf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7020,7 +6845,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. f3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. f3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7087,7 +6912,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7198,7 +7023,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7311,7 +7136,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7394,7 +7219,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bc4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bc4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7505,7 +7330,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Nxf6+ *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Nxf6+",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7572,7 +7397,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7639,7 +7464,7 @@
       "ply": 11,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7750,7 +7575,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 Qa5+ *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 Qa5+",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7804,7 +7629,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bd3 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bd3 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7839,7 +7664,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bg5 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bg5 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7874,7 +7699,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bf4 Bb4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Bf4 Bb4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7909,7 +7734,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Be2 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. Be2 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7944,7 +7769,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. h3 a6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Nc3 Nd7 6. h3 a6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -7979,7 +7804,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 Qb6 6. b3 c5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bg5 Qb6 6. b3 c5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8014,7 +7839,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8049,7 +7874,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bd3 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bd3 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8084,7 +7909,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bg5 f6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Bg5 f6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8119,7 +7944,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Be2 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. c3 Nd7 6. Be2 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8154,7 +7979,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 Nd7 6. g4 Bg6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. h3 Nd7 6. g4 Bg6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8189,7 +8014,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 c5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 c5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8243,7 +8068,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8297,7 +8122,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8387,7 +8212,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bd3 Nh6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bd3 Nh6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8422,7 +8247,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bb5+ Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Bb5+ Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8457,7 +8282,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Be3 Qb6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. Be3 Qb6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8492,7 +8317,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 Qd8 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 Qd8",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8546,7 +8371,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Be3 Qxb2 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Be3 Qxb2",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8581,7 +8406,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Qf3 Bxe4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Qf3 Bxe4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8616,7 +8441,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. f3 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. f3 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8651,7 +8476,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8686,7 +8511,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8758,7 +8583,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bd3 Qxd4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bd3 Qxd4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8793,7 +8618,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bc4 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Bc4 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8828,7 +8653,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Nxf6+ exf6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Nxf6+ exf6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8863,7 +8688,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Bd3 Qxd4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. f3 Nf6 6. Bd3 Qxd4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8898,7 +8723,7 @@
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -8970,7 +8795,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 Qa5+ 7. Bd2 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 Qa5+ 7. Bd2",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9083,7 +8908,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 c5 7. c3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 c5 7. c3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9182,7 +9007,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 Nd7 7. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 Nd7 7. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9295,7 +9120,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bb5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bb5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9364,7 +9189,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9433,7 +9258,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Be3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Be3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9532,7 +9357,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 Qd8 7. O-O *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 Qd8 7. O-O",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9601,7 +9426,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9714,7 +9539,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9827,7 +9652,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9912,7 +9737,7 @@
       "ply": 13,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bg5 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bg5",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -9997,7 +9822,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 Qa5+ 7. Bd2 Qa6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Bd3 Bxd3 6. Qxd3 Qa5+ 7. Bd2 Qa6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10034,7 +9859,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 c5 7. c3 Nc6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. f4 c5 7. c3 Nc6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10071,7 +9896,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 Nd7 7. Nf3 Ne7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nc3 Nd7 7. Nf3 Ne7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10108,7 +9933,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bb5 Be7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bb5 Be7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10145,7 +9970,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bd3 Nh6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Bd3 Nh6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10182,7 +10007,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Be3 Qb6 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. f4 e6 5. Nf3 c5 6. c3 Nc6 7. Be3 Qb6",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10219,7 +10044,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 Qd8 7. O-O Bxe4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Bd3 Qxd4 6. Nf3 Qd8 7. O-O Bxe4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10256,7 +10081,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 Bh7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 Bh7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10312,7 +10137,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10351,7 +10176,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bd3 Bxd3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bd3 Bxd3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10388,7 +10213,7 @@
       "ply": 14,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bg5 Bb4 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc3 Nf6 6. Nf3 e6 7. Bg5 Bb4",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10425,7 +10250,7 @@
       "ply": 15,
       "turn": "b",
       "isPlayerTurn": true,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 Bh7 8. Nf3 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 Bh7 8. Nf3",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -10540,7 +10365,7 @@
       "ply": 16,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n\n1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 Bh7 8. Nf3 Nd7 *",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. h5 Bh7 8. Nf3 Nd7",
       "moveSequenceSan": [
         "e4",
         "c6",

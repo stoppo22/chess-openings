@@ -254,7 +254,12 @@ async function main() {
     const { variationId, variationName } = detectVariation(moveSequenceSan);
     const pgnChess = new Chess();
     for (const m of moveSequenceSan) pgnChess.move(m);
-    const pgnPath = pgnChess.pgn();
+    const pgnPath = pgnChess
+      .pgn()
+      .replace(/^\[.*?\]\s*/gms, '')
+      .replace(/\s*\*$/, '')
+      .replace(/\s+/g, ' ')
+      .trim();
 
     const node = {
       normalizedFen,
@@ -475,7 +480,10 @@ async function main() {
           if (ply === 2) {
             allowBranch = m.san === 'd4';
           } else if (ply === 4) {
-            allowBranch = CARO_KANN_CONFIG.allowedWhiteMove3San.includes(m.san);
+            allowBranch =
+              CARO_KANN_CONFIG.allowedWhiteMove3San.includes(m.san) &&
+              mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&
+              freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ;
           } else {
             allowBranch =
               mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&

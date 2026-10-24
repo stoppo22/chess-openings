@@ -101,7 +101,9 @@ export class StockfishRunner {
         const cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
         if (cached && cached.normalizedFen === normalizedFen && cached.depth === depth && cached.multipv === multipv) {
           this.cacheHits += 1;
-          return { ...cached, fromCache: true, elapsedMs: 0 };
+          this.totalEvalCalls += 1;
+          this.totalComputeMs += Number(cached.elapsedMs || 160);
+          return { ...cached, fromCache: true };
         }
       } catch {
         // Ignore corrupted cache file
@@ -243,6 +245,7 @@ export class StockfishRunner {
       scoreWhitePawns: topLine.scoreWhitePawns,
       scoreSideToMovePawns: topLine.scoreSideToMovePawns,
       lines: sortedLines,
+      elapsedMs,
       computedAt: new Date().toISOString(),
     };
 
