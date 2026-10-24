@@ -12,7 +12,7 @@ import {
   Zap,
   Play,
 } from 'lucide-react';
-import { Chess } from 'chess.js';
+import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile } from '../types/repertoire';
 
 interface LearnModeProps {
@@ -43,6 +43,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   }, [opening, initialVariationId]);
 
   const [historyFens, setHistoryFens] = useState<string[]>(initialHistory);
+  const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [showInaccuracies, setShowInaccuracies] = useState<boolean>(false);
   const [activeMistakePreview, setActiveMistakePreview] = useState<{
     mistake: CommonMistake;
@@ -100,6 +101,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   }, [currentNode, previewBoardState]);
 
   const navigateToFen = (nextNormFen: string) => {
+    setSelectedSquare(null);
     setActiveMistakePreview(null);
     if (opening.positions[nextNormFen]) {
       setHistoryFens((prev) => [...prev, nextNormFen]);
@@ -107,6 +109,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   };
 
   const handleStepBack = () => {
+    setSelectedSquare(null);
     setActiveMistakePreview(null);
     if (historyFens.length > 1) {
       setHistoryFens((prev) => prev.slice(0, -1));
@@ -114,6 +117,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   };
 
   const handleResetToRoot = (variationId?: string) => {
+    setSelectedSquare(null);
     setActiveMistakePreview(null);
     if (!variationId) {
       setHistoryFens([opening.rootNormalizedFen]);
@@ -132,6 +136,66 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     }
     if (fens.length > 0) setHistoryFens(fens);
   };
+
+  const handleSquareClick = (square: Square) => {
+    if (selectedSquare === square) {
+      setSelectedSquare(null);
+      return;
+    }
+    try {
+      const chess = new Chess(displayFen);
+      if (selectedSquare && !previewBoardState) {
+        if (
+          currentNode.isPlayerTurn &&
+          currentNode.playerMove &&
+          currentNode.playerMove.from === selectedSquare &&
+          currentNode.playerMove.to === square &&
+          opening.positions[currentNode.playerMove.nextNormalizedFen]
+        ) {
+          navigateToFen(currentNode.playerMove.nextNormalizedFen);
+          return;
+        }
+        if (!currentNode.isPlayerTurn && currentNode.opponentMoves) {
+          const matchingOpp = currentNode.opponentMoves.find(
+            (m) => m.from === selectedSquare && m.to === square && opening.positions[m.nextNormalizedFen]
+          );
+          if (matchingOpp) {
+            navigateToFen(matchingOpp.nextNormalizedFen);
+            return;
+          }
+        }
+      }
+      const piece = chess.get(square);
+      if (piece && piece.color === chess.turn()) {
+        setSelectedSquare(square);
+      } else {
+        setSelectedSquare(null);
+      }
+    } catch {
+      setSelectedSquare(null);
+    }
+  };
+
+  const customSquareStyles: Record<string, React.CSSProperties> = {};
+  if (selectedSquare) {
+    customSquareStyles[selectedSquare] = {
+      backgroundColor: 'rgba(245, 158, 11, 0.35)',
+    };
+    try {
+      const chess = new Chess(displayFen);
+      const legalMoves = chess.moves({ square: selectedSquare as Square, verbose: true });
+      for (const move of legalMoves) {
+        const isCapture = Boolean(move.captured);
+        customSquareStyles[move.to] = {
+          background: isCapture
+            ? 'radial-gradient(circle, transparent 58%, rgba(0, 0, 0, 0.32) 60%, rgba(0, 0, 0, 0.32) 74%, transparent 76%)'
+            : 'radial-gradient(circle, rgba(0, 0, 0, 0.28) 19%, transparent 21%)',
+        };
+      }
+    } catch {
+      // ignore invalid FEN
+    }
+  }
 
   const visibleCommonMistakes = useMemo(() => {
     const all = currentNode.commonMistakes || [];
@@ -190,6 +254,8 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
               position={displayFen}
               boardOrientation={opening.playerColor}
               arePiecesDraggable={false}
+              onSquareClick={handleSquareClick}
+              customSquareStyles={customSquareStyles}
               customArrows={customArrows}
               customDarkSquareStyle={{ backgroundColor: '#334155' }}
               customLightSquareStyle={{ backgroundColor: '#cbd5e1' }}

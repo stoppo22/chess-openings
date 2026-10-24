@@ -190,14 +190,28 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   };
 
   const customSquareStyles: Record<string, React.CSSProperties> = {};
-  if (selectedSquare) {
+  if (selectedSquare && feedback.type !== 'solved') {
     customSquareStyles[selectedSquare] = {
-      backgroundColor: 'rgba(245, 158, 11, 0.45)',
+      backgroundColor: 'rgba(245, 158, 11, 0.35)',
     };
+    try {
+      const chess = new Chess(boardFen);
+      const legalMoves = chess.moves({ square: selectedSquare as Square, verbose: true });
+      for (const move of legalMoves) {
+        const isCapture = Boolean(move.captured);
+        customSquareStyles[move.to] = {
+          background: isCapture
+            ? 'radial-gradient(circle, transparent 58%, rgba(0, 0, 0, 0.32) 60%, rgba(0, 0, 0, 0.32) 74%, transparent 76%)'
+            : 'radial-gradient(circle, rgba(0, 0, 0, 0.28) 19%, transparent 21%)',
+        };
+      }
+    } catch {
+      // ignore invalid FEN
+    }
   }
   if (usedHint && feedback.type !== 'solved') {
     customSquareStyles[currentCard.correctFrom] = {
-      backgroundColor: 'rgba(56, 189, 248, 0.55)',
+      backgroundColor: 'rgba(56, 189, 248, 0.45)',
       boxShadow: 'inset 0 0 0 3px #38bdf8',
     };
   }
@@ -259,6 +273,11 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
               position={boardFen}
               boardOrientation={opening.playerColor}
               arePiecesDraggable={feedback.type !== 'solved'}
+              onPieceDragBegin={(_piece, sourceSquare) => {
+                if (feedback.type !== 'solved') {
+                  setSelectedSquare(sourceSquare);
+                }
+              }}
               onPieceDrop={handlePieceDrop}
               onSquareClick={handleSquareClick}
               customSquareStyles={customSquareStyles}
