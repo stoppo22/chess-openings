@@ -4,7 +4,7 @@
   "playerColor": "black",
   "description": "Repertorio solido col Nero contro 1.e4 basato sul Database Lichess (fascia 0-1400 per le risposte avversarie) e validato con Database Grandi Maestri + Stockfish 16 (depth 18).",
   "checkpoint": "B",
-  "generatedAt": "2026-10-24T16:22:29.828Z",
+  "generatedAt": "2026-10-24T16:43:49.848Z",
   "ratingBand": {
     "label": "0-1400",
     "buckets": [
@@ -90,7 +90,7 @@
       "variationId": "caro-kann-root",
       "variationName": "Caro-Kann: Impianto Principale (1.e4 c6 2.d4 d5)",
       "reachPct": 100,
-      "aiCommentUnverified": "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale c8-h3 per l'alfiere camposcuro.",
+      "aiCommentUnverified": "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale per lo sviluppo dell'alfiere camposcuro.",
       "positionGmStats": {
         "white": 419328,
         "draws": 573290,
@@ -193,7 +193,7 @@
             "Nxe5"
           ]
         },
-        "aiCommentUnverified": "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale c8-h3 per l'alfiere camposcuro."
+        "aiCommentUnverified": "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale per lo sviluppo dell'alfiere camposcuro."
       }
     },
     "rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -": {
@@ -290,7 +290,7 @@
       "variationId": "caro-kann-root",
       "variationName": "Caro-Kann: Impianto Principale (1.e4 c6 2.d4 d5)",
       "reachPct": 100,
-      "aiCommentUnverified": "Con 2...d5 sfidiamo subito il centro del Bianco senza bloccare l'alfiere in c8.",
+      "aiCommentUnverified": "Con 2...d5 contestiamo subito il centro del Bianco mantenendo libera la diagonale c8-h3.",
       "positionGmStats": {
         "white": 27648,
         "draws": 37791,
@@ -393,7 +393,7 @@
             "Nf3"
           ]
         },
-        "aiCommentUnverified": "Con 2...d5 sfidiamo subito il centro del Bianco senza bloccare l'alfiere in c8."
+        "aiCommentUnverified": "Con 2...d5 contestiamo subito il centro del Bianco mantenendo libera la diagonale c8-h3."
       }
     },
     "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -": {
@@ -484,7 +484,7 @@
       "variationId": "advance-bf5",
       "variationName": "Variante di Spinta (3.e5 Bf5)",
       "reachPct": 100,
-      "aiCommentUnverified": "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di chiudere con ...e6.",
+      "aiCommentUnverified": "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di consolidare con ...e6.",
       "positionGmStats": {
         "white": 11576,
         "draws": 14405,
@@ -599,7 +599,7 @@
             "#38bdf8"
           ]
         ],
-        "aiCommentUnverified": "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di chiudere con ...e6."
+        "aiCommentUnverified": "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di consolidare con ...e6."
       }
     },
     "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -": {
@@ -620,7 +620,7 @@
       "variationId": "classical-bf5",
       "variationName": "Variante Classica (4.Nxe4 Bf5)",
       "reachPct": 100,
-      "aiCommentUnverified": "Con 3...dxe4 eliminiamo la tensione centrale per poi sfidare subito il cavallo in e4 con ...Bf5.",
+      "aiCommentUnverified": "Con 3...dxe4 apriamo la colonna d e prepariamo lo sviluppo attivo dell'alfiere camposcuro nella Variante Classica.",
       "positionGmStats": {
         "white": 5923,
         "draws": 9694,
@@ -723,7 +723,7 @@
             "Bd3"
           ]
         },
-        "aiCommentUnverified": "Con 3...dxe4 eliminiamo la tensione centrale per poi sfidare subito il cavallo in e4 con ...Bf5."
+        "aiCommentUnverified": "Con 3...dxe4 apriamo la colonna d e prepariamo lo sviluppo attivo dell'alfiere camposcuro nella Variante Classica."
       }
     },
     "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/8/PPP2PPP/RNBQKBNR w KQkq -": {
@@ -2099,7 +2099,7 @@
       "variationId": "classical-bf5",
       "variationName": "Variante Classica (4.Nxe4 Bf5)",
       "reachPct": 92.81,
-      "aiCommentUnverified": "4...Bf5 attacca immediatamente il cavallo centralizzato del Bianco e conquista una solida casa in g6/h7 per l'alfiere.",
+      "aiCommentUnverified": "4...Bf5 sviluppa attivamente l'alfiere camposcuro fuori dalla catena di pedoni prima di chiudere con ...e6.",
       "positionGmStats": {
         "white": 8789,
         "draws": 14181,
@@ -2214,7 +2214,7 @@
             "#38bdf8"
           ]
         ],
-        "aiCommentUnverified": "4...Bf5 attacca immediatamente il cavallo centralizzato del Bianco e conquista una solida casa in g6/h7 per l'alfiere."
+        "aiCommentUnverified": "4...Bf5 sviluppa attivamente l'alfiere camposcuro fuori dalla catena di pedoni prima di chiudere con ...e6."
       }
     },
     "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N2P2/PPP3PP/R1BQKBNR b KQkq -": {

@@ -48,6 +48,12 @@ function applyFsrsCardToStored(stored: StoredFSRSCard, card: Card): StoredFSRSCa
 /**
  * Sincronizza le posizioni di un file apertura con le card salvate in IndexedDB,
  * creando le card mancanti (state = State.New) usando come chiave deterministica il FEN normalizzato.
+ * Regole:
+ * - Le card 'punish' vengono create SOLO per errori con perdita >= 1.0 (mistake e blunder).
+ * - Le imprecisioni (0.40 - 0.99) restano solo nel pannello "Errori comuni" senza card di ripasso.
+ * - Priorità nuove card:
+ *   - 'repertoire': reach (probabilità cumulativa di incontrare la posizione)
+ *   - 'punish': reach × frequenza × perdita
  */
 export function syncOpeningCards(
   opening: OpeningRepertoireFile,
@@ -56,14 +62,32 @@ export function syncOpeningCards(
 ): StoredFSRSCard[] {
   const mapById = new Map<string, StoredFSRSCard>();
   for (const c of existingCards) {
-    mapById.set(c.id, c);
+    if (c.openingId !== opening.id) {
+      mapById.set(c.id, c);
+    }
+  }
+  const existingByOpening = new Map<string, StoredFSRSCard>();
+  for (const c of existingCards) {
+    if (c.openingId === opening.id) {
+      existingByOpening.set(c.id, c);
+    }
   }
 
   for (const node of Object.values(opening.positions)) {
+    const nodeReachPct = node.reachPct ?? 100;
+    const nodeReachProb = nodeReachPct / 100;
+
     if (node.isPlayerTurn && node.playerMove) {
       const cardId = buildCardId(opening.id, 'repertoire', node.normalizedFen);
-      const existing = mapById.get(cardId);
-      if (!existing) {
+      const priorityScore = Number(nodeReachProb.toFixed(6));
+      const existing = existingByOpening.get(cardId);
+      if (existing) {
+        mapById.set(cardId, {
+          ...existing,
+          reachPct: nodeReachPct,
+          priorityScore,
+        });
+      } else {
         const empty = createEmptyCard(now);
         mapById.set(cardId, {
           id: cardId,
@@ -78,6 +102,8 @@ export function syncOpeningCards(
           correctMoveUci: node.playerMove.uci,
           correctFrom: node.playerMove.from,
           correctTo: node.playerMove.to,
+          reachPct: nodeReachPct,
+          priorityScore,
           due: empty.due.toISOString(),
           stability: empty.stability,
           difficulty: empty.difficulty,
@@ -90,12 +116,35 @@ export function syncOpeningCards(
       }
     }
 
-    // Card di tipo 'punish' (Checkpoint B)
+    // Card di tipo 'punish' (Checkpoint B): SOLO per errori con perdita >= 1.0 (mistake e blunder)
     if (!node.isPlayerTurn && Array.isArray(node.commonMistakes)) {
       for (const mistake of node.commonMistakes) {
+        if (mistake.evalLoss < 1.0 || (mistake.severity !== 'mistake' && mistake.severity !== 'blunder')) {
+          continue;
+        }
         const cardId = buildCardId(opening.id, 'punish', mistake.afterMistakeNormalizedFen);
-        const existing = mapById.get(cardId);
-        if (!existing) {
+        const freqProb = mistake.frequencyPct / 100;
+        const priorityScore = Number((nodeReachProb * freqProb * mistake.evalLoss).toFixed(6));
+        const mistakeContext = {
+          beforeMistakeFen: node.fullFen,
+          opponentMistakeSan: mistake.opponentMoveSan,
+          evalLoss: mistake.evalLoss,
+          severity: mistake.severity,
+          frequencyPct: mistake.frequencyPct,
+          pvSan: mistake.pvSan,
+          finalEvalForPlayer: mistake.finalEvalForPlayer,
+          depth: mistake.depth,
+        };
+
+        const existing = existingByOpening.get(cardId);
+        if (existing) {
+          mapById.set(cardId, {
+            ...existing,
+            reachPct: nodeReachPct,
+            priorityScore,
+            mistakeContext,
+          });
+        } else {
           const empty = createEmptyCard(now);
           mapById.set(cardId, {
             id: cardId,
@@ -110,14 +159,9 @@ export function syncOpeningCards(
             correctMoveUci: mistake.punishMoveUci,
             correctFrom: mistake.punishFrom,
             correctTo: mistake.punishTo,
-            mistakeContext: {
-              beforeMistakeFen: node.fullFen,
-              opponentMistakeSan: mistake.opponentMoveSan,
-              evalLoss: mistake.evalLoss,
-              severity: mistake.severity,
-              frequencyPct: mistake.frequencyPct,
-              pvSan: mistake.pvSan,
-            },
+            reachPct: nodeReachPct,
+            priorityScore,
+            mistakeContext,
             due: empty.due.toISOString(),
             stability: empty.stability,
             difficulty: empty.difficulty,
@@ -246,10 +290,17 @@ export function buildDailyReviewQueue({
     .filter((c) => c.state !== State.New && new Date(c.due).getTime() <= nowMs)
     .sort((a, b) => new Date(a.due).getTime() - new Date(b.due).getTime());
 
-  // 2) Nuove card rispettando il tetto giornaliero (max 10 nuove, di cui max 3 punish)
+  // 2) Nuove card in ordine decrescente di priorità:
+  //    - per card 'repertoire': reach (probabilità cumulativa di incontrare la posizione)
+  //    - per card 'punish': reach × frequenza × perdita
+  //    Rispettando il tetto giornaliero (max 10 nuove, di cui max 3 punish)
   const newCardsPool = filtered
     .filter((c) => c.state === State.New)
-    .sort((a, b) => a.moveSequenceSan.length - b.moveSequenceSan.length);
+    .sort(
+      (a, b) =>
+        (b.priorityScore ?? 0) - (a.priorityScore ?? 0) ||
+        a.moveSequenceSan.length - b.moveSequenceSan.length
+    );
 
   const selectedNew: StoredFSRSCard[] = [];
   let pickedPunish = 0;

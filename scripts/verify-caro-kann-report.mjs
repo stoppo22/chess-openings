@@ -277,15 +277,19 @@ function main() {
     console.log(`  PV Motore:       ${eng.pvSan.join(' ')}`);
   });
 
-  if (allCommonMistakes.length > 0) {
+  const punishCardMistakes = allCommonMistakes.filter(
+    ({ mistake }) => mistake.evalLoss >= 1.0 && (mistake.severity === 'mistake' || mistake.severity === 'blunder')
+  );
+
+  if (punishCardMistakes.length > 0) {
     const punishSamples = pickRandomItems(
-      allCommonMistakes,
-      Math.min(5, allCommonMistakes.length),
+      punishCardMistakes,
+      Math.min(5, punishCardMistakes.length),
       20261025
     );
     console.log('\n========================================================================');
     console.log(
-      `⚡ ELENCO ${punishSamples.length} CAMPIONI "PUNISH" (ERRORI COMUNI FASCIA ${bandLabel}):`
+      `⚡ ELENCO ${punishSamples.length} CAMPIONI "PUNISH" (SOLO MISTAKE/BLUNDER >= 1.0, FASCIA ${bandLabel}):`
     );
 
     punishSamples.forEach(({ node, mistake }, idx) => {
@@ -300,7 +304,7 @@ function main() {
         `  Mossa avversario:      ${node.moveNumber}. ${mistake.opponentMoveSan}? (Freq fascia ${bandLabel}: ${mistake.frequencyPct}%, ${mistake.totalBandGames} partite)`
       );
       console.log(
-        `  Perdita / Impatto:     -${mistake.evalLoss.toFixed(2)} pedoni (Impact score: ${mistake.impactScore})`
+        `  Perdita / Impatto:     ${mistake.evalLoss.toFixed(2)} pedoni persi (Impact score: ${mistake.impactScore})`
       );
       console.log(`  MIA PUNIZIONE:         ${mistake.punishMoveSan} (${mistake.punishMoveUci})`);
       console.log(

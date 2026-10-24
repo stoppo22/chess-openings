@@ -58,7 +58,17 @@ describe('FSRS (ts-fsrs) Rating & Interval Rules', () => {
     expect(dueEasy).toBeGreaterThan(dueGood);
   });
 
-  it('enforces the daily limit of 10 new cards (and max 3 punish cards)', () => {
+  it('creates punish cards ONLY for mistakes with evalLoss >= 1.0 (mistake and blunder, never inaccuracy)', () => {
+    const punishCards = allCards.filter((c) => c.cardType === 'punish');
+    expect(punishCards.length).toBeGreaterThan(0);
+    for (const pc of punishCards) {
+      expect(pc.mistakeContext).toBeDefined();
+      expect(pc.mistakeContext!.evalLoss).toBeGreaterThanOrEqual(1.0);
+      expect(['mistake', 'blunder']).toContain(pc.mistakeContext!.severity);
+    }
+  });
+
+  it('orders new cards by descending reach (repertoire) and reach * freq * loss (punish) while respecting daily limit of 10 (max 3 punish)', () => {
     const queue = buildDailyReviewQueue({
       cards: allCards,
       logs: [],
@@ -79,6 +89,27 @@ describe('FSRS (ts-fsrs) Rating & Interval Rules', () => {
       now,
     });
     expect(queueNoPunish.every((c) => c.cardType !== 'punish')).toBe(true);
+    for (let i = 1; i < queueNoPunish.length; i++) {
+      expect(queueNoPunish[i - 1].priorityScore ?? 0).toBeGreaterThanOrEqual(
+        queueNoPunish[i].priorityScore ?? 0
+      );
+    }
+
+    const punishOnlyCards = allCards.filter((c) => c.cardType === 'punish');
+    const punishQueue = buildDailyReviewQueue({
+      cards: punishOnlyCards,
+      logs: [],
+      openingId: 'caro-kann',
+      includePunish: true,
+      maxNewPerDay: 10,
+      maxNewPunishPerDay: 10,
+      now,
+    });
+    for (let i = 1; i < punishQueue.length; i++) {
+      expect(punishQueue[i - 1].priorityScore ?? 0).toBeGreaterThanOrEqual(
+        punishQueue[i].priorityScore ?? 0
+      );
+    }
   });
 });
 

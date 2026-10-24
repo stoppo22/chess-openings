@@ -76,6 +76,7 @@ export interface OpponentMoveBranch {
    * Frequenza % della mossa avversaria nella posizione all'interno della fascia 0-1400.
    */
   frequencyPct: number;
+  reachPct?: number;
 }
 
 export type MistakeSeverity = 'inaccuracy' | 'mistake' | 'blunder';
@@ -92,7 +93,7 @@ export interface CommonMistake {
    */
   frequencyPct: number;
   totalBandGames: number;
-  evalLoss: number; // Perdita in pedoni rispetto alla migliore mossa avversaria (a depth 20)
+  evalLoss: number; // Perdita in pedoni rispetto alla migliore mossa avversaria (a depth 20, valore positivo)
   impactScore: number; // frequencyPct * evalLoss (usato per ordinare i top 3)
   severity: MistakeSeverity;
   punishMoveSan: string;
@@ -103,10 +104,6 @@ export interface CommonMistake {
   finalEvalPawns: number; // Valutazione dal punto di vista del Bianco a depth 20
   finalEvalForPlayer: number; // Valutazione dal punto di vista del Giocatore a depth 20
   depth: number;
-  /**
-   * ⚠️ Spiegazione didattica generata dall'AI e NON verificata.
-   */
-  aiCommentUnverified?: string;
 }
 
 export interface PositionNode {
@@ -120,6 +117,7 @@ export interface PositionNode {
   moveSequenceSan: string[];
   variationId: string;
   variationName: string;
+  reachPct?: number;
   ecoCode?: string;
   ecoName?: string;
   positionGmStats?: MoveStats;
@@ -196,6 +194,8 @@ export interface StoredFSRSCard {
   correctMoveUci: string;
   correctFrom: string;
   correctTo: string;
+  reachPct?: number;
+  priorityScore?: number;
   mistakeContext?: {
     beforeMistakeFen: string;
     opponentMistakeSan: string;
@@ -203,6 +203,8 @@ export interface StoredFSRSCard {
     severity: MistakeSeverity;
     frequencyPct: number;
     pvSan: string[];
+    finalEvalForPlayer?: number;
+    depth?: number;
   };
   due: string;
   stability: number;

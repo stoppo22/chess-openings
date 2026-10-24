@@ -267,7 +267,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
               </span>
               <h2 className="text-lg font-bold text-white mt-1">
                 {currentCard.cardType === 'punish' && currentCard.mistakeContext
-                  ? `L'avversario ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (-${currentCard.mistakeContext.evalLoss.toFixed(2)}). Come lo punisci?`
+                  ? `L'avversario ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Come lo punisci?`
                   : 'Tocca al Nero: esegui la mossa corretta sulla scacchiera'}
               </h2>
               <p className="text-xs text-slate-400 mt-1">
@@ -313,7 +313,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                 </div>
 
                 {/* Statistiche GM, Fascia 0-1400 e Stockfish se è una card repertorio */}
-                {currentNode?.playerMove && (
+                {currentCard.cardType === 'repertoire' && currentNode?.playerMove && (
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
                       <div className="text-[11px] font-semibold text-amber-300 flex items-center gap-1">
@@ -378,26 +378,38 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                 {currentCard.cardType === 'punish' && currentCard.mistakeContext && (
                   <div className="bg-slate-950/80 border border-rose-500/30 rounded-xl p-3 space-y-1">
                     <div className="text-xs font-semibold text-rose-300">
-                      Errore avversario ({opening.buildConfig.ratingBandLabel}): {currentCard.mistakeContext.opponentMistakeSan}? (-{currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni • {currentCard.mistakeContext.severity} • Freq: {currentCard.mistakeContext.frequencyPct}%)
+                      Errore avversario ({opening.buildConfig.ratingBandLabel}):{' '}
+                      {currentCard.mistakeContext.opponentMistakeSan}? ({currentCard.mistakeContext.evalLoss.toFixed(2)}{' '}
+                      pedoni persi • {currentCard.mistakeContext.severity} • Freq:{' '}
+                      {currentCard.mistakeContext.frequencyPct}%)
                     </div>
                     <div className="text-xs text-slate-300">
-                      Punizione: <strong className="text-emerald-400">{currentCard.correctMoveSan}</strong> • PV (d20):{' '}
+                      Punizione: <strong className="text-emerald-400">{currentCard.correctMoveSan}</strong> • PV (d
+                      {currentCard.mistakeContext.depth || 20}):{' '}
                       <span className="font-mono text-slate-400">{currentCard.mistakeContext.pvSan.join(' ')}</span>
+                      {typeof currentCard.mistakeContext.finalEvalForPlayer === 'number' && (
+                        <span>
+                          {' '}
+                          • Eval Nero: {currentCard.mistakeContext.finalEvalForPlayer >= 0 ? '+' : ''}
+                          {currentCard.mistakeContext.finalEvalForPlayer.toFixed(2)}
+                        </span>
+                      )}
                     </div>
                   </div>
                 )}
 
-                {(currentNode?.aiCommentUnverified || currentNode?.playerMove?.aiCommentUnverified) && (
-                  <div className="bg-amber-950/25 border border-amber-500/30 rounded-xl p-3 space-y-1">
-                    <div className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-300">
-                      <AlertTriangle className="w-3 h-3" />
-                      Commento AI, non verificato
+                {currentCard.cardType === 'repertoire' &&
+                  (currentNode?.aiCommentUnverified || currentNode?.playerMove?.aiCommentUnverified) && (
+                    <div className="bg-amber-950/25 border border-amber-500/30 rounded-xl p-3 space-y-1">
+                      <div className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-300">
+                        <AlertTriangle className="w-3 h-3" />
+                        Commento AI, non verificato
+                      </div>
+                      <p className="text-xs text-slate-200">
+                        {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
+                      </p>
                     </div>
-                    <p className="text-xs text-slate-200">
-                      {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
-                    </p>
-                  </div>
-                )}
+                  )}
 
                 {/* Pulsanti di schedulazione FSRS */}
                 <div className="pt-2">

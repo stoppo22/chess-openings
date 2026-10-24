@@ -453,18 +453,20 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
             )}
           </div>
 
-          {/* Commento AI marcato esplicitamente come NON verificato */}
-          {(currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified) && (
-            <div className="bg-amber-950/25 border border-amber-500/30 rounded-2xl p-3.5 space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[11px] font-bold">
-                <AlertTriangle className="w-3.5 h-3.5" />
-                Commento AI, non verificato
+          {/* Commento AI marcato esplicitamente come NON verificato (solo repertorio normale, mai sugli errori comuni) */}
+          {!activeMistakePreview &&
+            currentNode.isPlayerTurn &&
+            (currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified) && (
+              <div className="bg-amber-950/25 border border-amber-500/30 rounded-2xl p-3.5 space-y-1.5">
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[11px] font-bold">
+                  <AlertTriangle className="w-3.5 h-3.5" />
+                  Commento AI, non verificato
+                </div>
+                <p className="text-xs text-slate-200 leading-relaxed">
+                  {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
+                </p>
               </div>
-              <p className="text-xs text-slate-200 leading-relaxed">
-                {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
-              </p>
-            </div>
-          )}
+            )}
 
           {/* Pannello Errori Comuni dell'Avversario (0-1400) — Attivo nel Checkpoint B */}
           {!currentNode.isPlayerTurn &&
@@ -512,7 +514,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                 {currentNode.moveNumber}. {m.opponentMoveSan}?
                               </span>
                               <span className="ml-2 text-xs px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-semibold">
-                                -{m.evalLoss.toFixed(2)} pedoni ({m.severity})
+                                {m.evalLoss.toFixed(2)} pedoni persi ({m.severity})
                               </span>
                               <span className="ml-2 text-xs text-slate-400">
                                 Freq: {m.frequencyPct}%

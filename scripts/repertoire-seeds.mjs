@@ -1642,17 +1642,17 @@ export const APPROVED_META_BY_FEN = {
 
 export const AI_COMMENTS_UNVERIFIED_BY_FEN = {
   'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq -':
-    "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale c8-h3 per l'alfiere camposcuro.",
+    "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale per lo sviluppo dell'alfiere camposcuro.",
   'rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -':
-    "Con 2...d5 sfidiamo subito il centro del Bianco senza bloccare l'alfiere in c8.",
+    "Con 2...d5 contestiamo subito il centro del Bianco mantenendo libera la diagonale c8-h3.",
   'rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq -':
-    "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di chiudere con ...e6.",
+    "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di consolidare con ...e6.",
   'rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -':
-    'Con 3...dxe4 eliminiamo la tensione centrale per poi sfidare subito il cavallo in e4 con ...Bf5.',
+    "Con 3...dxe4 apriamo la colonna d e prepariamo lo sviluppo attivo dell'alfiere camposcuro nella Variante Classica.",
   'rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq -':
-    'Anche contro 3.Nd2 cambiamo in e4 per rientrare nella Variante Classica con 4...Bf5.',
+    'Anche contro 3.Nd2 semplifichiamo al centro per rientrare nella struttura della Variante Classica.',
   'rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -':
-    "4...Bf5 attacca immediatamente il cavallo centralizzato del Bianco e conquista una solida casa in g6/h7 per l'alfiere.",
+    "4...Bf5 sviluppa attivamente l'alfiere camposcuro fuori dalla catena di pedoni prima di chiudere con ...e6.",
 };
 
 export const ARROWS_BY_FEN = {
