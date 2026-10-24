@@ -1,16 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
-import {
-  ArrowLeft,
-  Lightbulb,
-  CheckCircle2,
-  XCircle,
-  Sparkles,
-  Award,
-  Cpu,
-  AlertTriangle,
-} from 'lucide-react';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
 
@@ -45,7 +35,6 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  // Per-card interaction state
   const [boardFen, setBoardFen] = useState<string>('');
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [usedHint, setUsedHint] = useState<boolean>(false);
@@ -57,7 +46,6 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
 
   const hasPunishCards = useMemo(() => cards.some((c) => c.cardType === 'punish'), [cards]);
 
-  // Costruisci la coda all'inizio della sessione o quando cambia il filtro includePunish
   useEffect(() => {
     const q = buildDailyReviewQueue({
       cards,
@@ -88,21 +76,23 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
 
   if (sessionQueue.length === 0 || currentIndex >= sessionQueue.length) {
     return (
-      <div className="max-w-xl mx-auto px-4 py-12 text-center space-y-4">
-        <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
-          <CheckCircle2 className="w-9 h-9" />
+      <div className="max-w-lg mx-auto px-4 py-12">
+        <div className="bg-[#262421] border border-[#3c3934] rounded-md p-6 text-center space-y-4">
+          <div className="text-xs font-bold uppercase tracking-wider text-[#81b64c]">
+            Sessione terminata
+          </div>
+          <h2 className="text-xl font-bold text-[#ffffff]">Ripasso giornaliero completato</h2>
+          <p className="text-sm text-[#9e9c99]">
+            Hai completato tutte le posizioni in scadenza per oggi (incluso il limite giornaliero di
+            10 nuove card).
+          </p>
+          <button
+            onClick={onBack}
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-sm transition"
+          >
+            ← Torna alla Dashboard
+          </button>
         </div>
-        <h2 className="text-2xl font-bold text-white">Sessione di ripasso completata!</h2>
-        <p className="text-sm text-slate-400">
-          Hai completato tutte le posizioni in scadenza per oggi (incluso il limite giornaliero di 10 nuove card).
-        </p>
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Torna alla Dashboard
-        </button>
       </div>
     );
   }
@@ -125,7 +115,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
       setSelectedSquare(null);
       setFeedback({
         type: 'solved',
-        message: `Esatto! La mossa del repertorio è ${currentCard.correctMoveSan}.`,
+        message: `Mossa corretta: ${currentCard.correctMoveSan}`,
       });
       return true;
     } else {
@@ -133,7 +123,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
       setSelectedSquare(null);
       setFeedback({
         type: 'wrong',
-        message: `${moveObj.san} non è la mossa del tuo repertorio in questa posizione. Riprova!`,
+        message: `${moveObj.san} non è la mossa del repertorio. Riprova.`,
       });
       return false;
     }
@@ -192,7 +182,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const customSquareStyles: Record<string, React.CSSProperties> = {};
   if (selectedSquare && feedback.type !== 'solved') {
     customSquareStyles[selectedSquare] = {
-      backgroundColor: 'rgba(245, 158, 11, 0.35)',
+      backgroundColor: 'rgba(255, 255, 51, 0.45)',
     };
     try {
       const chess = new Chess(boardFen);
@@ -201,8 +191,8 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
         const isCapture = Boolean(move.captured);
         customSquareStyles[move.to] = {
           background: isCapture
-            ? 'radial-gradient(circle, transparent 58%, rgba(0, 0, 0, 0.32) 60%, rgba(0, 0, 0, 0.32) 74%, transparent 76%)'
-            : 'radial-gradient(circle, rgba(0, 0, 0, 0.28) 19%, transparent 21%)',
+            ? 'radial-gradient(circle, transparent 58%, rgba(0, 0, 0, 0.26) 60%, rgba(0, 0, 0, 0.26) 74%, transparent 76%)'
+            : 'radial-gradient(circle, rgba(0, 0, 0, 0.22) 19%, transparent 21%)',
         };
       }
     } catch {
@@ -211,63 +201,71 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   }
   if (usedHint && feedback.type !== 'solved') {
     customSquareStyles[currentCard.correctFrom] = {
-      backgroundColor: 'rgba(56, 189, 248, 0.45)',
-      boxShadow: 'inset 0 0 0 3px #38bdf8',
+      backgroundColor: 'rgba(54, 146, 231, 0.45)',
+      boxShadow: 'inset 0 0 0 3px #3692e7',
     };
   }
 
   const isForcedAgain = usedHint || wrongAttempts > 0;
+  const progressPct = Math.round(((currentIndex + 1) / sessionQueue.length) * 100);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-4 space-y-4">
+    <div className="max-w-6xl mx-auto px-4 py-4 space-y-4">
       {/* Top Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            Esci
-          </button>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-amber-400">
-                Card {currentIndex + 1} di {sessionQueue.length}
-              </span>
-              <span
-                className={`text-[11px] px-2 py-0.5 rounded font-semibold ${
-                  currentCard.cardType === 'punish'
-                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
-                    : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                }`}
-              >
-                {currentCard.cardType === 'punish' ? '⚡ Punisci Errore' : '♟️ Repertorio'}
-              </span>
-            </div>
-            <div className="text-xs font-mono text-slate-300 truncate max-w-xs sm:max-w-md">
-              {currentCard.pgnPath}
+      <div className="bg-[#262421] border border-[#3c3934] rounded-md px-4 py-2.5 space-y-2">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onBack}
+              className="px-3 py-1.5 rounded bg-[#383633] hover:bg-[#45423e] text-xs font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
+            >
+              ← Esci
+            </button>
+            <div className="h-4 w-px bg-[#3c3934]" />
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#e8e6e3] tabular-nums">
+                  Posizione {currentIndex + 1} / {sessionQueue.length}
+                </span>
+                <span
+                  className={`text-[11px] px-2 py-0.5 rounded font-semibold border ${
+                    currentCard.cardType === 'punish'
+                      ? 'bg-[#b33430]/20 text-[#f29b98] border-[#b33430]/40'
+                      : 'bg-[#1e1c1a] text-[#bababa] border-[#3c3934]'
+                  }`}
+                >
+                  {currentCard.cardType === 'punish' ? 'Punisci Errore' : 'Repertorio'}
+                </span>
+              </div>
+              <div className="text-xs font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-md">
+                {currentCard.pgnPath}
+              </div>
             </div>
           </div>
+
+          {hasPunishCards && (
+            <label className="inline-flex items-center gap-2 text-xs text-[#9e9c99] cursor-pointer">
+              <input
+                type="checkbox"
+                checked={includePunish}
+                onChange={(e) => setIncludePunish(e.target.checked)}
+                className="rounded border-[#4a4742] bg-[#161512]"
+              />
+              Includi card &ldquo;Punisci Errori&rdquo;
+            </label>
+          )}
         </div>
 
-        {hasPunishCards && (
-          <label className="inline-flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={includePunish}
-              onChange={(e) => setIncludePunish(e.target.checked)}
-              className="rounded border-slate-700 bg-slate-800 text-amber-500"
-            />
-            Includi card &ldquo;Punisci Errori&rdquo;
-          </label>
-        )}
+        <div className="w-full h-1 bg-[#161512] rounded-sm overflow-hidden">
+          <div className="h-full bg-[#81b64c] transition-all" style={{ width: `${progressPct}%` }} />
+        </div>
       </div>
 
+      {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Chessboard */}
         <div className="lg:col-span-6 flex flex-col items-center">
-          <div className="w-full max-w-[440px] aspect-square rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-800 bg-slate-900">
+          <div className="w-full max-w-[460px] aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
             <Chessboard
               id="review-board"
               position={boardFen}
@@ -283,199 +281,209 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
               customSquareStyles={customSquareStyles}
               customArrows={
                 feedback.type === 'solved'
-                  ? [[currentCard.correctFrom as Square, currentCard.correctTo as Square, '#22c55e']]
+                  ? [
+                      [
+                        currentCard.correctFrom as Square,
+                        currentCard.correctTo as Square,
+                        'rgba(129, 182, 76, 0.85)',
+                      ],
+                    ]
                   : []
               }
-              customDarkSquareStyle={{ backgroundColor: '#334155' }}
-              customLightSquareStyle={{ backgroundColor: '#cbd5e1' }}
+              customDarkSquareStyle={{ backgroundColor: '#739552' }}
+              customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
             />
           </div>
         </div>
 
-        {/* Prompt & Feedback Panel */}
-        <div className="lg:col-span-6 space-y-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
-                {currentCard.cardType === 'punish'
-                  ? `Punisci l'errore avversario (${opening.buildConfig.ratingBandLabel})`
-                  : 'Trova la tua mossa del repertorio'}
-              </span>
-              <h2 className="text-lg font-bold text-white mt-1">
-                {currentCard.cardType === 'punish' && currentCard.mistakeContext
-                  ? `L'avversario ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Come lo punisci?`
-                  : 'Tocca al Nero: esegui la mossa corretta sulla scacchiera'}
-              </h2>
-              <p className="text-xs text-slate-400 mt-1">
-                Trascina il pezzo o tocca prima la casa di partenza e poi quella di arrivo.
-              </p>
+        {/* MoveTrainer Prompt & Evaluation Panel */}
+        <div className="lg:col-span-6">
+          <div className="bg-[#262421] border border-[#3c3934] rounded-md overflow-hidden">
+            <div className="px-4 py-3 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-sm bg-[#161512] border border-[#9e9c99] inline-block" />
+                <span className="text-xs font-bold uppercase tracking-wider text-[#e8e6e3]">
+                  {currentCard.cardType === 'punish'
+                    ? `Punisci l'errore (${opening.buildConfig.ratingBandLabel})`
+                    : 'Tocca al Nero — Trova la mossa'}
+                </span>
+              </div>
+              {wrongAttempts > 0 && (
+                <span className="text-xs text-[#f29b98] font-semibold tabular-nums">
+                  Errori: {wrongAttempts}
+                </span>
+              )}
             </div>
 
-            {/* Feedback errore */}
-            {feedback.type === 'wrong' && (
-              <div className="flex items-center gap-2.5 bg-rose-950/40 border border-rose-500/40 text-rose-200 rounded-xl p-3 text-xs font-medium">
-                <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
-                <span>{feedback.message}</span>
+            <div className="p-5 space-y-4">
+              <div>
+                <h2 className="text-base font-bold text-[#ffffff]">
+                  {currentCard.cardType === 'punish' && currentCard.mistakeContext
+                    ? `Il Bianco ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Gioca la confutazione.`
+                    : 'Esegui la mossa del tuo repertorio sulla scacchiera.'}
+                </h2>
+                <p className="text-xs text-[#9e9c99] mt-1">
+                  Tocca un pezzo per vedere le mosse legali o trascinalo sulla casa di destinazione.
+                </p>
               </div>
-            )}
 
-            {/* Pulsante Hint (prima della soluzione) */}
-            {feedback.type !== 'solved' && (
-              <div className="flex items-center justify-between pt-2 border-t border-slate-800">
-                <button
-                  onClick={handleUseHint}
-                  disabled={usedHint}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-xs font-semibold text-sky-300 border border-slate-700 transition"
-                >
-                  <Lightbulb className="w-4 h-4 text-sky-400" />
-                  {usedHint
-                    ? `Suggerimento attivo: muovi da ${currentCard.correctFrom.toUpperCase()}`
-                    : 'Usa Suggerimento (conta come Again)'}
-                </button>
-                {wrongAttempts > 0 && (
-                  <span className="text-xs text-rose-400 font-semibold">
-                    Tentativi errati: {wrongAttempts}
-                  </span>
-                )}
-              </div>
-            )}
-
-            {/* Soluzione trovata: mostra statistiche GM + Stockfish e pulsanti avanzamento FSRS */}
-            {feedback.type === 'solved' && (
-              <div className="space-y-4 pt-2 border-t border-slate-800">
-                <div className="flex items-center gap-2.5 bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 rounded-xl p-3 text-sm font-bold">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>{feedback.message}</span>
+              {/* Wrong Move Feedback */}
+              {feedback.type === 'wrong' && (
+                <div className="bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-3.5 py-2.5 text-xs font-semibold">
+                  {feedback.message}
                 </div>
+              )}
 
-                {/* Statistiche GM, Fascia 0-1400 e Stockfish se è una card repertorio */}
-                {currentCard.cardType === 'repertoire' && currentNode?.playerMove && (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
-                      <div className="text-[11px] font-semibold text-amber-300 flex items-center gap-1">
-                        <Award className="w-3.5 h-3.5" />
-                        Database Masters GM
-                      </div>
-                      <div className="text-xs font-bold text-white mt-1">
-                        {currentNode.playerMove.gmStats.totalGames.toLocaleString('it-IT')} partite GM
-                      </div>
-                      {currentNode.playerMove.gmStats.totalGames > 0 && (
-                        <div className="text-[11px] text-slate-400 mt-0.5">
-                          B: {currentNode.playerMove.gmStats.whitePct}% • P:{' '}
-                          {currentNode.playerMove.gmStats.drawPct}% • N:{' '}
-                          {currentNode.playerMove.gmStats.blackPct}%
-                        </div>
-                      )}
-                    </div>
+              {/* Hint Button (before solving) */}
+              {feedback.type !== 'solved' && (
+                <div className="pt-2 border-t border-[#33302c] flex items-center justify-between">
+                  <button
+                    onClick={handleUseHint}
+                    disabled={usedHint}
+                    className="px-3.5 py-2 rounded bg-[#383633] hover:bg-[#45423e] disabled:opacity-50 text-xs font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
+                  >
+                    {usedHint
+                      ? `Suggerimento attivo: muovi da ${currentCard.correctFrom.toUpperCase()}`
+                      : 'Mostra suggerimento (valuta Again)'}
+                  </button>
+                </div>
+              )}
 
-                    <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
-                      <div className="text-[11px] font-semibold text-emerald-300 flex items-center gap-1">
-                        <Award className="w-3.5 h-3.5" />
-                        Fascia {opening.buildConfig.ratingBandLabel}
-                      </div>
-                      <div className="text-xs font-bold text-white mt-1">
-                        {(currentNode.playerMove.bandStats?.totalGames || 0).toLocaleString('it-IT')} partite
-                      </div>
-                      {currentNode.playerMove.bandStats && currentNode.playerMove.bandStats.totalGames > 0 && (
-                        <div className="text-[11px] text-slate-400 mt-0.5">
-                          B: {currentNode.playerMove.bandStats.whitePct}% • P:{' '}
-                          {currentNode.playerMove.bandStats.drawPct}% • N:{' '}
-                          <strong className="text-emerald-300">{currentNode.playerMove.bandStats.blackPct}%</strong>
-                        </div>
-                      )}
-                    </div>
+              {/* Solved Feedback + Stats + FSRS Scheduling Buttons */}
+              {feedback.type === 'solved' && (
+                <div className="space-y-4 pt-2 border-t border-[#33302c]">
+                  <div className="bg-[#81b64c]/20 border border-[#81b64c] text-[#e8e6e3] rounded px-3.5 py-2.5 text-sm font-bold">
+                    {feedback.message}
+                  </div>
 
-                    <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
-                      <div className="text-[11px] font-semibold text-sky-300 flex items-center gap-1">
-                        <Cpu className="w-3.5 h-3.5" />
-                        Stockfish (d{currentNode.playerMove.engine.depth})
-                      </div>
-                      <div className="text-xs font-bold text-white mt-1">
-                        Tua ({currentNode.playerMove.san}):{' '}
-                        <span className="text-emerald-400">
-                          {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
-                          {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
+                  {/* Stats Table for Repertoire Card */}
+                  {currentCard.cardType === 'repertoire' && currentNode?.playerMove && (
+                    <div className="border border-[#33302c] rounded divide-y divide-[#33302c] text-xs bg-[#1e1c1a]">
+                      <div className="px-3 py-2 flex items-center justify-between">
+                        <span className="text-[#9e9c99]">Database Masters GM</span>
+                        <span className="font-semibold text-[#e8e6e3] tabular-nums">
+                          {currentNode.playerMove.gmStats.totalGames.toLocaleString('it-IT')}{' '}
+                          partite
+                          {currentNode.playerMove.gmStats.totalGames > 0 &&
+                            ` (B ${currentNode.playerMove.gmStats.whitePct}% • P ${currentNode.playerMove.gmStats.drawPct}% • N ${currentNode.playerMove.gmStats.blackPct}%)`}
                         </span>
                       </div>
-                      {currentNode.playerMove.engine.bestMoveSan !== currentNode.playerMove.san && (
-                        <div className="text-[11px] text-sky-300 mt-0.5">
-                          1ª scelta: <strong>{currentNode.playerMove.engine.bestMoveSan}</strong> (
-                          {-currentNode.playerMove.engine.bestEvalPawns >= 0 ? '+' : ''}
-                          {(-currentNode.playerMove.engine.bestEvalPawns).toFixed(2)})
-                        </div>
-                      )}
-                      <div className="text-[11px] font-mono text-slate-400 mt-0.5 truncate">
-                        PV: {currentNode.playerMove.engine.pvSan.join(' ')}
-                      </div>
-                    </div>
-                  </div>
-                )}
 
-                {currentCard.cardType === 'punish' && currentCard.mistakeContext && (
-                  <div className="bg-slate-950/80 border border-rose-500/30 rounded-xl p-3 space-y-1">
-                    <div className="text-xs font-semibold text-rose-300">
-                      Errore avversario ({opening.buildConfig.ratingBandLabel}):{' '}
-                      {currentCard.mistakeContext.opponentMistakeSan}? ({currentCard.mistakeContext.evalLoss.toFixed(2)}{' '}
-                      pedoni persi • {currentCard.mistakeContext.severity} • Freq:{' '}
-                      {currentCard.mistakeContext.frequencyPct}%)
-                    </div>
-                    <div className="text-xs text-slate-300">
-                      Punizione: <strong className="text-emerald-400">{currentCard.correctMoveSan}</strong> • PV (d
-                      {currentCard.mistakeContext.depth || 20}):{' '}
-                      <span className="font-mono text-slate-400">{currentCard.mistakeContext.pvSan.join(' ')}</span>
-                      {typeof currentCard.mistakeContext.finalEvalForPlayer === 'number' && (
-                        <span>
-                          {' '}
-                          • Eval Nero: {currentCard.mistakeContext.finalEvalForPlayer >= 0 ? '+' : ''}
-                          {currentCard.mistakeContext.finalEvalForPlayer.toFixed(2)}
+                      <div className="px-3 py-2 flex items-center justify-between">
+                        <span className="text-[#9e9c99]">
+                          Fascia {opening.buildConfig.ratingBandLabel}
                         </span>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {currentCard.cardType === 'repertoire' &&
-                  (currentNode?.aiCommentUnverified || currentNode?.playerMove?.aiCommentUnverified) && (
-                    <div className="bg-amber-950/25 border border-amber-500/30 rounded-xl p-3 space-y-1">
-                      <div className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-300">
-                        <AlertTriangle className="w-3 h-3" />
-                        Commento AI, non verificato
+                        <span className="font-semibold text-[#e8e6e3] tabular-nums">
+                          {(currentNode.playerMove.bandStats?.totalGames || 0).toLocaleString(
+                            'it-IT'
+                          )}{' '}
+                          partite
+                          {currentNode.playerMove.bandStats &&
+                            currentNode.playerMove.bandStats.totalGames > 0 &&
+                            ` (B ${currentNode.playerMove.bandStats.whitePct}% • P ${currentNode.playerMove.bandStats.drawPct}% • N ${currentNode.playerMove.bandStats.blackPct}%)`}
+                        </span>
                       </div>
-                      <p className="text-xs text-slate-200">
-                        {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
-                      </p>
+
+                      <div className="px-3 py-2 space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#9e9c99]">
+                            Stockfish (d{currentNode.playerMove.engine.depth})
+                          </span>
+                          <span className="font-mono font-bold text-[#e8e6e3] tabular-nums">
+                            {currentNode.playerMove.san}:{' '}
+                            {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0
+                              ? '+'
+                              : ''}
+                            {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
+                            {currentNode.playerMove.engine.bestMoveSan !==
+                              currentNode.playerMove.san &&
+                              ` (1ª scelta: ${currentNode.playerMove.engine.bestMoveSan} ${
+                                -currentNode.playerMove.engine.bestEvalPawns >= 0 ? '+' : ''
+                              }${(-currentNode.playerMove.engine.bestEvalPawns).toFixed(2)})`}
+                          </span>
+                        </div>
+                        <div className="font-mono text-[11px] text-[#8c8a87] truncate">
+                          PV: {currentNode.playerMove.engine.pvSan.join(' ')}
+                        </div>
+                      </div>
                     </div>
                   )}
 
-                {/* Pulsanti di schedulazione FSRS */}
-                <div className="pt-2">
-                  {isForcedAgain ? (
-                    <button
-                      onClick={() => handleAdvance(false)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-rose-500 hover:bg-rose-400 text-slate-950 font-bold text-sm transition"
-                    >
-                      Prossima Card (Valutata Again per errore/hint) →
-                    </button>
-                  ) : (
-                    <div className="flex items-center gap-3">
+                  {/* Punish Card Details */}
+                  {currentCard.cardType === 'punish' && currentCard.mistakeContext && (
+                    <div className="bg-[#1e1c1a] border border-[#33302c] rounded p-3 space-y-1 text-xs">
+                      <div className="font-semibold text-[#e8e6e3]">
+                        Errore avversario ({opening.buildConfig.ratingBandLabel}):{' '}
+                        <span className="font-mono">
+                          {currentCard.mistakeContext.opponentMistakeSan}?
+                        </span>{' '}
+                        ({currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi •{' '}
+                        {currentCard.mistakeContext.severity} • Freq:{' '}
+                        {currentCard.mistakeContext.frequencyPct}%)
+                      </div>
+                      <div className="text-[#9e9c99]">
+                        Punizione:{' '}
+                        <strong className="text-[#81b64c] font-mono">
+                          {currentCard.correctMoveSan}
+                        </strong>{' '}
+                        • PV (d{currentCard.mistakeContext.depth || 20}):{' '}
+                        <span className="font-mono">{currentCard.mistakeContext.pvSan.join(' ')}</span>
+                        {typeof currentCard.mistakeContext.finalEvalForPlayer === 'number' && (
+                          <span>
+                            {' '}
+                            • Eval Nero:{' '}
+                            {currentCard.mistakeContext.finalEvalForPlayer >= 0 ? '+' : ''}
+                            {currentCard.mistakeContext.finalEvalForPlayer.toFixed(2)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Strategic Note (Repertoire only) */}
+                  {currentCard.cardType === 'repertoire' &&
+                    (currentNode?.aiCommentUnverified ||
+                      currentNode?.playerMove?.aiCommentUnverified) && (
+                      <div className="bg-[#1e1c1a] border border-[#33302c] rounded p-3 space-y-1">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-[#8c8a87]">
+                          Piano strategico (Commento AI, non verificato)
+                        </div>
+                        <p className="text-xs text-[#bababa]">
+                          {currentNode.aiCommentUnverified ||
+                            currentNode.playerMove?.aiCommentUnverified}
+                        </p>
+                      </div>
+                    )}
+
+                  {/* FSRS Grade Buttons */}
+                  <div className="pt-1">
+                    {isForcedAgain ? (
                       <button
                         onClick={() => handleAdvance(false)}
-                        className="flex-1 py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition"
+                        className="w-full py-2.5 px-4 rounded bg-[#b33430] hover:bg-[#c93c38] text-[#ffffff] font-bold text-sm transition"
                       >
-                        Continua (Good) →
+                        Prossima posizione (Ripeti / Again) →
                       </button>
-                      <button
-                        onClick={() => handleAdvance(true)}
-                        className="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-bold text-sm border border-emerald-500/40 transition"
-                      >
-                        <Sparkles className="w-4 h-4" />
-                        Facile (Easy)
-                      </button>
-                    </div>
-                  )}
+                    ) : (
+                      <div className="flex items-center gap-2.5">
+                        <button
+                          onClick={() => handleAdvance(false)}
+                          className="flex-1 py-2.5 px-4 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-sm shadow-[0_2px_0_0_#537a2b] transition"
+                        >
+                          Continua (Good) →
+                        </button>
+                        <button
+                          onClick={() => handleAdvance(true)}
+                          className="py-2.5 px-4 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] font-semibold text-sm border border-[#4a4742] transition"
+                        >
+                          Facile (Easy)
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>

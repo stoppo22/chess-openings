@@ -17,8 +17,8 @@ export default defineConfig({
         description: 'Studio e ripasso aperture scacchistiche con FSRS e database Grandi Maestri (100% Offline)',
         start_url: basePath,
         scope: basePath,
-        theme_color: '#0f172a',
-        background_color: '#0f172a',
+        theme_color: '#161512',
+        background_color: '#161512',
         display: 'standalone',
         orientation: 'portrait',
         icons: [

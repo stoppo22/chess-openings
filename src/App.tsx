@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { RefreshCw } from 'lucide-react';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from './types/repertoire';
 import {
   exportBackupJson,
@@ -111,10 +110,10 @@ export const App: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6">
-        <div className="max-w-md bg-slate-900 border border-rose-500/40 rounded-2xl p-6 space-y-2">
-          <h1 className="text-lg font-bold text-rose-400">Errore caricamento repertorio</h1>
-          <p className="text-xs text-slate-300">{error}</p>
+      <div className="min-h-screen bg-[#161512] text-[#e8e6e3] flex items-center justify-center p-6">
+        <div className="max-w-md bg-[#262421] border border-[#b33430] rounded-md p-5 space-y-2">
+          <h1 className="text-base font-bold text-[#e8e6e3]">Errore caricamento repertorio</h1>
+          <p className="text-xs text-[#bababa]">{error}</p>
         </div>
       </div>
     );
@@ -122,22 +121,21 @@ export const App: React.FC = () => {
 
   if (!openingData) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
-        <div className="text-sm text-slate-400 animate-pulse">Caricamento repertorio Caro-Kann...</div>
+      <div className="min-h-screen bg-[#161512] text-[#bababa] flex items-center justify-center">
+        <div className="text-sm">Caricamento repertorio...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-10">
+    <div className="min-h-screen bg-[#161512] text-[#e8e6e3] pb-10">
       {swUpdateReady && isSessionActive && (
-        <div className="max-w-5xl mx-auto px-4 pt-3">
+        <div className="max-w-6xl mx-auto px-4 pt-3">
           <button
             type="button"
             onClick={applySwUpdateReload}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-bold transition shadow-lg"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-[#3692e7] hover:bg-[#2b7bc6] text-white text-xs font-semibold transition"
           >
-            <RefreshCw className="w-3.5 h-3.5 shrink-0" />
             <span>Aggiornamento disponibile, tocca per ricaricare</span>
           </button>
         </div>
