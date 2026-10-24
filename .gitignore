@@ -12,6 +12,7 @@ node_modules/
 dist/
 dist-ssr/
 *.local
+*.tsbuildinfo
 
 # OS & Editor
 .DS_Store
