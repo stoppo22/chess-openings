@@ -3,6 +3,7 @@ import { Chess } from 'chess.js';
 import caroKannRaw from '../data/openings/caro-kann.json';
 import type { OpeningRepertoireFile } from '../types/repertoire';
 import { buildCardId, getFenFromSanMoves, normalizeFen } from '../services/fen';
+import { buildMiddlegameGuide } from '../services/middlegameIdeas';
 import {
   buildDailyReviewQueue,
   gradeCard,
@@ -201,6 +202,26 @@ describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A + B)', () => {
 
     if (caroKann.checkpoint === 'B') {
       expect(totalCommonMistakes).toBeGreaterThan(0);
+    }
+  });
+
+  it('builds verified middlegame continuations and strategic ideas with arrows for every leaf node', () => {
+    const leaves = Object.values(caroKann.positions).filter(
+      (n) => !n.isPlayerTurn && (!n.opponentMoves || n.opponentMoves.length === 0)
+    );
+    expect(leaves.length).toBeGreaterThan(0);
+
+    for (const leaf of leaves) {
+      const guide = buildMiddlegameGuide(caroKann, leaf);
+      expect(guide.continuationSteps.length).toBeGreaterThan(0);
+      expect(guide.ideas.length).toBeGreaterThanOrEqual(2);
+      for (const idea of guide.ideas) {
+        expect(idea.arrows.length).toBeGreaterThan(0);
+        for (const [from, to] of idea.arrows) {
+          expect(from).toMatch(/^[a-h][1-8]$/);
+          expect(to).toMatch(/^[a-h][1-8]$/);
+        }
+      }
     }
   });
 });

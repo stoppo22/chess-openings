@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile } from '../types/repertoire';
+import { buildMiddlegameGuide } from '../services/middlegameIdeas';
 
 interface LearnModeProps {
   opening: OpeningRepertoireFile;
@@ -33,13 +34,26 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [moveFeedback, setMoveFeedback] = useState<string | null>(null);
   const [showInaccuracies, setShowInaccuracies] = useState<boolean>(false);
+  const [selectedIdeaId, setSelectedIdeaId] = useState<string>('all');
+  const [continuationStep, setContinuationStep] = useState<number>(0);
   const [activeMistakePreview, setActiveMistakePreview] = useState<{
     mistake: CommonMistake;
     pvStep: number;
   } | null>(null);
 
   const currentNormFen = historyFens[historyFens.length - 1] || opening.rootNormalizedFen;
+  const previousNormFen = historyFens.length > 1 ? historyFens[historyFens.length - 2] : undefined;
   const currentNode = opening.positions[currentNormFen];
+  const isLeafNode = Boolean(
+    currentNode &&
+      !currentNode.isPlayerTurn &&
+      (!currentNode.opponentMoves || currentNode.opponentMoves.length === 0)
+  );
+
+  const middlegameGuide = useMemo(() => {
+    if (!currentNode || !isLeafNode) return null;
+    return buildMiddlegameGuide(opening, currentNode, previousNormFen);
+  }, [opening, currentNode, isLeafNode, previousNormFen]);
 
   const previewBoardState = useMemo(() => {
     if (!activeMistakePreview || !currentNode) return null;
@@ -74,7 +88,18 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     );
   }
 
-  const displayFen = previewBoardState ? previewBoardState.fen : currentNode.fullFen;
+  const displayFen = useMemo(() => {
+    if (previewBoardState) return previewBoardState.fen;
+    if (
+      isLeafNode &&
+      middlegameGuide &&
+      continuationStep > 0 &&
+      middlegameGuide.continuationSteps[continuationStep - 1]
+    ) {
+      return middlegameGuide.continuationSteps[continuationStep - 1].fenAfter;
+    }
+    return currentNode.fullFen;
+  }, [previewBoardState, isLeafNode, middlegameGuide, continuationStep, currentNode.fullFen]);
 
   const customArrows = useMemo(() => {
     if (previewBoardState) {
@@ -86,12 +111,48 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
       const extra = (pm.arrows || []) as Array<[any, any, string?]>;
       return [baseArrow, ...extra];
     }
+    if (isLeafNode && middlegameGuide) {
+      if (continuationStep > 0) {
+        const nextStep = middlegameGuide.continuationSteps[continuationStep];
+        if (nextStep) {
+          return [
+            [
+              nextStep.from,
+              nextStep.to,
+              nextStep.turn === 'b' ? 'rgba(129, 182, 76, 0.88)' : 'rgba(54, 146, 231, 0.85)',
+            ],
+          ] as Array<[any, any, string?]>;
+        }
+        return [];
+      }
+      if (selectedIdeaId === 'all') {
+        const merged: Array<[any, any, string?]> = [];
+        const seen = new Set<string>();
+        for (const idea of middlegameGuide.ideas) {
+          if (idea.id === 'engine-plan') continue;
+          for (const arr of idea.arrows) {
+            const key = `${arr[0]}-${arr[1]}`;
+            if (!seen.has(key)) {
+              seen.add(key);
+              merged.push(arr);
+            }
+          }
+        }
+        if (merged.length > 0) return merged;
+      }
+      const found = middlegameGuide.ideas.find((i) => i.id === selectedIdeaId);
+      if (found) {
+        return found.arrows as Array<[any, any, string?]>;
+      }
+    }
     return [];
-  }, [currentNode, previewBoardState]);
+  }, [currentNode, previewBoardState, isLeafNode, middlegameGuide, continuationStep, selectedIdeaId]);
 
   const navigateToFen = (nextNormFen: string) => {
     setSelectedSquare(null);
     setMoveFeedback(null);
+    setSelectedIdeaId('all');
+    setContinuationStep(0);
     setActiveMistakePreview(null);
     if (opening.positions[nextNormFen]) {
       setHistoryFens((prev) => [...prev, nextNormFen]);
@@ -101,6 +162,8 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const handleStepBack = () => {
     setSelectedSquare(null);
     setMoveFeedback(null);
+    setSelectedIdeaId('all');
+    setContinuationStep(0);
     setActiveMistakePreview(null);
     if (historyFens.length > 1) {
       setHistoryFens((prev) => prev.slice(0, -1));
@@ -110,6 +173,8 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const handleResetToRoot = (variationId?: string) => {
     setSelectedSquare(null);
     setMoveFeedback(null);
+    setSelectedIdeaId('all');
+    setContinuationStep(0);
     setActiveMistakePreview(null);
     if (!variationId) {
       setHistoryFens([opening.rootNormalizedFen]);
@@ -516,72 +581,233 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                 </>
               )}
 
-              {/* OPPONENT TURN: Lichess Opening Explorer Table */}
+              {/* OPPONENT TURN: Lichess Opening Explorer Table or Middlegame Ideas on Leaf */}
               {!currentNode.isPlayerTurn && (
-                <div className="space-y-3">
-                  <div className="text-sm text-[#9e9c99]">
-                    Mosse più giocate dal Bianco nella fascia{' '}
-                    <strong className="text-[#e8e6e3]">
-                      {opening.buildConfig.ratingBandLabel}
-                    </strong>{' '}
-                    (clicca una riga o gioca la mossa sulla scacchiera):
-                  </div>
-
+                <div className="space-y-4">
                   {currentNode.opponentMoves && currentNode.opponentMoves.length > 0 ? (
-                    <div className="border border-[#33302c] rounded overflow-hidden">
-                      <div className="grid grid-cols-12 bg-[#1e1c1a] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#8c8a87] border-b border-[#33302c]">
-                        <div className="col-span-3">Mossa</div>
-                        <div className="col-span-2 text-right">Freq.</div>
-                        <div className="col-span-3 text-right pr-3">Partite</div>
-                        <div className="col-span-4">B / P / N</div>
+                    <>
+                      <div className="text-sm text-[#9e9c99]">
+                        Mosse più giocate dal Bianco nella fascia{' '}
+                        <strong className="text-[#e8e6e3]">
+                          {opening.buildConfig.ratingBandLabel}
+                        </strong>{' '}
+                        (clicca una riga o gioca la mossa sulla scacchiera):
                       </div>
-                      <div className="divide-y divide-[#33302c]">
-                        {currentNode.opponentMoves.map((opp) => {
-                          const canFollow = Boolean(opening.positions[opp.nextNormalizedFen]);
-                          return (
-                            <button
-                              key={opp.san}
-                              onClick={() => canFollow && navigateToFen(opp.nextNormalizedFen)}
-                              disabled={!canFollow}
-                              className="w-full grid grid-cols-12 items-center px-4 py-3 text-left text-sm bg-[#262421] hover:bg-[#312e2b] disabled:opacity-45 transition"
-                            >
-                              <div className="col-span-3 font-mono font-bold text-[#ffffff]">
-                                {currentNode.moveNumber}.{opp.san}
-                              </div>
-                              <div className="col-span-2 text-right font-semibold text-[#e8e6e3] tabular-nums">
-                                {opp.frequencyPct}%
-                              </div>
-                              <div className="col-span-3 text-right pr-3 text-[#9e9c99] tabular-nums">
-                                {opp.bandStats.totalGames.toLocaleString('it-IT')}
-                              </div>
-                              <div className="col-span-4">
-                                <div className="w-full h-4 rounded-sm overflow-hidden flex border border-[#3c3934]">
-                                  <div
-                                    style={{ width: `${opp.bandStats.whitePct}%` }}
-                                    className="bg-[#e8e6e3]"
-                                    title={`Bianco: ${opp.bandStats.whitePct}%`}
-                                  />
-                                  <div
-                                    style={{ width: `${opp.bandStats.drawPct}%` }}
-                                    className="bg-[#6b6966]"
-                                    title={`Patta: ${opp.bandStats.drawPct}%`}
-                                  />
-                                  <div
-                                    style={{ width: `${opp.bandStats.blackPct}%` }}
-                                    className="bg-[#161512]"
-                                    title={`Nero: ${opp.bandStats.blackPct}%`}
-                                  />
+
+                      <div className="border border-[#33302c] rounded overflow-hidden">
+                        <div className="grid grid-cols-12 bg-[#1e1c1a] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#8c8a87] border-b border-[#33302c]">
+                          <div className="col-span-3">Mossa</div>
+                          <div className="col-span-2 text-right">Freq.</div>
+                          <div className="col-span-3 text-right pr-3">Partite</div>
+                          <div className="col-span-4">B / P / N</div>
+                        </div>
+                        <div className="divide-y divide-[#33302c]">
+                          {currentNode.opponentMoves.map((opp) => {
+                            const canFollow = Boolean(opening.positions[opp.nextNormalizedFen]);
+                            return (
+                              <button
+                                key={opp.san}
+                                onClick={() => canFollow && navigateToFen(opp.nextNormalizedFen)}
+                                disabled={!canFollow}
+                                className="w-full grid grid-cols-12 items-center px-4 py-3 text-left text-sm bg-[#262421] hover:bg-[#312e2b] disabled:opacity-45 transition"
+                              >
+                                <div className="col-span-3 font-mono font-bold text-[#ffffff]">
+                                  {currentNode.moveNumber}.{opp.san}
                                 </div>
-                              </div>
-                            </button>
-                          );
-                        })}
+                                <div className="col-span-2 text-right font-semibold text-[#e8e6e3] tabular-nums">
+                                  {opp.frequencyPct}%
+                                </div>
+                                <div className="col-span-3 text-right pr-3 text-[#9e9c99] tabular-nums">
+                                  {opp.bandStats.totalGames.toLocaleString('it-IT')}
+                                </div>
+                                <div className="col-span-4">
+                                  <div className="w-full h-4 rounded-sm overflow-hidden flex border border-[#3c3934]">
+                                    <div
+                                      style={{ width: `${opp.bandStats.whitePct}%` }}
+                                      className="bg-[#e8e6e3]"
+                                      title={`Bianco: ${opp.bandStats.whitePct}%`}
+                                    />
+                                    <div
+                                      style={{ width: `${opp.bandStats.drawPct}%` }}
+                                      className="bg-[#6b6966]"
+                                      title={`Patta: ${opp.bandStats.drawPct}%`}
+                                    />
+                                    <div
+                                      style={{ width: `${opp.bandStats.blackPct}%` }}
+                                      className="bg-[#161512]"
+                                      title={`Nero: ${opp.bandStats.blackPct}%`}
+                                    />
+                                  </div>
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
+                    </>
                   ) : (
-                    <div className="text-sm text-[#9e9c99] bg-[#1e1c1a] rounded p-4 border border-[#33302c]">
-                      Fine della linea nel repertorio.
-                    </div>
+                    middlegameGuide && (
+                      <div className="space-y-4">
+                        <div className="bg-[#1e1c1a] border border-[#33302c] rounded p-4 space-y-3">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <div>
+                              <span className="text-xs font-bold uppercase tracking-wider text-[#81b64c]">
+                                Fine linea teorica • Idee per il Mediogioco
+                              </span>
+                              <h3 className="text-base font-bold text-[#ffffff] mt-0.5">
+                                Come proseguire da qui: piani, rotture e attacchi
+                              </h3>
+                            </div>
+                            {middlegameGuide.evalFromBlackPerspective !== null && (
+                              <span className="px-2.5 py-1 rounded bg-[#262421] border border-[#3c3934] text-xs font-mono font-bold text-[#e8e6e3] tabular-nums">
+                                Eval Nero:{' '}
+                                {middlegameGuide.evalFromBlackPerspective >= 0 ? '+' : ''}
+                                {middlegameGuide.evalFromBlackPerspective.toFixed(2)}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Step-by-step Stockfish Continuation */}
+                          {middlegameGuide.continuationSteps.length > 0 && (
+                            <div className="pt-3 border-t border-[#33302c] space-y-2.5">
+                              <div className="text-xs font-bold uppercase tracking-wider text-[#9e9c99]">
+                                Continuazione consigliata da Stockfish (sfoglia sulla scacchiera):
+                              </div>
+                              <div className="flex flex-wrap items-center gap-1.5 font-mono text-sm bg-[#161512] p-2.5 rounded border border-[#33302c]">
+                                {middlegameGuide.continuationSteps.map((step, idx) => {
+                                  const isActive = continuationStep === idx + 1;
+                                  return (
+                                    <button
+                                      key={step.plyOffset}
+                                      onClick={() => {
+                                        setActiveMistakePreview(null);
+                                        setContinuationStep(idx + 1);
+                                      }}
+                                      className={`px-2 py-0.5 rounded transition ${
+                                        isActive
+                                          ? 'bg-[#81b64c] text-[#ffffff] font-bold'
+                                          : step.turn === 'b'
+                                            ? 'text-[#e8e6e3] hover:bg-[#262421]'
+                                            : 'text-[#9e9c99] hover:bg-[#262421]'
+                                      }`}
+                                    >
+                                      {step.turn === 'w'
+                                        ? `${step.moveNumber}.${step.san}`
+                                        : `${step.moveNumber}...${step.san}`}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              <div className="flex items-center justify-between gap-2">
+                                <div className="flex items-center gap-2">
+                                  <button
+                                    onClick={() => {
+                                      setActiveMistakePreview(null);
+                                      setContinuationStep((prev) => Math.max(0, prev - 1));
+                                    }}
+                                    disabled={continuationStep === 0}
+                                    className="px-3 py-1.5 rounded bg-[#262421] hover:bg-[#312e2b] disabled:opacity-40 border border-[#3c3934] text-xs font-semibold text-[#e8e6e3]"
+                                  >
+                                    ◀ Mossa prec.
+                                  </button>
+                                  <span className="text-xs font-mono text-[#e8e6e3] tabular-nums">
+                                    Step {continuationStep}/
+                                    {middlegameGuide.continuationSteps.length}
+                                  </span>
+                                  <button
+                                    onClick={() => {
+                                      setActiveMistakePreview(null);
+                                      setContinuationStep((prev) =>
+                                        Math.min(
+                                          middlegameGuide.continuationSteps.length,
+                                          prev + 1
+                                        )
+                                      );
+                                    }}
+                                    disabled={
+                                      continuationStep >= middlegameGuide.continuationSteps.length
+                                    }
+                                    className="px-3 py-1.5 rounded bg-[#262421] hover:bg-[#312e2b] disabled:opacity-40 border border-[#3c3934] text-xs font-semibold text-[#e8e6e3]"
+                                  >
+                                    Mossa succ. ▶
+                                  </button>
+                                </div>
+                                {continuationStep > 0 && (
+                                  <button
+                                    onClick={() => setContinuationStep(0)}
+                                    className="px-3 py-1.5 rounded bg-[#383633] hover:bg-[#45423e] text-xs font-semibold text-[#e8e6e3]"
+                                  >
+                                    Torna a fine linea
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Clickable Middlegame Ideas with Arrows */}
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <span className="text-xs font-bold uppercase tracking-wider text-[#9e9c99]">
+                              Tocca un piano per vedere le frecce sulla scacchiera:
+                            </span>
+                            <button
+                              onClick={() => {
+                                setActiveMistakePreview(null);
+                                setContinuationStep(0);
+                                setSelectedIdeaId('all');
+                              }}
+                              className={`px-3 py-1 rounded text-xs font-semibold border transition ${
+                                selectedIdeaId === 'all' && continuationStep === 0
+                                  ? 'bg-[#81b64c] text-[#ffffff] border-[#81b64c]'
+                                  : 'bg-[#1e1c1a] text-[#bababa] border-[#3c3934] hover:text-[#ffffff]'
+                              }`}
+                            >
+                              Mostra tutte le frecce
+                            </button>
+                          </div>
+
+                          <div className="space-y-2.5">
+                            {middlegameGuide.ideas.map((idea) => {
+                              const isSelected =
+                                selectedIdeaId === idea.id && continuationStep === 0;
+                              return (
+                                <button
+                                  key={idea.id}
+                                  type="button"
+                                  onClick={() => {
+                                    setActiveMistakePreview(null);
+                                    setContinuationStep(0);
+                                    setSelectedIdeaId(idea.id);
+                                  }}
+                                  className={`w-full text-left rounded p-4 border transition space-y-1.5 ${
+                                    isSelected
+                                      ? 'bg-[#1e1c1a] border-[#81b64c]'
+                                      : 'bg-[#1e1c1a] border-[#33302c] hover:border-[#4a4742]'
+                                  }`}
+                                >
+                                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                                    <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#262421] text-[#81b64c] border border-[#3c3934]">
+                                      {idea.category}
+                                    </span>
+                                    <span className="text-xs font-mono text-[#e8e6e3] bg-[#161512] px-2.5 py-0.5 rounded border border-[#33302c]">
+                                      {idea.movesLabel}
+                                    </span>
+                                  </div>
+                                  <div className="text-base font-bold text-[#ffffff]">
+                                    {idea.title}
+                                  </div>
+                                  <p className="text-sm text-[#bababa] leading-relaxed">
+                                    {idea.description}
+                                  </p>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )
                   )}
                 </div>
               )}
