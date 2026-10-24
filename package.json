@@ -1,0 +1,39 @@
+{
+  "name": "chess-openings-trainer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "smoke:stockfish": "node scripts/smoke-test-stockfish.mjs",
+    "build:repertoire": "node scripts/build-repertoire.mjs",
+    "review:moves": "node scripts/review-moves-cli.mjs",
+    "verify:caro-kann": "node scripts/verify-caro-kann-report.mjs"
+  },
+  "dependencies": {
+    "chess.js": "^1.0.0-beta.8",
+    "idb": "^8.0.0",
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-chessboard": "^4.7.2",
+    "react-dom": "^18.3.1",
+    "ts-fsrs": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "stockfish": "16.0.0",
+    "tailwindcss": "^3.4.14",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.9",
+    "vite-plugin-pwa": "^0.21.0",
+    "vitest": "^2.1.3"
+  }
+}

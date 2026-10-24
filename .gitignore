@@ -1,0 +1,19 @@
+# Environment variables (contains LICHESS_TOKEN)
+.env
+.env.local
+
+# Build & API/Stockfish Caches
+.cache/
+review-moves.json
+build-warnings.json
+
+# Dependencies & Build outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# OS & Editor
+.DS_Store
+.vscode/
+.idea/
