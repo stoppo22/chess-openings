@@ -21,6 +21,7 @@ interface ReviewModeProps {
   variationId?: string;
   onCardReviewed: (updatedCard: StoredFSRSCard, log: ReviewLogEntry) => Promise<void>;
   onBack: () => void;
+  onSessionFinished?: () => void;
 }
 
 export const ReviewMode: React.FC<ReviewModeProps> = ({
@@ -30,9 +31,18 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   variationId,
   onCardReviewed,
   onBack,
+  onSessionFinished,
 }) => {
   const [includePunish, setIncludePunish] = useState<boolean>(true);
-  const [sessionQueue, setSessionQueue] = useState<StoredFSRSCard[]>([]);
+  const [sessionQueue, setSessionQueue] = useState<StoredFSRSCard[]>(() =>
+    buildDailyReviewQueue({
+      cards,
+      logs,
+      openingId: opening.id,
+      variationId,
+      includePunish: true,
+    })
+  );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   // Per-card interaction state
@@ -58,6 +68,9 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     });
     setSessionQueue(q);
     setCurrentIndex(0);
+    if (q.length === 0) {
+      onSessionFinished?.();
+    }
   }, [opening.id, variationId, includePunish]);
 
   const currentCard = sessionQueue[currentIndex];
@@ -169,7 +182,11 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
       choseEasy,
     });
     await onCardReviewed(updatedCard, logEntry);
-    setCurrentIndex((prev) => prev + 1);
+    const nextIndex = currentIndex + 1;
+    setCurrentIndex(nextIndex);
+    if (nextIndex >= sessionQueue.length) {
+      onSessionFinished?.();
+    }
   };
 
   const customSquareStyles: Record<string, React.CSSProperties> = {};

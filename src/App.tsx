@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { RefreshCw } from 'lucide-react';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from './types/repertoire';
 import {
   exportBackupJson,
@@ -10,6 +11,7 @@ import {
   saveCards,
 } from './services/storage';
 import { syncOpeningCards } from './services/srs';
+import { applySwUpdateReload, isSwUpdateReady, subscribeSwUpdate } from './services/swUpdate';
 import { Dashboard } from './components/Dashboard';
 import { LearnMode } from './components/LearnMode';
 import { ReviewMode } from './components/ReviewMode';
@@ -25,7 +27,24 @@ export const App: React.FC = () => {
   const [logs, setLogs] = useState<ReviewLogEntry[]>([]);
   const [isPersisted, setIsPersisted] = useState<boolean>(false);
   const [activeView, setActiveView] = useState<ActiveView>({ mode: 'dashboard' });
+  const [reviewFinished, setReviewFinished] = useState<boolean>(false);
+  const [swUpdateReady, setSwUpdateReady] = useState<boolean>(() => isSwUpdateReady());
   const [error, setError] = useState<string | null>(null);
+
+  const isSessionActive =
+    activeView.mode === 'learn' || (activeView.mode === 'review' && !reviewFinished);
+
+  useEffect(() => {
+    return subscribeSwUpdate(() => {
+      setSwUpdateReady(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (swUpdateReady && !isSessionActive) {
+      applySwUpdateReload();
+    }
+  }, [swUpdateReady, isSessionActive]);
 
   useEffect(() => {
     let mounted = true;
@@ -111,6 +130,19 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pb-10">
+      {swUpdateReady && isSessionActive && (
+        <div className="max-w-5xl mx-auto px-4 pt-3">
+          <button
+            type="button"
+            onClick={applySwUpdateReload}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-bold transition shadow-lg"
+          >
+            <RefreshCw className="w-3.5 h-3.5 shrink-0" />
+            <span>Aggiornamento disponibile, tocca per ricaricare</span>
+          </button>
+        </div>
+      )}
+
       {activeView.mode === 'dashboard' && (
         <Dashboard
           opening={openingData}
@@ -118,7 +150,10 @@ export const App: React.FC = () => {
           logs={logs}
           isPersisted={isPersisted}
           onStartLearn={(variationId) => setActiveView({ mode: 'learn', variationId })}
-          onStartReview={(variationId) => setActiveView({ mode: 'review', variationId })}
+          onStartReview={(variationId) => {
+            setReviewFinished(false);
+            setActiveView({ mode: 'review', variationId });
+          }}
           onExportBackup={handleExportBackup}
           onImportBackup={handleImportBackup}
         />
@@ -139,6 +174,7 @@ export const App: React.FC = () => {
           logs={logs}
           variationId={activeView.variationId}
           onCardReviewed={handleCardReviewed}
+          onSessionFinished={() => setReviewFinished(true)}
           onBack={() => setActiveView({ mode: 'dashboard' })}
         />
       )}
