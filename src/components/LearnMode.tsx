@@ -31,6 +31,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
   const [historyFens, setHistoryFens] = useState<string[]>(initialHistory);
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
+  const [moveFeedback, setMoveFeedback] = useState<string | null>(null);
   const [showInaccuracies, setShowInaccuracies] = useState<boolean>(false);
   const [activeMistakePreview, setActiveMistakePreview] = useState<{
     mistake: CommonMistake;
@@ -90,6 +91,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
   const navigateToFen = (nextNormFen: string) => {
     setSelectedSquare(null);
+    setMoveFeedback(null);
     setActiveMistakePreview(null);
     if (opening.positions[nextNormFen]) {
       setHistoryFens((prev) => [...prev, nextNormFen]);
@@ -98,6 +100,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
   const handleStepBack = () => {
     setSelectedSquare(null);
+    setMoveFeedback(null);
     setActiveMistakePreview(null);
     if (historyFens.length > 1) {
       setHistoryFens((prev) => prev.slice(0, -1));
@@ -106,6 +109,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
   const handleResetToRoot = (variationId?: string) => {
     setSelectedSquare(null);
+    setMoveFeedback(null);
     setActiveMistakePreview(null);
     if (!variationId) {
       setHistoryFens([opening.rootNormalizedFen]);
@@ -125,36 +129,70 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     if (fens.length > 0) setHistoryFens(fens);
   };
 
+  const attemptLearnMove = (from: string, to: string): boolean => {
+    if (previewBoardState) return false;
+    const chess = new Chess(displayFen);
+    let moveObj = null;
+    try {
+      moveObj = chess.move({ from, to, promotion: 'q' });
+    } catch {
+      return false;
+    }
+    if (!moveObj) return false;
+
+    if (currentNode.isPlayerTurn && currentNode.playerMove) {
+      if (moveObj.san === currentNode.playerMove.san) {
+        setSelectedSquare(null);
+        setMoveFeedback(null);
+        if (opening.positions[currentNode.playerMove.nextNormalizedFen]) {
+          navigateToFen(currentNode.playerMove.nextNormalizedFen);
+        }
+        return true;
+      } else {
+        setSelectedSquare(null);
+        setMoveFeedback(
+          `No, non è questa (${moveObj.san}). La mossa del repertorio è ${currentNode.playerMove.san}.`
+        );
+        return false;
+      }
+    }
+
+    if (!currentNode.isPlayerTurn && currentNode.opponentMoves) {
+      const matchingOpp = currentNode.opponentMoves.find(
+        (m) => m.san === moveObj.san && opening.positions[m.nextNormalizedFen]
+      );
+      if (matchingOpp) {
+        setSelectedSquare(null);
+        setMoveFeedback(null);
+        navigateToFen(matchingOpp.nextNormalizedFen);
+        return true;
+      } else {
+        setSelectedSquare(null);
+        setMoveFeedback(
+          `No, non è questa (${moveObj.san}). Gioca una delle risposte del Bianco presenti nel repertorio.`
+        );
+        return false;
+      }
+    }
+
+    return false;
+  };
+
+  const handlePieceDrop = (sourceSquare: Square, targetSquare: Square): boolean => {
+    return attemptLearnMove(sourceSquare, targetSquare);
+  };
+
   const handleSquareClick = (square: Square) => {
+    if (previewBoardState) return;
     if (selectedSquare === square) {
       setSelectedSquare(null);
       return;
     }
     try {
       const chess = new Chess(displayFen);
-      if (selectedSquare && !previewBoardState) {
-        if (
-          currentNode.isPlayerTurn &&
-          currentNode.playerMove &&
-          currentNode.playerMove.from === selectedSquare &&
-          currentNode.playerMove.to === square &&
-          opening.positions[currentNode.playerMove.nextNormalizedFen]
-        ) {
-          navigateToFen(currentNode.playerMove.nextNormalizedFen);
-          return;
-        }
-        if (!currentNode.isPlayerTurn && currentNode.opponentMoves) {
-          const matchingOpp = currentNode.opponentMoves.find(
-            (m) =>
-              m.from === selectedSquare &&
-              m.to === square &&
-              opening.positions[m.nextNormalizedFen]
-          );
-          if (matchingOpp) {
-            navigateToFen(matchingOpp.nextNormalizedFen);
-            return;
-          }
-        }
+      if (selectedSquare) {
+        const moved = attemptLearnMove(selectedSquare, square);
+        if (moved) return;
       }
       const piece = chess.get(square);
       if (piece && piece.color === chess.turn()) {
@@ -246,7 +284,13 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
               id="learn-board"
               position={displayFen}
               boardOrientation={opening.playerColor}
-              arePiecesDraggable={false}
+              arePiecesDraggable={!previewBoardState}
+              onPieceDragBegin={(_piece, sourceSquare) => {
+                if (!previewBoardState) {
+                  setSelectedSquare(sourceSquare);
+                }
+              }}
+              onPieceDrop={handlePieceDrop}
               onSquareClick={handleSquareClick}
               customSquareStyles={customSquareStyles}
               customArrows={customArrows}
@@ -254,6 +298,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
               customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
             />
           </div>
+
+          {moveFeedback && (
+            <div className="w-full max-w-[460px] mt-2.5 bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-3.5 py-2 text-xs font-semibold">
+              {moveFeedback}
+            </div>
+          )}
 
           {/* Board Control Bar (Lichess / Chessable style) */}
           <div className="flex items-center justify-between w-full max-w-[460px] mt-2.5 bg-[#262421] border border-[#3c3934] rounded-md p-1.5">
