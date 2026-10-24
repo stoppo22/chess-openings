@@ -47,6 +47,10 @@ export interface PlayerMoveChoice {
    * Statistiche dal database Masters per la mia mossa scelta.
    */
   gmStats: MoveStats;
+  /**
+   * Statistiche nella fascia di rating configurata (0-1400 su /lichess) per la mia mossa scelta.
+   */
+  bandStats?: MoveStats;
   engine: EngineMoveEvaluation;
   arrows?: Array<[string, string, string?]>;
   /**

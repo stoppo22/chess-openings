@@ -385,6 +385,13 @@ async function main() {
         ? formatMoveStats(rawMoveEntry)
         : { white: 0, draws: 0, black: 0, totalGames: 0, whitePct: 0, drawPct: 0, blackPct: 0 };
 
+      const bandForPlayerRes = await fetchLichessEndpoint('lichess', fullFen, token, statsCounter);
+      const bandForPlayerData = bandForPlayerRes.data;
+      const rawBandMoveEntry = (bandForPlayerData.moves || []).find((m) => m.san === moveObj.san || m.uci === uci);
+      const moveBandStats = rawBandMoveEntry
+        ? formatMoveStats(rawBandMoveEntry)
+        : { white: 0, draws: 0, black: 0, totalGames: 0, whitePct: 0, drawPct: 0, blackPct: 0 };
+
       const beforeEval = await sfRunner.evaluatePosition(fullFen, {
         depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
         multipv: 2,
@@ -423,6 +430,7 @@ async function main() {
         nextNormalizedFen,
         nextFullFen,
         gmStats: moveGmStats,
+        bandStats: moveBandStats,
         engine: {
           evalPawns: afterEval.scoreWhitePawns,
           evalFromPlayerPerspective: chosenBlackEval,

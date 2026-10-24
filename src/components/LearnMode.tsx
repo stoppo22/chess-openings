@@ -271,12 +271,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                   </button>
                 </div>
 
-                {/* Statistiche GM reali & Valutazione Stockfish */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {/* Statistiche GM, Statistiche Fascia 0-1400 & Valutazione Stockfish */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
                     <div className="text-[11px] font-semibold text-amber-300 flex items-center gap-1.5">
                       <Award className="w-3.5 h-3.5" />
-                      Statistiche GM (Database Masters)
+                      Statistiche GM (Masters)
                     </div>
                     <div className="text-sm font-bold text-white mt-1">
                       {currentNode.playerMove.gmStats.totalGames.toLocaleString('it-IT')} partite GM
@@ -310,7 +310,49 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                       </>
                     ) : (
                       <div className="text-[11px] text-slate-400 mt-1">
-                        Linea amatoriale rara tra i GM (validata con Stockfish)
+                        Linea amatoriale (0 partite GM)
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                    <div className="text-[11px] font-semibold text-emerald-300 flex items-center gap-1.5">
+                      <Users className="w-3.5 h-3.5" />
+                      Fascia {opening.buildConfig.ratingBandLabel}
+                    </div>
+                    <div className="text-sm font-bold text-white mt-1">
+                      {(currentNode.playerMove.bandStats?.totalGames || 0).toLocaleString('it-IT')} partite
+                    </div>
+                    {currentNode.playerMove.bandStats && currentNode.playerMove.bandStats.totalGames > 0 ? (
+                      <>
+                        <div className="w-full h-2 rounded-full overflow-hidden flex mt-2 bg-slate-800">
+                          <div
+                            style={{ width: `${currentNode.playerMove.bandStats.whitePct}%` }}
+                            className="bg-slate-200"
+                            title={`Bianco: ${currentNode.playerMove.bandStats.whitePct}%`}
+                          />
+                          <div
+                            style={{ width: `${currentNode.playerMove.bandStats.drawPct}%` }}
+                            className="bg-slate-500"
+                            title={`Patta: ${currentNode.playerMove.bandStats.drawPct}%`}
+                          />
+                          <div
+                            style={{ width: `${currentNode.playerMove.bandStats.blackPct}%` }}
+                            className="bg-emerald-500"
+                            title={`Nero: ${currentNode.playerMove.bandStats.blackPct}%`}
+                          />
+                        </div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mt-1">
+                          <span>B: {currentNode.playerMove.bandStats.whitePct}%</span>
+                          <span>P: {currentNode.playerMove.bandStats.drawPct}%</span>
+                          <span className="text-emerald-300 font-semibold">
+                            N: {currentNode.playerMove.bandStats.blackPct}%
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-[11px] text-slate-400 mt-1">
+                        Dati fascia non disponibili
                       </div>
                     )}
                   </div>

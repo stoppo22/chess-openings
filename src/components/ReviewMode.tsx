@@ -312,9 +312,9 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                   <span>{feedback.message}</span>
                 </div>
 
-                {/* Statistiche GM e Stockfish se è una card repertorio */}
+                {/* Statistiche GM, Fascia 0-1400 e Stockfish se è una card repertorio */}
                 {currentNode?.playerMove && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
                       <div className="text-[11px] font-semibold text-amber-300 flex items-center gap-1">
                         <Award className="w-3.5 h-3.5" />
@@ -328,6 +328,23 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                           B: {currentNode.playerMove.gmStats.whitePct}% • P:{' '}
                           {currentNode.playerMove.gmStats.drawPct}% • N:{' '}
                           {currentNode.playerMove.gmStats.blackPct}%
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
+                      <div className="text-[11px] font-semibold text-emerald-300 flex items-center gap-1">
+                        <Award className="w-3.5 h-3.5" />
+                        Fascia {opening.buildConfig.ratingBandLabel}
+                      </div>
+                      <div className="text-xs font-bold text-white mt-1">
+                        {(currentNode.playerMove.bandStats?.totalGames || 0).toLocaleString('it-IT')} partite
+                      </div>
+                      {currentNode.playerMove.bandStats && currentNode.playerMove.bandStats.totalGames > 0 && (
+                        <div className="text-[11px] text-slate-400 mt-0.5">
+                          B: {currentNode.playerMove.bandStats.whitePct}% • P:{' '}
+                          {currentNode.playerMove.bandStats.drawPct}% • N:{' '}
+                          <strong className="text-emerald-300">{currentNode.playerMove.bandStats.blackPct}%</strong>
                         </div>
                       )}
                     </div>

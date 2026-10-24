@@ -4,7 +4,7 @@
   "playerColor": "black",
   "description": "Repertorio solido col Nero contro 1.e4 basato sul Database Grandi Maestri (Variante di Spinta 3...Bf5 e Variante Classica 4...Bf5).",
   "checkpoint": "A",
-  "generatedAt": "2026-10-24T15:08:08.693Z",
+  "generatedAt": "2026-10-24T15:30:26.572Z",
   "ratingBand": {
     "label": "0-1400",
     "buckets": [
@@ -153,6 +153,15 @@
           "whitePct": 32.4,
           "drawPct": 43.2,
           "blackPct": 24.4
+        },
+        "bandStats": {
+          "white": 20091018,
+          "draws": 1630563,
+          "black": 20599194,
+          "totalGames": 42320775,
+          "whitePct": 47.5,
+          "drawPct": 3.9,
+          "blackPct": 48.7
         },
         "engine": {
           "evalPawns": 0.22,
@@ -306,6 +315,15 @@
           "whitePct": 31.9,
           "drawPct": 44.3,
           "blackPct": 23.8
+        },
+        "bandStats": {
+          "white": 6785190,
+          "draws": 520974,
+          "black": 6529112,
+          "totalGames": 13835276,
+          "whitePct": 49,
+          "drawPct": 3.8,
+          "blackPct": 47.2
         },
         "engine": {
           "evalPawns": 0.3,
@@ -482,6 +500,15 @@
           "drawPct": 42.8,
           "blackPct": 22.7
         },
+        "bandStats": {
+          "white": 2003996,
+          "draws": 150913,
+          "black": 1948975,
+          "totalGames": 4103884,
+          "whitePct": 48.8,
+          "drawPct": 3.7,
+          "blackPct": 47.5
+        },
         "engine": {
           "evalPawns": 0.13,
           "evalFromPlayerPerspective": -0.13,
@@ -602,6 +629,15 @@
           "whitePct": 28.4,
           "drawPct": 48.1,
           "blackPct": 23.5
+        },
+        "bandStats": {
+          "white": 845274,
+          "draws": 66301,
+          "black": 821679,
+          "totalGames": 1733254,
+          "whitePct": 48.8,
+          "drawPct": 3.8,
+          "blackPct": 47.4
         },
         "engine": {
           "evalPawns": 0.38,
@@ -865,6 +901,15 @@
           "drawPct": 48.9,
           "blackPct": 18.5
         },
+        "bandStats": {
+          "white": 916959,
+          "draws": 69714,
+          "black": 924759,
+          "totalGames": 1911432,
+          "whitePct": 48,
+          "drawPct": 3.6,
+          "blackPct": 48.4
+        },
         "engine": {
           "evalPawns": 0.08,
           "evalFromPlayerPerspective": -0.08,
@@ -971,6 +1016,15 @@
           "whitePct": 30.6,
           "drawPct": 38.8,
           "blackPct": 30.6
+        },
+        "bandStats": {
+          "white": 264279,
+          "draws": 23665,
+          "black": 263630,
+          "totalGames": 551574,
+          "whitePct": 47.9,
+          "drawPct": 4.3,
+          "blackPct": 47.8
         },
         "engine": {
           "evalPawns": 0.17,
@@ -1081,6 +1135,15 @@
           "drawPct": 33,
           "blackPct": 32.7
         },
+        "bandStats": {
+          "white": 212144,
+          "draws": 16240,
+          "black": 220025,
+          "totalGames": 448409,
+          "whitePct": 47.3,
+          "drawPct": 3.6,
+          "blackPct": 49.1
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -1187,6 +1250,15 @@
           "whitePct": 30.8,
           "drawPct": 46.2,
           "blackPct": 23.1
+        },
+        "bandStats": {
+          "white": 130167,
+          "draws": 9269,
+          "black": 133623,
+          "totalGames": 273059,
+          "whitePct": 47.7,
+          "drawPct": 3.4,
+          "blackPct": 48.9
         },
         "engine": {
           "evalPawns": 0.04,
@@ -1297,6 +1369,15 @@
           "whitePct": 26.7,
           "drawPct": 50.4,
           "blackPct": 23
+        },
+        "bandStats": {
+          "white": 442931,
+          "draws": 35123,
+          "black": 450160,
+          "totalGames": 928214,
+          "whitePct": 47.7,
+          "drawPct": 3.8,
+          "blackPct": 48.5
         },
         "engine": {
           "evalPawns": 0.31,
@@ -1960,6 +2041,15 @@
           "drawPct": 50,
           "blackPct": 39.3
         },
+        "bandStats": {
+          "white": 178913,
+          "draws": 15518,
+          "black": 176774,
+          "totalGames": 371205,
+          "whitePct": 48.2,
+          "drawPct": 4.2,
+          "blackPct": 47.6
+        },
         "engine": {
           "evalPawns": 0.13,
           "evalFromPlayerPerspective": -0.13,
@@ -2069,6 +2159,15 @@
           "drawPct": 47.1,
           "blackPct": 23.5
         },
+        "bandStats": {
+          "white": 51977,
+          "draws": 4013,
+          "black": 55688,
+          "totalGames": 111678,
+          "whitePct": 46.5,
+          "drawPct": 3.6,
+          "blackPct": 49.9
+        },
         "engine": {
           "evalPawns": 0.13,
           "evalFromPlayerPerspective": -0.13,
@@ -2133,6 +2232,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 8306,
+          "draws": 639,
+          "black": 11308,
+          "totalGames": 20253,
+          "whitePct": 41,
+          "drawPct": 3.2,
+          "blackPct": 55.8
         },
         "engine": {
           "evalPawns": -0.08,
@@ -2243,6 +2351,15 @@
           "drawPct": 44,
           "blackPct": 20.2
         },
+        "bandStats": {
+          "white": 12260,
+          "draws": 762,
+          "black": 11906,
+          "totalGames": 24928,
+          "whitePct": 49.2,
+          "drawPct": 3.1,
+          "blackPct": 47.8
+        },
         "engine": {
           "evalPawns": 0.17,
           "evalFromPlayerPerspective": -0.17,
@@ -2352,6 +2469,15 @@
           "drawPct": 51.2,
           "blackPct": 15
         },
+        "bandStats": {
+          "white": 17412,
+          "draws": 1334,
+          "black": 17464,
+          "totalGames": 36210,
+          "whitePct": 48.1,
+          "drawPct": 3.7,
+          "blackPct": 48.2
+        },
         "engine": {
           "evalPawns": 0.22,
           "evalFromPlayerPerspective": -0.22,
@@ -2416,6 +2542,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 9636,
+          "draws": 714,
+          "black": 9882,
+          "totalGames": 20232,
+          "whitePct": 47.6,
+          "drawPct": 3.5,
+          "blackPct": 48.8
         },
         "engine": {
           "evalPawns": 0.17,
@@ -2526,6 +2661,15 @@
           "drawPct": 37.8,
           "blackPct": 31.1
         },
+        "bandStats": {
+          "white": 221872,
+          "draws": 20041,
+          "black": 222730,
+          "totalGames": 464643,
+          "whitePct": 47.8,
+          "drawPct": 4.3,
+          "blackPct": 47.9
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -2635,6 +2779,15 @@
           "drawPct": 25,
           "blackPct": 41.7
         },
+        "bandStats": {
+          "white": 18073,
+          "draws": 1517,
+          "black": 17756,
+          "totalGames": 37346,
+          "whitePct": 48.4,
+          "drawPct": 4.1,
+          "blackPct": 47.5
+        },
         "engine": {
           "evalPawns": 0.13,
           "evalFromPlayerPerspective": -0.13,
@@ -2699,6 +2852,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 1445,
+          "draws": 108,
+          "black": 1673,
+          "totalGames": 3226,
+          "whitePct": 44.8,
+          "drawPct": 3.3,
+          "blackPct": 51.9
         },
         "engine": {
           "evalPawns": -0.04,
@@ -2780,6 +2942,15 @@
           "whitePct": 0,
           "drawPct": 100,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 3000,
+          "draws": 198,
+          "black": 2904,
+          "totalGames": 6102,
+          "whitePct": 49.2,
+          "drawPct": 3.2,
+          "blackPct": 47.6
         },
         "engine": {
           "evalPawns": 0.08,
@@ -2890,6 +3061,15 @@
           "drawPct": 36.4,
           "blackPct": 27.3
         },
+        "bandStats": {
+          "white": 30602,
+          "draws": 2176,
+          "black": 34965,
+          "totalGames": 67743,
+          "whitePct": 45.2,
+          "drawPct": 3.2,
+          "blackPct": 51.6
+        },
         "engine": {
           "evalPawns": -0.04,
           "evalFromPlayerPerspective": 0.04,
@@ -2954,6 +3134,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 814,
+          "draws": 67,
+          "black": 1087,
+          "totalGames": 1968,
+          "whitePct": 41.4,
+          "drawPct": 3.4,
+          "blackPct": 55.2
         },
         "engine": {
           "evalPawns": -0.31,
@@ -3020,6 +3209,15 @@
           "drawPct": 0,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 633,
+          "draws": 51,
+          "black": 1202,
+          "totalGames": 1886,
+          "whitePct": 33.6,
+          "drawPct": 2.7,
+          "blackPct": 63.7
+        },
         "engine": {
           "evalPawns": -3.38,
           "evalFromPlayerPerspective": 3.38,
@@ -3084,6 +3282,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 290,
+          "draws": 34,
+          "black": 317,
+          "totalGames": 641,
+          "whitePct": 45.2,
+          "drawPct": 5.3,
+          "blackPct": 49.5
         },
         "engine": {
           "evalPawns": -0.02,
@@ -3194,6 +3401,15 @@
           "drawPct": 36.4,
           "blackPct": 54.5
         },
+        "bandStats": {
+          "white": 32482,
+          "draws": 2572,
+          "black": 36534,
+          "totalGames": 71588,
+          "whitePct": 45.4,
+          "drawPct": 3.6,
+          "blackPct": 51
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -3303,6 +3519,15 @@
           "drawPct": 50.6,
           "blackPct": 23
         },
+        "bandStats": {
+          "white": 85323,
+          "draws": 6027,
+          "black": 74932,
+          "totalGames": 166282,
+          "whitePct": 51.3,
+          "drawPct": 3.6,
+          "blackPct": 45.1
+        },
         "engine": {
           "evalPawns": 0.17,
           "evalFromPlayerPerspective": -0.17,
@@ -3367,6 +3592,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 8949,
+          "draws": 848,
+          "black": 11116,
+          "totalGames": 20913,
+          "whitePct": 42.8,
+          "drawPct": 4.1,
+          "blackPct": 53.2
         },
         "engine": {
           "evalPawns": 0.08,
@@ -3477,6 +3711,15 @@
           "drawPct": 100,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 11353,
+          "draws": 1021,
+          "black": 12716,
+          "totalGames": 25090,
+          "whitePct": 45.2,
+          "drawPct": 4.1,
+          "blackPct": 50.7
+        },
         "engine": {
           "evalPawns": 0.08,
           "evalFromPlayerPerspective": -0.08,
@@ -3586,6 +3829,15 @@
           "drawPct": 33.3,
           "blackPct": 33.3
         },
+        "bandStats": {
+          "white": 2836,
+          "draws": 133,
+          "black": 2310,
+          "totalGames": 5279,
+          "whitePct": 53.7,
+          "drawPct": 2.5,
+          "blackPct": 43.8
+        },
         "engine": {
           "evalPawns": 0.22,
           "evalFromPlayerPerspective": -0.22,
@@ -3694,6 +3946,15 @@
           "whitePct": 31.5,
           "drawPct": 46.9,
           "blackPct": 21.6
+        },
+        "bandStats": {
+          "white": 2761,
+          "draws": 229,
+          "black": 3592,
+          "totalGames": 6582,
+          "whitePct": 41.9,
+          "drawPct": 3.5,
+          "blackPct": 54.6
         },
         "engine": {
           "evalPawns": 0.08,
@@ -5037,6 +5298,15 @@
           "drawPct": 43.3,
           "blackPct": 40
         },
+        "bandStats": {
+          "white": 5373,
+          "draws": 589,
+          "black": 5501,
+          "totalGames": 11463,
+          "whitePct": 46.9,
+          "drawPct": 5.1,
+          "blackPct": 48
+        },
         "engine": {
           "evalPawns": 0.36,
           "evalFromPlayerPerspective": -0.36,
@@ -5148,6 +5418,15 @@
           "drawPct": 25,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 1635,
+          "draws": 140,
+          "black": 1951,
+          "totalGames": 3726,
+          "whitePct": 43.9,
+          "drawPct": 3.8,
+          "blackPct": 52.4
+        },
         "engine": {
           "evalPawns": 0.08,
           "evalFromPlayerPerspective": -0.08,
@@ -5215,6 +5494,15 @@
           "drawPct": 0,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 1459,
+          "draws": 116,
+          "black": 1638,
+          "totalGames": 3213,
+          "whitePct": 45.4,
+          "drawPct": 3.6,
+          "blackPct": 51
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -5281,6 +5569,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 1857,
+          "draws": 152,
+          "black": 1914,
+          "totalGames": 3923,
+          "whitePct": 47.3,
+          "drawPct": 3.9,
+          "blackPct": 48.8
         },
         "engine": {
           "evalPawns": 0.08,
@@ -5393,6 +5690,15 @@
           "drawPct": 66.7,
           "blackPct": 16.7
         },
+        "bandStats": {
+          "white": 574,
+          "draws": 47,
+          "black": 717,
+          "totalGames": 1338,
+          "whitePct": 42.9,
+          "drawPct": 3.5,
+          "blackPct": 53.6
+        },
         "engine": {
           "evalPawns": 0.17,
           "evalFromPlayerPerspective": -0.17,
@@ -5460,6 +5766,15 @@
           "drawPct": 0,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 151,
+          "draws": 18,
+          "black": 246,
+          "totalGames": 415,
+          "whitePct": 36.4,
+          "drawPct": 4.3,
+          "blackPct": 59.3
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -5526,6 +5841,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 2540,
+          "draws": 192,
+          "black": 3744,
+          "totalGames": 6476,
+          "whitePct": 39.2,
+          "drawPct": 3,
+          "blackPct": 57.8
         },
         "engine": {
           "evalPawns": -0.08,
@@ -5638,6 +5962,15 @@
           "drawPct": 46.5,
           "blackPct": 17.4
         },
+        "bandStats": {
+          "white": 1345,
+          "draws": 85,
+          "black": 1349,
+          "totalGames": 2779,
+          "whitePct": 48.4,
+          "drawPct": 3.1,
+          "blackPct": 48.5
+        },
         "engine": {
           "evalPawns": 0.08,
           "evalFromPlayerPerspective": -0.08,
@@ -5749,6 +6082,15 @@
           "drawPct": 60,
           "blackPct": 20
         },
+        "bandStats": {
+          "white": 586,
+          "draws": 41,
+          "black": 638,
+          "totalGames": 1265,
+          "whitePct": 46.3,
+          "drawPct": 3.2,
+          "blackPct": 50.4
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -5815,6 +6157,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 548,
+          "draws": 35,
+          "black": 524,
+          "totalGames": 1107,
+          "whitePct": 49.5,
+          "drawPct": 3.2,
+          "blackPct": 47.3
         },
         "engine": {
           "evalPawns": 0,
@@ -5927,6 +6278,15 @@
           "drawPct": 41.3,
           "blackPct": 17.4
         },
+        "bandStats": {
+          "white": 438,
+          "draws": 29,
+          "black": 460,
+          "totalGames": 927,
+          "whitePct": 47.2,
+          "drawPct": 3.1,
+          "blackPct": 49.6
+        },
         "engine": {
           "evalPawns": 0.35,
           "evalFromPlayerPerspective": -0.35,
@@ -5993,6 +6353,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 1469,
+          "draws": 109,
+          "black": 1678,
+          "totalGames": 3256,
+          "whitePct": 45.1,
+          "drawPct": 3.3,
+          "blackPct": 51.5
         },
         "engine": {
           "evalPawns": -0.17,
@@ -6105,6 +6474,15 @@
           "drawPct": 66.7,
           "blackPct": 33.3
         },
+        "bandStats": {
+          "white": 9393,
+          "draws": 820,
+          "black": 10333,
+          "totalGames": 20546,
+          "whitePct": 45.7,
+          "drawPct": 4,
+          "blackPct": 50.3
+        },
         "engine": {
           "evalPawns": -0.13,
           "evalFromPlayerPerspective": 0.13,
@@ -6216,6 +6594,15 @@
           "drawPct": 42.9,
           "blackPct": 14.3
         },
+        "bandStats": {
+          "white": 5152,
+          "draws": 441,
+          "black": 5335,
+          "totalGames": 10928,
+          "whitePct": 47.1,
+          "drawPct": 4,
+          "blackPct": 48.8
+        },
         "engine": {
           "evalPawns": 0.08,
           "evalFromPlayerPerspective": -0.08,
@@ -6313,6 +6700,15 @@
           "drawPct": 50,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 10141,
+          "draws": 701,
+          "black": 11964,
+          "totalGames": 22806,
+          "whitePct": 44.5,
+          "drawPct": 3.1,
+          "blackPct": 52.5
+        },
         "engine": {
           "evalPawns": -0.13,
           "evalFromPlayerPerspective": 0.13,
@@ -6396,6 +6792,15 @@
           "drawPct": 100,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 86,
+          "draws": 6,
+          "black": 128,
+          "totalGames": 220,
+          "whitePct": 39.1,
+          "drawPct": 2.7,
+          "blackPct": 58.2
+        },
         "engine": {
           "evalPawns": -0.31,
           "evalFromPlayerPerspective": 0.31,
@@ -6462,6 +6867,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 412,
+          "draws": 29,
+          "black": 509,
+          "totalGames": 950,
+          "whitePct": 43.4,
+          "drawPct": 3.1,
+          "blackPct": 53.6
         },
         "engine": {
           "evalPawns": -0.04,
@@ -6574,6 +6988,15 @@
           "drawPct": 40,
           "blackPct": 40
         },
+        "bandStats": {
+          "white": 253,
+          "draws": 17,
+          "black": 393,
+          "totalGames": 663,
+          "whitePct": 38.2,
+          "drawPct": 2.6,
+          "blackPct": 59.3
+        },
         "engine": {
           "evalPawns": 0.01,
           "evalFromPlayerPerspective": -0.01,
@@ -6685,6 +7108,15 @@
           "drawPct": 28.6,
           "blackPct": 71.4
         },
+        "bandStats": {
+          "white": 4017,
+          "draws": 374,
+          "black": 4906,
+          "totalGames": 9297,
+          "whitePct": 43.2,
+          "drawPct": 4,
+          "blackPct": 52.8
+        },
         "engine": {
           "evalPawns": 0.27,
           "evalFromPlayerPerspective": -0.27,
@@ -6751,6 +7183,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 1958,
+          "draws": 145,
+          "black": 2595,
+          "totalGames": 4698,
+          "whitePct": 41.7,
+          "drawPct": 3.1,
+          "blackPct": 55.2
         },
         "engine": {
           "evalPawns": -0.13,
@@ -6819,6 +7260,15 @@
           "drawPct": 0,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 878,
+          "draws": 123,
+          "black": 1527,
+          "totalGames": 2528,
+          "whitePct": 34.7,
+          "drawPct": 4.9,
+          "blackPct": 60.4
+        },
         "engine": {
           "evalPawns": -0.34,
           "evalFromPlayerPerspective": 0.34,
@@ -6885,6 +7335,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 757,
+          "draws": 61,
+          "black": 911,
+          "totalGames": 1729,
+          "whitePct": 43.8,
+          "drawPct": 3.5,
+          "blackPct": 52.7
         },
         "engine": {
           "evalPawns": -0.42,
@@ -6996,6 +7455,15 @@
           "whitePct": 20.9,
           "drawPct": 58.6,
           "blackPct": 20.5
+        },
+        "bandStats": {
+          "white": 6162,
+          "draws": 504,
+          "black": 6133,
+          "totalGames": 12799,
+          "whitePct": 48.1,
+          "drawPct": 3.9,
+          "blackPct": 47.9
         },
         "engine": {
           "evalPawns": 0.15,
@@ -7110,6 +7578,15 @@
           "drawPct": 50.3,
           "blackPct": 22.3
         },
+        "bandStats": {
+          "white": 9284,
+          "draws": 779,
+          "black": 7918,
+          "totalGames": 17981,
+          "whitePct": 51.6,
+          "drawPct": 4.3,
+          "blackPct": 44
+        },
         "engine": {
           "evalPawns": 0.13,
           "evalFromPlayerPerspective": -0.13,
@@ -7192,6 +7669,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 400,
+          "draws": 41,
+          "black": 539,
+          "totalGames": 980,
+          "whitePct": 40.8,
+          "drawPct": 4.2,
+          "blackPct": 55
         },
         "engine": {
           "evalPawns": -0.22,
@@ -7304,6 +7790,15 @@
           "drawPct": 43.5,
           "blackPct": 31.6
         },
+        "bandStats": {
+          "white": 2901,
+          "draws": 217,
+          "black": 3102,
+          "totalGames": 6220,
+          "whitePct": 46.6,
+          "drawPct": 3.5,
+          "blackPct": 49.9
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -7371,6 +7866,15 @@
           "drawPct": 0,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 4207,
+          "draws": 411,
+          "black": 5466,
+          "totalGames": 10084,
+          "whitePct": 41.7,
+          "drawPct": 4.1,
+          "blackPct": 54.2
+        },
         "engine": {
           "evalPawns": 0,
           "evalFromPlayerPerspective": 0,
@@ -7437,6 +7941,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 1794,
+          "draws": 165,
+          "black": 2171,
+          "totalGames": 4130,
+          "whitePct": 43.4,
+          "drawPct": 4,
+          "blackPct": 52.6
         },
         "engine": {
           "evalPawns": 0.04,
@@ -7548,6 +8061,15 @@
           "whitePct": 0,
           "drawPct": 75,
           "blackPct": 25
+        },
+        "bandStats": {
+          "white": 7418,
+          "draws": 709,
+          "black": 8737,
+          "totalGames": 16864,
+          "whitePct": 44,
+          "drawPct": 4.2,
+          "blackPct": 51.8
         },
         "engine": {
           "evalPawns": 0.04,
@@ -8882,6 +9404,15 @@
           "drawPct": 50,
           "blackPct": 50
         },
+        "bandStats": {
+          "white": 1599,
+          "draws": 212,
+          "black": 1913,
+          "totalGames": 3724,
+          "whitePct": 42.9,
+          "drawPct": 5.7,
+          "blackPct": 51.4
+        },
         "engine": {
           "evalPawns": 0.13,
           "evalFromPlayerPerspective": -0.13,
@@ -8980,6 +9511,15 @@
           "whitePct": 0,
           "drawPct": 100,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 2577,
+          "draws": 230,
+          "black": 2990,
+          "totalGames": 5797,
+          "whitePct": 44.5,
+          "drawPct": 4,
+          "blackPct": 51.6
         },
         "engine": {
           "evalPawns": -0.08,
@@ -9094,6 +9634,15 @@
           "drawPct": 50,
           "blackPct": 25
         },
+        "bandStats": {
+          "white": 3565,
+          "draws": 312,
+          "black": 3995,
+          "totalGames": 7872,
+          "whitePct": 45.3,
+          "drawPct": 4,
+          "blackPct": 50.7
+        },
         "engine": {
           "evalPawns": 0.04,
           "evalFromPlayerPerspective": -0.04,
@@ -9163,6 +9712,15 @@
           "drawPct": 0,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 68,
+          "draws": 3,
+          "black": 51,
+          "totalGames": 122,
+          "whitePct": 55.7,
+          "drawPct": 2.5,
+          "blackPct": 41.8
+        },
         "engine": {
           "evalPawns": -0.22,
           "evalFromPlayerPerspective": 0.22,
@@ -9231,6 +9789,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 95,
+          "draws": 6,
+          "black": 167,
+          "totalGames": 268,
+          "whitePct": 35.4,
+          "drawPct": 2.2,
+          "blackPct": 62.3
         },
         "engine": {
           "evalPawns": -0.22,
@@ -9331,6 +9898,15 @@
           "drawPct": 50,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 936,
+          "draws": 76,
+          "black": 1333,
+          "totalGames": 2345,
+          "whitePct": 39.9,
+          "drawPct": 3.2,
+          "blackPct": 56.8
+        },
         "engine": {
           "evalPawns": -0.22,
           "evalFromPlayerPerspective": 0.22,
@@ -9399,6 +9975,15 @@
           "whitePct": 0,
           "drawPct": 0,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 619,
+          "draws": 98,
+          "black": 1075,
+          "totalGames": 1792,
+          "whitePct": 34.5,
+          "drawPct": 5.5,
+          "blackPct": 60
         },
         "engine": {
           "evalPawns": -0.13,
@@ -9513,6 +10098,15 @@
           "drawPct": 50.4,
           "blackPct": 25.6
         },
+        "bandStats": {
+          "white": 4006,
+          "draws": 330,
+          "black": 3823,
+          "totalGames": 8159,
+          "whitePct": 49.1,
+          "drawPct": 4,
+          "blackPct": 46.9
+        },
         "engine": {
           "evalPawns": 0,
           "evalFromPlayerPerspective": 0,
@@ -9626,6 +10220,15 @@
           "drawPct": 52.7,
           "blackPct": 20.2
         },
+        "bandStats": {
+          "white": 1103,
+          "draws": 170,
+          "black": 1090,
+          "totalGames": 2363,
+          "whitePct": 46.7,
+          "drawPct": 7.2,
+          "blackPct": 46.1
+        },
         "engine": {
           "evalPawns": 0.22,
           "evalFromPlayerPerspective": -0.22,
@@ -9711,6 +10314,15 @@
           "drawPct": 100,
           "blackPct": 0
         },
+        "bandStats": {
+          "white": 2157,
+          "draws": 230,
+          "black": 2249,
+          "totalGames": 4636,
+          "whitePct": 46.5,
+          "drawPct": 5,
+          "blackPct": 48.5
+        },
         "engine": {
           "evalPawns": 0.08,
           "evalFromPlayerPerspective": -0.08,
@@ -9795,6 +10407,15 @@
           "whitePct": 0,
           "drawPct": 100,
           "blackPct": 0
+        },
+        "bandStats": {
+          "white": 378,
+          "draws": 39,
+          "black": 457,
+          "totalGames": 874,
+          "whitePct": 43.2,
+          "drawPct": 4.5,
+          "blackPct": 52.3
         },
         "engine": {
           "evalPawns": 0.02,
@@ -10338,6 +10959,15 @@
           "whitePct": 29.6,
           "drawPct": 50.2,
           "blackPct": 20.2
+        },
+        "bandStats": {
+          "white": 434,
+          "draws": 45,
+          "black": 414,
+          "totalGames": 893,
+          "whitePct": 48.6,
+          "drawPct": 5,
+          "blackPct": 46.4
         },
         "engine": {
           "evalPawns": 0,
