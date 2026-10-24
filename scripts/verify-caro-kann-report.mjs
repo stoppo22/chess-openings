@@ -277,6 +277,39 @@ function main() {
     console.log(`  PV Motore:       ${eng.pvSan.join(' ')}`);
   });
 
+  if (allCommonMistakes.length > 0) {
+    const punishSamples = pickRandomItems(
+      allCommonMistakes,
+      Math.min(5, allCommonMistakes.length),
+      20261025
+    );
+    console.log('\n========================================================================');
+    console.log(
+      `⚡ ELENCO ${punishSamples.length} CAMPIONI "PUNISH" (ERRORI COMUNI FASCIA ${bandLabel}):`
+    );
+
+    punishSamples.forEach(({ node, mistake }, idx) => {
+      console.log(`\n------------------------------------------------------------------------`);
+      console.log(
+        `Punish #${idx + 1} [${node.variationName}] (Mossa ${node.moveNumber} • Severità: ${mistake.severity.toUpperCase()})`
+      );
+      console.log(`  PGN prima dell'errore: ${node.pgnPath}`);
+      console.log(`  FEN prima dell'errore: ${node.fullFen}`);
+      console.log(`  FEN dopo l'errore:     ${mistake.afterMistakeFullFen}`);
+      console.log(
+        `  Mossa avversario:      ${node.moveNumber}. ${mistake.opponentMoveSan}? (Freq fascia ${bandLabel}: ${mistake.frequencyPct}%, ${mistake.totalBandGames} partite)`
+      );
+      console.log(
+        `  Perdita / Impatto:     -${mistake.evalLoss.toFixed(2)} pedoni (Impact score: ${mistake.impactScore})`
+      );
+      console.log(`  MIA PUNIZIONE:         ${mistake.punishMoveSan} (${mistake.punishMoveUci})`);
+      console.log(
+        `  Valutazione (d${mistake.depth}):    Eval Nero ${mistake.finalEvalForPlayer >= 0 ? '+' : ''}${mistake.finalEvalForPlayer.toFixed(2)} (Eval Bianco: ${mistake.finalEvalPawns >= 0 ? '+' : ''}${mistake.finalEvalPawns.toFixed(2)})`
+      );
+      console.log(`  PV Punizione (max 6):  ${mistake.pvSan.join(' ')}`);
+    });
+  }
+
   console.log('\n========================================================================');
 }
 

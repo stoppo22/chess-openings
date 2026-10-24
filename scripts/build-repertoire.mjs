@@ -33,16 +33,25 @@ export const RATING_BAND = {
  */
 export const BUILD_DEFAULTS = {
   RATING_BAND,
+  CHECKPOINT: process.env.CHECKPOINT || 'B',
   MAX_MOVES_DEPTH: Number(process.env.MAX_MOVES_DEPTH || 8), // 8 mosse = 16 semimosse
   MIN_BAND_GAMES: Number(process.env.MIN_BAND_GAMES || 500), // 500 partite nella fascia 0-1400
-  MIN_BRANCH_FREQ: Number(process.env.MIN_BRANCH_FREQ || 0.03), // 3% frequenza minima locale nella posizione
-  MIN_REACH: Number(process.env.MIN_REACH || 0.005), // 0.5% probabilità cumulativa del ramo dall'inizio della variante
-  MAX_POSITIONS_CAP: Number(process.env.MAX_POSITIONS_CAP || 400), // tetto massimo 400 posizioni
+  MIN_BRANCH_FREQ: Number(process.env.MIN_BRANCH_FREQ || 0.02), // 2% frequenza minima locale nella posizione
+  MIN_REACH: Number(process.env.MIN_REACH || 0.003), // 0.3% probabilità cumulativa del ramo dall'inizio della variante
+  MAX_POSITIONS_CAP: Number(process.env.MAX_POSITIONS_CAP || 600), // tetto massimo 600 posizioni
   STOCKFISH_DEPTH: Number(process.env.STOCKFISH_DEPTH || 18), // depth 18 per le mie mosse
   STOCKFISH_MULTIPV: Number(process.env.STOCKFISH_MULTIPV || 6), // multipv unica alla stessa profondità
   MIN_MASTERS_FOR_FREQ: Number(process.env.MIN_MASTERS_FOR_FREQ || 50), // sotto 50 partite Masters sceglie la migliore per il motore (depth 18)
   CANDIDATE_MAX_LOSS: 0.30, // entro 0.30 pedoni dalla migliore per review-moves.json
   WARNING_MAX_LOSS: 0.50, // segnala se una mia mossa perde > 0.50 pedoni
+  // Parametri Checkpoint B (Errori comuni dell'avversario nella fascia 0-1400)
+  MIN_MISTAKE_FREQ: Number(process.env.MIN_MISTAKE_FREQ || 0.05), // 5% frequenza minima nella fascia 0-1400
+  MISTAKE_SCREEN_DEPTH: Number(process.env.MISTAKE_SCREEN_DEPTH || 14), // screening a depth 14
+  MISTAKE_CONFIRM_DEPTH: Number(process.env.MISTAKE_CONFIRM_DEPTH || 20), // rivalutazione a depth 20
+  MISTAKE_CONFIRM_MULTIPV: Number(process.env.MISTAKE_CONFIRM_MULTIPV || 2), // multipv 2 a depth 20
+  MISTAKE_MIN_LOSS: 0.40, // >= 0.40 inaccuracy, >= 1.00 mistake, >= 2.50 blunder
+  MAX_MISTAKES_PER_POS: 3, // primi 3 per posizione ordinati per frequenza * perdita
+  MAX_PUNISH_PV_MOVES: 6, // PV max 6 mosse
   API_DELAY_MS: 350,
 };
 
@@ -231,9 +240,16 @@ async function getMoveEvalAtSameDepth(sfRunner, fullFen, moveSan, moveUci, multi
   };
 }
 
+function classifyMistakeSeverity(evalLoss) {
+  if (evalLoss >= 2.5) return 'blunder';
+  if (evalLoss >= 1.0) return 'mistake';
+  if (evalLoss >= 0.4) return 'inaccuracy';
+  return null;
+}
+
 async function main() {
   console.log('==========================================================');
-  console.log('🏗️  BUILD REPERTORIO — FASE 1 (CHECKPOINT A: CARO-KANN)');
+  console.log(`🏗️  BUILD REPERTORIO — FASE 1 (CHECKPOINT ${BUILD_DEFAULTS.CHECKPOINT}: CARO-KANN)`);
   console.log('==========================================================');
   console.log('Configurazione parametri:');
   console.log(`  • Fascia di rating (unica): ${RATING_BAND.label} (buckets API: ${RATING_BAND.buckets.join(',')})`);
@@ -246,6 +262,11 @@ async function main() {
   console.log(
     `  • Stockfish Engine:         ${STOCKFISH_PACKAGE_INFO} (depth ${BUILD_DEFAULTS.STOCKFISH_DEPTH}, multipv ${BUILD_DEFAULTS.STOCKFISH_MULTIPV})`
   );
+  if (BUILD_DEFAULTS.CHECKPOINT === 'B') {
+    console.log(
+      `  • Errori comuni (0-1400):   freq >= ${(BUILD_DEFAULTS.MIN_MISTAKE_FREQ * 100).toFixed(0)}%, screen d${BUILD_DEFAULTS.MISTAKE_SCREEN_DEPTH} -> confirm d${BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH} multipv ${BUILD_DEFAULTS.MISTAKE_CONFIRM_MULTIPV}, max ${BUILD_DEFAULTS.MAX_MISTAKES_PER_POS}/pos`
+    );
+  }
   console.log('----------------------------------------------------------');
 
   const token = loadEnvToken();
@@ -713,6 +734,210 @@ async function main() {
     fs.unlinkSync(REVIEW_MOVES_PATH);
   }
 
+  // ============================================================================
+  // CHECKPOINT B: Estrazione Errori Comuni dell'Avversario nella fascia 0-1400
+  // - Frequenza minima >= 5% nella fascia 0-1400
+  // - Screening a depth 14 (ricerca unica + searchmoves alla stessa profondità)
+  // - Rivalutazione a depth 20 con multipv 2 di tutte le candidate (vale depth 20)
+  // - Ordinati per (frequencyPct * evalLoss) decrescente, max 3 per posizione
+  // ============================================================================
+  if (BUILD_DEFAULTS.CHECKPOINT === 'B') {
+    const maxPly = BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2;
+    const opponentNodesList = Object.values(positions).filter((n) => !n.isPlayerTurn);
+    console.log(
+      `\n🔍 Avvio estrazione Errori Comuni (Checkpoint B, fascia ${RATING_BAND.label}) su ${opponentNodesList.length} nodi avversario...`
+    );
+
+    let totalMistakesFound = 0;
+    for (let idx = 0; idx < opponentNodesList.length; idx++) {
+      const node = opponentNodesList[idx];
+      if (node.ply >= maxPly) {
+        node.commonMistakes = [];
+        continue;
+      }
+
+      const bandRes = await fetchLichessEndpoint('lichess', node.fullFen, token, statsCounter);
+      const bandData = bandRes.data;
+      const rawMoves = Array.isArray(bandData.moves) ? bandData.moves : [];
+      const totalPosBandGames = node.positionBandStats?.totalGames || 0;
+
+      if (totalPosBandGames === 0 || rawMoves.length === 0) {
+        node.commonMistakes = [];
+        continue;
+      }
+
+      const frequentMoves = [];
+      for (const m of rawMoves) {
+        const mBandStats = formatMoveStats(m);
+        const freq = mBandStats.totalGames / totalPosBandGames;
+        if (freq < BUILD_DEFAULTS.MIN_MISTAKE_FREQ) continue;
+
+        const nextChess = new Chess(node.fullFen);
+        const moveObj = nextChess.move(m.san);
+        if (!moveObj) continue;
+
+        const uci = `${moveObj.from}${moveObj.to}${moveObj.promotion || ''}`;
+        const afterMistakeFullFen = nextChess.fen();
+        const afterMistakeNormalizedFen = normalizeFen(afterMistakeFullFen);
+
+        frequentMoves.push({
+          moveObj,
+          uci,
+          mBandStats,
+          freq,
+          frequencyPct: Number((freq * 100).toFixed(1)),
+          afterMistakeFullFen,
+          afterMistakeNormalizedFen,
+        });
+      }
+
+      if (frequentMoves.length === 0) {
+        node.commonMistakes = [];
+        continue;
+      }
+
+      // 1) Screening a depth 14 (ricerca unica sulla posizione prima della mossa)
+      const screenEval = await sfRunner.evaluatePosition(node.fullFen, {
+        depth: BUILD_DEFAULTS.MISTAKE_SCREEN_DEPTH,
+        multipv: BUILD_DEFAULTS.STOCKFISH_MULTIPV,
+      });
+      const bestWhiteScoreD14 = screenEval.scoreSideToMovePawns;
+
+      const screenedCandidates = [];
+      for (const fm of frequentMoves) {
+        const evalD14 = await getMoveEvalAtSameDepth(
+          sfRunner,
+          node.fullFen,
+          fm.moveObj.san,
+          fm.uci,
+          screenEval,
+          BUILD_DEFAULTS.MISTAKE_SCREEN_DEPTH
+        );
+        const screenLoss = Number((bestWhiteScoreD14 - evalD14.scoreSideToMovePawns).toFixed(2));
+        if (screenLoss >= BUILD_DEFAULTS.MISTAKE_MIN_LOSS) {
+          screenedCandidates.push({
+            ...fm,
+            screenLoss,
+          });
+        }
+      }
+
+      if (screenedCandidates.length === 0) {
+        node.commonMistakes = [];
+        continue;
+      }
+
+      // 2) Rivalutazione a depth 20 con multipv 2 di tutte le candidate (vale la classificazione più profonda)
+      const deepBeforeEval = await sfRunner.evaluatePosition(node.fullFen, {
+        depth: BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH,
+        multipv: BUILD_DEFAULTS.MISTAKE_CONFIRM_MULTIPV,
+      });
+      const bestWhiteScoreD20 = deepBeforeEval.scoreSideToMovePawns;
+
+      const confirmedMistakes = [];
+      for (const cand of screenedCandidates) {
+        const evalD20 = await getMoveEvalAtSameDepth(
+          sfRunner,
+          node.fullFen,
+          cand.moveObj.san,
+          cand.uci,
+          deepBeforeEval,
+          BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH
+        );
+
+        const deepLoss = Number((bestWhiteScoreD20 - evalD20.scoreSideToMovePawns).toFixed(2));
+        if (deepLoss < 0) {
+          const msg = `⚠️ Warning di incoerenza errore comune (${node.pgnPath}): ${cand.moveObj.san} (${evalD20.scoreSideToMovePawns}) risulta migliore della bestMove ${deepBeforeEval.bestMoveSan} (${bestWhiteScoreD20}) a depth ${BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH}.`;
+          console.warn(msg);
+          buildWarnings.push({
+            type: 'mistake_inconsistency',
+            normalizedFen: node.normalizedFen,
+            pgnPath: node.pgnPath,
+            chosenMoveSan: cand.moveObj.san,
+            engineBestMoveSan: deepBeforeEval.bestMoveSan,
+            evalLossVsBest: deepLoss,
+            message: msg,
+          });
+        }
+
+        const severity = classifyMistakeSeverity(deepLoss);
+        if (!severity) {
+          // Scartata a depth 20 perché perde < 0.40 pedoni
+          continue;
+        }
+
+        // Estrai la punizione del Nero e la PV (max 6 mosse) a depth 20
+        let rawPunishPv = Array.isArray(evalD20.pvSan) ? evalD20.pvSan.slice(1) : [];
+        if (rawPunishPv.length === 0) {
+          const afterEvalD20 = await sfRunner.evaluatePosition(cand.afterMistakeFullFen, {
+            depth: BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH,
+            multipv: BUILD_DEFAULTS.MISTAKE_CONFIRM_MULTIPV,
+          });
+          rawPunishPv = Array.isArray(afterEvalD20.pvSan) ? afterEvalD20.pvSan : [];
+        }
+
+        const punishChess = new Chess(cand.afterMistakeFullFen);
+        const validPvSan = [];
+        let punishMoveObj = null;
+
+        for (const san of rawPunishPv) {
+          if (validPvSan.length >= BUILD_DEFAULTS.MAX_PUNISH_PV_MOVES) break;
+          try {
+            const mObj = punishChess.move(san);
+            if (!mObj) break;
+            if (!punishMoveObj) punishMoveObj = mObj;
+            validPvSan.push(mObj.san);
+          } catch {
+            break;
+          }
+        }
+
+        if (!punishMoveObj) continue;
+
+        const punishMoveUci = `${punishMoveObj.from}${punishMoveObj.to}${punishMoveObj.promotion || ''}`;
+        const finalEvalPawns = evalD20.scoreWhitePawns;
+        const finalEvalForPlayer = Number((-finalEvalPawns).toFixed(2));
+        const impactScore = Number((cand.frequencyPct * deepLoss).toFixed(2));
+
+        confirmedMistakes.push({
+          opponentMoveSan: cand.moveObj.san,
+          opponentMoveUci: cand.uci,
+          from: cand.moveObj.from,
+          to: cand.moveObj.to,
+          afterMistakeNormalizedFen: cand.afterMistakeNormalizedFen,
+          afterMistakeFullFen: cand.afterMistakeFullFen,
+          frequencyPct: cand.frequencyPct,
+          totalBandGames: cand.mBandStats.totalGames,
+          evalLoss: deepLoss,
+          impactScore,
+          severity,
+          punishMoveSan: punishMoveObj.san,
+          punishMoveUci,
+          punishFrom: punishMoveObj.from,
+          punishTo: punishMoveObj.to,
+          pvSan: validPvSan,
+          finalEvalPawns,
+          finalEvalForPlayer,
+          depth: BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH,
+        });
+      }
+
+      confirmedMistakes.sort((a, b) => b.impactScore - a.impactScore || b.evalLoss - a.evalLoss);
+      node.commonMistakes = confirmedMistakes.slice(0, BUILD_DEFAULTS.MAX_MISTAKES_PER_POS);
+      totalMistakesFound += node.commonMistakes.length;
+    }
+
+    console.log(`✅ Checkpoint B completato: ${totalMistakesFound} errori comuni confermati a depth ${BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH}.`);
+  }
+
+  if (buildWarnings.length > 0) {
+    fs.writeFileSync(BUILD_WARNINGS_PATH, JSON.stringify(buildWarnings, null, 2), 'utf8');
+  } else if (fs.existsSync(BUILD_WARNINGS_PATH)) {
+    fs.unlinkSync(BUILD_WARNINGS_PATH);
+  }
+
+  const finalSfStats = sfRunner.getStats();
+
   const variationsWithFen = CARO_KANN_CONFIG.variations.map((v) => {
     const c = new Chess();
     for (const s of v.rootMovesSan) c.move(s);
@@ -727,7 +952,7 @@ async function main() {
     name: CARO_KANN_CONFIG.name,
     playerColor: CARO_KANN_CONFIG.playerColor,
     description: CARO_KANN_CONFIG.description,
-    checkpoint: 'A',
+    checkpoint: BUILD_DEFAULTS.CHECKPOINT,
     generatedAt: new Date().toISOString(),
     ratingBand: RATING_BAND,
     buildConfig: {
@@ -738,10 +963,15 @@ async function main() {
       minBranchFreq: BUILD_DEFAULTS.MIN_BRANCH_FREQ,
       minReach: BUILD_DEFAULTS.MIN_REACH,
       minMastersForFreq: BUILD_DEFAULTS.MIN_MASTERS_FOR_FREQ,
+      minMistakeFreq: BUILD_DEFAULTS.MIN_MISTAKE_FREQ,
+      mistakeScreenDepth: BUILD_DEFAULTS.MISTAKE_SCREEN_DEPTH,
+      mistakeConfirmDepth: BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH,
+      mistakeConfirmMultiPv: BUILD_DEFAULTS.MISTAKE_CONFIRM_MULTIPV,
+      maxMistakesPerPos: BUILD_DEFAULTS.MAX_MISTAKES_PER_POS,
       maxPositionsCap: BUILD_DEFAULTS.MAX_POSITIONS_CAP,
       stockfishPackage: STOCKFISH_PACKAGE_INFO,
       stockfishDepth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
-      avgStockfishMsPerPosition: sfStats.avgMsPerPosition,
+      avgStockfishMsPerPosition: finalSfStats.avgMsPerPosition,
     },
     variations: variationsWithFen,
     rootNormalizedFen,
