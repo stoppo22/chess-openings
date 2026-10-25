@@ -1,4 +1,4 @@
-import { Chess } from 'chess.js';
+import { Chess, type Square } from 'chess.js';
 
 /**
  * Normalizes a FEN string by stripping the halfmove clock and fullmove number (fields 5 and 6),
@@ -48,4 +48,50 @@ export function buildCardId(
 ): string {
   const norm = normalizeFen(fenOrNormalizedFen);
   return `${openingId}:${cardType}:${norm}`;
+}
+
+export interface LastMoveInfo {
+  from: Square;
+  to: Square;
+  san: string;
+  moveNumber: number;
+  color: 'w' | 'b';
+  fenBefore: string;
+  fenAfter: string;
+}
+
+export function getLastMoveInfo(pgnOrMoves: string | string[]): LastMoveInfo | null {
+  try {
+    const tokens = Array.isArray(pgnOrMoves)
+      ? pgnOrMoves
+      : pgnOrMoves
+          .replace(/\d+\.(\.\.)?/g, ' ')
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean);
+    if (tokens.length === 0) return null;
+
+    const chess = new Chess();
+    let lastInfo: LastMoveInfo | null = null;
+    for (const rawToken of tokens) {
+      const cleanSan = rawToken.replace(/[?!]+$/g, '');
+      const fenBefore = chess.fen();
+      const moveNumber = chess.moveNumber();
+      const color = chess.turn();
+      const m = chess.move(cleanSan);
+      if (!m) break;
+      lastInfo = {
+        from: m.from as Square,
+        to: m.to as Square,
+        san: m.san,
+        moveNumber,
+        color,
+        fenBefore,
+        fenAfter: chess.fen(),
+      };
+    }
+    return lastInfo;
+  } catch {
+    return null;
+  }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
+import { getLastMoveInfo } from '../services/fen';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
 
 interface ReviewModeProps {
@@ -63,16 +64,28 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
 
   const currentCard = sessionQueue[currentIndex];
   const currentNode = currentCard ? opening.positions[currentCard.normalizedFen] : undefined;
+  const lastOpponentMove = useMemo(
+    () => (currentCard ? getLastMoveInfo(currentCard.pgnPath) : null),
+    [currentCard]
+  );
 
   useEffect(() => {
-    if (currentCard) {
+    if (!currentCard) return;
+    setSelectedSquare(null);
+    setUsedHint(false);
+    setWrongAttempts(0);
+    setFeedback({ type: 'idle' });
+
+    if (lastOpponentMove && lastOpponentMove.fenBefore !== currentCard.fullFen) {
+      setBoardFen(lastOpponentMove.fenBefore);
+      const timer = setTimeout(() => {
+        setBoardFen(currentCard.fullFen);
+      }, 280);
+      return () => clearTimeout(timer);
+    } else {
       setBoardFen(currentCard.fullFen);
-      setSelectedSquare(null);
-      setUsedHint(false);
-      setWrongAttempts(0);
-      setFeedback({ type: 'idle' });
     }
-  }, [currentCard]);
+  }, [currentCard, lastOpponentMove]);
 
   if (sessionQueue.length === 0 || currentIndex >= sessionQueue.length) {
     return (
@@ -180,6 +193,14 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   };
 
   const customSquareStyles: Record<string, React.CSSProperties> = {};
+  if (lastOpponentMove && feedback.type !== 'solved') {
+    customSquareStyles[lastOpponentMove.from] = {
+      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+    };
+    customSquareStyles[lastOpponentMove.to] = {
+      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+    };
+  }
   if (selectedSquare && feedback.type !== 'solved') {
     customSquareStyles[selectedSquare] = {
       backgroundColor: 'rgba(255, 255, 51, 0.45)',
@@ -316,13 +337,24 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
             </div>
 
             <div className="p-6 space-y-5">
-              <div>
+              <div className="space-y-2">
+                {lastOpponentMove && (
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161512] border border-[#3c3934] text-xs font-mono text-[#e8e6e3]">
+                    <span className="w-2.5 h-2.5 rounded-sm bg-[#9bc700] inline-block" />
+                    <span>
+                      Ultima mossa del Bianco:{' '}
+                      <strong className="text-[#ffffff]">
+                        {lastOpponentMove.moveNumber}. {lastOpponentMove.san}
+                      </strong>
+                    </span>
+                  </div>
+                )}
                 <h2 className="text-lg font-bold text-[#ffffff] leading-snug">
                   {currentCard.cardType === 'punish' && currentCard.mistakeContext
                     ? `Il Bianco ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Gioca la confutazione.`
                     : 'Esegui la mossa del tuo repertorio sulla scacchiera.'}
                 </h2>
-                <p className="text-sm text-[#9e9c99] mt-1.5">
+                <p className="text-sm text-[#9e9c99]">
                   Tocca un pezzo per vedere le mosse legali o trascinalo sulla casa di destinazione.
                 </p>
               </div>

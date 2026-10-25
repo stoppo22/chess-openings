@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile } from '../types/repertoire';
+import { getLastMoveInfo } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
 
 interface LearnModeProps {
@@ -270,7 +271,20 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     }
   };
 
+  const lastMove = useMemo(
+    () => (currentNode ? getLastMoveInfo(currentNode.moveSequenceSan) : null),
+    [currentNode]
+  );
+
   const customSquareStyles: Record<string, React.CSSProperties> = {};
+  if (!previewBoardState && continuationStep === 0 && lastMove) {
+    customSquareStyles[lastMove.from] = {
+      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+    };
+    customSquareStyles[lastMove.to] = {
+      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+    };
+  }
   if (selectedSquare) {
     customSquareStyles[selectedSquare] = {
       backgroundColor: 'rgba(255, 255, 51, 0.45)',
@@ -323,18 +337,18 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {opening.variations.map((v) => (
             <button
               key={v.id}
               onClick={() => handleResetToRoot(v.id)}
-              className={`px-3.5 py-2 rounded text-sm font-semibold border transition ${
+              className={`px-3 py-1.5 rounded text-xs sm:text-sm font-semibold border transition ${
                 currentNode.variationId === v.id
                   ? 'bg-[#383633] text-[#ffffff] border-[#6b6966]'
                   : 'bg-[#1e1c1a] text-[#9e9c99] border-[#33302c] hover:text-[#e8e6e3]'
               }`}
             >
-              {v.id === 'advance-bf5' ? 'Spinta 3...Bf5' : 'Classica 4...Bf5'}
+              {v.name.split('(')[0].trim()}
             </button>
           ))}
         </div>

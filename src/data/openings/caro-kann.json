@@ -4,7 +4,7 @@
   "playerColor": "black",
   "description": "Repertorio solido col Nero contro 1.e4 basato sul Database Lichess (fascia 0-1400 per le risposte avversarie) e validato con Database Grandi Maestri + Stockfish 16 (depth 18).",
   "checkpoint": "B",
-  "generatedAt": "2026-10-24T17:40:09.294Z",
+  "generatedAt": "2026-10-25T10:45:30.211Z",
   "ratingBand": {
     "label": "0-1400",
     "buckets": [
@@ -38,7 +38,7 @@
     "maxPositionsCap": 600,
     "stockfishPackage": "stockfish@16.0.0 (stockfish-nnue-16-single.wasm)",
     "stockfishDepth": 18,
-    "avgStockfishMsPerPosition": 1054
+    "avgStockfishMsPerPosition": 896
   },
   "variations": [
     {
@@ -72,6 +72,34 @@
         "Bf5"
       ],
       "rootNormalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq -"
+    },
+    {
+      "id": "exchange-cxd5",
+      "name": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "subtitle": "Struttura simmetrica solida con sviluppo naturale ...Nc6, ...Nf6, ...Bg4 e controllo della colonna c",
+      "ecoCode": "B13",
+      "rootMovesSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5"
+      ],
+      "rootNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq -"
+    },
+    {
+      "id": "hillbilly-bc4",
+      "name": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "subtitle": "Controgioco immediato al centro con 2...d5 guadagnando tempo sull'Alfiere in c4",
+      "ecoCode": "B10",
+      "rootMovesSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5"
+      ],
+      "rootNormalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq -"
     }
   ],
   "rootNormalizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq -",
@@ -241,6 +269,25 @@
           },
           "frequencyPct": 33,
           "reachPct": 100
+        },
+        {
+          "san": "Bc4",
+          "uci": "f1c4",
+          "from": "f1",
+          "to": "c4",
+          "nextNormalizedFen": "rnbqkbnr/pp1ppppp/2p5/8/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp1ppppp/2p5/8/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 2",
+          "bandStats": {
+            "white": 2225361,
+            "draws": 186545,
+            "black": 2613941,
+            "totalGames": 5025847,
+            "whitePct": 44.3,
+            "drawPct": 3.7,
+            "blackPct": 52
+          },
+          "frequencyPct": 11.9,
+          "reachPct": 100
         }
       ],
       "commonMistakes": [
@@ -396,6 +443,126 @@
         "aiCommentUnverified": "Con 2...d5 contestiamo subito il centro del Bianco mantenendo libera la diagonale c8-h3."
       }
     },
+    "rnbqkbnr/pp1ppppp/2p5/8/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp1ppppp/2p5/8/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp1ppppp/2p5/8/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 2",
+      "moveNumber": 2,
+      "ply": 3,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 100,
+      "positionGmStats": {
+        "white": 3,
+        "draws": 8,
+        "black": 8,
+        "totalGames": 19,
+        "whitePct": 15.8,
+        "drawPct": 42.1,
+        "blackPct": 42.1,
+        "topGames": [
+          {
+            "id": "BniKX8rH",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2832
+            },
+            "black": {
+              "name": "So, W.",
+              "rating": 2815
+            },
+            "winner": "white",
+            "year": 2017,
+            "month": "2017-11"
+          },
+          {
+            "id": "KFHHwUaP",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2850
+            },
+            "black": {
+              "name": "Tomashevsky, E.",
+              "rating": 2758
+            },
+            "winner": "white",
+            "year": 2015,
+            "month": "2015-10"
+          },
+          {
+            "id": "F47sAPFL",
+            "white": {
+              "name": "Firouzja, Alireza",
+              "rating": 2607
+            },
+            "black": {
+              "name": "Cheparinov, I.",
+              "rating": 2709
+            },
+            "winner": null,
+            "year": 2018,
+            "month": "2018-12"
+          }
+        ]
+      },
+      "ecoCode": "B10",
+      "ecoName": "Caro-Kann Defense: Hillbilly Attack",
+      "playerMove": {
+        "san": "d5",
+        "uci": "d7d5",
+        "from": "d7",
+        "to": "d5",
+        "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq - 0 3",
+        "selectionSource": "seed",
+        "selectionRule": "seed",
+        "acceptedVia": "seed",
+        "gmStats": {
+          "white": 3,
+          "draws": 7,
+          "black": 8,
+          "totalGames": 18,
+          "whitePct": 16.7,
+          "drawPct": 38.9,
+          "blackPct": 44.4
+        },
+        "bandStats": {
+          "white": 1865418,
+          "draws": 159996,
+          "black": 2294677,
+          "totalGames": 4320091,
+          "whitePct": 43.2,
+          "drawPct": 3.7,
+          "blackPct": 53.1
+        },
+        "engine": {
+          "evalPawns": -0.35,
+          "evalFromPlayerPerspective": 0.35,
+          "bestMoveSan": "d5",
+          "bestMoveUci": "d7d5",
+          "bestEvalPawns": -0.35,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "d5",
+            "exd5",
+            "cxd5",
+            "Bb3",
+            "Bf5",
+            "Ba4+",
+            "Nd7",
+            "Ne2"
+          ]
+        }
+      }
+    },
     "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -": {
       "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -",
       "fullFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
@@ -445,6 +612,25 @@
           "reachPct": 100
         },
         {
+          "san": "exd5",
+          "uci": "e4d5",
+          "from": "e4",
+          "to": "d5",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/3P4/3P4/8/PPP2PPP/RNBQKBNR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/2p5/3P4/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+          "bandStats": {
+            "white": 1508641,
+            "draws": 131226,
+            "black": 1533907,
+            "totalGames": 3173774,
+            "whitePct": 47.5,
+            "drawPct": 4.1,
+            "blackPct": 48.3
+          },
+          "frequencyPct": 22.3,
+          "reachPct": 100
+        },
+        {
           "san": "Nc3",
           "uci": "b1c3",
           "from": "b1",
@@ -462,6 +648,74 @@
           },
           "frequencyPct": 19,
           "reachPct": 100
+        }
+      ],
+      "commonMistakes": []
+    },
+    "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq - 0 3",
+      "moveNumber": 3,
+      "ply": 4,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 100,
+      "positionBandStats": {
+        "white": 1873882,
+        "draws": 160917,
+        "black": 2301017,
+        "totalGames": 4335816,
+        "whitePct": 43.2,
+        "drawPct": 3.7,
+        "blackPct": 53.1
+      },
+      "opponentMoves": [
+        {
+          "san": "exd5",
+          "uci": "e4d5",
+          "from": "e4",
+          "to": "d5",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/3P4/2B5/8/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/2p5/3P4/2B5/8/PPPP1PPP/RNBQK1NR b KQkq - 0 3",
+          "bandStats": {
+            "white": 1718984,
+            "draws": 145205,
+            "black": 2051867,
+            "totalGames": 3916056,
+            "whitePct": 43.9,
+            "drawPct": 3.7,
+            "blackPct": 52.4
+          },
+          "frequencyPct": 90.3,
+          "reachPct": 90.32
+        },
+        {
+          "san": "Bb3",
+          "uci": "c4b3",
+          "from": "c4",
+          "to": "b3",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/1B6/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/1B6/PPPP1PPP/RNBQK1NR b KQkq - 1 3",
+          "bandStats": {
+            "white": 81833,
+            "draws": 7376,
+            "black": 110128,
+            "totalGames": 199337,
+            "whitePct": 41.1,
+            "drawPct": 3.7,
+            "blackPct": 55.2
+          },
+          "frequencyPct": 4.6,
+          "reachPct": 4.6
         }
       ],
       "commonMistakes": []
@@ -602,6 +856,128 @@
         "aiCommentUnverified": "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di consolidare con ...e6."
       }
     },
+    "rnbqkbnr/pp2pppp/2p5/3P4/3P4/8/PPP2PPP/RNBQKBNR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3P4/3P4/8/PPP2PPP/RNBQKBNR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/2p5/3P4/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "moveNumber": 3,
+      "ply": 5,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 100,
+      "positionGmStats": {
+        "white": 4941,
+        "draws": 7431,
+        "black": 4414,
+        "totalGames": 16786,
+        "whitePct": 29.4,
+        "drawPct": 44.3,
+        "blackPct": 26.3,
+        "topGames": [
+          {
+            "id": "b2Xfc6Wq",
+            "white": {
+              "name": "Ding, Liren",
+              "rating": 2791
+            },
+            "black": {
+              "name": "Carlsen, Magnus",
+              "rating": 2863
+            },
+            "winner": null,
+            "year": 2020,
+            "month": "2020-08"
+          },
+          {
+            "id": "dlIJafzl",
+            "white": {
+              "name": "Ding, Liren",
+              "rating": 2791
+            },
+            "black": {
+              "name": "Carlsen, Magnus",
+              "rating": 2863
+            },
+            "winner": "white",
+            "year": 2020,
+            "month": "2020-08"
+          },
+          {
+            "id": "CuQmjkwk",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2832
+            },
+            "black": {
+              "name": "So, W.",
+              "rating": 2815
+            },
+            "winner": "black",
+            "year": 2017,
+            "month": "2017-11"
+          }
+        ]
+      },
+      "ecoCode": "B13",
+      "ecoName": "Caro-Kann Defense: Exchange Variation",
+      "playerMove": {
+        "san": "cxd5",
+        "uci": "c6d5",
+        "from": "c6",
+        "to": "d5",
+        "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq -",
+        "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq - 0 4",
+        "selectionSource": "seed",
+        "selectionRule": "seed",
+        "acceptedVia": "seed",
+        "gmStats": {
+          "white": 4928,
+          "draws": 7414,
+          "black": 4396,
+          "totalGames": 16738,
+          "whitePct": 29.4,
+          "drawPct": 44.3,
+          "blackPct": 26.3
+        },
+        "bandStats": {
+          "white": 1420700,
+          "draws": 124328,
+          "black": 1467919,
+          "totalGames": 3012947,
+          "whitePct": 47.2,
+          "drawPct": 4.1,
+          "blackPct": 48.7
+        },
+        "engine": {
+          "evalPawns": 0.03,
+          "evalFromPlayerPerspective": -0.03,
+          "bestMoveSan": "cxd5",
+          "bestMoveUci": "c6d5",
+          "bestEvalPawns": 0.03,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "cxd5",
+            "c4",
+            "Nf6",
+            "Nc3",
+            "Nc6",
+            "Nf3",
+            "Bg4",
+            "Be2"
+          ]
+        }
+      }
+    },
     "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -": {
       "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -",
       "fullFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 3",
@@ -724,6 +1100,218 @@
           ]
         },
         "aiCommentUnverified": "Con 3...dxe4 apriamo la colonna d e prepariamo lo sviluppo attivo dell'alfiere camposcuro nella Variante Classica."
+      }
+    },
+    "rnbqkbnr/pp2pppp/2p5/3P4/2B5/8/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3P4/2B5/8/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/2p5/3P4/2B5/8/PPPP1PPP/RNBQK1NR b KQkq - 0 3",
+      "moveNumber": 3,
+      "ply": 5,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 90.32,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 1,
+        "totalGames": 1,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 100,
+        "topGames": [
+          {
+            "id": "ubcQwukw",
+            "white": {
+              "name": "Pg, L Wijaya Pg Hj Mohd",
+              "rating": 2301
+            },
+            "black": {
+              "name": "Khamrakulov, Dzhurabek",
+              "rating": 2479
+            },
+            "winner": "black",
+            "year": 2011,
+            "month": "2011-03"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "cxd5",
+        "uci": "c6d5",
+        "from": "c6",
+        "to": "d5",
+        "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/2B5/8/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/2B5/8/PPPP1PPP/RNBQK1NR w KQkq - 0 4",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 1,
+          "totalGames": 1,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 100
+        },
+        "bandStats": {
+          "white": 1703776,
+          "draws": 144397,
+          "black": 2043663,
+          "totalGames": 3891836,
+          "whitePct": 43.8,
+          "drawPct": 3.7,
+          "blackPct": 52.5
+        },
+        "engine": {
+          "evalPawns": -0.36,
+          "evalFromPlayerPerspective": 0.36,
+          "bestMoveSan": "cxd5",
+          "bestMoveUci": "c6d5",
+          "bestEvalPawns": -0.36,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "cxd5",
+            "Bb3",
+            "Bf5",
+            "Nf3",
+            "e6",
+            "O-O",
+            "Nc6",
+            "d4"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/2p5/3p4/4P3/1B6/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/1B6/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/1B6/PPPP1PPP/RNBQK1NR b KQkq - 1 3",
+      "moveNumber": 3,
+      "ply": 5,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. Bb3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "Bb3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 4.6,
+      "positionGmStats": {
+        "white": 3,
+        "draws": 7,
+        "black": 7,
+        "totalGames": 17,
+        "whitePct": 17.6,
+        "drawPct": 41.2,
+        "blackPct": 41.2,
+        "topGames": [
+          {
+            "id": "BniKX8rH",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2832
+            },
+            "black": {
+              "name": "So, W.",
+              "rating": 2815
+            },
+            "winner": "white",
+            "year": 2017,
+            "month": "2017-11"
+          },
+          {
+            "id": "KFHHwUaP",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2850
+            },
+            "black": {
+              "name": "Tomashevsky, E.",
+              "rating": 2758
+            },
+            "winner": "white",
+            "year": 2015,
+            "month": "2015-10"
+          },
+          {
+            "id": "F47sAPFL",
+            "white": {
+              "name": "Firouzja, Alireza",
+              "rating": 2607
+            },
+            "black": {
+              "name": "Cheparinov, I.",
+              "rating": 2709
+            },
+            "winner": null,
+            "year": 2018,
+            "month": "2018-12"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "dxe4",
+        "uci": "d5e4",
+        "from": "d5",
+        "to": "e4",
+        "nextNormalizedFen": "rnbqkbnr/pp2pppp/2p5/8/4p3/1B6/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "rnbqkbnr/pp2pppp/2p5/8/4p3/1B6/PPPP1PPP/RNBQK1NR w KQkq - 0 4",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 2,
+          "draws": 6,
+          "black": 7,
+          "totalGames": 15,
+          "whitePct": 13.3,
+          "drawPct": 40,
+          "blackPct": 46.7
+        },
+        "bandStats": {
+          "white": 43186,
+          "draws": 4067,
+          "black": 62446,
+          "totalGames": 109699,
+          "whitePct": 39.4,
+          "drawPct": 3.7,
+          "blackPct": 56.9
+        },
+        "engine": {
+          "evalPawns": -0.61,
+          "evalFromPlayerPerspective": 0.61,
+          "bestMoveSan": "dxe4",
+          "bestMoveUci": "d5e4",
+          "bestEvalPawns": -0.61,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "dxe4",
+            "f3",
+            "Nf6",
+            "Nc3",
+            "exf3",
+            "Nxf3",
+            "Bf5",
+            "g4"
+          ]
+        }
       }
     },
     "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/8/PPP2PPP/RNBQKBNR w KQkq -": {
@@ -929,6 +1517,135 @@
       ],
       "commonMistakes": []
     },
+    "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq - 0 4",
+      "moveNumber": 4,
+      "ply": 6,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 100,
+      "positionBandStats": {
+        "white": 1460881,
+        "draws": 127491,
+        "black": 1507865,
+        "totalGames": 3096237,
+        "whitePct": 47.2,
+        "drawPct": 4.1,
+        "blackPct": 48.7
+      },
+      "ecoCode": "B13",
+      "ecoName": "Caro-Kann Defense: Exchange Variation",
+      "opponentMoves": [
+        {
+          "san": "Nc3",
+          "uci": "b1c3",
+          "from": "b1",
+          "to": "c3",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 4",
+          "bandStats": {
+            "white": 601364,
+            "draws": 53188,
+            "black": 628100,
+            "totalGames": 1282652,
+            "whitePct": 46.9,
+            "drawPct": 4.1,
+            "blackPct": 49
+          },
+          "frequencyPct": 41.4,
+          "reachPct": 41.43
+        },
+        {
+          "san": "Nf3",
+          "uci": "g1f3",
+          "from": "g1",
+          "to": "f3",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq - 1 4",
+          "bandStats": {
+            "white": 400253,
+            "draws": 33888,
+            "black": 404784,
+            "totalGames": 838925,
+            "whitePct": 47.7,
+            "drawPct": 4,
+            "blackPct": 48.3
+          },
+          "frequencyPct": 27.1,
+          "reachPct": 27.09
+        },
+        {
+          "san": "Bb5+",
+          "uci": "f1b5",
+          "from": "f1",
+          "to": "b5",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq - 1 4",
+          "bandStats": {
+            "white": 114628,
+            "draws": 12227,
+            "black": 139219,
+            "totalGames": 266074,
+            "whitePct": 43.1,
+            "drawPct": 4.6,
+            "blackPct": 52.3
+          },
+          "frequencyPct": 8.6,
+          "reachPct": 8.59
+        },
+        {
+          "san": "c4",
+          "uci": "c2c4",
+          "from": "c2",
+          "to": "c4",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/2PP4/8/PP3PPP/RNBQKBNR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/2PP4/8/PP3PPP/RNBQKBNR b KQkq - 0 4",
+          "bandStats": {
+            "white": 124712,
+            "draws": 9539,
+            "black": 108930,
+            "totalGames": 243181,
+            "whitePct": 51.3,
+            "drawPct": 3.9,
+            "blackPct": 44.8
+          },
+          "frequencyPct": 7.9,
+          "reachPct": 7.85
+        },
+        {
+          "san": "Bd3",
+          "uci": "f1d3",
+          "from": "f1",
+          "to": "d3",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/3B4/PPP2PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/3B4/PPP2PPP/RNBQK1NR b KQkq - 1 4",
+          "bandStats": {
+            "white": 87738,
+            "draws": 6091,
+            "black": 72185,
+            "totalGames": 166014,
+            "whitePct": 52.8,
+            "drawPct": 3.7,
+            "blackPct": 43.5
+          },
+          "frequencyPct": 5.4,
+          "reachPct": 5.36
+        }
+      ],
+      "commonMistakes": []
+    },
     "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq -": {
       "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq -",
       "fullFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4",
@@ -999,6 +1716,126 @@
           "reachPct": 3.61
         }
       ],
+      "commonMistakes": []
+    },
+    "rnbqkbnr/pp2pppp/8/3p4/2B5/8/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/2B5/8/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/2B5/8/PPPP1PPP/RNBQK1NR w KQkq - 0 4",
+      "moveNumber": 4,
+      "ply": 6,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 100,
+      "positionBandStats": {
+        "white": 1703599,
+        "draws": 144305,
+        "black": 2041899,
+        "totalGames": 3889803,
+        "whitePct": 43.8,
+        "drawPct": 3.7,
+        "blackPct": 52.5
+      },
+      "opponentMoves": [
+        {
+          "san": "Bb3",
+          "uci": "c4b3",
+          "from": "c4",
+          "to": "b3",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/8/1B6/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/8/1B6/PPPP1PPP/RNBQK1NR b KQkq - 1 4",
+          "bandStats": {
+            "white": 927210,
+            "draws": 69834,
+            "black": 1050224,
+            "totalGames": 2047268,
+            "whitePct": 45.3,
+            "drawPct": 3.4,
+            "blackPct": 51.3
+          },
+          "frequencyPct": 52.6,
+          "reachPct": 52.63
+        },
+        {
+          "san": "Bb5+",
+          "uci": "c4b5",
+          "from": "c4",
+          "to": "b5",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/1B1p4/8/8/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/1B1p4/8/8/PPPP1PPP/RNBQK1NR b KQkq - 1 4",
+          "bandStats": {
+            "white": 684152,
+            "draws": 64992,
+            "black": 838770,
+            "totalGames": 1587914,
+            "whitePct": 43.1,
+            "drawPct": 4.1,
+            "blackPct": 52.8
+          },
+          "frequencyPct": 40.8,
+          "reachPct": 40.82
+        },
+        {
+          "san": "Bd3",
+          "uci": "c4d3",
+          "from": "c4",
+          "to": "d3",
+          "nextNormalizedFen": "rnbqkbnr/pp2pppp/8/3p4/8/3B4/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "rnbqkbnr/pp2pppp/8/3p4/8/3B4/PPPP1PPP/RNBQK1NR b KQkq - 1 4",
+          "bandStats": {
+            "white": 53543,
+            "draws": 5071,
+            "black": 77652,
+            "totalGames": 136266,
+            "whitePct": 39.3,
+            "drawPct": 3.7,
+            "blackPct": 57
+          },
+          "frequencyPct": 3.5,
+          "reachPct": 3.5
+        }
+      ],
+      "commonMistakes": []
+    },
+    "rnbqkbnr/pp2pppp/2p5/8/4p3/1B6/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/4p3/1B6/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/2p5/8/4p3/1B6/PPPP1PPP/RNBQK1NR w KQkq - 0 4",
+      "moveNumber": 4,
+      "ply": 6,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. Bb3 dxe4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "Bb3",
+        "dxe4"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 4.6,
+      "positionBandStats": {
+        "white": 43170,
+        "draws": 4047,
+        "black": 61874,
+        "totalGames": 109091,
+        "whitePct": 39.6,
+        "drawPct": 3.7,
+        "blackPct": 56.7
+      },
+      "opponentMoves": [],
       "commonMistakes": []
     },
     "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq -": {
@@ -2079,6 +2916,590 @@
         }
       }
     },
+    "rnbqkbnr/pp2pppp/8/3p4/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 41.43,
+      "positionGmStats": {
+        "white": 2,
+        "draws": 11,
+        "black": 6,
+        "totalGames": 19,
+        "whitePct": 10.5,
+        "drawPct": 57.9,
+        "blackPct": 31.6,
+        "topGames": [
+          {
+            "id": "qOvKKVAN",
+            "white": {
+              "name": "Fries Nielsen, JO.",
+              "rating": 2416
+            },
+            "black": {
+              "name": "Agrest, E.",
+              "rating": 2591
+            },
+            "winner": null,
+            "year": 2014,
+            "month": "2014-01"
+          },
+          {
+            "id": "XATmNpHy",
+            "white": {
+              "name": "Meister, Jakob",
+              "rating": 2504
+            },
+            "black": {
+              "name": "Panarin, Michail",
+              "rating": 2502
+            },
+            "winner": "black",
+            "year": 2006,
+            "month": "2006-03"
+          },
+          {
+            "id": "H31L6Dhr",
+            "white": {
+              "name": "Meister, Jakob",
+              "rating": 2491
+            },
+            "black": {
+              "name": "Andriasian, Zaven",
+              "rating": 2463
+            },
+            "winner": null,
+            "year": 2006,
+            "month": "2006-10"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N5/PPP2PPP/R1BQKBNR w KQkq -",
+        "nextFullFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N5/PPP2PPP/R1BQKBNR w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 5,
+          "black": 3,
+          "totalGames": 8,
+          "whitePct": 0,
+          "drawPct": 62.5,
+          "blackPct": 37.5
+        },
+        "bandStats": {
+          "white": 385482,
+          "draws": 34758,
+          "black": 398045,
+          "totalGames": 818285,
+          "whitePct": 47.1,
+          "drawPct": 4.2,
+          "blackPct": 48.6
+        },
+        "engine": {
+          "evalPawns": 0,
+          "evalFromPlayerPerspective": 0,
+          "bestMoveSan": "Nc6",
+          "bestMoveUci": "b8c6",
+          "bestEvalPawns": 0,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "Nf3",
+            "Nc6",
+            "h3",
+            "e6",
+            "Bf4",
+            "Bd6",
+            "Bxd6"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/3p4/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nf3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nf3"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 27.09,
+      "positionGmStats": {
+        "white": 244,
+        "draws": 328,
+        "black": 230,
+        "totalGames": 802,
+        "whitePct": 30.4,
+        "drawPct": 40.9,
+        "blackPct": 28.7,
+        "topGames": [
+          {
+            "id": "fUNxCXZs",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2840
+            },
+            "black": {
+              "name": "Mamedyarov, S.",
+              "rating": 2768
+            },
+            "winner": "white",
+            "year": 2016,
+            "month": "2016-12"
+          },
+          {
+            "id": "yUgIepOl",
+            "white": {
+              "name": "Kramnik, V.",
+              "rating": 2787
+            },
+            "black": {
+              "name": "Caruana, F.",
+              "rating": 2811
+            },
+            "winner": "white",
+            "year": 2018,
+            "month": "2018-01"
+          },
+          {
+            "id": "lx26VBnW",
+            "white": {
+              "name": "Kramnik, V.",
+              "rating": 2808
+            },
+            "black": {
+              "name": "Anand, V.",
+              "rating": 2786
+            },
+            "winner": null,
+            "year": 2017,
+            "month": "2017-07"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "masters_freq",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 128,
+          "draws": 165,
+          "black": 140,
+          "totalGames": 433,
+          "whitePct": 29.6,
+          "drawPct": 38.1,
+          "blackPct": 32.3
+        },
+        "bandStats": {
+          "white": 679172,
+          "draws": 55310,
+          "black": 670752,
+          "totalGames": 1405234,
+          "whitePct": 48.3,
+          "drawPct": 3.9,
+          "blackPct": 47.7
+        },
+        "engine": {
+          "evalPawns": 0.13,
+          "evalFromPlayerPerspective": -0.13,
+          "bestMoveSan": "Nf6",
+          "bestMoveUci": "g8f6",
+          "bestEvalPawns": 0.08,
+          "evalLossVsBest": 0.05,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "c4",
+            "Nf6",
+            "Nc3",
+            "e6",
+            "c5",
+            "Be7",
+            "Bb5"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Bb5+",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 8.59,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 1,
+        "totalGames": 1,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 100,
+        "topGames": [
+          {
+            "id": "tBIxLK2o",
+            "white": {
+              "name": "Sukhareva, E.",
+              "rating": 2127
+            },
+            "black": {
+              "name": "Voit, Daria",
+              "rating": 2356
+            },
+            "winner": "black",
+            "year": 2024,
+            "month": "2024-10"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 61197,
+          "draws": 6027,
+          "black": 76196,
+          "totalGames": 143420,
+          "whitePct": 42.7,
+          "drawPct": 4.2,
+          "blackPct": 53.1
+        },
+        "engine": {
+          "evalPawns": 0,
+          "evalFromPlayerPerspective": 0,
+          "bestMoveSan": "Bd7",
+          "bestMoveUci": "c8d7",
+          "bestEvalPawns": 0,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "Nf3",
+            "Nf6",
+            "O-O",
+            "Bg4",
+            "h3",
+            "Bxf3",
+            "Qxf3"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/3p4/2PP4/8/PP3PPP/RNBQKBNR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/2PP4/8/PP3PPP/RNBQKBNR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/2PP4/8/PP3PPP/RNBQKBNR b KQkq - 0 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. c4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "c4"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 7.85,
+      "positionGmStats": {
+        "white": 3454,
+        "draws": 5168,
+        "black": 2741,
+        "totalGames": 11363,
+        "whitePct": 30.4,
+        "drawPct": 45.5,
+        "blackPct": 24.1,
+        "topGames": [
+          {
+            "id": "9Sdad7YX",
+            "white": {
+              "name": "Giri, A.",
+              "rating": 2764
+            },
+            "black": {
+              "name": "Carlsen, M.",
+              "rating": 2856
+            },
+            "winner": null,
+            "year": 2022,
+            "month": "2022-10"
+          },
+          {
+            "id": "yZrlyaVp",
+            "white": {
+              "name": "Nepomniachtchi, I.",
+              "rating": 2779
+            },
+            "black": {
+              "name": "Carlsen, M.",
+              "rating": 2835
+            },
+            "winner": null,
+            "year": 2023,
+            "month": "2023-07"
+          },
+          {
+            "id": "AY124uKf",
+            "white": {
+              "name": "Radjabov, Teimour",
+              "rating": 2761
+            },
+            "black": {
+              "name": "Anand, Viswanathan",
+              "rating": 2791
+            },
+            "winner": "black",
+            "year": 2009,
+            "month": "2009-03"
+          }
+        ]
+      },
+      "ecoCode": "B13",
+      "ecoName": "Caro-Kann Defense: Panov Attack",
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/2PP4/8/PP3PPP/RNBQKBNR w KQkq -",
+        "nextFullFen": "rnbqkb1r/pp2pppp/5n2/3p4/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 1 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "masters_freq",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 3334,
+          "draws": 5030,
+          "black": 2670,
+          "totalGames": 11034,
+          "whitePct": 30.2,
+          "drawPct": 45.6,
+          "blackPct": 24.2
+        },
+        "bandStats": {
+          "white": 59281,
+          "draws": 4585,
+          "black": 55196,
+          "totalGames": 119062,
+          "whitePct": 49.8,
+          "drawPct": 3.9,
+          "blackPct": 46.4
+        },
+        "engine": {
+          "evalPawns": 0.08,
+          "evalFromPlayerPerspective": -0.08,
+          "bestMoveSan": "e6",
+          "bestMoveUci": "e7e6",
+          "bestEvalPawns": 0.04,
+          "evalLossVsBest": 0.04,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "cxd5",
+            "Nxd5",
+            "Nf3",
+            "Nc6",
+            "Nc3",
+            "e6",
+            "Bd3"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/3p4/3P4/3B4/PPP2PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/3B4/PPP2PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/3B4/PPP2PPP/RNBQK1NR b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Bd3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bd3"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 5.36,
+      "positionGmStats": {
+        "white": 1755,
+        "draws": 2574,
+        "black": 1664,
+        "totalGames": 5993,
+        "whitePct": 29.3,
+        "drawPct": 43,
+        "blackPct": 27.8,
+        "topGames": [
+          {
+            "id": "b2Xfc6Wq",
+            "white": {
+              "name": "Ding, Liren",
+              "rating": 2791
+            },
+            "black": {
+              "name": "Carlsen, Magnus",
+              "rating": 2863
+            },
+            "winner": null,
+            "year": 2020,
+            "month": "2020-08"
+          },
+          {
+            "id": "dlIJafzl",
+            "white": {
+              "name": "Ding, Liren",
+              "rating": 2791
+            },
+            "black": {
+              "name": "Carlsen, Magnus",
+              "rating": 2863
+            },
+            "winner": "white",
+            "year": 2020,
+            "month": "2020-08"
+          },
+          {
+            "id": "CuQmjkwk",
+            "white": {
+              "name": "Carlsen, M.",
+              "rating": 2832
+            },
+            "black": {
+              "name": "So, W.",
+              "rating": 2815
+            },
+            "winner": "black",
+            "year": 2017,
+            "month": "2017-11"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/3B4/PPP2PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/3B4/PPP2PPP/RNBQK1NR w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "masters_freq",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 1512,
+          "draws": 2196,
+          "black": 1425,
+          "totalGames": 5133,
+          "whitePct": 29.5,
+          "drawPct": 42.8,
+          "blackPct": 27.8
+        },
+        "bandStats": {
+          "white": 49443,
+          "draws": 3509,
+          "black": 42494,
+          "totalGames": 95446,
+          "whitePct": 51.8,
+          "drawPct": 3.7,
+          "blackPct": 44.5
+        },
+        "engine": {
+          "evalPawns": 0.04,
+          "evalFromPlayerPerspective": -0.04,
+          "bestMoveSan": "Nc6",
+          "bestMoveUci": "b8c6",
+          "bestEvalPawns": 0.04,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "Nf3",
+            "Bg4",
+            "c3",
+            "e6",
+            "h3",
+            "Bh5",
+            "O-O"
+          ]
+        }
+      }
+    },
     "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -": {
       "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -",
       "fullFen": "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq - 0 4",
@@ -2337,6 +3758,256 @@
             "Ne5",
             "e6",
             "O-O"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/3p4/8/1B6/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/8/1B6/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/8/1B6/PPPP1PPP/RNBQK1NR b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 52.63,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 1,
+        "totalGames": 1,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 100,
+        "topGames": [
+          {
+            "id": "ubcQwukw",
+            "white": {
+              "name": "Pg, L Wijaya Pg Hj Mohd",
+              "rating": 2301
+            },
+            "black": {
+              "name": "Khamrakulov, Dzhurabek",
+              "rating": 2479
+            },
+            "winner": "black",
+            "year": 2011,
+            "month": "2011-03"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B6/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B6/PPPP1PPP/RNBQK1NR w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 1,
+          "totalGames": 1,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 100
+        },
+        "bandStats": {
+          "white": 238276,
+          "draws": 17900,
+          "black": 278639,
+          "totalGames": 534815,
+          "whitePct": 44.6,
+          "drawPct": 3.3,
+          "blackPct": 52.1
+        },
+        "engine": {
+          "evalPawns": -0.3,
+          "evalFromPlayerPerspective": 0.3,
+          "bestMoveSan": "Bf5",
+          "bestMoveUci": "c8f5",
+          "bestEvalPawns": -0.36,
+          "evalLossVsBest": 0.06,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "d4",
+            "Bf5",
+            "Nf3",
+            "e6",
+            "O-O",
+            "Bd6",
+            "c4"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/1B1p4/8/8/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/1B1p4/8/8/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/1B1p4/8/8/PPPP1PPP/RNBQK1NR b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 40.82,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/8/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/8/PPPP1PPP/RNBQK1NR w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 356565,
+          "draws": 32026,
+          "black": 451193,
+          "totalGames": 839784,
+          "whitePct": 42.5,
+          "drawPct": 3.8,
+          "blackPct": 53.7
+        },
+        "engine": {
+          "evalPawns": -0.31,
+          "evalFromPlayerPerspective": 0.31,
+          "bestMoveSan": "Nc6",
+          "bestMoveUci": "b8c6",
+          "bestEvalPawns": -0.31,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "Nf3",
+            "Bf5",
+            "d3",
+            "e6",
+            "Nd4",
+            "Ne7",
+            "Nc3"
+          ]
+        }
+      }
+    },
+    "rnbqkbnr/pp2pppp/8/3p4/8/3B4/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/8/3B4/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "rnbqkbnr/pp2pppp/8/3p4/8/3B4/PPPP1PPP/RNBQK1NR b KQkq - 1 4",
+      "moveNumber": 4,
+      "ply": 7,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bd3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bd3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 3.5,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/3B4/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/3B4/PPPP1PPP/RNBQK1NR w KQkq - 2 5",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "band_0_1400",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 14198,
+          "draws": 1368,
+          "black": 21529,
+          "totalGames": 37095,
+          "whitePct": 38.3,
+          "drawPct": 3.7,
+          "blackPct": 58
+        },
+        "engine": {
+          "evalPawns": -0.53,
+          "evalFromPlayerPerspective": 0.53,
+          "bestMoveSan": "e5",
+          "bestMoveUci": "e7e5",
+          "bestEvalPawns": -0.54,
+          "evalLossVsBest": 0.01,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "Ne2",
+            "e5",
+            "c3",
+            "d4",
+            "O-O",
+            "Nf6",
+            "cxd4"
           ]
         }
       }
@@ -3408,6 +5079,270 @@
         }
       ]
     },
+    "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N5/PPP2PPP/R1BQKBNR w KQkq -": {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N5/PPP2PPP/R1BQKBNR w KQkq -",
+      "fullFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N5/PPP2PPP/R1BQKBNR w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 41.43,
+      "positionBandStats": {
+        "white": 427486,
+        "draws": 38610,
+        "black": 438033,
+        "totalGames": 904129,
+        "whitePct": 47.3,
+        "drawPct": 4.3,
+        "blackPct": 48.4
+      },
+      "opponentMoves": [
+        {
+          "san": "Nf3",
+          "uci": "g1f3",
+          "from": "g1",
+          "to": "f3",
+          "nextNormalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -",
+          "nextFullFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq - 3 5",
+          "bandStats": {
+            "white": 208345,
+            "draws": 19290,
+            "black": 213428,
+            "totalGames": 441063,
+            "whitePct": 47.2,
+            "drawPct": 4.4,
+            "blackPct": 48.4
+          },
+          "frequencyPct": 48.8,
+          "reachPct": 20.21
+        },
+        {
+          "san": "Bg5",
+          "uci": "c1g5",
+          "from": "c1",
+          "to": "g5",
+          "nextNormalizedFen": "rnbqkb1r/pp2pppp/5n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq -",
+          "nextFullFen": "rnbqkb1r/pp2pppp/5n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq - 3 5",
+          "bandStats": {
+            "white": 66331,
+            "draws": 5814,
+            "black": 64726,
+            "totalGames": 136871,
+            "whitePct": 48.5,
+            "drawPct": 4.2,
+            "blackPct": 47.3
+          },
+          "frequencyPct": 15.1,
+          "reachPct": 6.27
+        },
+        {
+          "san": "Bb5+",
+          "uci": "f1b5",
+          "from": "f1",
+          "to": "b5",
+          "nextNormalizedFen": "rnbqkb1r/pp2pppp/5n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR b KQkq -",
+          "nextFullFen": "rnbqkb1r/pp2pppp/5n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR b KQkq - 3 5",
+          "bandStats": {
+            "white": 56326,
+            "draws": 5900,
+            "black": 62577,
+            "totalGames": 124803,
+            "whitePct": 45.1,
+            "drawPct": 4.7,
+            "blackPct": 50.1
+          },
+          "frequencyPct": 13.8,
+          "reachPct": 5.72
+        }
+      ],
+      "commonMistakes": []
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nf3 Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nf3",
+        "Nc6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 27.09,
+      "positionBandStats": {
+        "white": 686418,
+        "draws": 55850,
+        "black": 677232,
+        "totalGames": 1419500,
+        "whitePct": 48.4,
+        "drawPct": 3.9,
+        "blackPct": 47.7
+      },
+      "ecoCode": "B13",
+      "ecoName": "Caro-Kann Defense: Exchange Variation",
+      "opponentMoves": [
+        {
+          "san": "Nc3",
+          "uci": "b1c3",
+          "from": "b1",
+          "to": "c3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq - 3 5",
+          "bandStats": {
+            "white": 256982,
+            "draws": 21972,
+            "black": 258938,
+            "totalGames": 537892,
+            "whitePct": 47.8,
+            "drawPct": 4.1,
+            "blackPct": 48.1
+          },
+          "frequencyPct": 37.9,
+          "reachPct": 10.27
+        },
+        {
+          "san": "Bb5",
+          "uci": "f1b5",
+          "from": "f1",
+          "to": "b5",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R b KQkq - 3 5",
+          "bandStats": {
+            "white": 227568,
+            "draws": 18346,
+            "black": 226942,
+            "totalGames": 472856,
+            "whitePct": 48.1,
+            "drawPct": 3.9,
+            "blackPct": 48
+          },
+          "frequencyPct": 33.3,
+          "reachPct": 9.03
+        }
+      ],
+      "commonMistakes": []
+    },
+    "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Bb5+ Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 8.59,
+      "positionBandStats": {
+        "white": 61309,
+        "draws": 6026,
+        "black": 76215,
+        "totalGames": 143550,
+        "whitePct": 42.7,
+        "drawPct": 4.2,
+        "blackPct": 53.1
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "rnbqkb1r/pp2pppp/5n2/3p4/2PP4/8/PP3PPP/RNBQKBNR w KQkq -": {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/2PP4/8/PP3PPP/RNBQKBNR w KQkq -",
+      "fullFen": "rnbqkb1r/pp2pppp/5n2/3p4/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 1 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. c4 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "c4",
+        "Nf6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 7.85,
+      "positionBandStats": {
+        "white": 65606,
+        "draws": 5066,
+        "black": 61450,
+        "totalGames": 132122,
+        "whitePct": 49.7,
+        "drawPct": 3.8,
+        "blackPct": 46.5
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/3P4/3B4/PPP2PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/3B4/PPP2PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/3B4/PPP2PPP/RNBQK1NR w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Bd3 Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bd3",
+        "Nc6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 5.36,
+      "positionBandStats": {
+        "white": 49515,
+        "draws": 3508,
+        "black": 42520,
+        "totalGames": 95543,
+        "whitePct": 51.8,
+        "drawPct": 3.7,
+        "blackPct": 44.5
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
     "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq -": {
       "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq -",
       "fullFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5",
@@ -3667,6 +5602,384 @@
         }
       ],
       "commonMistakes": []
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/8/1B6/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B6/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B6/PPPP1PPP/RNBQK1NR w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 52.63,
+      "positionBandStats": {
+        "white": 238241,
+        "draws": 17877,
+        "black": 278273,
+        "totalGames": 534391,
+        "whitePct": 44.6,
+        "drawPct": 3.3,
+        "blackPct": 52.1
+      },
+      "opponentMoves": [
+        {
+          "san": "Nf3",
+          "uci": "g1f3",
+          "from": "g1",
+          "to": "f3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3N2/PPPP1PPP/RNBQK2R b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3N2/PPPP1PPP/RNBQK2R b KQkq - 3 5",
+          "bandStats": {
+            "white": 60962,
+            "draws": 4610,
+            "black": 70701,
+            "totalGames": 136273,
+            "whitePct": 44.7,
+            "drawPct": 3.4,
+            "blackPct": 51.9
+          },
+          "frequencyPct": 25.5,
+          "reachPct": 13.42
+        },
+        {
+          "san": "Qf3",
+          "uci": "d1f3",
+          "from": "d1",
+          "to": "f3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq - 3 5",
+          "bandStats": {
+            "white": 39351,
+            "draws": 2937,
+            "black": 48012,
+            "totalGames": 90300,
+            "whitePct": 43.6,
+            "drawPct": 3.3,
+            "blackPct": 53.2
+          },
+          "frequencyPct": 16.9,
+          "reachPct": 8.89
+        },
+        {
+          "san": "d4",
+          "uci": "d2d4",
+          "from": "d2",
+          "to": "d4",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/1B6/PPP2PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/1B6/PPP2PPP/RNBQK1NR b KQkq - 0 5",
+          "bandStats": {
+            "white": 34105,
+            "draws": 2356,
+            "black": 36145,
+            "totalGames": 72606,
+            "whitePct": 47,
+            "drawPct": 3.2,
+            "blackPct": 49.8
+          },
+          "frequencyPct": 13.6,
+          "reachPct": 7.15
+        },
+        {
+          "san": "Nc3",
+          "uci": "b1c3",
+          "from": "b1",
+          "to": "c3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1BN5/PPPP1PPP/R1BQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1BN5/PPPP1PPP/R1BQK1NR b KQkq - 3 5",
+          "bandStats": {
+            "white": 26677,
+            "draws": 2082,
+            "black": 30149,
+            "totalGames": 58908,
+            "whitePct": 45.3,
+            "drawPct": 3.5,
+            "blackPct": 51.2
+          },
+          "frequencyPct": 11,
+          "reachPct": 5.8
+        },
+        {
+          "san": "d3",
+          "uci": "d2d3",
+          "from": "d2",
+          "to": "d3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B1P4/PPP2PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B1P4/PPP2PPP/RNBQK1NR b KQkq - 0 5",
+          "bandStats": {
+            "white": 17682,
+            "draws": 1309,
+            "black": 19684,
+            "totalGames": 38675,
+            "whitePct": 45.7,
+            "drawPct": 3.4,
+            "blackPct": 50.9
+          },
+          "frequencyPct": 7.2,
+          "reachPct": 3.81
+        },
+        {
+          "san": "c4",
+          "uci": "c2c4",
+          "from": "c2",
+          "to": "c4",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/2P5/1B6/PP1P1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/2P5/1B6/PP1P1PPP/RNBQK1NR b KQkq - 0 5",
+          "bandStats": {
+            "white": 15644,
+            "draws": 1335,
+            "black": 19806,
+            "totalGames": 36785,
+            "whitePct": 42.5,
+            "drawPct": 3.6,
+            "blackPct": 53.8
+          },
+          "frequencyPct": 6.9,
+          "reachPct": 3.62
+        }
+      ],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Qf3",
+          "opponentMoveUci": "d1f3",
+          "from": "d1",
+          "to": "f3",
+          "afterMistakeNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq - 3 5",
+          "frequencyPct": 16.9,
+          "totalBandGames": 90300,
+          "evalLoss": 0.59,
+          "impactScore": 9.97,
+          "severity": "inaccuracy",
+          "punishMoveSan": "Nf6",
+          "punishMoveUci": "g8f6",
+          "punishFrom": "g8",
+          "punishTo": "f6",
+          "pvSan": [
+            "Nf6",
+            "c3",
+            "e5",
+            "d3",
+            "Bg4",
+            "Qg3"
+          ],
+          "finalEvalPawns": -0.72,
+          "finalEvalForPlayer": 0.72,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkbnr/pp2pppp/2n5/1B1p4/8/8/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/8/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/8/PPPP1PPP/RNBQK1NR w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 40.82,
+      "positionBandStats": {
+        "white": 356502,
+        "draws": 31998,
+        "black": 450658,
+        "totalGames": 839158,
+        "whitePct": 42.5,
+        "drawPct": 3.8,
+        "blackPct": 53.7
+      },
+      "opponentMoves": [
+        {
+          "san": "Bxc6+",
+          "uci": "b5c6",
+          "from": "b5",
+          "to": "c6",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2B5/3p4/8/8/PPPP1PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2B5/3p4/8/8/PPPP1PPP/RNBQK1NR b KQkq - 0 5",
+          "bandStats": {
+            "white": 98691,
+            "draws": 10713,
+            "black": 131543,
+            "totalGames": 240947,
+            "whitePct": 41,
+            "drawPct": 4.4,
+            "blackPct": 54.6
+          },
+          "frequencyPct": 28.7,
+          "reachPct": 11.72
+        },
+        {
+          "san": "Nf3",
+          "uci": "g1f3",
+          "from": "g1",
+          "to": "f3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 5",
+          "bandStats": {
+            "white": 86852,
+            "draws": 7036,
+            "black": 103006,
+            "totalGames": 196894,
+            "whitePct": 44.1,
+            "drawPct": 3.6,
+            "blackPct": 52.3
+          },
+          "frequencyPct": 23.5,
+          "reachPct": 9.58
+        },
+        {
+          "san": "Nc3",
+          "uci": "b1c3",
+          "from": "b1",
+          "to": "c3",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR b KQkq - 3 5",
+          "bandStats": {
+            "white": 45315,
+            "draws": 3652,
+            "black": 55290,
+            "totalGames": 104257,
+            "whitePct": 43.5,
+            "drawPct": 3.5,
+            "blackPct": 53
+          },
+          "frequencyPct": 12.4,
+          "reachPct": 5.07
+        },
+        {
+          "san": "d4",
+          "uci": "d2d4",
+          "from": "d2",
+          "to": "d4",
+          "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq -",
+          "nextFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq - 0 5",
+          "bandStats": {
+            "white": 40796,
+            "draws": 3368,
+            "black": 46697,
+            "totalGames": 90861,
+            "whitePct": 44.9,
+            "drawPct": 3.7,
+            "blackPct": 51.4
+          },
+          "frequencyPct": 10.8,
+          "reachPct": 4.42
+        }
+      ],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Qf3",
+          "opponentMoveUci": "d1f3",
+          "from": "d1",
+          "to": "f3",
+          "afterMistakeNormalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5Q2/PPPP1PPP/RNB1K1NR b KQkq - 3 5",
+          "frequencyPct": 8.4,
+          "totalBandGames": 70431,
+          "evalLoss": 0.46,
+          "impactScore": 3.86,
+          "severity": "inaccuracy",
+          "punishMoveSan": "e5",
+          "punishMoveUci": "e7e5",
+          "punishFrom": "e7",
+          "punishTo": "e5",
+          "pvSan": [
+            "e5",
+            "Qg3",
+            "e4",
+            "d3",
+            "Nf6",
+            "Nc3"
+          ],
+          "finalEvalPawns": -0.68,
+          "finalEvalForPlayer": 0.68,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/8/3B4/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/3B4/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/3B4/PPPP1PPP/RNBQK1NR w KQkq - 2 5",
+      "moveNumber": 5,
+      "ply": 8,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bd3 Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bd3",
+        "Nc6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 3.5,
+      "positionBandStats": {
+        "white": 14196,
+        "draws": 1365,
+        "black": 21464,
+        "totalGames": 37025,
+        "whitePct": 38.3,
+        "drawPct": 3.7,
+        "blackPct": 58
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Qf3",
+          "opponentMoveUci": "d1f3",
+          "from": "d1",
+          "to": "f3",
+          "afterMistakeNormalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/3B1Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/3B1Q2/PPPP1PPP/RNB1K1NR b KQkq - 3 5",
+          "frequencyPct": 8.4,
+          "totalBandGames": 3095,
+          "evalLoss": 0.86,
+          "impactScore": 7.22,
+          "severity": "inaccuracy",
+          "punishMoveSan": "e5",
+          "punishMoveUci": "e7e5",
+          "punishFrom": "e7",
+          "punishTo": "e5",
+          "pvSan": [
+            "e5",
+            "Bb5",
+            "Nf6",
+            "Bxc6+",
+            "bxc6",
+            "Ne2"
+          ],
+          "finalEvalPawns": -1.22,
+          "finalEvalForPlayer": 1.22,
+          "depth": 20
+        }
+      ]
     },
     "rn1qkbnr/pp3ppp/2p1p3/3pPb2/3P4/3B1N2/PPP2PPP/RNBQK2R b KQkq -": {
       "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/3pPb2/3P4/3B1N2/PPP2PPP/RNBQK2R b KQkq -",
@@ -7068,6 +9381,582 @@
         }
       }
     },
+    "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -": {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -",
+      "fullFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6 5. Nf3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6",
+        "Nf3"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 20.21,
+      "positionGmStats": {
+        "white": 3,
+        "draws": 5,
+        "black": 10,
+        "totalGames": 18,
+        "whitePct": 16.7,
+        "drawPct": 27.8,
+        "blackPct": 55.6,
+        "topGames": [
+          {
+            "id": "PopnABGt",
+            "white": {
+              "name": "Saglione, Eduardo",
+              "rating": 2511
+            },
+            "black": {
+              "name": "Rüfenacht, Matthias",
+              "rating": 2441
+            },
+            "winner": null,
+            "year": 2011,
+            "month": "2011-10"
+          },
+          {
+            "id": "9DX0HzvC",
+            "white": {
+              "name": "Asgarizadeh, A.",
+              "rating": 2335
+            },
+            "black": {
+              "name": "Lalith, B.",
+              "rating": 2565
+            },
+            "winner": "black",
+            "year": 2014,
+            "month": "2014-08"
+          },
+          {
+            "id": "MXzHNPzy",
+            "white": {
+              "name": "Rydstrom, Tom",
+              "rating": 2266
+            },
+            "black": {
+              "name": "Tari, A.",
+              "rating": 2556
+            },
+            "winner": null,
+            "year": 2015,
+            "month": "2015-12"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 3,
+          "black": 7,
+          "totalGames": 10,
+          "whitePct": 0,
+          "drawPct": 30,
+          "blackPct": 70
+        },
+        "bandStats": {
+          "white": 163010,
+          "draws": 14841,
+          "black": 158477,
+          "totalGames": 336328,
+          "whitePct": 48.5,
+          "drawPct": 4.4,
+          "blackPct": 47.1
+        },
+        "engine": {
+          "evalPawns": 0,
+          "evalFromPlayerPerspective": 0,
+          "bestMoveSan": "Bg4",
+          "bestMoveUci": "c8g4",
+          "bestEvalPawns": -0.04,
+          "evalLossVsBest": 0.04,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "h3",
+            "e6",
+            "Bf4",
+            "Bd6",
+            "Bxd6",
+            "Qxd6",
+            "Bd3"
+          ]
+        }
+      }
+    },
+    "rnbqkb1r/pp2pppp/5n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq -": {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq -",
+      "fullFen": "rnbqkb1r/pp2pppp/5n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6 5. Bg5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6",
+        "Bg5"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 6.27,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 6,
+        "black": 4,
+        "totalGames": 10,
+        "whitePct": 0,
+        "drawPct": 60,
+        "blackPct": 40,
+        "topGames": [
+          {
+            "id": "49OksVYR",
+            "white": {
+              "name": "Rapport, R.",
+              "rating": 2707
+            },
+            "black": {
+              "name": "Vachier Lagrave, M.",
+              "rating": 2789
+            },
+            "winner": null,
+            "year": 2017,
+            "month": "2017-12"
+          },
+          {
+            "id": "jPF1xysG",
+            "white": {
+              "name": "Arkhipov, Sergey",
+              "rating": 2545
+            },
+            "black": {
+              "name": "Cserna, Laszlo",
+              "rating": 2400
+            },
+            "winner": null,
+            "year": 1985,
+            "month": null
+          },
+          {
+            "id": "tVizSlF9",
+            "white": {
+              "name": "Lenic, Luka",
+              "rating": 2500
+            },
+            "black": {
+              "name": "Basagic, Zlatko",
+              "rating": 2372
+            },
+            "winner": null,
+            "year": 2006,
+            "month": "2006-07"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 5,
+          "black": 3,
+          "totalGames": 8,
+          "whitePct": 0,
+          "drawPct": 62.5,
+          "blackPct": 37.5
+        },
+        "bandStats": {
+          "white": 12155,
+          "draws": 1162,
+          "black": 12342,
+          "totalGames": 25659,
+          "whitePct": 47.4,
+          "drawPct": 4.5,
+          "blackPct": 48.1
+        },
+        "engine": {
+          "evalPawns": -0.13,
+          "evalFromPlayerPerspective": 0.13,
+          "bestMoveSan": "Nc6",
+          "bestMoveUci": "b8c6",
+          "bestEvalPawns": -0.13,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "Nf3",
+            "a6",
+            "Bd3",
+            "Bg4",
+            "Bxf6",
+            "gxf6",
+            "h3"
+          ]
+        }
+      }
+    },
+    "rnbqkb1r/pp2pppp/5n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR b KQkq -": {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR b KQkq -",
+      "fullFen": "rnbqkb1r/pp2pppp/5n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6 5. Bb5+",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6",
+        "Bb5+"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 5.72,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nc6",
+        "uci": "b8c6",
+        "from": "b8",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 26996,
+          "draws": 2676,
+          "black": 31461,
+          "totalGames": 61133,
+          "whitePct": 44.2,
+          "drawPct": 4.4,
+          "blackPct": 51.5
+        },
+        "engine": {
+          "evalPawns": 0,
+          "evalFromPlayerPerspective": 0,
+          "bestMoveSan": "Bd7",
+          "bestMoveUci": "c8d7",
+          "bestEvalPawns": -0.11,
+          "evalLossVsBest": 0.11,
+          "depth": 18,
+          "pvSan": [
+            "Nc6",
+            "Bf4",
+            "e6",
+            "Nf3",
+            "Be7",
+            "O-O",
+            "O-O",
+            "a3"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nf3 Nc6 5. Nc3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nf3",
+        "Nc6",
+        "Nc3"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 10.27,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 2,
+        "black": 3,
+        "totalGames": 5,
+        "whitePct": 0,
+        "drawPct": 40,
+        "blackPct": 60,
+        "topGames": [
+          {
+            "id": "sW41qPHv",
+            "white": {
+              "name": "Plotkin, V.",
+              "rating": 2306
+            },
+            "black": {
+              "name": "Lalith, B.",
+              "rating": 2537
+            },
+            "winner": "black",
+            "year": 2015,
+            "month": "2015-02"
+          },
+          {
+            "id": "cRDlvbwr",
+            "white": {
+              "name": "Husari, Sate",
+              "rating": 2290
+            },
+            "black": {
+              "name": "Karolyi, Tibor Jr",
+              "rating": 2425
+            },
+            "winner": "black",
+            "year": 1998,
+            "month": null
+          },
+          {
+            "id": "UW7VbA0O",
+            "white": {
+              "name": "Popchev, M.",
+              "rating": 2271
+            },
+            "black": {
+              "name": "Lundin, J.",
+              "rating": 2335
+            },
+            "winner": null,
+            "year": 2019,
+            "month": "2019-07"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "Bg4",
+        "uci": "c8g4",
+        "from": "c8",
+        "to": "g4",
+        "nextNormalizedFen": "r2qkbnr/pp2pppp/2n5/3p4/3P2b1/2N2N2/PPP2PPP/R1BQKB1R w KQkq -",
+        "nextFullFen": "r2qkbnr/pp2pppp/2n5/3p4/3P2b1/2N2N2/PPP2PPP/R1BQKB1R w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 2,
+          "black": 3,
+          "totalGames": 5,
+          "whitePct": 0,
+          "drawPct": 40,
+          "blackPct": 60
+        },
+        "bandStats": {
+          "white": 188956,
+          "draws": 16787,
+          "black": 214373,
+          "totalGames": 420116,
+          "whitePct": 45,
+          "drawPct": 4,
+          "blackPct": 51
+        },
+        "engine": {
+          "evalPawns": -0.13,
+          "evalFromPlayerPerspective": 0.13,
+          "bestMoveSan": "Bg4",
+          "bestMoveUci": "c8g4",
+          "bestEvalPawns": -0.13,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Bg4",
+            "Be3",
+            "e6",
+            "h3",
+            "Bh5",
+            "Bb5",
+            "Bd6",
+            "g4"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nf3 Nc6 5. Bb5",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nf3",
+        "Nc6",
+        "Bb5"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 9.03,
+      "positionGmStats": {
+        "white": 31,
+        "draws": 44,
+        "black": 28,
+        "totalGames": 103,
+        "whitePct": 30.1,
+        "drawPct": 42.7,
+        "blackPct": 27.2,
+        "topGames": [
+          {
+            "id": "s85liygn",
+            "white": {
+              "name": "Karjakin, Sergey",
+              "rating": 2753
+            },
+            "black": {
+              "name": "Mamedyarov, S.",
+              "rating": 2817
+            },
+            "winner": null,
+            "year": 2018,
+            "month": "2018-12"
+          },
+          {
+            "id": "unPszQ8j",
+            "white": {
+              "name": "Carlsen, Magnus",
+              "rating": 2733
+            },
+            "black": {
+              "name": "Topalov, Veselin",
+              "rating": 2780
+            },
+            "winner": null,
+            "year": 2008,
+            "month": "2008-03"
+          },
+          {
+            "id": "PgyVKaK8",
+            "white": {
+              "name": "So, W.",
+              "rating": 2780
+            },
+            "black": {
+              "name": "Vidit, S.",
+              "rating": 2718
+            },
+            "winner": null,
+            "year": 2018,
+            "month": "2018-10"
+          }
+        ]
+      },
+      "playerMove": {
+        "san": "e6",
+        "uci": "e7e6",
+        "from": "e7",
+        "to": "e6",
+        "nextNormalizedFen": "r1bqkbnr/pp3ppp/2n1p3/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp3ppp/2n1p3/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R w KQkq - 0 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "masters_freq",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 11,
+          "draws": 9,
+          "black": 10,
+          "totalGames": 30,
+          "whitePct": 36.7,
+          "drawPct": 30,
+          "blackPct": 33.3
+        },
+        "bandStats": {
+          "white": 8090,
+          "draws": 633,
+          "black": 8008,
+          "totalGames": 16731,
+          "whitePct": 48.4,
+          "drawPct": 3.8,
+          "blackPct": 47.9
+        },
+        "engine": {
+          "evalPawns": 0,
+          "evalFromPlayerPerspective": 0,
+          "bestMoveSan": "g6",
+          "bestMoveUci": "g7g6",
+          "bestEvalPawns": 0,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "e6",
+            "c4",
+            "Bd6",
+            "cxd5",
+            "exd5",
+            "O-O",
+            "Nf6",
+            "Re1+"
+          ]
+        }
+      }
+    },
     "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR b KQkq -": {
       "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR b KQkq -",
       "fullFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR b KQkq - 2 5",
@@ -8172,6 +11061,806 @@
             "Nge2",
             "Nxe3",
             "Qxe3"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3N2/PPPP1PPP/RNBQK2R b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3N2/PPPP1PPP/RNBQK2R b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3N2/PPPP1PPP/RNBQK2R b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. Nf3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "Nf3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 13.42,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3N2/PPPP1PPP/RNBQK2R w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3N2/PPPP1PPP/RNBQK2R w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 14708,
+          "draws": 1157,
+          "black": 17114,
+          "totalGames": 32979,
+          "whitePct": 44.6,
+          "drawPct": 3.5,
+          "blackPct": 51.9
+        },
+        "engine": {
+          "evalPawns": -0.13,
+          "evalFromPlayerPerspective": 0.13,
+          "bestMoveSan": "Bg4",
+          "bestMoveUci": "c8g4",
+          "bestEvalPawns": -0.22,
+          "evalLossVsBest": 0.09,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "d4",
+            "Bf5",
+            "O-O",
+            "e6",
+            "Bf4",
+            "Nh5",
+            "Be3"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. Qf3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "Qf3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 8.89,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 28262,
+          "draws": 2136,
+          "black": 36739,
+          "totalGames": 67137,
+          "whitePct": 42.1,
+          "drawPct": 3.2,
+          "blackPct": 54.7
+        },
+        "engine": {
+          "evalPawns": -0.77,
+          "evalFromPlayerPerspective": 0.77,
+          "bestMoveSan": "Nf6",
+          "bestMoveUci": "g8f6",
+          "bestEvalPawns": -0.77,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "c3",
+            "e5",
+            "d3",
+            "Bg4",
+            "Qe3",
+            "Bd6",
+            "Nf3"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/3P4/1B6/PPP2PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/1B6/PPP2PPP/RNBQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P4/1B6/PPP2PPP/RNBQK1NR b KQkq - 0 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. d4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "d4"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 7.15,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/1B6/PPP2PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/1B6/PPP2PPP/RNBQK1NR w KQkq - 1 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 15346,
+          "draws": 1067,
+          "black": 16912,
+          "totalGames": 33325,
+          "whitePct": 46,
+          "drawPct": 3.2,
+          "blackPct": 50.7
+        },
+        "engine": {
+          "evalPawns": -0.08,
+          "evalFromPlayerPerspective": 0.08,
+          "bestMoveSan": "Bf5",
+          "bestMoveUci": "c8f5",
+          "bestEvalPawns": -0.17,
+          "evalLossVsBest": 0.09,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "Nf3",
+            "Bf5",
+            "O-O",
+            "e6",
+            "Bf4",
+            "Ne4",
+            "Nbd2"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/8/1BN5/PPPP1PPP/R1BQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1BN5/PPPP1PPP/R1BQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1BN5/PPPP1PPP/R1BQK1NR b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. Nc3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "Nc3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 5.8,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN5/PPPP1PPP/R1BQK1NR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN5/PPPP1PPP/R1BQK1NR w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 15118,
+          "draws": 1202,
+          "black": 18655,
+          "totalGames": 34975,
+          "whitePct": 43.2,
+          "drawPct": 3.4,
+          "blackPct": 53.3
+        },
+        "engine": {
+          "evalPawns": -0.22,
+          "evalFromPlayerPerspective": 0.22,
+          "bestMoveSan": "Nf6",
+          "bestMoveUci": "g8f6",
+          "bestEvalPawns": -0.22,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "Nf3",
+            "Bf5",
+            "Ba4",
+            "Rc8",
+            "O-O",
+            "e6",
+            "Nb5"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/8/1B1P4/PPP2PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B1P4/PPP2PPP/RNBQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/8/1B1P4/PPP2PPP/RNBQK1NR b KQkq - 0 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. d3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "d3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 3.81,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B1P4/PPP2PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B1P4/PPP2PPP/RNBQK1NR w KQkq - 1 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 7627,
+          "draws": 557,
+          "black": 8800,
+          "totalGames": 16984,
+          "whitePct": 44.9,
+          "drawPct": 3.3,
+          "blackPct": 51.8
+        },
+        "engine": {
+          "evalPawns": -0.17,
+          "evalFromPlayerPerspective": 0.17,
+          "bestMoveSan": "Bf5",
+          "bestMoveUci": "c8f5",
+          "bestEvalPawns": -0.31,
+          "evalLossVsBest": 0.14,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "Nf3",
+            "g6",
+            "O-O",
+            "Bg7",
+            "c4",
+            "O-O",
+            "Nc3"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/3p4/2P5/1B6/PP1P1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/2P5/1B6/PP1P1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/3p4/2P5/1B6/PP1P1PPP/RNBQK1NR b KQkq - 0 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. c4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "c4"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 3.62,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "dxc4",
+        "uci": "d5c4",
+        "from": "d5",
+        "to": "c4",
+        "nextNormalizedFen": "r1bqkbnr/pp2pppp/2n5/8/2p5/1B6/PP1P1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/pp2pppp/2n5/8/2p5/1B6/PP1P1PPP/RNBQK1NR w KQkq - 0 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "band_0_1400",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 4015,
+          "draws": 379,
+          "black": 5710,
+          "totalGames": 10104,
+          "whitePct": 39.7,
+          "drawPct": 3.8,
+          "blackPct": 56.5
+        },
+        "engine": {
+          "evalPawns": -0.27,
+          "evalFromPlayerPerspective": 0.27,
+          "bestMoveSan": "d4",
+          "bestMoveUci": "d5d4",
+          "bestEvalPawns": -0.27,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "dxc4",
+            "Bxc4",
+            "Nf6",
+            "Nf3",
+            "Bg4",
+            "Nc3",
+            "e6",
+            "d4"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2B5/3p4/8/8/PPPP1PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2B5/3p4/8/8/PPPP1PPP/RNBQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2B5/3p4/8/8/PPPP1PPP/RNBQK1NR b KQkq - 0 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. Bxc6+",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "Bxc6+"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 11.72,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "bxc6",
+        "uci": "b7c6",
+        "from": "b7",
+        "to": "c6",
+        "nextNormalizedFen": "r1bqkbnr/p3pppp/2p5/3p4/8/8/PPPP1PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/p3pppp/2p5/3p4/8/8/PPPP1PPP/RNBQK1NR w KQkq - 0 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 98107,
+          "draws": 10678,
+          "black": 131311,
+          "totalGames": 240096,
+          "whitePct": 40.9,
+          "drawPct": 4.4,
+          "blackPct": 54.7
+        },
+        "engine": {
+          "evalPawns": -0.35,
+          "evalFromPlayerPerspective": 0.35,
+          "bestMoveSan": "bxc6",
+          "bestMoveUci": "b7c6",
+          "bestEvalPawns": -0.35,
+          "evalLossVsBest": 0,
+          "depth": 18,
+          "pvSan": [
+            "bxc6",
+            "Nf3",
+            "e6",
+            "O-O",
+            "Bd6",
+            "d4",
+            "Nf6",
+            "Nbd2"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5N2/PPPP1PPP/RNBQK2R b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. Nf3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "Nf3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 9.58,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/8/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/8/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 14952,
+          "draws": 1258,
+          "black": 18822,
+          "totalGames": 35032,
+          "whitePct": 42.7,
+          "drawPct": 3.6,
+          "blackPct": 53.7
+        },
+        "engine": {
+          "evalPawns": -0.13,
+          "evalFromPlayerPerspective": 0.13,
+          "bestMoveSan": "Bf5",
+          "bestMoveUci": "c8f5",
+          "bestEvalPawns": -0.17,
+          "evalLossVsBest": 0.04,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "O-O",
+            "Bg4",
+            "h3",
+            "Bxf3",
+            "Qxf3",
+            "e6",
+            "d4"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR b KQkq - 3 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. Nc3",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "Nc3"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 5.07,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "a6",
+        "uci": "a7a6",
+        "from": "a7",
+        "to": "a6",
+        "nextNormalizedFen": "r1bqkbnr/1p2pppp/p1n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR w KQkq -",
+        "nextFullFen": "r1bqkbnr/1p2pppp/p1n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR w KQkq - 0 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 14719,
+          "draws": 1164,
+          "black": 16992,
+          "totalGames": 32875,
+          "whitePct": 44.8,
+          "drawPct": 3.5,
+          "blackPct": 51.7
+        },
+        "engine": {
+          "evalPawns": -0.22,
+          "evalFromPlayerPerspective": 0.22,
+          "bestMoveSan": "Bf5",
+          "bestMoveUci": "c8f5",
+          "bestEvalPawns": -0.36,
+          "evalLossVsBest": 0.14,
+          "depth": 18,
+          "pvSan": [
+            "a6",
+            "Bxc6+",
+            "bxc6",
+            "d4",
+            "Bf5",
+            "Bf4",
+            "e6",
+            "Nf3"
+          ]
+        }
+      }
+    },
+    "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/3P4/8/PPP2PPP/RNBQK1NR b KQkq - 0 5",
+      "moveNumber": 5,
+      "ply": 9,
+      "turn": "b",
+      "isPlayerTurn": true,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. d4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "d4"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 4.42,
+      "positionGmStats": {
+        "white": 0,
+        "draws": 0,
+        "black": 0,
+        "totalGames": 0,
+        "whitePct": 0,
+        "drawPct": 0,
+        "blackPct": 0
+      },
+      "playerMove": {
+        "san": "Nf6",
+        "uci": "g8f6",
+        "from": "g8",
+        "to": "f6",
+        "nextNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq -",
+        "nextFullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq - 1 6",
+        "selectionSource": "accepted_proposal",
+        "selectionRule": "lichess_2200_plus",
+        "acceptedVia": "accept-top",
+        "gmStats": {
+          "white": 0,
+          "draws": 0,
+          "black": 0,
+          "totalGames": 0,
+          "whitePct": 0,
+          "drawPct": 0,
+          "blackPct": 0
+        },
+        "bandStats": {
+          "white": 9878,
+          "draws": 808,
+          "black": 12310,
+          "totalGames": 22996,
+          "whitePct": 43,
+          "drawPct": 3.5,
+          "blackPct": 53.5
+        },
+        "engine": {
+          "evalPawns": -0.13,
+          "evalFromPlayerPerspective": 0.13,
+          "bestMoveSan": "Bf5",
+          "bestMoveUci": "c8f5",
+          "bestEvalPawns": -0.17,
+          "evalLossVsBest": 0.04,
+          "depth": 18,
+          "pvSan": [
+            "Nf6",
+            "Nf3",
+            "Bg4",
+            "O-O",
+            "e6",
+            "h3",
+            "Bxf3",
+            "Qxf3"
           ]
         }
       }
@@ -10468,6 +14157,181 @@
       "opponentMoves": [],
       "commonMistakes": []
     },
+    "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/2N2N2/PPP2PPP/R1BQKB1R w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6 5. Nf3 Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6",
+        "Nf3",
+        "Nc6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 20.21,
+      "positionBandStats": {
+        "white": 307226,
+        "draws": 27964,
+        "black": 301762,
+        "totalGames": 636952,
+        "whitePct": 48.2,
+        "drawPct": 4.4,
+        "blackPct": 47.4
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p2B1/3P4/2N5/PPP2PPP/R2QKBNR w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6 5. Bg5 Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6",
+        "Bg5",
+        "Nc6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 6.27,
+      "positionBandStats": {
+        "white": 12356,
+        "draws": 1176,
+        "black": 12587,
+        "totalGames": 26119,
+        "whitePct": 47.3,
+        "drawPct": 4.5,
+        "blackPct": 48.2
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/2N5/PPP2PPP/R1BQK1NR w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nf6 5. Bb5+ Nc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nc3",
+        "Nf6",
+        "Bb5+",
+        "Nc6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 5.72,
+      "positionBandStats": {
+        "white": 49904,
+        "draws": 4764,
+        "black": 58666,
+        "totalGames": 113334,
+        "whitePct": 44,
+        "drawPct": 4.2,
+        "blackPct": 51.8
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r2qkbnr/pp2pppp/2n5/3p4/3P2b1/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": {
+      "normalizedFen": "r2qkbnr/pp2pppp/2n5/3p4/3P2b1/2N2N2/PPP2PPP/R1BQKB1R w KQkq -",
+      "fullFen": "r2qkbnr/pp2pppp/2n5/3p4/3P2b1/2N2N2/PPP2PPP/R1BQKB1R w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nf3 Nc6 5. Nc3 Bg4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nf3",
+        "Nc6",
+        "Nc3",
+        "Bg4"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 10.27,
+      "positionBandStats": {
+        "white": 218931,
+        "draws": 19271,
+        "black": 247724,
+        "totalGames": 485926,
+        "whitePct": 45.1,
+        "drawPct": 4,
+        "blackPct": 51
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkbnr/pp3ppp/2n1p3/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp3ppp/2n1p3/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R w KQkq -",
+      "fullFen": "r1bqkbnr/pp3ppp/2n1p3/1B1p4/3P4/5N2/PPP2PPP/RNBQK2R w KQkq - 0 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nf3 Nc6 5. Bb5 e6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "d4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Nf3",
+        "Nc6",
+        "Bb5",
+        "e6"
+      ],
+      "variationId": "exchange-cxd5",
+      "variationName": "Variante di Cambio & Panov (3.exd5 cxd5)",
+      "reachPct": 9.03,
+      "positionBandStats": {
+        "white": 18029,
+        "draws": 1373,
+        "black": 17417,
+        "totalGames": 36819,
+        "whitePct": 49,
+        "drawPct": 3.7,
+        "blackPct": 47.3
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
     "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR w KQkq -": {
       "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR w KQkq -",
       "fullFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR w KQkq - 0 6",
@@ -11979,6 +15843,558 @@
       },
       "opponentMoves": [],
       "commonMistakes": []
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3N2/PPPP1PPP/RNBQK2R w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3N2/PPPP1PPP/RNBQK2R w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3N2/PPPP1PPP/RNBQK2R w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. Nf3 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "Nf3",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 13.42,
+      "positionBandStats": {
+        "white": 38165,
+        "draws": 2955,
+        "black": 43782,
+        "totalGames": 84902,
+        "whitePct": 45,
+        "drawPct": 3.5,
+        "blackPct": 51.6
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q2/PPPP1PPP/RNB1K1NR w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. Qf3 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "Qf3",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 8.89,
+      "positionBandStats": {
+        "white": 35439,
+        "draws": 2728,
+        "black": 46255,
+        "totalGames": 84422,
+        "whitePct": 42,
+        "drawPct": 3.2,
+        "blackPct": 54.8
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "c4",
+          "opponentMoveUci": "c2c4",
+          "from": "c2",
+          "to": "c4",
+          "afterMistakeNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/2P5/1B3Q2/PP1P1PPP/RNB1K1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/2P5/1B3Q2/PP1P1PPP/RNB1K1NR b KQkq - 0 6",
+          "frequencyPct": 8.3,
+          "totalBandGames": 6966,
+          "evalLoss": 0.96,
+          "impactScore": 7.97,
+          "severity": "inaccuracy",
+          "punishMoveSan": "dxc4",
+          "punishMoveUci": "d5c4",
+          "punishFrom": "d5",
+          "punishTo": "c4",
+          "pvSan": [
+            "dxc4",
+            "Bxc4",
+            "Nd4",
+            "Qd1",
+            "b5",
+            "Bd3"
+          ],
+          "finalEvalPawns": -1.64,
+          "finalEvalForPlayer": 1.64,
+          "depth": 20
+        },
+        {
+          "opponentMoveSan": "Nh3",
+          "opponentMoveUci": "g1h3",
+          "from": "g1",
+          "to": "h3",
+          "afterMistakeNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q1N/PPPP1PPP/RNB1K2R b KQkq -",
+          "afterMistakeFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B3Q1N/PPPP1PPP/RNB1K2R b KQkq - 5 6",
+          "frequencyPct": 7,
+          "totalBandGames": 5874,
+          "evalLoss": 0.59,
+          "impactScore": 4.13,
+          "severity": "inaccuracy",
+          "punishMoveSan": "e5",
+          "punishMoveUci": "e7e5",
+          "punishFrom": "e7",
+          "punishTo": "e5",
+          "pvSan": [
+            "e5",
+            "c3",
+            "e4",
+            "Qe2",
+            "Qc7",
+            "Bc2"
+          ],
+          "finalEvalPawns": -1.27,
+          "finalEvalForPlayer": 1.27,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/1B6/PPP2PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/1B6/PPP2PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/3P4/1B6/PPP2PPP/RNBQK1NR w KQkq - 1 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. d4 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "d4",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 7.15,
+      "positionBandStats": {
+        "white": 40839,
+        "draws": 3049,
+        "black": 44719,
+        "totalGames": 88607,
+        "whitePct": 46.1,
+        "drawPct": 3.4,
+        "blackPct": 50.5
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN5/PPPP1PPP/R1BQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN5/PPPP1PPP/R1BQK1NR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN5/PPPP1PPP/R1BQK1NR w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. Nc3 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "Nc3",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 5.8,
+      "positionBandStats": {
+        "white": 21403,
+        "draws": 1684,
+        "black": 26192,
+        "totalGames": 49279,
+        "whitePct": 43.4,
+        "drawPct": 3.4,
+        "blackPct": 53.2
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Qf3",
+          "opponentMoveUci": "d1f3",
+          "from": "d1",
+          "to": "f3",
+          "afterMistakeNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN2Q2/PPPP1PPP/R1B1K1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1BN2Q2/PPPP1PPP/R1B1K1NR b KQkq - 5 6",
+          "frequencyPct": 18.8,
+          "totalBandGames": 9262,
+          "evalLoss": 0.51,
+          "impactScore": 9.59,
+          "severity": "inaccuracy",
+          "punishMoveSan": "Bg4",
+          "punishMoveUci": "c8g4",
+          "punishFrom": "c8",
+          "punishTo": "g4",
+          "pvSan": [
+            "Bg4",
+            "Qg3",
+            "e6",
+            "Nge2",
+            "d4",
+            "Ne4"
+          ],
+          "finalEvalPawns": -0.68,
+          "finalEvalForPlayer": 0.68,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B1P4/PPP2PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B1P4/PPP2PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/3p4/8/1B1P4/PPP2PPP/RNBQK1NR w KQkq - 1 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. d3 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "d3",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 3.81,
+      "positionBandStats": {
+        "white": 16503,
+        "draws": 1218,
+        "black": 18950,
+        "totalGames": 36671,
+        "whitePct": 45,
+        "drawPct": 3.3,
+        "blackPct": 51.7
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkbnr/pp2pppp/2n5/8/2p5/1B6/PP1P1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/8/2p5/1B6/PP1P1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/pp2pppp/2n5/8/2p5/1B6/PP1P1PPP/RNBQK1NR w KQkq - 0 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb3 Nc6 5. c4 dxc4",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb3",
+        "Nc6",
+        "c4",
+        "dxc4"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 3.62,
+      "positionBandStats": {
+        "white": 4015,
+        "draws": 379,
+        "black": 5707,
+        "totalGames": 10101,
+        "whitePct": 39.7,
+        "drawPct": 3.8,
+        "blackPct": 56.5
+      },
+      "opponentMoves": [],
+      "commonMistakes": []
+    },
+    "r1bqkbnr/p3pppp/2p5/3p4/8/8/PPPP1PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/p3pppp/2p5/3p4/8/8/PPPP1PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/p3pppp/2p5/3p4/8/8/PPPP1PPP/RNBQK1NR w KQkq - 0 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. Bxc6+ bxc6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "Bxc6+",
+        "bxc6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 11.72,
+      "positionBandStats": {
+        "white": 98091,
+        "draws": 10668,
+        "black": 131043,
+        "totalGames": 239802,
+        "whitePct": 40.9,
+        "drawPct": 4.4,
+        "blackPct": 54.6
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Qf3",
+          "opponentMoveUci": "d1f3",
+          "from": "d1",
+          "to": "f3",
+          "afterMistakeNormalizedFen": "r1bqkbnr/p3pppp/2p5/3p4/8/5Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkbnr/p3pppp/2p5/3p4/8/5Q2/PPPP1PPP/RNB1K1NR b KQkq - 1 6",
+          "frequencyPct": 7.4,
+          "totalBandGames": 17786,
+          "evalLoss": 0.55,
+          "impactScore": 4.07,
+          "severity": "inaccuracy",
+          "punishMoveSan": "e5",
+          "punishMoveUci": "e7e5",
+          "punishFrom": "e7",
+          "punishTo": "e5",
+          "pvSan": [
+            "e5",
+            "d4",
+            "e4",
+            "Qc3",
+            "Qb6",
+            "Qd2"
+          ],
+          "finalEvalPawns": -0.82,
+          "finalEvalForPlayer": 0.82,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/1B1p4/8/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/8/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/8/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. Nf3 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "Nf3",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 9.58,
+      "positionBandStats": {
+        "white": 17240,
+        "draws": 1470,
+        "black": 21468,
+        "totalGames": 40178,
+        "whitePct": 42.9,
+        "drawPct": 3.7,
+        "blackPct": 53.4
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Nd4",
+          "opponentMoveUci": "f3d4",
+          "from": "f3",
+          "to": "d4",
+          "afterMistakeNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3N4/8/PPPP1PPP/RNBQK2R b KQkq -",
+          "afterMistakeFullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3N4/8/PPPP1PPP/RNBQK2R b KQkq - 5 6",
+          "frequencyPct": 5.9,
+          "totalBandGames": 2367,
+          "evalLoss": 0.46,
+          "impactScore": 2.71,
+          "severity": "inaccuracy",
+          "punishMoveSan": "Qc7",
+          "punishMoveUci": "d8c7",
+          "punishFrom": "d8",
+          "punishTo": "c7",
+          "pvSan": [
+            "Qc7",
+            "Nxc6",
+            "bxc6",
+            "Be2",
+            "e5",
+            "d3"
+          ],
+          "finalEvalPawns": -0.59,
+          "finalEvalForPlayer": 0.59,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkbnr/1p2pppp/p1n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkbnr/1p2pppp/p1n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR w KQkq -",
+      "fullFen": "r1bqkbnr/1p2pppp/p1n5/1B1p4/8/2N5/PPPP1PPP/R1BQK1NR w KQkq - 0 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. Nc3 a6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "Nc3",
+        "a6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 5.07,
+      "positionBandStats": {
+        "white": 14716,
+        "draws": 1164,
+        "black": 16976,
+        "totalGames": 32856,
+        "whitePct": 44.8,
+        "drawPct": 3.5,
+        "blackPct": 51.7
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Bd3",
+          "opponentMoveUci": "b5d3",
+          "from": "b5",
+          "to": "d3",
+          "afterMistakeNormalizedFen": "r1bqkbnr/1p2pppp/p1n5/3p4/8/2NB4/PPPP1PPP/R1BQK1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkbnr/1p2pppp/p1n5/3p4/8/2NB4/PPPP1PPP/R1BQK1NR b KQkq - 1 6",
+          "frequencyPct": 9.3,
+          "totalBandGames": 3044,
+          "evalLoss": 0.85,
+          "impactScore": 7.91,
+          "severity": "inaccuracy",
+          "punishMoveSan": "e5",
+          "punishMoveUci": "e7e5",
+          "punishFrom": "e7",
+          "punishTo": "e5",
+          "pvSan": [
+            "e5",
+            "Be2",
+            "Nf6",
+            "d3",
+            "h6",
+            "Nf3"
+          ],
+          "finalEvalPawns": -1.02,
+          "finalEvalForPlayer": 1.02,
+          "depth": 20
+        }
+      ]
+    },
+    "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq -": {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq -",
+      "fullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p4/3P4/8/PPP2PPP/RNBQK1NR w KQkq - 1 6",
+      "moveNumber": 6,
+      "ply": 10,
+      "turn": "w",
+      "isPlayerTurn": false,
+      "pgnPath": "1. e4 c6 2. Bc4 d5 3. exd5 cxd5 4. Bb5+ Nc6 5. d4 Nf6",
+      "moveSequenceSan": [
+        "e4",
+        "c6",
+        "Bc4",
+        "d5",
+        "exd5",
+        "cxd5",
+        "Bb5+",
+        "Nc6",
+        "d4",
+        "Nf6"
+      ],
+      "variationId": "hillbilly-bc4",
+      "variationName": "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
+      "reachPct": 4.42,
+      "positionBandStats": {
+        "white": 10408,
+        "draws": 858,
+        "black": 13139,
+        "totalGames": 24405,
+        "whitePct": 42.6,
+        "drawPct": 3.5,
+        "blackPct": 53.8
+      },
+      "opponentMoves": [],
+      "commonMistakes": [
+        {
+          "opponentMoveSan": "Bg5",
+          "opponentMoveUci": "c1g5",
+          "from": "c1",
+          "to": "g5",
+          "afterMistakeNormalizedFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p2B1/3P4/8/PPP2PPP/RN1QK1NR b KQkq -",
+          "afterMistakeFullFen": "r1bqkb1r/pp2pppp/2n2n2/1B1p2B1/3P4/8/PPP2PPP/RN1QK1NR b KQkq - 2 6",
+          "frequencyPct": 11.2,
+          "totalBandGames": 2722,
+          "evalLoss": 0.41,
+          "impactScore": 4.59,
+          "severity": "inaccuracy",
+          "punishMoveSan": "Ne4",
+          "punishMoveUci": "f6e4",
+          "punishFrom": "f6",
+          "punishTo": "e4",
+          "pvSan": [
+            "Ne4",
+            "Bd2",
+            "e5",
+            "Ne2",
+            "exd4",
+            "Nxd4"
+          ],
+          "finalEvalPawns": -0.54,
+          "finalEvalForPlayer": 0.54,
+          "depth": 20
+        }
+      ]
     },
     "rn1qkbnr/pp3ppp/2p1p3/3pP3/3P4/3Q1N2/PPP2PPP/RNB1K2R b KQkq -": {
       "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/3pP3/3P4/3Q1N2/PPP2PPP/RNB1K2R b KQkq -",

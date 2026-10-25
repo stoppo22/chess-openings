@@ -146,16 +146,29 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
   while (true) {
     await sleep(BUILD_DEFAULTS.API_DELAY_MS);
     statsCounter.apiLiveCalls += 1;
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-      },
-    });
+    let res;
+    try {
+      res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+        },
+      });
+    } catch (err) {
+      console.warn(`⚠️  [Network Retry] Errore connessione Lichess (${err.message}), riprovo tra 5s...`);
+      await sleep(5_000);
+      continue;
+    }
 
     if (res.status === 429) {
       console.warn('⚠️  [Rate Limit 429] Lichess Explorer: attendo 61 secondi prima di riprovare...');
       await sleep(61_000);
+      continue;
+    }
+
+    if (res.status >= 500) {
+      console.warn(`⚠️  [HTTP ${res.status}] Lichess Explorer temporaneamente non disponibile, riprovo tra 5s...`);
+      await sleep(5_000);
       continue;
     }
 
@@ -237,6 +250,18 @@ function detectVariation(moveSequenceSan) {
     return {
       variationId: 'classical-bf5',
       variationName: 'Variante Classica (4.Nxe4 Bf5)',
+    };
+  }
+  if (seq.startsWith('e4 c6 d4 d5 exd5')) {
+    return {
+      variationId: 'exchange-cxd5',
+      variationName: 'Variante di Cambio & Panov (3.exd5 cxd5)',
+    };
+  }
+  if (seq.startsWith('e4 c6 Bc4')) {
+    return {
+      variationId: 'hillbilly-bc4',
+      variationName: "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
     };
   }
   return {
@@ -359,9 +384,11 @@ async function main() {
     const turn = chess.turn();
     const isPlayerTurn = turn === 'b'; // Nero nella Caro-Kann
     const moveNumber = Math.floor(ply / 2) + 1;
-    const maxPly = BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2;
-
     const { variationId, variationName } = detectVariation(moveSequenceSan);
+    const isSecondaryVariation =
+      variationId === 'exchange-cxd5' || variationId === 'hillbilly-bc4';
+    const maxPly = isSecondaryVariation ? 10 : BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2;
+    const effectiveMinReach = isSecondaryVariation ? 0.035 : BUILD_DEFAULTS.MIN_REACH;
     const pgnChess = new Chess();
     for (const m of moveSequenceSan) pgnChess.move(m);
     const pgnPath = pgnChess
@@ -710,7 +737,9 @@ async function main() {
       // Il giocatore gioca la sua unica mossa con probabilità 1.0 nel repertorio:
       // se siamo sul tronco di ingresso (fino a 3...Bf5 o 4...Bf5), la radice della variante parte con reach = 1.0
       const isVariationRootAfterMove =
-        (ply === 5 && moveObj.san === 'Bf5') || (ply === 7 && moveObj.san === 'Bf5');
+        (ply === 3 && variationId === 'hillbilly-bc4' && moveObj.san === 'd5') ||
+        (ply === 5 && (moveObj.san === 'Bf5' || moveObj.san === 'cxd5')) ||
+        (ply === 7 && moveObj.san === 'Bf5');
       const nextReach = isVariationRootAfterMove ? 1.0 : nodeReach;
 
       reachByFen.set(
@@ -762,9 +791,9 @@ async function main() {
           let allowBranch = false;
 
           if (ply === 2) {
-            allowBranch = m.san === 'd4';
+            allowBranch = (CARO_KANN_CONFIG.allowedWhiteMove2San || ['d4']).includes(m.san);
             if (allowBranch) branchReach = 1.0;
-          } else if (ply === 4) {
+          } else if (ply === 4 && variationId !== 'hillbilly-bc4') {
             allowBranch =
               CARO_KANN_CONFIG.allowedWhiteMove3San.includes(m.san) &&
               mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&
@@ -774,7 +803,7 @@ async function main() {
             allowBranch =
               mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&
               freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ &&
-              branchReach >= BUILD_DEFAULTS.MIN_REACH;
+              branchReach >= effectiveMinReach;
           }
 
           if (!allowBranch) continue;

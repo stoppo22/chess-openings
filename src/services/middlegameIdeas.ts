@@ -147,6 +147,23 @@ export function buildMiddlegameGuide(
         'Con il pedone già in c5, aumenta la pressione sul punto d4 combinando Cavallo in c6, Donna in b6 e Cavallo in f5 per forzare il Bianco a cedere il centro.',
       arrows,
     });
+  } else if (hasPiece('d5', 'b', 'p')) {
+    const arrows: Array<[Square, Square, string]> = [];
+    if (hasPiece('b8', 'b', 'n')) arrows.push(['b8', 'c6', COLOR_BLUE]);
+    if (hasPiece('c8', 'b', 'b')) arrows.push(['c8', 'g4', COLOR_GREEN]);
+    if (hasPiece('e7', 'b', 'p')) arrows.push(['e7', 'e6', COLOR_AMBER]);
+    if (arrows.length === 0) {
+      arrows.push(['d5', 'e4', COLOR_GREEN]);
+    }
+    ideas.push({
+      id: 'carlsbad-development',
+      category: 'Manovra & Sviluppo',
+      title: 'Sviluppo attivo fuori dalla catena (...Nc6, ...Bg4, ...e6)',
+      movesLabel: '...Nc6 → ...Bg4 → ...e6 → ...Bd6',
+      description:
+        'Nella struttura di Cambio con la colonna c aperta, sviluppa prima l’Alfiere in g4 (o f5) fuori dalla catena di pedoni, poi chiudi con ...e6, ...Bd6 e ...Rc8.',
+      arrows,
+    });
   }
 
   // Idea 3: Attacco sul lato di Donna con ...Qb6 e colonna c

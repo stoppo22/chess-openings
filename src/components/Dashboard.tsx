@@ -8,6 +8,7 @@ interface DashboardProps {
   logs: ReviewLogEntry[];
   isPersisted: boolean;
   onStartLearn: (variationId?: string) => void;
+  onStartDrill: (variationId?: string) => void;
   onStartReview: (variationId?: string) => void;
   onExportBackup: () => Promise<void>;
   onImportBackup: (fileText: string) => Promise<void>;
@@ -19,6 +20,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   logs,
   isPersisted,
   onStartLearn,
+  onStartDrill,
   onStartReview,
   onExportBackup,
   onImportBackup,
@@ -87,13 +89,19 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
             <button
               onClick={() => onStartLearn()}
-              className="flex-1 sm:flex-initial px-6 py-3 rounded-md bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] font-semibold text-base border border-[#4a4742] transition"
+              className="flex-1 sm:flex-initial px-5 py-3 rounded-md bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] font-semibold text-base border border-[#4a4742] transition"
             >
               Impara linee
             </button>
             <button
+              onClick={() => onStartDrill()}
+              className="flex-1 sm:flex-initial px-5 py-3 rounded-md bg-[#3692e7] hover:bg-[#2b7bc6] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#1e5a94] transition"
+            >
+              Gioca da 1.e4 (Sparring)
+            </button>
+            <button
               onClick={() => onStartReview()}
-              className="flex-1 sm:flex-initial px-7 py-3 rounded-md bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
+              className="flex-1 sm:flex-initial px-6 py-3 rounded-md bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
             >
               Ripassa ({dailyQueue.length})
             </button>
@@ -210,18 +218,24 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 pt-1">
+                <div className="flex items-center gap-2.5 pt-1">
                   <button
                     onClick={() => onStartLearn(v.id)}
-                    className="flex-1 px-4 py-2.5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-sm font-semibold border border-[#4a4742] transition"
+                    className="flex-1 px-3.5 py-2.5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-sm font-semibold border border-[#4a4742] transition"
                   >
-                    Studia linea
+                    Studia
+                  </button>
+                  <button
+                    onClick={() => onStartDrill(v.id)}
+                    className="flex-1 px-3.5 py-2.5 rounded bg-[#3692e7] hover:bg-[#2b7bc6] text-[#ffffff] text-sm font-bold transition"
+                  >
+                    Gioca da 1.e4
                   </button>
                   <button
                     onClick={() => onStartReview(v.id)}
-                    className="flex-1 px-4 py-2.5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] text-sm font-bold transition"
+                    className="flex-1 px-3.5 py-2.5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] text-sm font-bold transition"
                   >
-                    Ripassa capitolo
+                    Ripassa
                   </button>
                 </div>
               </div>

@@ -12,12 +12,14 @@ import {
 import { syncOpeningCards } from './services/srs';
 import { applySwUpdateReload, isSwUpdateReady, subscribeSwUpdate } from './services/swUpdate';
 import { Dashboard } from './components/Dashboard';
+import { DrillMode } from './components/DrillMode';
 import { LearnMode } from './components/LearnMode';
 import { ReviewMode } from './components/ReviewMode';
 
 type ActiveView =
   | { mode: 'dashboard' }
   | { mode: 'learn'; variationId?: string }
+  | { mode: 'drill'; variationId?: string }
   | { mode: 'review'; variationId?: string };
 
 export const App: React.FC = () => {
@@ -31,7 +33,9 @@ export const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const isSessionActive =
-    activeView.mode === 'learn' || (activeView.mode === 'review' && !reviewFinished);
+    activeView.mode === 'learn' ||
+    activeView.mode === 'drill' ||
+    (activeView.mode === 'review' && !reviewFinished);
 
   useEffect(() => {
     return subscribeSwUpdate(() => {
@@ -148,6 +152,7 @@ export const App: React.FC = () => {
           logs={logs}
           isPersisted={isPersisted}
           onStartLearn={(variationId) => setActiveView({ mode: 'learn', variationId })}
+          onStartDrill={(variationId) => setActiveView({ mode: 'drill', variationId })}
           onStartReview={(variationId) => {
             setReviewFinished(false);
             setActiveView({ mode: 'review', variationId });
@@ -159,6 +164,14 @@ export const App: React.FC = () => {
 
       {activeView.mode === 'learn' && (
         <LearnMode
+          opening={openingData}
+          initialVariationId={activeView.variationId}
+          onBack={() => setActiveView({ mode: 'dashboard' })}
+        />
+      )}
+
+      {activeView.mode === 'drill' && (
+        <DrillMode
           opening={openingData}
           initialVariationId={activeView.variationId}
           onBack={() => setActiveView({ mode: 'dashboard' })}
