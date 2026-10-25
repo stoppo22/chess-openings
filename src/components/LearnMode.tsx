@@ -4,6 +4,13 @@ import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile } from '../types/repertoire';
 import { getLastMoveInfo } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
+import {
+  analyzeWrongPlayerMove,
+  explainOpponentMistake,
+  getNodeEvalForBlack,
+  type WrongMoveAnalysis,
+} from '../services/moveAnalyzer';
+import { EvalBar } from './EvalBar';
 
 interface LearnModeProps {
   opening: OpeningRepertoireFile;
@@ -34,6 +41,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const [historyFens, setHistoryFens] = useState<string[]>(initialHistory);
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [moveFeedback, setMoveFeedback] = useState<string | null>(null);
+  const [wrongMoveAnalysis, setWrongMoveAnalysis] = useState<WrongMoveAnalysis | null>(null);
   const [showInaccuracies, setShowInaccuracies] = useState<boolean>(false);
   const [selectedIdeaId, setSelectedIdeaId] = useState<string>('all');
   const [continuationStep, setContinuationStep] = useState<number>(0);
@@ -152,6 +160,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const navigateToFen = (nextNormFen: string) => {
     setSelectedSquare(null);
     setMoveFeedback(null);
+    setWrongMoveAnalysis(null);
     setSelectedIdeaId('all');
     setContinuationStep(0);
     setActiveMistakePreview(null);
@@ -163,6 +172,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const handleStepBack = () => {
     setSelectedSquare(null);
     setMoveFeedback(null);
+    setWrongMoveAnalysis(null);
     setSelectedIdeaId('all');
     setContinuationStep(0);
     setActiveMistakePreview(null);
@@ -174,6 +184,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const handleResetToRoot = (variationId?: string) => {
     setSelectedSquare(null);
     setMoveFeedback(null);
+    setWrongMoveAnalysis(null);
     setSelectedIdeaId('all');
     setContinuationStep(0);
     setActiveMistakePreview(null);
@@ -210,15 +221,16 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
       if (moveObj.san === currentNode.playerMove.san) {
         setSelectedSquare(null);
         setMoveFeedback(null);
+        setWrongMoveAnalysis(null);
         if (opening.positions[currentNode.playerMove.nextNormalizedFen]) {
           navigateToFen(currentNode.playerMove.nextNormalizedFen);
         }
         return true;
       } else {
         setSelectedSquare(null);
-        setMoveFeedback(
-          `No, non è questa (${moveObj.san}). La mossa del repertorio è ${currentNode.playerMove.san}.`
-        );
+        const analysis = analyzeWrongPlayerMove(currentNode, moveObj.san);
+        setWrongMoveAnalysis(analysis);
+        setMoveFeedback(analysis.explanation);
         return false;
       }
     }
@@ -230,9 +242,21 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
       if (matchingOpp) {
         setSelectedSquare(null);
         setMoveFeedback(null);
+        setWrongMoveAnalysis(null);
         navigateToFen(matchingOpp.nextNormalizedFen);
         return true;
       } else {
+        // Se il Bianco gioca sulla scacchiera uno degli errori comuni presenti nel nodo, apri subito l'analisi dell'errore!
+        const matchingMistake = (currentNode.commonMistakes || []).find(
+          (m) => m.opponentMoveSan === moveObj.san
+        );
+        if (matchingMistake) {
+          setSelectedSquare(null);
+          setWrongMoveAnalysis(null);
+          setActiveMistakePreview({ mistake: matchingMistake, pvStep: 0 });
+          setMoveFeedback(explainOpponentMistake(matchingMistake));
+          return false;
+        }
         setSelectedSquare(null);
         setMoveFeedback(
           `No, non è questa (${moveObj.san}). Gioca una delle risposte del Bianco presenti nel repertorio.`
@@ -317,6 +341,31 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     return all.some((m) => m.severity === 'inaccuracy');
   }, [currentNode.commonMistakes]);
 
+  const baseEvalForBlack = useMemo(
+    () => getNodeEvalForBlack(opening, currentNode, previousNormFen),
+    [opening, currentNode, previousNormFen]
+  );
+
+  const activeEvalForBlack = useMemo(() => {
+    if (activeMistakePreview) {
+      return activeMistakePreview.mistake.finalEvalForPlayer;
+    }
+    if (wrongMoveAnalysis) {
+      return wrongMoveAnalysis.estimatedEvalForBlack;
+    }
+    return baseEvalForBlack;
+  }, [activeMistakePreview, wrongMoveAnalysis, baseEvalForBlack]);
+
+  const activeEvalDelta = useMemo(() => {
+    if (activeMistakePreview) {
+      return activeMistakePreview.mistake.evalLoss;
+    }
+    if (wrongMoveAnalysis) {
+      return wrongMoveAnalysis.evalDrop;
+    }
+    return null;
+  }, [activeMistakePreview, wrongMoveAnalysis]);
+
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
       {/* Top Header Bar */}
@@ -356,36 +405,39 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
       {/* Main Layout: Board Left + Explorer/Trainer Panel Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-        {/* Chessboard Column */}
+        {/* Chessboard + EvalBar Column */}
         <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="w-full max-w-[min(78vh,680px)] aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
-            <Chessboard
-              id="learn-board"
-              position={displayFen}
-              boardOrientation={opening.playerColor}
-              arePiecesDraggable={!previewBoardState}
-              onPieceDragBegin={(_piece, sourceSquare) => {
-                if (!previewBoardState) {
-                  setSelectedSquare(sourceSquare);
-                }
-              }}
-              onPieceDrop={handlePieceDrop}
-              onSquareClick={handleSquareClick}
-              customSquareStyles={customSquareStyles}
-              customArrows={customArrows}
-              customDarkSquareStyle={{ backgroundColor: '#739552' }}
-              customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
-            />
+          <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
+            <EvalBar evalForBlack={activeEvalForBlack} deltaForBlack={activeEvalDelta} />
+            <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
+              <Chessboard
+                id="learn-board"
+                position={displayFen}
+                boardOrientation={opening.playerColor}
+                arePiecesDraggable={!previewBoardState}
+                onPieceDragBegin={(_piece, sourceSquare) => {
+                  if (!previewBoardState) {
+                    setSelectedSquare(sourceSquare);
+                  }
+                }}
+                onPieceDrop={handlePieceDrop}
+                onSquareClick={handleSquareClick}
+                customSquareStyles={customSquareStyles}
+                customArrows={customArrows}
+                customDarkSquareStyle={{ backgroundColor: '#739552' }}
+                customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
+              />
+            </div>
           </div>
 
           {moveFeedback && (
-            <div className="w-full max-w-[min(78vh,680px)] mt-3 bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-4 py-2.5 text-sm font-semibold">
+            <div className="w-full max-w-[min(78vh,720px)] mt-3 bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-4 py-3 text-sm font-semibold">
               {moveFeedback}
             </div>
           )}
 
           {/* Board Control Bar (Lichess / Chessable style) */}
-          <div className="flex items-center justify-between w-full max-w-[min(78vh,680px)] mt-3 bg-[#262421] border border-[#3c3934] rounded-md p-2">
+          <div className="flex items-center justify-between w-full max-w-[min(78vh,720px)] mt-3 bg-[#262421] border border-[#3c3934] rounded-md p-2">
             <button
               onClick={() => handleResetToRoot()}
               className="px-4 py-2 rounded bg-[#1e1c1a] hover:bg-[#312e2b] text-sm font-semibold text-[#bababa] transition"
@@ -917,6 +969,10 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                               <span className="font-mono text-[#9e9c99]">{m.pvSan.join(' ')}</span>{' '}
                               (Eval Nero: {m.finalEvalForPlayer >= 0 ? '+' : ''}
                               {m.finalEvalForPlayer.toFixed(2)})
+                            </div>
+
+                            <div className="text-xs text-[#9e9c99] mt-1.5 leading-relaxed bg-[#161512] px-3 py-2 rounded border border-[#33302c]">
+                              {explainOpponentMistake(m)}
                             </div>
 
                             {isSelected && (

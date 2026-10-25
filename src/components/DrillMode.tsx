@@ -4,6 +4,13 @@ import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile, OpponentMoveBranch } from '../types/repertoire';
 import { getLastMoveInfo, normalizeFen } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
+import { EvalBar } from './EvalBar';
+import {
+  analyzeWrongPlayerMove,
+  explainOpponentMistake,
+  getNodeEvalForBlack,
+  type WrongMoveAnalysis,
+} from '../services/moveAnalyzer';
 
 interface DrillModeProps {
   opening: OpeningRepertoireFile;
@@ -32,6 +39,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
     type: 'idle' | 'wrong' | 'correct' | 'trap-triggered';
     message?: string;
   }>({ type: 'idle' });
+  const [wrongMoveAnalysis, setWrongMoveAnalysis] = useState<WrongMoveAnalysis | null>(null);
   const [selectedIdeaId, setSelectedIdeaId] = useState<string>('all');
 
   const visitedBranchesRef = useRef<Set<string>>(new Set());
@@ -53,6 +61,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
     setUsedHintInMove(false);
     setTotalMistakesMade(0);
     setSelectedIdeaId('all');
+    setWrongMoveAnalysis(null);
     setFeedback({ type: 'idle' });
 
     // Tutte le partite iniziano da 1.e4 (rootNormalizedFen)
@@ -230,6 +239,30 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
     (activeTrap && !activeTrap.solved) || (currentNode.isPlayerTurn && currentNode.playerMove)
   );
 
+  // Calcola l'evaluazione corrente di Stockfish dal punto di vista del Nero
+  const prevNormFen = historyFens.length > 1 ? historyFens[historyFens.length - 2] : undefined;
+  const baseEvalForBlack = getNodeEvalForBlack(opening, currentNode, prevNormFen);
+
+  const activeEvalForBlack = useMemo(() => {
+    if (activeTrap) {
+      return activeTrap.mistake.finalEvalForPlayer;
+    }
+    if (wrongMoveAnalysis) {
+      return wrongMoveAnalysis.estimatedEvalForBlack;
+    }
+    return baseEvalForBlack;
+  }, [activeTrap, wrongMoveAnalysis, baseEvalForBlack]);
+
+  const activeEvalDelta = useMemo(() => {
+    if (activeTrap) {
+      return activeTrap.mistake.evalLoss;
+    }
+    if (wrongMoveAnalysis) {
+      return -wrongMoveAnalysis.evalDrop;
+    }
+    return null;
+  }, [activeTrap, wrongMoveAnalysis]);
+
   const attemptPlayerMove = (from: string, to: string): boolean => {
     if (!canPlayerMoveNow || !expectedMove) return false;
 
@@ -246,15 +279,17 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
     if (moveObj.san === expectedMove.san) {
       setSelectedSquare(null);
       setUsedHintInMove(false);
+      setWrongMoveAnalysis(null);
 
       if (activeTrap) {
         setActiveTrap({ ...activeTrap, solved: true });
         setGamesCompleted((prev) => prev + 1);
+        const whyExplanation = explainOpponentMistake(activeTrap.mistake);
         setFeedback({
           type: 'correct',
           message: `Ottimo! Hai punito ${activeTrap.mistake.opponentMoveSan}? con ${expectedMove.san} (Eval Nero: ${
             activeTrap.mistake.finalEvalForPlayer >= 0 ? '+' : ''
-          }${activeTrap.mistake.finalEvalForPlayer.toFixed(2)}).`,
+          }${activeTrap.mistake.finalEvalForPlayer.toFixed(2)}). ${whyExplanation}`,
         });
         return true;
       }
@@ -262,7 +297,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
       const nextNorm = currentNode.playerMove!.nextNormalizedFen;
       setFeedback({
         type: 'correct',
-        message: `Esatto: ${ currentNode.moveNumber}...${expectedMove.san}`,
+        message: `Esatto: ${currentNode.moveNumber}...${expectedMove.san}`,
       });
       if (opening.positions[nextNorm]) {
         setHistoryFens((prev) => [...prev, nextNorm]);
@@ -271,9 +306,20 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
     } else {
       setSelectedSquare(null);
       setTotalMistakesMade((prev) => prev + 1);
+      const analysis = analyzeWrongPlayerMove(
+        activeTrap
+          ? {
+              ...currentNode,
+              fullFen: activeTrap.mistake.afterMistakeFullFen,
+            }
+          : currentNode,
+        moveObj.san,
+        expectedMove.san
+      );
+      setWrongMoveAnalysis(analysis);
       setFeedback({
         type: 'wrong',
-        message: `No, non è questa (${moveObj.san}). Riprova o usa il suggerimento.`,
+        message: `No, non è questa (${moveObj.san}, ~-${analysis.evalDrop.toFixed(1)}): ${analysis.explanation}`,
       });
       return false;
     }
@@ -416,26 +462,29 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-        {/* Chessboard */}
+        {/* EvalBar + Chessboard */}
         <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="w-full max-w-[min(78vh,680px)] aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
-            <Chessboard
-              id="drill-board"
-              position={displayFen}
-              boardOrientation={opening.playerColor}
-              arePiecesDraggable={canPlayerMoveNow}
-              onPieceDragBegin={(_piece, sourceSquare) => {
-                if (canPlayerMoveNow) {
-                  setSelectedSquare(sourceSquare);
-                }
-              }}
-              onPieceDrop={(s, t) => attemptPlayerMove(s, t)}
-              onSquareClick={handleSquareClick}
-              customSquareStyles={customSquareStyles}
-              customArrows={customArrows}
-              customDarkSquareStyle={{ backgroundColor: '#739552' }}
-              customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
-            />
+          <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
+            <EvalBar evalForBlack={activeEvalForBlack} deltaForBlack={activeEvalDelta} />
+            <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
+              <Chessboard
+                id="drill-board"
+                position={displayFen}
+                boardOrientation={opening.playerColor}
+                arePiecesDraggable={canPlayerMoveNow}
+                onPieceDragBegin={(_piece, sourceSquare) => {
+                  if (canPlayerMoveNow) {
+                    setSelectedSquare(sourceSquare);
+                  }
+                }}
+                onPieceDrop={(s, t) => attemptPlayerMove(s, t)}
+                onSquareClick={handleSquareClick}
+                customSquareStyles={customSquareStyles}
+                customArrows={customArrows}
+                customDarkSquareStyle={{ backgroundColor: '#739552' }}
+                customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
+              />
+            </div>
           </div>
         </div>
 

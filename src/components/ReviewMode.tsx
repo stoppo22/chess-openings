@@ -3,7 +3,9 @@ import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
 import { getLastMoveInfo } from '../services/fen';
+import { analyzeWrongPlayerMove, type WrongMoveAnalysis } from '../services/moveAnalyzer';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
+import { EvalBar } from './EvalBar';
 
 interface ReviewModeProps {
   opening: OpeningRepertoireFile;
@@ -40,6 +42,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [usedHint, setUsedHint] = useState<boolean>(false);
   const [wrongAttempts, setWrongAttempts] = useState<number>(0);
+  const [wrongMoveAnalysis, setWrongMoveAnalysis] = useState<WrongMoveAnalysis | null>(null);
   const [feedback, setFeedback] = useState<{
     type: 'idle' | 'wrong' | 'solved';
     message?: string;
@@ -74,6 +77,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     setSelectedSquare(null);
     setUsedHint(false);
     setWrongAttempts(0);
+    setWrongMoveAnalysis(null);
     setFeedback({ type: 'idle' });
 
     if (lastOpponentMove && lastOpponentMove.fenBefore !== currentCard.fullFen) {
@@ -126,6 +130,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     if (moveObj.san === currentCard.correctMoveSan) {
       setBoardFen(chess.fen());
       setSelectedSquare(null);
+      setWrongMoveAnalysis(null);
       setFeedback({
         type: 'solved',
         message: `Mossa corretta: ${currentCard.correctMoveSan}`,
@@ -134,9 +139,27 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     } else {
       setWrongAttempts((prev) => prev + 1);
       setSelectedSquare(null);
+      const fakeNode = currentNode || {
+        normalizedFen: currentCard.normalizedFen,
+        fullFen: currentCard.fullFen,
+        moveNumber: lastOpponentMove?.moveNumber || 4,
+        ply: 8,
+        turn: 'b' as const,
+        isPlayerTurn: true,
+        pgnPath: currentCard.pgnPath,
+        moveSequenceSan: [],
+        variationId: currentCard.variationId,
+        variationName: '',
+      };
+      const analysis = analyzeWrongPlayerMove(
+        fakeNode,
+        moveObj.san,
+        currentCard.correctMoveSan
+      );
+      setWrongMoveAnalysis(analysis);
       setFeedback({
         type: 'wrong',
-        message: `${moveObj.san} non è la mossa del repertorio. Riprova.`,
+        message: analysis.explanation,
       });
       return false;
     }
@@ -230,6 +253,25 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const isForcedAgain = usedHint || wrongAttempts > 0;
   const progressPct = Math.round(((currentIndex + 1) / sessionQueue.length) * 100);
 
+  const baseEvalForBlack = useMemo(() => {
+    if (currentCard.cardType === 'punish' && currentCard.mistakeContext) {
+      return currentCard.mistakeContext.finalEvalForPlayer ?? 1.5;
+    }
+    return currentNode?.playerMove?.engine.evalFromPlayerPerspective ?? 0.0;
+  }, [currentCard, currentNode]);
+
+  const activeEvalForBlack = wrongMoveAnalysis
+    ? wrongMoveAnalysis.estimatedEvalForBlack
+    : baseEvalForBlack;
+
+  const activeEvalDelta = useMemo(() => {
+    if (wrongMoveAnalysis) return wrongMoveAnalysis.evalDrop;
+    if (currentCard.cardType === 'punish' && currentCard.mistakeContext) {
+      return currentCard.mistakeContext.evalLoss;
+    }
+    return null;
+  }, [wrongMoveAnalysis, currentCard]);
+
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
       {/* Top Bar */}
@@ -284,36 +326,39 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
 
       {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-        {/* Chessboard */}
+        {/* Chessboard + EvalBar */}
         <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="w-full max-w-[min(78vh,680px)] aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
-            <Chessboard
-              id="review-board"
-              position={boardFen}
-              boardOrientation={opening.playerColor}
-              arePiecesDraggable={feedback.type !== 'solved'}
-              onPieceDragBegin={(_piece, sourceSquare) => {
-                if (feedback.type !== 'solved') {
-                  setSelectedSquare(sourceSquare);
+          <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
+            <EvalBar evalForBlack={activeEvalForBlack} deltaForBlack={activeEvalDelta} />
+            <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
+              <Chessboard
+                id="review-board"
+                position={boardFen}
+                boardOrientation={opening.playerColor}
+                arePiecesDraggable={feedback.type !== 'solved'}
+                onPieceDragBegin={(_piece, sourceSquare) => {
+                  if (feedback.type !== 'solved') {
+                    setSelectedSquare(sourceSquare);
+                  }
+                }}
+                onPieceDrop={handlePieceDrop}
+                onSquareClick={handleSquareClick}
+                customSquareStyles={customSquareStyles}
+                customArrows={
+                  feedback.type === 'solved'
+                    ? [
+                        [
+                          currentCard.correctFrom as Square,
+                          currentCard.correctTo as Square,
+                          'rgba(129, 182, 76, 0.85)',
+                        ],
+                      ]
+                    : []
                 }
-              }}
-              onPieceDrop={handlePieceDrop}
-              onSquareClick={handleSquareClick}
-              customSquareStyles={customSquareStyles}
-              customArrows={
-                feedback.type === 'solved'
-                  ? [
-                      [
-                        currentCard.correctFrom as Square,
-                        currentCard.correctTo as Square,
-                        'rgba(129, 182, 76, 0.85)',
-                      ],
-                    ]
-                  : []
-              }
-              customDarkSquareStyle={{ backgroundColor: '#739552' }}
-              customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
-            />
+                customDarkSquareStyle={{ backgroundColor: '#739552' }}
+                customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
+              />
+            </div>
           </div>
         </div>
 
