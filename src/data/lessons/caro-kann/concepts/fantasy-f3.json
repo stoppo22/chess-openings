@@ -1,0 +1,49 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "fantasy-f3",
+  "title": "Variante Fantasia (3.f3): punisci la diagonale aperta",
+  "summary": "Il Bianco sostiene e4 con f3, ma apre la diagonale e1–h4 verso il suo Re. Tu rispondi [[e6]], solido. Se il Bianco riprende in e4 con il pedone f, lo scacco [[Qh4+]] è la tua arma principale.",
+  "pawnStructure": {
+    "description": "Il Bianco ha d4, e4 e f3; tu c6, d5 ed e6.",
+    "forMe": "Il pedone f3 non difende più la diagonale e1–h4: il Re bianco è esposto agli scacchi della Donna.",
+    "forOpponent": "Il Bianco vuole un grande centro e un attacco, ma ha indebolito il suo Re."
+  },
+  "myPlan": [
+    "Rispondi [[e6]]: tieni d5 e prepari lo sviluppo dell'Alfiere in b4 o d6.",
+    "Contro il Cavallo in c3, inchioda con [[Bb4]].",
+    "Contro la spinta e5, rompi con [[c5]] come nella Variante di Spinta.",
+    "Se il centro si apre con la presa in e4 e la ripresa del pedone f, cerca subito [[Qh4+]]."
+  ],
+  "opponentPlan": [
+    "Tenere un grande centro con d4, e4 e f3.",
+    "Sviluppo del Cavallo in c3 e dell'Alfiere in d3, poi attacco sul lato di Re."
+  ],
+  "pieces": [
+    { "piece": "Donna", "squares": ["h4"], "why": "Sulla diagonale e1–h4 dà scacco al Re bianco quando il pedone f è andato in e4." },
+    { "piece": "Alfiere camposcuro", "squares": ["b4"], "why": "Inchioda il Cavallo in c3 al Re e indebolisce la difesa di e4." },
+    { "piece": "Pedone c", "squares": ["c5"], "why": "Contro la spinta e5 attacca la base d4, come nella Variante di Spinta." }
+  ],
+  "breaks": [
+    "[[c5]]: contro e5, attacca la catena alla base.",
+    "La presa [[dxe4]]: apre il centro quando il Re bianco è ancora in e1."
+  ],
+  "tactics": [
+    "Diagonale e1–h4: dopo la presa in e4 e la ripresa con il pedone f, [[Qh4+]] dà scacco. Se il Bianco copre con g3, [[Qxe4+]] dà scacco di nuovo e attacca la Torre in h1.",
+    "Inchiodatura: [[Bb4]] inchioda il Cavallo in c3 al Re."
+  ],
+  "traps": [
+    "Dopo [[dxe4]], la ripresa in e4 con il pedone f, [[Qh4+]] e la copertura g3, [[Qxe4+]] prende il pedone con scacco e poi la Torre in h1."
+  ],
+  "principles": [
+    { "id": "fa-e6", "ifOpponent": "gioca 3.f3", "thenI": "rispondo [[e6]]", "why": "Tengo d5 solido e preparo lo sviluppo dell'Alfiere camposcuro." },
+    { "id": "fa-qh4", "ifOpponent": "riprende in e4 con il pedone f", "thenI": "do scacco con [[Qh4+]]", "why": "La diagonale verso il suo Re è aperta e nessun pezzo bianco può coprirla bene." },
+    { "id": "fa-pin", "ifOpponent": "sviluppa il Cavallo in c3", "thenI": "inchiodo con [[Bb4]]", "why": "Il Cavallo inchiodato non difende più e4." },
+    { "id": "fa-c5", "ifOpponent": "spinge e5", "thenI": "rompo con [[c5]]", "why": "È la stessa idea della Variante di Spinta: colpire la base della catena." }
+  ],
+  "glossary": [
+    { "term": "Diagonale e1–h4", "definition": "La linea di case dal Re bianco in e1 fino a h4: se i pedoni f e g del Bianco si muovono, la Donna nera può dare scacco da h4." },
+    { "term": "Inchiodatura", "definition": "Un pezzo non può muoversi perché scoprirebbe un pezzo più importante dietro di lui." }
+  ],
+  "sources": [],
+  "approved": true
+}

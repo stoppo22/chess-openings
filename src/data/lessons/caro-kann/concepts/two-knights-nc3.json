@@ -1,0 +1,43 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "two-knights-nc3",
+  "title": "Contro il Cavallo in c3: d5 e rientra nelle strutture che conosci",
+  "summary": "Contro il Cavallo in c3 gioca [[d5]] come sempre. Spesso rientri in strutture già viste: dopo il cambio in d5 riprendi con [[cxd5]], contro la spinta e5 l'Alfiere va in f5 come nella Variante di Spinta.",
+  "pawnStructure": {
+    "description": "Il Bianco ha solo il pedone e4 al centro; il Cavallo in c3 lo difende.",
+    "forMe": "Con [[d5]] contesti subito il centro, e conosci già le strutture che ne nascono.",
+    "forOpponent": "Il Cavallo in c3 davanti al pedone c toglie al Bianco la spinta c3 e lo rende vulnerabile a una spinta in d4."
+  },
+  "myPlan": [
+    "Rispondi [[d5]].",
+    "Dopo il cambio in d5, riprendi con [[cxd5]] e sviluppa i Cavalli in f6 e c6.",
+    "Contro e5 porta fuori l'Alfiere con [[Bf5]], poi [[e6]], come nella Variante di Spinta.",
+    "Se il Bianco gioca f3 per sostenere e4, avanza con [[d4]]: il pedone attacca il Cavallo in c3."
+  ],
+  "opponentPlan": [
+    "Sviluppo rapido e scacco in b5 dopo il cambio al centro.",
+    "Sostenere e4 con d3 o f3."
+  ],
+  "pieces": [
+    { "piece": "Pedone d", "squares": ["d5", "d4"], "why": "Contesta il centro e, se il Bianco lo permette, avanza in d4 cacciando il Cavallo." },
+    { "piece": "Alfiere campochiaro", "squares": ["f5"], "why": "Contro la spinta e5 esce prima di [[e6]], come nella Variante di Spinta." },
+    { "piece": "Cavallo di Donna", "squares": ["c6"], "why": "Copre lo scacco in b5 e preme sul centro." }
+  ],
+  "breaks": [
+    "[[d4]]: contro f3, la spinta guadagna spazio con tempo sul Cavallo in c3."
+  ],
+  "tactics": [
+    "Pedone che caccia un pezzo: [[d4]] attacca il Cavallo in c3 e lo costringe a spostarsi."
+  ],
+  "traps": [],
+  "principles": [
+    { "id": "tn-d5", "ifOpponent": "sviluppa il Cavallo in c3 alla seconda mossa", "thenI": "rispondo [[d5]]", "why": "Contesto subito il centro come in tutta la Caro-Kann." },
+    { "id": "tn-known-structure", "ifOpponent": "spinge e5", "thenI": "faccio uscire l'Alfiere con [[Bf5]] e poi gioco [[e6]]", "why": "È la stessa struttura della Variante di Spinta: l'Alfiere esce prima di chiudere." },
+    { "id": "tn-d4-tempo", "ifOpponent": "sostiene e4 con f3", "thenI": "avanzo con [[d4]]", "why": "Il pedone attacca il Cavallo in c3: guadagno spazio e tempo." }
+  ],
+  "glossary": [
+    { "term": "Trasposizione", "definition": "Arrivare alla stessa posizione con un ordine di mosse diverso." }
+  ],
+  "sources": [],
+  "approved": true
+}
