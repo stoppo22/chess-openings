@@ -783,6 +783,115 @@
         "san": "Bxe5",
         "text": "[[Bxe5]] perde 0.2 ed è giocata dal 10.3% dei giocatori."
       }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp2ppp/3ppn2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Gioco [[Nf3]]: sviluppa il Cavallo di Re e controlla la casa e5. Continuo lo stesso schema.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] (12.3%) e perde solo 0.04 dalla migliore: va bene anche questa. Il repertorio sceglie [[Nf3]] per tenere lo stesso ordine di mosse."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pppp1p1p/4pnp1/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nf3]] sviluppa il Cavallo e difende d4. Dopo la mossa g6 non c'è nessuna minaccia, quindi uso lo schema solito.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] (19.4%) e perde solo 0.07 dalla migliore: va bene anche questa. Il repertorio preferisce prima il Cavallo."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pppp1ppp/4p3/8/3PnB2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Bd3]] attacca il Cavallo nero in e4, che non ha difese. Sviluppa anche l'Alfiere campochiaro.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] (17.6%) ed è altrettanto buona: il motore la valuta alla pari. Il repertorio sceglie [[Bd3]] per attaccare subito il Cavallo."
+      },
+      "opponentMistake": {
+        "san": "Nxf2",
+        "punishSan": "Kxf2",
+        "text": "Dopo [[Nxf2]] il Cavallo attacca la Donna e la Torre, ma è attaccato e senza difese: lo prendo con [[Kxf2]] e sono avanti di 2.04."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pppp1ppp/4p3/3n4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Cavallo in d5 attacca il mio Alfiere in f4. [[Bg3]] lo ritira e tiene l'Alfiere camposcuro in gioco.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/pppp1ppp/2n1pn2/8/1b1P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "L'Alfiere nero dà scacco da b4. [[c3]] lo copre e attacca l'Alfiere, che deve spostarsi.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] (9.4%) ed è altrettanto buona: il motore la valuta alla pari. Il repertorio sceglie [[c3]] per attaccare l'Alfiere con un pedone."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp1p1ppp/4pn2/8/3p1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Riprendo in d4 col pedone: il pedone nero in d4 non è difeso. Il mio centro resta in ordine.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "cxd4",
+        "text": "L'alternativa più giocata a questo livello è [[cxd4]] (59%) e perde solo 0.08 dalla migliore: va bene anche questa. Il repertorio riprende con [[exd4]] per tenere i pedoni al centro."
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pp1p1ppp/2n1pn2/2p5/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e porta un terzo difensore su d4, attaccato dal Cavallo in c6.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Nd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nd2]] (14%) ed è altrettanto buona: il motore la valuta alla pari. Il repertorio sceglie [[Nf3]] per lo stesso schema."
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp1bppp/3ppn2/8/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[h3]] è una mossa di prevenzione: libera la casa h2 per il mio Alfiere in f4, se serve ritirarlo.",
+      "conceptRefs": [
+        "lnf6-h3"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] (42.8%) e perde solo 0.13 dalla migliore: va bene anche questa. Il repertorio sceglie [[h3]] per tenere l'Alfiere al sicuro prima di sviluppare."
+      }
+    },
+    {
+      "normalizedFen": "r1bqk2r/pppp1ppp/2n1pn2/b7/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e attacca h7, difeso due volte. È pressione in vista dell'arrocco.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] (27.1%) ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] per sviluppare l'Alfiere subito."
+      }
     }
   ]
 }
