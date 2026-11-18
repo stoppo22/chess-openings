@@ -20,7 +20,7 @@ export const ModeHeader: React.FC<{
       <div className="min-w-0 flex-1">
         <div className="text-[15px] font-semibold truncate">{title}</div>
         <div className="scroll-row text-[13px] text-muted" tabIndex={0} aria-label="Linea corrente">
-          {line || 'Posizione iniziale'}
+          {line ? line.replace(/(\d+)\.\s+/g, '$1.') : 'Posizione iniziale'}
         </div>
       </div>
     </div>

@@ -88,3 +88,11 @@ describe('player-perspective helpers (white player)', () => {
     expect(computeMaterialDiffForPlayer(noWhiteQueen, 'black')).toBe(9);
   });
 });
+
+import { formatLine } from '../services/fen';
+describe('formatLine', () => {
+  it('numbers a line starting with Black or White', () => {
+    expect(formatLine(5, 'b', ['Nf6', 'Nf3', 'e6'])).toBe('5...Nf6 6.Nf3 e6');
+    expect(formatLine(1, 'w', ['e4', 'c6', 'd4'])).toBe('1.e4 c6 2.d4');
+  });
+});

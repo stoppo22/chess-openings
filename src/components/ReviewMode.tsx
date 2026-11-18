@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
-import { formatMoveLabel, getLastMoveInfo } from '../services/fen';
+import { formatLine, formatMoveLabel, getLastMoveInfo } from '../services/fen';
 import { analyzeWrongPlayerMove, type WrongMoveAnalysis } from '../services/moveAnalyzer';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
 import { ModeHeader } from './ModeHeader';
@@ -454,7 +454,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                           </span>
                         </div>
                         <div className="text-[13px] text-muted truncate">
-                          Linea: {currentNode.playerMove.engine.pvSan.join(' ')}
+                          Linea: {formatLine(currentNode.moveNumber, currentNode.turn, currentNode.playerMove.engine.pvSan)}
                         </div>
                       </div>
                     </div>

@@ -100,3 +100,14 @@ export function getLastMoveInfo(pgnOrMoves: string | string[]): LastMoveInfo | n
 export function formatMoveLabel(moveNumber: number, color: 'w' | 'b', san: string): string {
   return color === 'w' ? `${moveNumber}.${san}` : `${moveNumber}...${san}`;
 }
+
+/** SAN sequence with move numbers, e.g. (5,'b',['Nf6','Nf3']) -> "5...Nf6 6.Nf3". */
+export function formatLine(moveNumber: number, color: 'w' | 'b', sans: string[]): string {
+  return sans
+    .map((san, i) => {
+      const white = (color === 'w') === (i % 2 === 0);
+      const n = moveNumber + Math.floor((i + (color === 'b' ? 1 : 0)) / 2);
+      return white ? `${n}.${san}` : i === 0 ? `${n}...${san}` : san;
+    })
+    .join(' ');
+}

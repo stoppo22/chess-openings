@@ -10,7 +10,8 @@ if (!id) { console.error('usage: lessons:verify --opening=<id>'); process.exit(2
 const dir = path.join(root, 'src/data/lessons', id);
 const read = (f) => JSON.parse(fs.readFileSync(f, 'utf8'));
 const lessonFiles = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.json')) : [];
-if (!lessonFiles.length) { console.log('nessuna lezione'); process.exit(0); }
+const hasConcepts = fs.existsSync(path.join(dir, 'concepts'));
+if (!lessonFiles.length && !hasConcepts) { console.log('nessuna lezione'); process.exit(0); }
 
 const factsDir = path.join(root, '.cache/facts', id);
 // Always rebuild facts quietly so staleness is judged against the current opening JSON.

@@ -3,7 +3,7 @@ import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile } from '../types/repertoire';
 import { getLastMoveInfo } from '../services/fen';
-import { formatMoveLabel } from '../services/fen';
+import { formatLine, formatMoveLabel } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
 import {
   analyzeWrongPlayerMove,
@@ -568,7 +568,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                           Stockfish 16
                         </span>
                         <span className="text-sm text-text truncate">
-                          Linea: {currentNode.playerMove.engine.pvSan.join(' ')}
+                          Linea: {formatLine(currentNode.moveNumber, currentNode.turn, currentNode.playerMove.engine.pvSan)}
                         </span>
                       </div>
                     </div>

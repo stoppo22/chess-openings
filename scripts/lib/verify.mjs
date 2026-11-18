@@ -64,13 +64,13 @@ export function verifyLessons(lessonFile, concept, facts) {
     for (const t of texts) checkText(t, allowed, pos.allowedNumbers).forEach(bad);
     if (l.whyNot) {
       const s = cleanSan(l.whyNot.san);
-      if (!pos.alternatives.some((a) => a.san === s)) bad(`whyNot.san ${s} not in alternatives`);
-      if (s === pos.myMove.san) bad('whyNot.san equals my move');
+      if (!pos.alternatives.some((a) => cleanSan(a.san) === s)) bad(`whyNot.san ${s} not in alternatives`);
+      if (s === cleanSan(pos.myMove.san)) bad('whyNot.san equals my move');
     }
     if (l.opponentMistake) {
-      const m = pos.opponentMistakes.find((x) => x.san === cleanSan(l.opponentMistake.san));
+      const m = pos.opponentMistakes.find((x) => cleanSan(x.san) === cleanSan(l.opponentMistake.san));
       if (!m) bad(`opponentMistake.san ${l.opponentMistake.san} not in opponentMistakes`);
-      else if (m.punishSan !== cleanSan(l.opponentMistake.punishSan)) bad(`punishSan ${l.opponentMistake.punishSan} != ${m.punishSan}`);
+      else if (cleanSan(m.punishSan) !== cleanSan(l.opponentMistake.punishSan)) bad(`punishSan ${l.opponentMistake.punishSan} != ${m.punishSan}`);
     }
     for (const r of l.conceptRefs ?? []) if (!principleIds.has(r)) bad(`conceptRef ${r} not in concept page`);
     const q = l.planQuiz;
