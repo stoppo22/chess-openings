@@ -1,0 +1,2436 @@
+{
+  "openingId": "london",
+  "variationId": "london-d5",
+  "writtenBy": "lesson-writer (sonnet)",
+  "factsHash": "2ec681543bb912502fcc19f7ed2caa4972727468bb00c52db9e66f54a4d16f32",
+  "lessons": [
+    {
+      "normalizedFen": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bf4]] porta l'Alfiere camposcuro fuori dalla catena di pedoni prima di giocare [[e3]]: così non resta chiuso dietro i propri pedoni. Dalla casa f4 guarda il pedone c7, che per ora è difeso, quindi è solo pressione.",
+      "whyNot": {
+        "san": "c4",
+        "text": "L'alternativa più giocata a questo livello è [[c4]] ed è altrettanto buona (il motore la valuta alla pari). Tra i Maestri è la più giocata di gran lunga (77%), ma porta in teorie più lunghe: con [[Bf4]] usi lo stesso schema contro quasi ogni risposta."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare subito l'Alfiere camposcuro con [[Bf4]] e chiudere dopo con [[e3]]",
+        "distractors": [
+          "Chiudere prima con [[e3]] e sviluppare l'Alfiere dopo",
+          "Muovere molti pedoni prima di sviluppare i pezzi"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-bishop-first",
+          "ld5-develop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp1pppp/2n5/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Con l'Alfiere camposcuro già fuori, [[e3]] chiude la piramide: il pedone difende d4 e protegge l'Alfiere in f4. Rispondere con calma è la cosa giusta.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ],
+      "planQuiz": {
+        "correct": "Chiudere la piramide con [[e3]] adesso che l'Alfiere è fuori",
+        "distractors": [
+          "Ritirare l'Alfiere in c1 per paura del Cavallo",
+          "Attaccare d5 senza prima completare lo sviluppo"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-bishop-first",
+          "ld5-develop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Con l'Alfiere camposcuro già fuori, [[e3]] chiude la piramide: il pedone difende d4 e protegge l'Alfiere in f4. Il piano non cambia.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ],
+      "planQuiz": {
+        "correct": "Chiudere la piramide con [[e3]] adesso che l'Alfiere è fuori",
+        "distractors": [
+          "Lasciare l'Alfiere fuori e muovere altri pedoni senza un piano",
+          "Ritirare l'Alfiere in c1 per paura del Cavallo"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-bishop-first"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp2ppp/4p3/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Con l'Alfiere camposcuro già fuori, [[e3]] chiude la piramide: il pedone difende d4 e protegge l'Alfiere in f4. Rispondere con calma è la cosa giusta.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ],
+      "planQuiz": {
+        "correct": "Chiudere la piramide con [[e3]] adesso che l'Alfiere è fuori",
+        "distractors": [
+          "Muovere un pedone sul lato di Re prima di sviluppare",
+          "Ritirare l'Alfiere in c1 per paura del pedone e6"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-bishop-first"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/ppp1pppp/8/3p1b2/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Con l'Alfiere camposcuro già fuori, [[e3]] chiude la piramide: il pedone difende d4 e protegge l'Alfiere in f4. Il piano non cambia.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ],
+      "planQuiz": {
+        "correct": "Chiudere la piramide con [[e3]] e lasciare l'Alfiere fuori",
+        "distractors": [
+          "Rincorrere l'Alfiere nero con i pedoni invece di sviluppare",
+          "Ritirare l'Alfiere in c1"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-bishop-first"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/2pp4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Con l'Alfiere camposcuro già fuori, [[e3]] chiude la piramide: il pedone difende d4 e protegge l'Alfiere in f4. Contro la spinta c5, che attacca la base della piramide, il passo successivo sarà [[c3]].",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp1p1pp/5p2/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[e3]] chiude la piramide con l'Alfiere già fuori e difende d4 e l'Alfiere. Dopo la spinta f6 il Nero ha tolto un pedone davanti al suo Re: se spinge ancora i pedoni, controlla subito [[Qh5+]].",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "opponentMistake": {
+        "san": "g5",
+        "punishSan": "Qh5+",
+        "text": "Dopo la spinta g5 il pedone attacca il tuo Alfiere, ma [[Qh5+]] è scacco: il Nero deve rispondere ([[Kd7]]), poi ritiri l'Alfiere con [[Bg3]] e il suo Re resta scoperto al centro."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first",
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Con l'Alfiere camposcuro già fuori, [[e3]] chiude la piramide: il pedone difende d4 e protegge l'Alfiere in f4. Rispondere con calma è la cosa giusta.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[e3]] perché chiude la catena con l'Alfiere già fuori."
+      },
+      "conceptRefs": [
+        "ld5-bishop-first"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp1pppp/2n2n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo con [[Nf3]] e preparare l'arrocco",
+        "distractors": [
+          "Spingere i pedoni del lato di Re senza aver sviluppato i pezzi",
+          "Muovere ancora lo stesso Alfiere invece di sviluppare un pezzo nuovo"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-develop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1pppp/2n5/3p1b2/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e attacca l'Alfiere nero in f5, che è senza difesa: il Nero deve reagire subito.",
+      "conceptRefs": [
+        "ld5-develop"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare l'Alfiere campochiaro con [[Bd3]] e sfidare l'Alfiere nero in f5",
+        "distractors": [
+          "Ignorare f5 e muovere un pedone di lato",
+          "Ritirare l'Alfiere camposcuro in c1"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-bishop-first"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp2ppp/2n1p3/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo con [[Nf3]] e proseguire con lo schema",
+        "distractors": [
+          "Spingere un pedone avanti senza pezzi di appoggio",
+          "Cambiare l'Alfiere in f4 senza motivo"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-keep-bishop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp1p1pp/2n2p2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/1pp1pppp/p1n5/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere: continuo lo sviluppo.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.19 rispetto alla migliore. Con [[Nf3]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "f6",
+        "punishSan": "c4",
+        "text": "Se il Nero gioca [[f6]] (nel 9.6% dei casi a questo livello) è un errore che gli costa 0.46: rispondi con [[c4]]. Dopo la sequenza il motore ti dà 0.63."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp2ppp/2n5/3pp3/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone nero in e5 attacca d4 e il tuo Alfiere. [[dxe5]] cattura il pedone e scopre la Donna, che ora attacca d5.",
+      "whyNot": {
+        "san": "Bg3",
+        "text": "L'alternativa più giocata a questo livello è [[Bg3]], ma è chiaramente peggiore: costa 0.83 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "Nxe5",
+        "punishSan": "Bxe5",
+        "text": "Dopo [[Nxe5]] il Cavallo nero in e5 è attaccato e non ha difensori: [[Bxe5]] lo prende gratis."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.03. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo con [[Nf3]] e proseguire con lo schema",
+        "distractors": [
+          "Aprire i pedoni sul lato di Re prima di sviluppare",
+          "Ritirare l'Alfiere in c1"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-bishop-first"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp1pppp/5n2/3p1b2/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere: continuo lo sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/2pp4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] difende d4, il bersaglio della rottura al centro, e completa la piramide d4–e3–c3.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp1pp1p/5np1/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp1pppp/5n2/3p4/3P1Bb1/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere: continuo lo sviluppo.",
+      "whyNot": {
+        "san": "Be2",
+        "text": "L'alternativa più giocata a questo livello è [[Be2]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/1pp1pppp/p4n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.02. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp1pppp/8/3p4/3PnB2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/2p2n2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.06. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk1nr/ppp2ppp/3bp3/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ],
+      "planQuiz": {
+        "correct": "Ritirare l'Alfiere in g3 con [[Bg3]] invece di cambiarlo",
+        "distractors": [
+          "Cambiare subito l'Alfiere con [[Bxd6]] senza ragione",
+          "Lasciare l'Alfiere in f4 e muovere un pedone"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-keep-bishop",
+          "ld5-keep-bishop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp3ppp/4p3/2pp4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] difende d4, il bersaglio della rottura al centro, e completa la piramide d4–e3–c3.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk1nr/ppp2ppp/4p3/3p4/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
+      "whyNot": {
+        "san": "Nd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nd2]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/1pp2ppp/p3p3/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.02. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp3ppp/2p1p3/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp2p1p/4p3/3p2p1/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone g5 attacca l'Alfiere: lo ritiro con [[Bg3]], dove resta in gioco e attacca il pedone c7.",
+      "whyNot": {
+        "san": "Be5",
+        "text": "L'alternativa più giocata a questo livello è [[Be5]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "opponentMistake": {
+        "san": "f5",
+        "punishSan": "Qh5+",
+        "text": "Se il Nero gioca [[f5]] (nel 14.7% dei casi a questo livello) è un errore che gli costa 2.74: rispondi con [[Qh5+]]. Dopo la sequenza il motore ti dà 3.05."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop",
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/ppp2ppp/4p3/3p1b2/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo con [[Nf3]] e preparare l'arrocco",
+        "distractors": [
+          "Spingere i pedoni del lato di Re invece di sviluppare",
+          "Cambiare l'Alfiere in f4 senza motivo"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-keep-bishop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/1pp1pppp/p7/3p1b2/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "opponentMistake": {
+        "san": "f6",
+        "punishSan": "c4",
+        "text": "Se il Nero gioca [[f6]] (nel 14.4% dei casi a questo livello) è un errore che gli costa 0.72: rispondi con [[c4]]. Dopo la sequenza il motore ti dà 0.8."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/2pp4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3p1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone e e torno ad avere un pedone al centro.",
+      "whyNot": {
+        "san": "Qxd4",
+        "text": "L'alternativa più giocata a questo livello è [[Qxd4]], ma è chiaramente peggiore: costa 0.59 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp3pp/5p2/3pp3/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[dxe5]] cattura il pedone e scopre la Donna, che ora attacca d5. Il pedone in e5 attacca anche f6: il Nero ha il Re indebolito.",
+      "whyNot": {
+        "san": "Bg3",
+        "text": "L'alternativa più giocata a questo livello è [[Bg3]], ma è chiaramente peggiore: costa 0.87 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "fxe5",
+        "punishSan": "Qh5+",
+        "text": "Dopo [[fxe5]] il pedone in e5 resta senza difesa e il Re nero non ha più pedoni davanti: [[Qh5+]] è scacco e attacca anche e5."
+      },
+      "conceptRefs": [
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp1p2p/5p2/3p2p1/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone in g5 ha aperto la strada al Re nero: [[Qh5+]] è scacco e attacca anche g5, che è attaccato due volte e difeso una sola.",
+      "whyNot": {
+        "san": "Bg3",
+        "text": "L'alternativa più giocata a questo livello è [[Bg3]], ma è chiaramente peggiore: costa 0.5 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3p1b2/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2ppp/2n1pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n2n2/3p1b2/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.16 rispetto alla migliore. Con [[Nbd2]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n2n2/3p4/3P1Bb1/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "h3",
+        "text": "L'alternativa più giocata a questo livello è [[h3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp1pppp/2n5/3p4/3PnB2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il Cavallo di Donna e attacca il Cavallo nero in e4, che avanza da solo e può essere cambiato.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "opponentMistake": {
+        "san": "f5",
+        "punishSan": "Nxe4",
+        "text": "Se il Nero gioca [[f5]] (nel 6.3% dei casi a questo livello) è un errore che gli costa 0.62: rispondi con [[Nxe4]]. Dopo la sequenza il motore ti dà 0.84."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/1pp1pppp/p1n2n2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp1ppp1/2n2n1p/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.06. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp1pp1p/2n2np1/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[h3]] toglie la casa g4 al Nero ed evita fastidi all'Alfiere e al Cavallo, senza cambiare il piano.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.27 rispetto alla migliore. Con [[h3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2ppp/2n2n2/3pp3/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[dxe5]] cattura il pedone e attacca il Cavallo in f6: il Nero deve muoverlo.",
+      "whyNot": {
+        "san": "Nxe5",
+        "text": "L'alternativa più giocata a questo livello è [[Nxe5]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[dxe5]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "Nxe5",
+        "punishSan": "Bxe5",
+        "text": "Dopo [[Nxe5]] il Cavallo nero in e5 è attaccato e non difeso: [[Bxe5]] lo cattura gratis."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1pppp/2n5/3p4/3P1B2/3bP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con la Donna, che da d3 attacca il pedone h7.",
+      "whyNot": {
+        "san": "cxd3",
+        "text": "L'alternativa più giocata a questo livello è [[cxd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Qxd3]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Qb5+",
+        "text": "Se il Nero gioca [[Nb4]] (nel 17.9% dei casi a questo livello) è un errore che gli costa 1.16: rispondi con [[Qb5+]]. Dopo la sequenza il motore ti dà 1.2."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ],
+      "planQuiz": {
+        "correct": "Riprendere con la Donna e tenere intatta la piramide di pedoni",
+        "distractors": [
+          "Riprendere con il pedone c e rovinare la struttura",
+          "Ignorare il cambio e muovere un altro pezzo"
+        ],
+        "distractorPrincipleIds": [
+          "ld5-develop",
+          "ld5-develop"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp2ppp/2n1p3/3p1b2/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bxf5]] cambia gli Alfieri: il Nero di solito riprende con il pedone e ([[exf5]]) e resta con due pedoni sulla colonna f, una piccola debolezza a lungo termine.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]], ma è un po' meno precisa: perde 0.17 rispetto alla migliore. Con [[Bxf5]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r3kbnr/pppqpppp/2n5/3p1b2/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere: continuo lo sviluppo.",
+      "whyNot": {
+        "san": "Bxf5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxf5]] ed è altrettanto buona: il motore la separa solo di 0.06. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Bxf5",
+        "text": "Se il Nero gioca [[Nb4]] (nel 13.9% dei casi a questo livello) è un errore che gli costa 0.52: rispondi con [[Bxf5]]. Dopo la sequenza il motore ti dà 0.58."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1pppp/2n3b1/3p4/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Nc3",
+        "text": "L'alternativa più giocata a questo livello è [[Nc3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Bxg6",
+        "text": "Se il Nero gioca [[Nb4]] (nel 6.8% dei casi a questo livello) è un errore che gli costa 0.55: rispondi con [[Bxg6]]. Dopo la sequenza il motore ti dà 0.63."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n2n2/3p1b2/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "L'Alfiere nero in f5 non ha difensori: [[Bxf5]] lo cattura gratis.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]], ma è chiaramente peggiore: costa 2.46 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "Ne4",
+        "punishSan": "Bxe4",
+        "text": "Se il Nero gioca [[Ne4]] (nel 5.5% dei casi a questo livello) è un errore che gli costa 0.69: rispondi con [[Bxe4]]. Dopo la sequenza il motore ti dà 3.26."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1pp1p/2n3p1/3p1b2/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere: continuo lo sviluppo.",
+      "whyNot": {
+        "san": "Bxf5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxf5]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Bxf5",
+        "text": "Se il Nero gioca [[Nb4]] (nel 8% dei casi a questo livello) è un errore che gli costa 0.66: rispondi con [[Bxf5]]. Dopo la sequenza il motore ti dà 0.83."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk1nr/ppp2ppp/2nbp3/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk1nr/ppp2ppp/2n1p3/3p4/1b1P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "opponentMistake": {
+        "san": "Ba5",
+        "punishSan": "a4",
+        "text": "Se il Nero gioca [[Ba5]] (nel 52.7% dei casi a questo livello) è un errore che gli costa 0.54: rispondi con [[a4]]. Dopo la sequenza il motore ti dà 0.81."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp3pp/2n2p2/3pp3/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[dxe5]] cattura il pedone e scopre la Donna, che ora attacca d5: il Nero deve pensare a due cose insieme.",
+      "whyNot": {
+        "san": "Bg3",
+        "text": "L'alternativa più giocata a questo livello è [[Bg3]], ma è un po' meno precisa: perde 0.27 rispetto alla migliore. Con [[dxe5]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1p1pp/2n2p2/3p4/3P1Bb1/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Be2]] difende il Cavallo in f3 e la Donna: tiene tutto solido contro l'attività dell'Alfiere nero.",
+      "whyNot": {
+        "san": "h3",
+        "text": "L'alternativa più giocata a questo livello è [[h3]], ma è chiaramente peggiore: costa 0.34 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp1p2p/2n2p2/3p2p1/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone g5 attacca l'Alfiere: lo ritiro con [[Bg3]], dove resta in gioco e attacca il pedone c7.",
+      "whyNot": {
+        "san": "Nxg5",
+        "text": "[[Nxg5]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.67 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "Bg7",
+        "punishSan": "c4",
+        "text": "Se il Nero gioca [[Bg7]] (nel 7.8% dei casi a questo livello) è un errore che gli costa 0.68: rispondi con [[c4]]. Dopo la sequenza il motore ti dà 0.85."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop",
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp3pp/2n1pp2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[h3]] toglie la casa g4 al Nero ed evita fastidi all'Alfiere e al Cavallo, senza cambiare il piano.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.23 rispetto alla migliore. Con [[h3]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Se il Nero gioca [[e5]] (nel 9.3% dei casi a questo livello) è un errore che gli costa 0.5: rispondi con [[dxe5]]. Dopo la sequenza il motore ti dà 0.72."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/3bpn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp3ppp/4pn2/2pp4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] difende d4, il bersaglio della rottura al centro, e completa la piramide d4–e3–c3.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/4pn2/3p4/1b1P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp2ppp/4p3/3p4/3PnB2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il Cavallo di Donna e attacca il Cavallo nero in e4, che avanza da solo e può essere cambiato.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp2pp1/4pn1p/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c4]] attacca il pedone d5 con un pedone: con i pezzi sviluppati il centro nero viene messo sotto pressione.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.16 rispetto alla migliore. Con [[c4]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/1pp2ppp/p3pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pppn1ppp/4pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.19 rispetto alla migliore. Con [[c3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp2ppp/4pn2/3p1b2/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e sfida l'Alfiere nero in f5: se il Nero cambia, riprendo con la Donna.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pp2pppp/2n2n2/2pp4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp1ppbp/5np1/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[h3]] toglie la casa g4 al Nero ed evita fastidi all'Alfiere e al Cavallo, senza cambiare il piano.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[h3]] perché è una mossa semplice che evita fastidi senza cambiare il piano."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp2ppp/4pn2/3p4/3P1Bb1/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Be2",
+        "text": "L'alternativa più giocata a questo livello è [[Be2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/3p4/3P1Bb1/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "f3",
+        "text": "L'alternativa più giocata a questo livello è [[f3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp3ppp/2p1pn2/3p4/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Nf3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk1nr/ppp2ppp/4p3/3p4/3P4/4P1b1/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "whyNot": {
+        "san": "fxg3",
+        "text": "[[fxg3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.44 di valutazione. Riprendere con il pedone f chiude la colonna h e rovina la struttura."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/3bpn2/3p4/3P4/4P1B1/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.13 rispetto alla migliore. Con [[Nf3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp3ppp/2n1p3/2pp4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.13 rispetto alla migliore. Con [[Nf3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp3ppp/4p3/3p4/3p1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone e e torno ad avere un pedone al centro.",
+      "whyNot": {
+        "san": "cxd4",
+        "text": "L'alternativa più giocata a questo livello è [[cxd4]] ed è altrettanto buona: il motore la separa solo di 0.01. Il repertorio preferisce [[exd4]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp3ppp/4p3/3p4/2pP1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere, quindi sviluppo.",
+      "whyNot": {
+        "san": "Nd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nd2]], ma è un po' meno precisa: perde 0.23 rispetto alla migliore. Con [[Nf3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp3ppp/4pn2/2pp4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "Nd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk1nr/ppp2ppp/3bp3/3p1b2/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp2ppp/2n1p3/3p1b2/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e sfida l'Alfiere nero in f5: se il Nero cambia, riprendo con la Donna.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/4p3/2pp1b2/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bb5+]] dà scacco e costringe il Nero a rispondere prima di continuare con il piano.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è chiaramente peggiore: costa 0.31 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk1nr/ppp2ppp/4p3/3p1b2/1b1P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.17 rispetto alla migliore. Con [[Nbd2]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/3p4/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp3pp/8/3pp3/5B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone in e5 non ha difensori e il Re nero è scoperto: [[Qh5+]] dà scacco e attacca anche e5, che è attaccato due volte e difeso zero.",
+      "whyNot": {
+        "san": "Bxe5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxe5]], ma è chiaramente peggiore: costa 1.05 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "g6",
+        "punishSan": "Qxe5+",
+        "text": "Dopo [[g6]] la tua Donna è attaccata dal pedone, ma [[Qxe5+]] la mette in salvo catturando e5 con scacco: il vantaggio cresce."
+      },
+      "conceptRefs": [
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "rnbq1bnr/pppkp2p/5p2/3p2pQ/3P1B2/4P3/PPP2PPP/RN2KBNR w KQ -",
+      "variationId": "london-d5",
+      "why": "Il Nero ha dovuto muovere il Re e ha già perso l'arrocco. [[Bg3]] mette al sicuro l'Alfiere, attaccato dal pedone g5, e lo tiene sulla diagonale.",
+      "opponentMistake": {
+        "san": "h6",
+        "punishSan": "Qf7",
+        "text": "Se il Nero gioca [[h6]] (nel 6.7% dei casi a questo livello) è un errore che gli costa 0.84: rispondi con [[Qf7]]. Dopo la sequenza il motore ti dà 2.14."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop",
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/3p1b2/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e sfida l'Alfiere nero in f5: se il Nero cambia, riprendo con la Donna.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2nbpn2/3p4/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Ne5",
+        "text": "L'alternativa più giocata a questo livello è [[Ne5]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2n1pn2/3p4/1b1P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "opponentMistake": {
+        "san": "Ba5",
+        "punishSan": "Bd3",
+        "text": "Se il Nero gioca [[Ba5]] (nel 56.6% dei casi a questo livello) è un errore che gli costa 0.46: rispondi con [[Bd3]]. Dopo la sequenza il motore ti dà 0.77."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp1bppp/2n1pn2/3p4/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2ppp/2n1p3/3p4/3PnB2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e attacca il Cavallo in e4, che il Nero deve sostenere o cambiare.",
+      "whyNot": {
+        "san": "Nxe4",
+        "text": "L'alternativa più giocata a questo livello è [[Nxe4]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Bd3]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "Bd6",
+        "punishSan": "Nxe4",
+        "text": "Se il Nero gioca [[Bd6]] (nel 8.1% dei casi a questo livello) è un errore che gli costa 0.6: rispondi con [[Nxe4]]. Dopo la sequenza il motore ti dà 1."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2pp1/2n1pn1p/3p4/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[c3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/pppb1ppp/2n1pn2/3p4/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "opponentMistake": {
+        "san": "Qe7",
+        "punishSan": "Bxc7",
+        "text": "Se il Nero gioca [[Qe7]] (nel 7.6% dei casi a questo livello) è un errore che gli costa 0.73: rispondi con [[Bxc7]]. Dopo [[Qe7]] il pedone nero in c7 resta senza difesa. Dopo la sequenza il motore ti dà 1.04."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp2ppp/2n1pn2/3p1b2/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e sfida l'Alfiere nero in f5: se il Nero cambia, riprendo con la Donna.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.22 rispetto alla migliore. Con [[Bd3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/5n2/3p1b2/1n1P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Cavallo nero in b4 minaccia i pedoni a2 e c2. [[Bb5+]] è scacco: il Nero deve rispondere e io guadagno tempo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è chiaramente peggiore: costa 0.89 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n5/3p1b2/3PnB2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nxe4]] cattura il Cavallo avversario: un cambio semplice che alleggerisce la posizione.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.2 rispetto alla migliore. Con [[Nxe4]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp2ppp/2n1pn2/3p4/3P1Bb1/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "h3",
+        "text": "L'alternativa più giocata a questo livello è [[h3]] ed è altrettanto buona: il motore la separa solo di 0.03. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n5/3p4/3PnBb1/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[h3]] attacca l'Alfiere nero in g4: il Nero deve decidere se ritirarlo o cambiarlo.",
+      "whyNot": {
+        "san": "Be2",
+        "text": "L'alternativa più giocata a questo livello è [[Be2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[h3]] perché è una mossa semplice che evita fastidi senza cambiare il piano."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n2n2/3p4/3P1B2/4Pb2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con la Donna, che da f3 attacca il pedone d5.",
+      "whyNot": {
+        "san": "Nxf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nxf3]], ma è un po' meno precisa: perde 0.19 rispetto alla migliore. Con [[Qxf3]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Se il Nero gioca [[e5]] (nel 5.3% dei casi a questo livello) è un errore che gli costa 1.09: rispondi con [[dxe5]]. Dopo la sequenza il motore ti dà 1.36."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp1pppp/2n5/3p4/3P1B2/4PN2/PPPn1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con la Donna, che da d2 protegge molti pedoni e il Re.",
+      "whyNot": {
+        "san": "Nxd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nxd2]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Qxd2]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/1pp1pppp/p1n2n2/3p1b2/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e attacca l'Alfiere nero in f5, che è senza difesa: il Nero deve reagire subito.",
+      "whyNot": {
+        "san": "c4",
+        "text": "L'alternativa più giocata a questo livello è [[c4]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/1pp1pppp/p1n2n2/3p4/3P1Bb1/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[h3]] attacca l'Alfiere nero in g4: il Nero deve decidere se ritirarlo o cambiarlo.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[h3]] perché è una mossa semplice che evita fastidi senza cambiare il piano."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/1pp2ppp/p1n1pn2/3p4/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp1ppbp/2n2np1/3p4/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2ppp/2n5/3pP3/4nB2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il Cavallo di Donna e attacca il Cavallo nero in e4, che avanza da solo e può essere cambiato.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.17 rispetto alla migliore. Con [[Nbd2]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n2n2/3p4/3P1B2/3QP3/PPP2PPP/RN2K1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Qb5+",
+        "text": "Se il Nero gioca [[Nb4]] (nel 17.7% dei casi a questo livello) è un errore che gli costa 1.14: rispondi con [[Qb5+]]. Dopo la sequenza il motore ti dà 1.22."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp2ppp/2n1p3/3p4/3P1B2/3QP3/PPP2PPP/RN2K1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. La risposta del Nero è tranquilla: niente da punire né da temere: continuo lo sviluppo.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nf3]] perché porta il Cavallo in gioco senza toccare la piramide di pedoni."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Qb5+",
+        "text": "Se il Nero gioca [[Nb4]] (nel 21.7% dei casi a questo livello) è un errore che gli costa 0.72: rispondi con [[Qb5+]]. Dopo la sequenza il motore ti dà 0.72."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1pppp/8/3p4/1n1P1B2/3QP3/PPP2PPP/RN2K1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Cavallo nero in b4 attacca la tua Donna. [[Qb5+]] è scacco e attacca il pedone b7, senza difesa, e il Cavallo in b4, anch'esso senza difesa.",
+      "whyNot": {
+        "san": "Qb3",
+        "text": "L'alternativa più giocata a questo livello è [[Qb3]], ma è chiaramente peggiore: costa 0.35 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "c6",
+        "punishSan": "Qxb4",
+        "text": "Se il Nero gioca [[c6]] (nel 18.9% dei casi a questo livello) è un errore che gli costa 1.6: rispondi con [[Qxb4]]. Dopo [[c6]] il pedone nero in b7 resta senza difesa. Dopo la sequenza il motore ti dà 2.73."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp2ppp/2n5/3p1p2/3P1B2/4P3/PPP2PPP/RN1QK1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[h3]] toglie la casa g4 al Nero ed evita fastidi all'Alfiere e al Cavallo, senza cambiare il piano.",
+      "whyNot": {
+        "san": "Qd3",
+        "text": "L'alternativa più giocata a questo livello è [[Qd3]] ed è altrettanto buona: il motore la separa solo di 0.07. Il repertorio preferisce [[h3]] perché è una mossa semplice che evita fastidi senza cambiare il piano."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk1nr/ppp2ppp/2n1p3/3p4/3P4/4PNb1/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "whyNot": {
+        "san": "fxg3",
+        "text": "[[fxg3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.33 di valutazione. Riprendere con il pedone f chiude la colonna h e rovina la struttura."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2nbpn2/3p4/3P4/4PNB1/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp3pp/2n5/3pp3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nxe5]] cattura il pedone con il Cavallo, che da e5 attacca il Cavallo in c6: è l'avamposto del piano.",
+      "whyNot": {
+        "san": "Bxe5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxe5]], ma è chiaramente peggiore: costa 0.41 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-e5-outpost"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1p1pp/2n2p2/3p4/3P1B2/4Pb2/PPP1BPPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con l'Alfiere, che da f3 attacca il pedone d5 e non rovina i pedoni.",
+      "whyNot": {
+        "san": "gxf3",
+        "text": "[[gxf3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.53 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/4pn2/3p4/3P4/4PNb1/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "whyNot": {
+        "san": "fxg3",
+        "text": "[[fxg3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.51 di valutazione. Riprendere con il pedone f chiude la colonna h e rovina la struttura."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp2ppp/3bpn2/3p4/3P4/4PNB1/PPP2PPP/RN1QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.13 rispetto alla migliore. Con [[Nbd2]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/3bp3/3p4/3Pn3/4PNB1/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il Cavallo di Donna e attacca il Cavallo nero in e4, che avanza da solo e può essere cambiato.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]], ma è un po' meno precisa: perde 0.17 rispetto alla migliore. Con [[Nbd2]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pp3ppp/2n1pn2/2pp4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bb5",
+        "text": "L'alternativa più giocata a questo livello è [[Bb5]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp3ppp/4pn2/3p4/3p1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone e e torno ad avere un pedone al centro.",
+      "whyNot": {
+        "san": "cxd4",
+        "text": "L'alternativa più giocata a questo livello è [[cxd4]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[exd4]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp3ppp/4pn2/3p4/2pP1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "b3",
+        "text": "L'alternativa più giocata a questo livello è [[b3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp1bppp/4pn2/3p4/3P1B2/4PN2/PPPN1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/4pn2/b2p4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "opponentMistake": {
+        "san": "Ne4",
+        "punishSan": "Nxe4",
+        "text": "Se il Nero gioca [[Ne4]] (nel 6.6% dei casi a questo livello) è un errore che gli costa 1.15: rispondi con [[Nxe4]]. Dopo la sequenza il motore ti dà 1.6."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/3bpn2/3p4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp2ppp/4pn2/3p4/3P1B2/3bPN2/PPP2PPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con la Donna, che da d3 attacca il pedone h7.",
+      "whyNot": {
+        "san": "cxd3",
+        "text": "L'alternativa più giocata a questo livello è [[cxd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Qxd3]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk2r/ppp2ppp/3bpn2/3p1b2/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bxf5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxf5]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp2ppp/4pnb1/3p4/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "Bxg6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxg6]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[O-O]] perché mette il Re al sicuro quando i pezzi sono già sviluppati."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp2ppp/2n1pn2/3p1b2/3P1B2/3BPN2/PPP2PPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "Bxf5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxf5]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[O-O]] perché mette il Re al sicuro quando i pezzi sono già sviluppati."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp2ppp/4p3/3p1b2/3PnB2/3BPN2/PPP2PPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]], ma è un po' meno precisa: perde 0.13 rispetto alla migliore. Con [[O-O]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp1ppbp/5np1/3p4/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. Proseguo con lo schema.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp2ppp/4pn2/3p4/3P4/4P1P1/PPP2PP1/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c4]] attacca il pedone d5 con un pedone: con i pezzi sviluppati il centro nero viene messo sotto pressione.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]], ma è un po' meno precisa: perde 0.18 rispetto alla migliore. Con [[c4]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk1nr/ppp2ppp/2n1p3/3p4/3P4/4P1P1/PPP2PP1/RN1QKBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Nf3]] sviluppa il Cavallo di Re e difende il pedone d4, preparando l'arrocco corto. Il piano resta: pezzi in gioco prima di tutto.",
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk1nr/ppp2ppp/4p3/3p1b2/3P4/4PNb1/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "whyNot": {
+        "san": "fxg3",
+        "text": "[[fxg3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.35 di valutazione. Riprendere con il pedone f chiude la colonna h e rovina la struttura."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk2r/ppp2ppp/3bpn2/3p1b2/3P4/4PNB1/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e sfida l'Alfiere nero in f5: se il Nero cambia, riprendo con la Donna.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/ppp4p/6p1/3pp2Q/5B2/4P3/PPP2PPP/RN2KBNR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Qxe5+]] salva la Donna attaccata dal pedone g6, cattura un pedone e dà scacco. Attacca anche la Torre in h8, che non è difesa.",
+      "whyNot": {
+        "san": "Bb5+",
+        "text": "[[Bb5+]] è una tentazione poco comune, ma è chiaramente peggiore: costa 4.54 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "Ne7",
+        "punishSan": "Qxh8",
+        "text": "Dopo [[Ne7]] la Torre in h8 resta senza difesa: [[Qxh8]] la cattura."
+      },
+      "conceptRefs": [
+        "ld5-h5-check"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2n1pn2/3p4/3P4/4PNb1/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "whyNot": {
+        "san": "fxg3",
+        "text": "[[fxg3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.59 di valutazione. Riprendere con il pedone f chiude la colonna h e rovina la struttura."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2ppp/2nbpn2/3p4/3P4/4PNB1/PPPN1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Se il Nero gioca [[e5]] (nel 5.8% dei casi a questo livello) è un errore che gli costa 2.1: rispondi con [[dxe5]]. Dopo la sequenza il motore ti dà 2.14."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2nbp3/3p4/3Pn3/4PNB1/PPPN1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e attacca il Cavallo in e4, che il Nero deve sostenere o cambiare.",
+      "whyNot": {
+        "san": "Nxe4",
+        "text": "L'alternativa più giocata a questo livello è [[Nxe4]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "opponentMistake": {
+        "san": "O-O",
+        "punishSan": "Nxe4",
+        "text": "Se il Nero gioca [[O-O]] (nel 6.3% dei casi a questo livello) è un errore che gli costa 0.85: rispondi con [[Nxe4]]. Dopo la sequenza il motore ti dà 0.95."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2n1pn2/b2p4/3P1B2/2P1PN2/PP1N1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "b4",
+        "text": "L'alternativa più giocata a questo livello è [[b4]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Bd3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2nbpn2/3p4/3P1B2/2P1PN2/PP1N1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp1bppp/2n1pn2/3p4/3P1B2/2P1PN2/PP1N1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "Bb5",
+        "text": "L'alternativa più giocata a questo livello è [[Bb5]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Bd3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp2ppp/2n1pn2/3p4/3P1B2/3bPN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone c: la Donna avversaria non ha la diagonale libera.",
+      "whyNot": {
+        "san": "Bxc7",
+        "text": "[[Bxc7]] è una tentazione poco comune, ma è chiaramente peggiore: costa 2.62 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2n1pn2/3p1b2/1b1P1B2/3BPN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "Bxf5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxf5]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[O-O]] perché mette il Re al sicuro quando i pezzi sono già sviluppati."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2nbpn2/3p1b2/3P1B2/3BPN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bxf5]] cambia l'Alfiere nero e da f5 attacca il pedone h7.",
+      "whyNot": {
+        "san": "Bg3",
+        "text": "L'alternativa più giocata a questo livello è [[Bg3]], ma è un po' meno precisa: perde 0.17 rispetto alla migliore. Con [[Bxf5]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/pp2pppp/2p2n2/1B1p1b2/1n1P1B2/4PN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Dopo lo scacco, l'Alfiere si ritira in a4 e attacca il pedone c6, restando in gioco.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è chiaramente peggiore: costa 1.17 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2nbpn2/3p4/3P1Bb1/2P1PN2/PP1N1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Qb3",
+        "text": "L'alternativa più giocata a questo livello è [[Qb3]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n5/3p4/3PnB2/4Pb1P/PPPN1PP1/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il Cavallo, che torna in f3 a difendere d4.",
+      "whyNot": {
+        "san": "gxf3",
+        "text": "L'alternativa più giocata a questo livello è [[gxf3]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[Nxf3]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2n5/3p4/3P1Bb1/4PN1P/PPPn1PP1/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[hxg4]] cattura l'Alfiere e il Cavallo nero in d2 resta attaccato e senza difesa.",
+      "whyNot": {
+        "san": "Qxd2",
+        "text": "L'alternativa più giocata a questo livello è [[Qxd2]], ma è chiaramente peggiore: costa 0.45 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp2ppp/2n1pn2/3p4/3P1B2/4PQ2/PPPN1PPP/R3KB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp1ppbp/2n2np1/3p4/3P1B2/4PN1P/PPPN1PP1/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "c4",
+        "text": "L'alternativa più giocata a questo livello è [[c4]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp2ppp/2n1pn2/3p4/3P1B2/3QPN2/PPP2PPP/RN2K2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[O-O]] perché mette il Re al sicuro quando i pezzi sono già sviluppati."
+      },
+      "opponentMistake": {
+        "san": "Nb4",
+        "punishSan": "Qb5+",
+        "text": "Se il Nero gioca [[Nb4]] (nel 16.6% dei casi a questo livello) è un errore che gli costa 1.04: rispondi con [[Qb5+]]. Dopo la sequenza il motore ti dà 1.04."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp1pppp/2n5/1Q1p4/3P1B2/4P3/PPP2PPP/RN2K1NR w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Qxb7]] cattura il pedone b7 e attacca la Torre in a8 e il Cavallo in c6, che non ha difensori.",
+      "whyNot": {
+        "san": "Nf3",
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]], ma è chiaramente peggiore: costa 0.68 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "Rb8",
+        "punishSan": "Qxc6+",
+        "text": "Dopo [[Rb8]] il Cavallo in c6 resta senza difesa: [[Qxc6+]] lo cattura con scacco."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2n1pn2/3p4/3P4/4PNP1/PPP2PP1/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Bd3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/ppp3pp/8/3pn3/5B2/4P3/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bxe5]] riprende in e5 con l'Alfiere, che da lì attacca c7 e g7.",
+      "whyNot": {
+        "san": "Bb5+",
+        "text": "[[Bb5+]] è una tentazione poco comune, ma è chiaramente peggiore: costa 1.04 di valutazione."
+      },
+      "opponentMistake": {
+        "san": "Bd6",
+        "punishSan": "Bxg7",
+        "text": "Dopo [[Bd6]] l'Alfiere nero lascia g7 sotto tiro: [[Bxg7]] cattura il pedone e la valutazione sale molto."
+      },
+      "conceptRefs": [
+        "ld5-e5-outpost"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/ppp3pp/2n2p2/3pp3/3P1B2/4PB2/PPP2PPP/RN1QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone e5 attacca l'Alfiere: [[Bg3]] lo mette al sicuro e attacca il pedone e5.",
+      "whyNot": {
+        "san": "dxe5",
+        "text": "L'alternativa più giocata a questo livello è [[dxe5]], ma è un po' meno precisa: perde 0.11 rispetto alla migliore. Con [[Bg3]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "e4",
+        "punishSan": "Be2",
+        "text": "Se il Nero gioca [[e4]] (nel 57.5% dei casi a questo livello) è un errore che gli costa 0.51: rispondi con [[Be2]]. Dopo la sequenza il motore ti dà 0.95."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp2ppp/4pn2/3p4/3P4/4PNP1/PPP2PP1/RN1QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "Nbd2",
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "opponentMistake": {
+        "san": "Ne4",
+        "punishSan": "Ne5",
+        "text": "Se il Nero gioca [[Ne4]] (nel 8.4% dei casi a questo livello) è un errore che gli costa 0.72: rispondi con [[Ne5]]. Dopo la sequenza il motore ti dà 0.76."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp2ppp/4pn2/b2p4/3P1B2/2P1PN2/PP1N1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "b4",
+        "text": "L'alternativa più giocata a questo livello è [[b4]] ed è altrettanto buona: il motore la separa solo di 0.02. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "opponentMistake": {
+        "san": "b6",
+        "punishSan": "b4",
+        "text": "Se il Nero gioca [[b6]] (nel 7% dei casi a questo livello) è un errore che gli costa 2.35: rispondi con [[b4]]. Dopo la sequenza il motore ti dà 2.71."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk2r/ppp2ppp/3bpn2/3p4/3P1B2/3QPN2/PPP2PPP/RN2K2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk2r/ppp2ppp/3bpnb1/3p4/3P1B2/3BPN2/PPP2PPP/RN1Q1RK1 w kq -",
+      "variationId": "london-d5",
+      "why": "[[Nbd2]] sviluppa il secondo Cavallo senza bloccare il pedone c e difende il Cavallo in f3. La risposta del Nero è tranquilla: niente da punire né da temere.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[Nbd2]] perché sviluppa il Cavallo senza bloccare il pedone c e resta nello schema solito."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1q1rk1/ppp1ppbp/5np1/3p1b2/3P1B2/4PN1P/PPPN1PP1/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro e sfida l'Alfiere nero in f5: se il Nero cambia, riprendo con la Donna.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/pppnppbp/5np1/3p4/3P1B2/4PN1P/PPPN1PP1/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro: da d3 controlla e4 e prepara l'arrocco corto.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2ppp/2n1pn2/3p4/3P4/4PNP1/PPPN1PP1/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Bd3]] sviluppa l'Alfiere campochiaro sulla diagonale che punta al pedone h7, il bersaglio tipico dell'attacco sul Re.",
+      "whyNot": {
+        "san": "Ne5",
+        "text": "L'alternativa più giocata a questo livello è [[Ne5]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Bd3]] perché mette l'Alfiere campochiaro sulla sua diagonale naturale senza complicazioni."
+      },
+      "opponentMistake": {
+        "san": "Re8",
+        "punishSan": "Ne5",
+        "text": "Se il Nero gioca [[Re8]] (nel 19.7% dei casi a questo livello) è un errore che gli costa 0.55: rispondi con [[Ne5]]. Dopo la sequenza il motore ti dà 0.91."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqr1k1/ppp2ppp/2nbpn2/3p4/3P4/2P1PNB1/PP1N1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Ne5]] salta sull'avamposto, difeso dal pedone d4, e attacca f7 e il Cavallo in c6.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.21 rispetto alla migliore. Con [[Ne5]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "Nxe5",
+        "punishSan": "dxe5",
+        "text": "Se il Nero gioca [[Nxe5]] (nel 30.1% dei casi a questo livello) è un errore che gli costa 1.91: rispondi con [[dxe5]]. Dopo la sequenza il motore ti dà 1.95."
+      },
+      "conceptRefs": [
+        "ld5-e5-outpost"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2ppp/2nbp3/3p4/3Pn3/2P1PNB1/PP1N1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Nxe4]] cattura il Cavallo e attacca l'Alfiere nero in d6: guadagno un tempo.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.17 rispetto alla migliore. Con [[Nxe4]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2ppp/2n1pn2/b2p4/3P1B2/2PBPN2/PP1N1PPP/R2QK2R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[a4]] controlla la casa b5 e prepara [[b4]] contro l'Alfiere nero in a5.",
+      "whyNot": {
+        "san": "O-O",
+        "text": "L'alternativa più giocata a questo livello è [[O-O]], ma è un po' meno precisa: perde 0.2 rispetto alla migliore. Con [[a4]] resti nello schema del repertorio."
+      },
+      "opponentMistake": {
+        "san": "Re8",
+        "punishSan": "b4",
+        "text": "Se il Nero gioca [[Re8]] (nel 14.9% dei casi a questo livello) è un errore che gli costa 0.87: rispondi con [[b4]]. Dopo la sequenza il motore ti dà 1.64."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp2ppp/2n1pn2/3p4/3P4/2P1PNb1/PP1N1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "opponentMistake": {
+        "san": "Ne4",
+        "punishSan": "Nxe4",
+        "text": "Se il Nero gioca [[Ne4]] (nel 19.1% dei casi a questo livello) è un errore che gli costa 0.54: rispondi con [[Nxe4]]. Dopo la sequenza il motore ti dà 0.99."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2n1pn2/3p4/1b1P1B2/3PPN2/PP1N1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "a3",
+        "text": "L'alternativa più giocata a questo livello è [[a3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[O-O]] perché mette il Re al sicuro quando i pezzi sono già sviluppati."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2nbpn2/3p4/3P1B2/3PPN2/PP1N1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Ne5]] salta sull'avamposto, difeso dal pedone d4, e attacca f7 e il Cavallo in c6.",
+      "whyNot": {
+        "san": "Bg3",
+        "text": "L'alternativa più giocata a questo livello è [[Bg3]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[Ne5]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "opponentMistake": {
+        "san": "Nxe5",
+        "punishSan": "dxe5",
+        "text": "Se il Nero gioca [[Nxe5]] (nel 28.6% dei casi a questo livello) è un errore che gli costa 2.22: rispondi con [[dxe5]]. Dopo la sequenza il motore ti dà 2.18."
+      },
+      "conceptRefs": [
+        "ld5-e5-outpost"
+      ]
+    },
+    {
+      "normalizedFen": "r2q1rk1/ppp2ppp/2n1pn2/3p1b2/1b1P1B2/3BPN2/PPPN1PPP/R2Q1RK1 w - -",
+      "variationId": "london-d5",
+      "why": "[[a3]] attacca l'Alfiere nero in b4: il Nero deve spostarlo.",
+      "whyNot": {
+        "san": "Bxf5",
+        "text": "L'alternativa più giocata a questo livello è [[Bxf5]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[a3]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2nb1n2/3p1p2/3P1B2/4PN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[Bxd6]] cattura l'Alfiere nero e attacca il pedone c7.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]], ma è un po' meno precisa: perde 0.13 rispetto alla migliore. Con [[Bxd6]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/p3pppp/2p2n2/1p1p1b2/Bn1P1B2/4PN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il pedone b5 attacca l'Alfiere in a4, che deve spostarsi. [[Bb3]] lo mette al sicuro e attacca d5.",
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2n1pn2/3p4/3P2b1/2P1PNb1/PP1N1PPP/R2QKB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone h: la Torre in h1 si apre sulla colonna h verso h7.",
+      "whyNot": {
+        "san": "fxg3",
+        "text": "[[fxg3]] è una tentazione poco comune, ma è chiaramente peggiore: costa 0.4 di valutazione. Riprendere con il pedone f chiude la colonna h e rovina la struttura."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r2q1rk1/ppp2ppp/2nbpn2/3p4/3P2b1/2P1PNB1/PP1N1PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Be2]] difende il Cavallo in f3 e la Donna: tiene tutto solido contro l'attività dell'Alfiere nero.",
+      "whyNot": {
+        "san": "Qc2",
+        "text": "L'alternativa più giocata a questo livello è [[Qc2]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[Be2]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2nbpn2/3p4/3P1B2/2P1PQ2/PP1N1PPP/R3KB1R w KQkq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bd3",
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Bg3]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "r2q1rk1/ppp1ppbp/2n2np1/3p1b2/3P1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Be2]] difende il Cavallo in f3 e la Donna: tiene tutto solido contro l'attività dell'Alfiere nero.",
+      "whyNot": {
+        "san": "g4",
+        "text": "L'alternativa più giocata a questo livello è [[g4]], ma è un po' meno precisa: perde 0.14 rispetto alla migliore. Con [[Be2]] resti nello schema del repertorio."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2nbpn2/3p4/3P1B2/3QPN2/PPP2PPP/RN3RK1 w kq -",
+      "variationId": "london-d5",
+      "why": "Il Nero sfida l'Alfiere con il suo Alfiere in d6: invece di cambiare lo ritiro con [[Bg3]], dove resta sulla diagonale e continua ad attaccare l'Alfiere nero. Se cambia in g3 riprendo con il pedone h.",
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "L'alternativa più giocata a questo livello è [[Bxd6]] ed è altrettanto buona: il motore la separa solo di 0.07. Il repertorio preferisce [[Bg3]] perché tiene l'Alfiere in gioco sulla diagonale invece di cambiarlo."
+      },
+      "conceptRefs": [
+        "ld5-keep-bishop"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk2r/ppp2ppp/4pn2/3p4/3P1b2/3QPN2/PPP2PPP/RN3RK1 w kq -",
+      "variationId": "london-d5",
+      "why": "Riprendo il pezzo con il pedone e.",
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2ppp/2nbp3/8/3Pp3/2P1PNB1/PP3PPP/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Nd2]] attacca il pedone in e4 e rimette il Cavallo in gioco.",
+      "whyNot": {
+        "san": "Ne5",
+        "text": "L'alternativa più giocata a questo livello è [[Ne5]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Nd2]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2q1rk1/ppp2ppp/2n1pn2/3p4/1b1P1B2/3PPN2/PP1N1PPP/R2Q1RK1 w - -",
+      "variationId": "london-d5",
+      "why": "[[a3]] attacca l'Alfiere nero in b4: il Nero deve spostarlo.",
+      "whyNot": {
+        "san": "Ne5",
+        "text": "L'alternativa più giocata a questo livello è [[Ne5]] ed è altrettanto buona: il motore la separa solo di 0.04. Il repertorio preferisce [[a3]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r3k2r/ppp2ppp/2nq1n2/3p1p2/3P4/4PN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[O-O]] mette il Re al sicuro e porta la Torre in f1: con i pezzi minori già fuori è il momento giusto.",
+      "whyNot": {
+        "san": "c3",
+        "text": "L'alternativa più giocata a questo livello è [[c3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[O-O]] perché mette il Re al sicuro quando i pezzi sono già sviluppati."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/4pppp/2p2n2/pp1p1b2/1n1P1B2/1B2PN2/PPPN1PPP/R2QK2R w KQkq -",
+      "variationId": "london-d5",
+      "why": "[[a3]] attacca il Cavallo nero in b4: il Nero deve muoverlo e perde tempo.",
+      "whyNot": {
+        "san": "a4",
+        "text": "L'alternativa più giocata a questo livello è [[a4]], ma è chiaramente peggiore: costa 0.34 di valutazione."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2q1rk1/ppp2ppp/2n1pn2/3p4/3P2b1/2P1PNP1/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-d5",
+      "why": "[[Qc2]] porta la Donna in c2 dove attacca il pedone h7 e difende i pedoni c3 e b2.",
+      "whyNot": {
+        "san": "Be2",
+        "text": "L'alternativa più giocata a questo livello è [[Be2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[Qc2]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    },
+    {
+      "normalizedFen": "r2qk2r/ppp2ppp/2n1pn2/3p4/3P4/3QPNb1/PPP2PPP/RN3RK1 w kq -",
+      "variationId": "london-d5",
+      "why": "Riprendo con il pedone f: con il Re già arroccato non voglio aprire la colonna h.",
+      "whyNot": {
+        "san": "hxg3",
+        "text": "L'alternativa più giocata a questo livello è [[hxg3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[fxg3]] perché segue lo schema del repertorio e ti lascia una sola idea da ricordare."
+      },
+      "conceptRefs": [
+        "ld5-develop"
+      ]
+    }
+  ]
+}

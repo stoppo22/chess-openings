@@ -57,7 +57,10 @@ export function sees(ch, from) {
 }
 const hangingLines = (ch) => occupied(ch).filter((x) => isHanging(ch, x.sq)).map((x) => {
   const cheap = Math.min(...attackersOf(ch, x.sq, opp(x.p.color)).map((a) => VAL[ch.get(a).type])) < VAL[x.p.type];
-  return `in presa: ${pn(x.p, x.sq)} (${cnt(ch, x.sq)}${cheap ? '; attaccato da pezzo di minor valore' : ''})`;
+  // 'in presa' in Italian means capturable for free: use it only for undefended pieces.
+  return cheap && attackersOf(ch, x.sq, x.p.color).length > 0
+    ? `minacciato da un pezzo di minor valore (deve spostarsi o va difeso meglio): ${pn(x.p, x.sq)} (${cnt(ch, x.sq)})`
+    : `in presa (senza difesa sufficiente): ${pn(x.p, x.sq)} (${cnt(ch, x.sq)})`;
 });
 const attackedBy = (ch, sq) => attacksFrom(ch, sq).filter((t) => ch.get(t).color !== ch.get(sq).color);
 
