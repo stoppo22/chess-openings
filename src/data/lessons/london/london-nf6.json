@@ -1,0 +1,788 @@
+{
+  "openingId": "london",
+  "variationId": "london-nf6",
+  "writtenBy": "lesson-writer (sonnet)",
+  "factsHash": "362bf7c823b37baf06619e512d00d01a27d3877698bbace778de559c5a19f2f9",
+  "lessons": [
+    {
+      "normalizedFen": "rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Gioco [[Bf4]] subito: l'Alfiere camposcuro esce prima dei pedoni e guarda la casa e5. È lo stesso schema che uso contro quasi tutto, così ho meno da ricordare.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "c4",
+        "text": "[[c4]] perde solo 0.09 dalla migliore ed è l'alternativa più giocata a questo livello (25.2%); i maestri la giocano il 72.4%. Con [[Bf4]] perdo 0.31, poco: scelgo la Londra per avere sempre lo stesso schema, senza dover studiare altre aperture."
+      },
+      "planQuiz": {
+        "correct": "Alfiere camposcuro in f4, poi i pedoni e, h e c e i Cavalli",
+        "distractors": [
+          "Cambiare sistema a seconda della risposta del Nero, con aperture diverse ogni volta",
+          "Spingere subito i pedoni centrali e lasciare l'Alfiere camposcuro dentro la catena di pedoni"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-same-setup",
+          "lnf6-same-setup"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pppppp1p/5np1/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Contro il fianchetto gioco [[e3]]: il pedone protegge sia d4 sia l'Alfiere in f4. Poi sviluppo i Cavalli come sempre.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "[[Nf3]] è un'ottima mossa (perde solo 0.05) ed è la seconda scelta a questo livello (22.8%), ma i maestri giocano [[e3]] più spesso (32.1% contro 12.9%). Il repertorio preferisce [[e3]] perché mette subito al sicuro d4 e l'Alfiere."
+      },
+      "planQuiz": {
+        "correct": "Proteggere d4 e l'Alfiere con [[e3]], poi sviluppare i Cavalli",
+        "distractors": [
+          "Lasciare l'Alfiere senza protezione e muovere la Donna",
+          "Attaccare il Nero con un pedone sull'ala di Donna prima di completare lo sviluppo"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-same-setup",
+          "lnf6-same-setup"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pppp1ppp/4pn2/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[e3]] protegge d4 e l'Alfiere in f4, e apre la strada all'Alfiere campochiaro. È lo stesso schema di sempre, qualunque cosa faccia il Nero.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "[[Nf3]] è alla pari (perde 0) ed è giocata dal 25.4% dei giocatori; i maestri però preferiscono [[e3]] (85.1% contro 12%). Il repertorio sceglie [[e3]] per l'ordine di mosse più semplice da ricordare."
+      },
+      "planQuiz": {
+        "correct": "Proteggere d4 e l'Alfiere con [[e3]], poi sviluppare i Cavalli",
+        "distractors": [
+          "Spingere subito il pedone c per prendere spazio",
+          "Cambiare schema perché il Nero ha giocato un pedone centrale"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-same-setup",
+          "lnf6-same-setup"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp1pppp/3p1n2/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[e3]] difende d4 e l'Alfiere in f4. Se il Nero spinge [[e5]] troppo presto, posso catturare e restare in vantaggio.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "[[Nf3]] è alla pari (perde 0) ed è giocata dal 25.5% dei giocatori; i maestri giocano [[e3]] di più (34.4% contro 14.3%). Il repertorio preferisce [[e3]] perché tiene la casa e5 sotto controllo senza altre preparazioni."
+      },
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Dopo [[e5]] l'Alfiere in f4 è attaccato da un pedone, ma il pedone nero in e5 è attaccato 2 volte e difeso 1: catturo con [[dxe5]] e, dopo [[dxe5]] [[Qxd8+]] [[Kxd8]] [[Bxe5]], resto un pedone avanti (0.82 in più per me)."
+      },
+      "planQuiz": {
+        "correct": "[[e3]] e punire [[e5]] con la presa [[dxe5]]",
+        "distractors": [
+          "Ritirare subito l'Alfiere in g3 per evitare la spinta e5",
+          "Giocare il pedone h in h3 per far spazio all'Alfiere prima di sviluppare"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-punish-e5",
+          "lnf6-h3"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pppppppp/2n2n2/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[e3]] difende d4, che il Cavallo nero in c6 attacca, e protegge l'Alfiere. Il Nero non ha ancora un modo semplice di disturbarmi.",
+      "conceptRefs": [
+        "lnf6-same-setup",
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "[[Nf3]] perde solo 0.09: è quasi uguale ed è giocata dal 22.5% dei giocatori. Il repertorio sceglie [[e3]] per tenere lo stesso ordine di mosse."
+      },
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Dopo [[e5]] il pedone nero è attaccato 2 volte e difeso 1: [[dxe5]] vince materiale. Anche dopo [[Ne4]] [[Qd5]] [[f5]] [[f3]] [[Nc5]] sono avanti di 1.21."
+      },
+      "planQuiz": {
+        "correct": "[[e3]], e se il Nero spinge [[e5]] catturare con [[dxe5]]",
+        "distractors": [
+          "Ritirare l'Alfiere dopo [[e5]] invece di catturare",
+          "Cambiare schema perché il Cavallo nero attacca d4"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-punish-e5",
+          "lnf6-same-setup"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp1ppppp/5n2/2p5/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[e3]] difende d4 e l'Alfiere. Se il Nero cattura con [[cxd4]], riprendo col pedone e il mio centro resta in ordine.",
+      "conceptRefs": [
+        "lnf6-same-setup",
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "c3",
+        "text": "[[c3]] perde 0.20 rispetto a [[e3]], e i maestri la giocano solo il 3.9%. È la seconda scelta a questo livello (21.1%), ma [[e3]] fa meglio sviluppando l'Alfiere campochiaro."
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppppppbp/5np1/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Con [[Nf3]] sviluppo il Cavallo di Re: difende d4 e controlla la casa e5, quella che il Nero vuole usare con la spinta del pedone.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] è alla pari (perde 0) ed è giocata dal 18.9% dei giocatori, ma i maestri preferiscono [[Nf3]] (76% contro 0.7%). Il Cavallo prima dell'Alfiere: così controllo e5 subito."
+      },
+      "planQuiz": {
+        "correct": "Sviluppare [[Nf3]] per controllare e5 e proteggere il Re",
+        "distractors": [
+          "Portare il Cavallo in c3 e abbandonare lo schema",
+          "Spingere i pedoni c e h prima di sviluppare i Cavalli"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-same-setup",
+          "lnf6-h3"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp1pp1p/3p1np1/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nf3]] difende d4 e controlla e5, dove il Nero vorrebbe spingere dopo d6. Continuo lo schema.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.13, è l'alternativa più giocata a questo livello (19.4%) ma i maestri la giocano pochissimo (0.7%). [[Nf3]] vale 0.05 di perdita: meglio."
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pppp1ppp/2n1pn2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Cavallo nero in c6 attacca d4. [[Nf3]] aggiunge un difensore a d4 e sviluppa un pezzo allo stesso tempo.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "c3",
+        "text": "[[c3]] perde 0.14 ed è giocata dal 17.4% dei giocatori: è un'alternativa solida, ma [[Nf3]] sviluppa un pezzo mentre protegge."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp1p1ppp/4pn2/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[c3]] rinforza d4 contro il pedone in c5 e toglie la casa b4 al Nero. È lo schema solido della Londra.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "[[Nf3]] è alla pari (perde 0) ed è giocata dal 25.6% dei giocatori; i maestri la giocano il 29.5% contro il 53.6% di [[c3]]. Il repertorio preferisce [[c3]] per tenere d4 al sicuro con un pedone."
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/pppp1ppp/4pn2/8/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Rispondo allo scacco con [[c3]]: il pedone attacca l'Alfiere nero, che non è difeso, e lo costringe a ritirarsi guadagnando tempo.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Nd2",
+        "text": "[[Nd2]] è alla pari (perde 0) ma è giocata solo dal 7.1%. Preferisco [[c3]] perché scaccia l'Alfiere e rinforza d4."
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppppbppp/4pn2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Bd3]] mette l'Alfiere campochiaro su una casa attiva: guarda verso h7 e prepara l'arrocco.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Nf3",
+        "text": "[[Nf3]] è la mossa più giocata a questo livello (45.9%) e perde 0.12, poco; i maestri la giocano il 7.7% contro il 19.2% di [[Bd3]]. Il repertorio preferisce [[Bd3]] (perde 0.05)."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/p1pp1ppp/1p2pn2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Dopo la spinta del pedone b il Nero prepara l'Alfiere in b7. Continuo lo sviluppo con [[Nf3]], che difende d4 e il mio Re.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] è alla pari (perde 0.03) ed è giocata dal 18.5% dei giocatori; i maestri giocano [[Nf3]] di più (58.3% contro 1.9%), per questo il repertorio la sceglie."
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/pppp1ppp/3bpn2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Nero attacca il mio Alfiere con l'Alfiere in d6. Con [[Bg3]] lo salvo e lo tengo sulla stessa diagonale, di fronte all'Alfiere nero.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bxd6",
+        "text": "[[Bxd6]] è alla pari (perde 0) ed è giocata dal 18.3% dei giocatori. Il repertorio preferisce [[Bg3]] per tenere il mio Alfiere camposcuro."
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp1pppp/2np1n2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nf3]] difende ancora d4 e sviluppa. Se il Nero spinge [[e5]], l'Alfiere è attaccato ma posso catturare.",
+      "conceptRefs": [
+        "lnf6-same-setup",
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "c3",
+        "text": "[[c3]] perde 0.18 ed è giocata dal 17.9% dei giocatori. [[Nf3]] sviluppa un pezzo e difende d4 senza chiudere la casa al Cavallo di Donna."
+      },
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Dopo [[e5]] il pedone nero è attaccato 3 volte e difeso 2: [[dxe5]] lo vince. Il Nero perde 0.48 rispetto alla sua mossa migliore."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp2ppp/3p1n2/4p3/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 attacca il mio Alfiere: catturo subito con [[dxe5]], e il pedone ora attacca il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bg3",
+        "text": "[[Bg3]] perde 0.86: ritirarsi è peggio che catturare il pedone."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/2pp1n2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nf3]] difende d4 e mi fa sviluppare il Cavallo di Re.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] è alla pari (perde 0) ed è giocata dal 21.8% dei giocatori, ma [[Nf3]] (perde 0.14) controlla e5 subito."
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/pppnpppp/3p1n2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Contro il Cavallo in d7 gioco [[Nf3]]: difende d4 e controlla e5. Se il Nero spinge [[e5]], posso catturare.",
+      "conceptRefs": [
+        "lnf6-same-setup",
+        "lnf6-punish-e5"
+      ],
+      "opponentMistake": {
+        "san": "e5",
+        "punishSan": "dxe5",
+        "text": "Dopo [[e5]] il pedone nero è attaccato 3 volte e difeso 2. Con [[dxe5]] [[dxe5]] [[Nxe5]] vinco un pedone: il Nero perde 0.57 rispetto alla sua mossa migliore."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkb1r/ppp1pppp/3p1n2/5b2/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Nero attacca c2 con l'Alfiere, ma c2 è difeso una volta e attaccato una volta: nessun pericolo. Continuo con [[Nf3]].",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.05 ed è giocata dal 26% dei giocatori: quasi uguale a [[Nf3]]. Il repertorio preferisce [[Nf3]] perché controlla e5 e difende d4."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp1ppppp/5n2/8/3p1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il pedone nero in d4 non è difeso: lo riprendo con il pedone e il mio centro resta compatto.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Qxd4",
+        "text": "[[Qxd4]] perde 0.49: [[exd4]] è meglio."
+      }
+    },
+    {
+      "normalizedFen": "rnb1kb1r/pp1ppppp/1q3n2/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nf3]] sviluppa e difende d4. Il pedone b2 resta attaccato dalla Donna, ma costa solo 0.13.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "b3",
+        "text": "[[b3]] è la mossa migliore (perde 0) ed è la più giocata a questo livello (48.8%), i maestri la giocano il 5.4%. Muove il pedone che la Donna nera attacca. Con [[Nf3]] perdo 0.13: poco, ma [[b3]] è la scelta più sicura."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppppppbp/5np1/8/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[h3]] è la mossa chiave della Londra: se un pedone o un Cavallo nero attacca l'Alfiere, posso ritirarlo in h2 senza perderlo.",
+      "conceptRefs": [
+        "lnf6-h3"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.04 ed è l'alternativa più giocata a questo livello (40.4%), ma i maestri la giocano solo lo 0.9% contro il 27.6% di [[h3]]. È quasi uguale: il repertorio preferisce [[h3]] per proteggere l'Alfiere."
+      },
+      "planQuiz": {
+        "correct": "[[h3]]: dare all'Alfiere camposcuro la casa di ritirata h2",
+        "distractors": [
+          "Spingere subito il pedone d per prendere spazio",
+          "Ignorare l'Alfiere e muovere la Donna"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-same-setup",
+          "lnf6-h3"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/ppp1ppbp/3p1np1/8/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[h3]] prepara la ritirata in h2 per l'Alfiere camposcuro, prima che il Nero lo attacchi.",
+      "conceptRefs": [
+        "lnf6-h3"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.01 ed è giocata dal 37.3% dei giocatori, ma i maestri giocano [[h3]] di più (70.4% contro 0.6%). Il repertorio sceglie [[h3]] per proteggere l'Alfiere."
+      }
+    },
+    {
+      "normalizedFen": "rnbqk2r/pppp1ppp/4pn2/b7/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Nero ha ritirato l'Alfiere in a5. [[Nf3]] sviluppa e difende d4: l'Alfiere attacca c3, ma c3 è difeso due volte.",
+      "conceptRefs": [
+        "lnf6-same-setup",
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] è alla pari (perde 0.12 come [[Nf3]]) ed è giocata dal 24.1% dei giocatori. Il repertorio sceglie [[Nf3]] perché controlla e5."
+      },
+      "opponentMistake": {
+        "san": "Ne4",
+        "punishSan": "Nbd2",
+        "text": "Se il Nero salta con [[Ne4]], rispondo [[Nbd2]]: offro il cambio dei Cavalli, e dopo [[Nxd2]] [[Nxd2]] sono sviluppato. Il Nero perde 0.59."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppppbppp/4pn2/8/3P1B2/3BP3/PPP2PPP/RN1QK1NR w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il Nero ha arroccato: continuo con [[Nf3]], che difende d4 e controlla e5.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "c3",
+        "text": "[[c3]] perde 0.17 ed è giocata dal 22.9% dei giocatori. Con [[Nf3]] sviluppo il Cavallo prima di chiudere con un pedone."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pbpp1ppp/1p2pn2/8/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Nero guarda il Cavallo in f3 con l'Alfiere in b7. [[Nbd2]] sviluppa l'ultimo Cavallo e difende il Cavallo in f3.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] è alla pari (perde 0) ed è giocata dal 34.7% dei giocatori; i maestri la giocano il 32.6% contro il 40.8% di [[Nbd2]]. Entrambe vanno bene."
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2ppp/2np1n2/4p3/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 attacca il mio Alfiere: catturo con [[dxe5]], così il pedone attacca il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bg3",
+        "text": "[[Bg3]] perde 0.71: ritirarsi è peggio che catturare."
+      }
+    },
+    {
+      "normalizedFen": "r2qkb1r/ppp1pppp/2np1n2/8/3P1Bb1/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il Nero attacca il Cavallo con l'Alfiere in g4. [[Be2]] difende il Cavallo e sviluppa l'Alfiere campochiaro.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "h3",
+        "text": "[[h3]] perde 0.28 ed è giocata dal 16.4% dei giocatori: [[Be2]] è meglio."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkb1r/ppp2ppp/5n2/4p3/5B2/4P3/PPP2PPP/RN1QKBNR w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Cambio le Donne con scacco: il Nero deve riprendere con [[Kxd8]] e non può più arroccare. Poi catturo in e5.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bxe5",
+        "text": "[[Bxe5]] è l'alternativa più giocata a questo livello (47.5%) ma perde 0.52: [[Qxd8+]] è meglio."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp1ppbp/3p1np1/8/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[c3]] rinforza d4 e toglie la casa b4 ai pezzi neri. È il passo del piano dopo la spinta del pedone h.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.04 ed è l'alternativa più giocata a questo livello (28.9%), i maestri la giocano 0.9% contro 8.9% di [[c3]]. Equivalenti: il repertorio preferisce [[c3]] per proteggere d4."
+      },
+      "planQuiz": {
+        "correct": "[[c3]] per rinforzare d4",
+        "distractors": [
+          "Sviluppare l'ultimo Cavallo ignorando d4",
+          "Attaccare il centro nero con il pedone e"
+        ],
+        "distractorPrincipleIds": [
+          "lnf6-c3",
+          "lnf6-same-setup"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppppppbp/2n2np1/8/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[c3]] aggiunge un difensore a d4, attaccato dal Cavallo in c6.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] perde 0.06 ed è giocata dal 12.2% dei giocatori. [[c3]] (perde 0.08) è un'alternativa equivalente."
+      }
+    },
+    {
+      "normalizedFen": "rnbqr1k1/ppppppbp/5np1/8/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[c3]] rinforza d4 anche dopo la mossa di Torre del Nero.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] è alla pari (perde 0) ed è giocata dal 17.6% dei giocatori; [[c3]] è nello schema del repertorio."
+      }
+    },
+    {
+      "normalizedFen": "r1bqk2r/pppnppbp/3p1np1/8/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Nbd2]] sviluppa l'ultimo Cavallo e difende il Cavallo in f3 e l'Alfiere campochiaro.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] perde 0.13 come [[Nbd2]], ed è giocata dal 14.5% dei giocatori; i maestri giocano [[Be2]] il 71.3% contro il 9.6%. Vanno bene entrambe."
+      }
+    },
+    {
+      "normalizedFen": "r1bqk2r/ppp1ppbp/2np1np1/8/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "[[Bg3]] mette l'Alfiere fuori dalla portata della spinta del pedone, e lo difende con il pedone f2.",
+      "conceptRefs": [
+        "lnf6-h3"
+      ],
+      "whyNot": {
+        "san": "Bb5",
+        "text": "[[Bb5]] perde 0.12 ed è giocata dal 12.4% dei giocatori. [[Bg3]] è rara (0.1%) ma perde solo 0.09: è una mossa sicura."
+      }
+    },
+    {
+      "normalizedFen": "r1bqkb1r/ppp2ppp/2n2n2/4p3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Cambio le Donne con scacco: il Nero deve riprendere, poi catturo in e5.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Nxe5",
+        "text": "[[Nxe5]] è l'alternativa più giocata a questo livello (38.4%) ma perde 0.78: [[Qxd8+]] è meglio."
+      }
+    },
+    {
+      "normalizedFen": "rnbk1b1r/ppp2ppp/5n2/4p3/5B2/4P3/PPP2PPP/RN2KBNR w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 non è difeso: [[Bxe5]] lo cattura e attacca c7 e il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bg5",
+        "text": "[[Bg5]] perde 0.86: [[Bxe5]] è molto meglio."
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/pppnppbp/3p1np1/8/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Nbd2]] sviluppa l'ultimo Cavallo e difende il Cavallo in f3.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] è alla pari (perde 0) ed è giocata dal 17.5% dei giocatori; i maestri giocano [[Be2]] il 65.7% contro l'8.8% di [[Nbd2]]. Equivalenti."
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp1ppbp/2np1np1/8/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Nbd2]] sviluppa l'ultimo Cavallo e difende il Cavallo in f3.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] è alla pari (perde 0) ed è giocata dal 16.2% dei giocatori; i maestri giocano [[Be2]] il 58% contro il 5.8% di [[Nbd2]]. [[Nbd2]] perde 0.14."
+      }
+    },
+    {
+      "normalizedFen": "rnbqr1k1/ppp1ppbp/3p1np1/8/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Nbd2]] sviluppa l'ultimo Cavallo e difende il Cavallo in f3.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] perde 0.01 ed è giocata dal 18.9% dei giocatori: equivalente."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/pp2ppbp/3p1np1/2p5/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone nero attacca d4, che è difeso 4 volte. [[Nbd2]] sviluppa il Cavallo.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.12 ed è giocata dal 24.1% dei giocatori; i maestri la giocano il 2%. [[Nbd2]] perde 0.08."
+      }
+    },
+    {
+      "normalizedFen": "rn1q1rk1/ppp1ppbp/3p1np1/5b2/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "L'Alfiere nero attacca il Cavallo in b1 e il pedone h3. [[Nbd2]] porta il Cavallo fuori dall'attacco e lo sviluppa.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.09 ed è l'alternativa più giocata a questo livello (40.9%)."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/p1p1ppbp/1p1p1np1/8/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Nbd2]] sviluppa l'ultimo Cavallo e difende il Cavallo in f3.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] perde 0.12 ed è giocata dal 19.7% dei giocatori; i maestri la giocano il 44% contro il 24.8% di [[Nbd2]]."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp2pbp/3p1np1/4p3/3P1B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 attacca il mio Alfiere: catturo con [[dxe5]], così il pedone attacca il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5",
+        "lnf6-h3"
+      ],
+      "whyNot": {
+        "san": "Bh2",
+        "text": "[[Bh2]] perde 0.53: la ritirata esiste grazie al pedone in h3, ma catturare è meglio."
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/pppnppbp/3p1np1/8/3P1B2/4PN1P/PPPN1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[c3]] rinforza d4 e tolgo la casa b4 al Nero.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "Be2",
+        "text": "[[Be2]] è alla pari (perde 0) ed è giocata dal 14.7% dei giocatori; i maestri giocano [[Be2]] il 40% contro il 13% di [[c3]]."
+      }
+    },
+    {
+      "normalizedFen": "r1bnkb1r/ppp2ppp/5n2/4p3/5B2/4PN2/PPP2PPP/RN2KB1R w KQkq -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 non è difeso: [[Bxe5]] lo cattura e attacca c7, che non è difeso.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Nxe5",
+        "text": "[[Nxe5]] è l'alternativa più giocata a questo livello (46.1%) ma perde 0.32: [[Bxe5]] è meglio."
+      },
+      "opponentMistake": {
+        "san": "Ng4",
+        "punishSan": "Bxc7",
+        "text": "Se il Nero gioca [[Ng4]], il pedone in c7 non è difeso: [[Bxc7]] lo cattura. Il Nero perde 0.59."
+      }
+    },
+    {
+      "normalizedFen": "r1bqr1k1/pppnppbp/3p1np1/8/3P1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Be2]] sviluppa l'Alfiere campochiaro e difende il Cavallo in f3 e la Donna.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bc4",
+        "text": "[[Bc4]] perde 0.01 ed è giocata dal 9.6% dei giocatori: equivalente. [[Be2]] è più sicuro."
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/pp1nppbp/3p1np1/2p5/3P1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Be2]] sviluppa l'Alfiere campochiaro e difende il Cavallo in f3 e la Donna.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.08 ed è giocata dal 26.1% dei giocatori."
+      }
+    },
+    {
+      "normalizedFen": "r1bqr1k1/ppp1ppbp/2np1np1/8/3P1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Be2]] sviluppa l'Alfiere campochiaro e difende il Cavallo in f3 e la Donna.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bb5",
+        "text": "[[Bb5]] è alla pari (perde 0) ed è giocata dal 15.9% dei giocatori."
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2pbp/2np1np1/4p3/3P1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 attacca il mio Alfiere: catturo con [[dxe5]], così il pedone attacca il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bh2",
+        "text": "[[Bh2]] perde 0.17 ed è giocata dal 17.6% dei giocatori: catturare è meglio."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/pp2ppbp/3p1np1/8/3p1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone nero in d4 non è difeso: lo riprendo con [[exd4]] e il pedone c3 continua a proteggere d4.",
+      "conceptRefs": [
+        "lnf6-c3"
+      ],
+      "whyNot": {
+        "san": "cxd4",
+        "text": "[[cxd4]] è alla pari (perde 0) ed è l'alternativa più giocata a questo livello (55.2%)."
+      }
+    },
+    {
+      "normalizedFen": "rn1q1rk1/pbp1ppbp/1p1p1np1/8/3P1B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il Nero attacca il Cavallo con l'Alfiere. [[Be2]] difende il Cavallo in f3 e sviluppa l'Alfiere.",
+      "conceptRefs": [
+        "lnf6-same-setup"
+      ],
+      "whyNot": {
+        "san": "Bd3",
+        "text": "[[Bd3]] perde 0.04 ed è giocata dal 31.4% dei giocatori; i maestri la giocano l'1% contro il 51.5% di [[Be2]]. Equivalenti."
+      }
+    },
+    {
+      "normalizedFen": "rnbq1rk1/ppp2pbp/5np1/4p3/5B2/2P1PN1P/PP3PP1/RN1QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 non è difeso: cambio le Donne con [[Qxd8]] e poi catturo in e5.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bxe5",
+        "text": "[[Bxe5]] perde 0.23 ed è giocata dal 19% dei giocatori."
+      }
+    },
+    {
+      "normalizedFen": "r1bqr1k1/pppn1pbp/3p1np1/4p3/3P1B2/2P1PN1P/PP1NBPP1/R2QK2R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 attacca il mio Alfiere: catturo con [[dxe5]], così il pedone attacca il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bh2",
+        "text": "[[Bh2]] perde 0.45: catturare è meglio."
+      }
+    },
+    {
+      "normalizedFen": "r1bqr1k1/ppp2pbp/2np1np1/4p3/3P1B2/2P1PN1P/PP1NBPP1/R2QK2R w KQ -",
+      "variationId": "london-nf6",
+      "why": "Il pedone in e5 attacca il mio Alfiere: catturo con [[dxe5]], così il pedone attacca il Cavallo in f6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bh2",
+        "text": "[[Bh2]] perde 0.28 ed è giocata dal 20.9% dei giocatori."
+      }
+    },
+    {
+      "normalizedFen": "r1bq1rk1/ppp2pbp/2n2np1/4p3/5B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -",
+      "variationId": "london-nf6",
+      "why": "[[Nxe5]] cattura il pedone che attaccava l'Alfiere: il Cavallo ora attacca f7, c6 e g6.",
+      "conceptRefs": [
+        "lnf6-punish-e5"
+      ],
+      "whyNot": {
+        "san": "Bxe5",
+        "text": "[[Bxe5]] perde 0.2 ed è giocata dal 10.3% dei giocatori."
+      }
+    }
+  ]
+}
