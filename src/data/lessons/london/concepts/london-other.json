@@ -1,0 +1,51 @@
+{
+  "openingId": "london",
+  "variationId": "london-other",
+  "title": "Londra contro le altre risposte: stesso schema, tranne quando c'è da prendere",
+  "summary": "Contro 1...e6, 1...d6, 1...g6 o 1...c6 giochi lo stesso schema della Londra con [[Bf4]]. Due eccezioni: contro 1...e5 prendi il pedone con [[dxe5]] (Gambetto Englund) e contro 1...c5 avanzi con [[d5]]. Regola generale: lo schema è il piano di base, ma se l'avversario regala qualcosa lo prendi.",
+  "pawnStructure": {
+    "description": "Con 1...e6, 1...d6, 1...g6 la struttura diventa quella della Londra normale: d4, e3, c3 per te. Dopo 1...e5 2.[[dxe5]] hai un pedone in più in e5 e il Nero cerca compenso con lo sviluppo rapido.",
+    "forMe": "Nelle linee tranquille la piramide d4–e3–c3 resta solida. Nel Gambetto Englund sei un pedone avanti: ti basta sviluppare bene e non cadere nelle trappole.",
+    "forOpponent": "Nell'Englund il Nero spera in una tua mossa automatica: la sua Donna in e7 punta e5 e b4, cioè il tuo pedone e il punto b2."
+  },
+  "myPlan": [
+    "Contro 1...e6, 1...d6, 1...g6, 1...c6: [[Bf4]], poi [[e3]], [[Nf3]], [[c3]], come contro 1...d5.",
+    "Contro 1...e5: [[dxe5]], poi sviluppa con [[Nf3]] e [[Nc3]] prima di muovere l'Alfiere c1.",
+    "Contro 1...c5: [[d5]] prende spazio; qui lo schema Londra non serve."
+  ],
+  "opponentPlan": [
+    "Nell'Englund: sviluppo veloce con il Cavallo in c6 e la Donna in e7 per riprendere e5 e cercare scacchi.",
+    "Contro la Londra: cacciare il tuo Alfiere con i pedoni del lato di Re (per esempio g5)."
+  ],
+  "pieces": [
+    { "piece": "Alfiere camposcuro", "squares": ["f4", "e5"], "why": "Nelle linee tranquille va in f4 come sempre. Nell'Englund aspetta: finché la Donna nera può dare scacco in b4, l'Alfiere in c1 difende b2." },
+    { "piece": "Cavallo di Donna", "squares": ["c3"], "why": "Nell'Englund in c3 copre b4 e la diagonale verso il tuo Re: è la mossa che toglie l'arma principale al Nero." },
+    { "piece": "Cavallo di Re", "squares": ["f3"], "why": "Difende il pedone in e5 e prepara l'arrocco." }
+  ],
+  "breaks": [
+    "e4: nelle linee dell'Englund, dopo lo sviluppo, la spinta centrale apre il gioco a tuo favore."
+  ],
+  "tactics": [
+    "Scacco in b4 con attacco a b2: nell'Englund, se l'Alfiere c1 è uscito, [[Qb4+]] dà scacco e attacca b2 che nessuno difende.",
+    "Donna e Torre sulla stessa diagonale: dopo 1...e6, se la Donna nera va in f6 e il Nero spinge g5, [[Be5]] attacca la Donna e quando si sposta [[Bxh8]] prende la Torre.",
+    "Pezzo lasciato in presa: se il Cavallo nero prende un pedone difeso dalla Donna, come in d5, riprendi con [[Qxd5]]."
+  ],
+  "traps": [
+    "Trappola da EVITARE nell'Englund: dopo 1...e5 2.[[dxe5]], il Cavallo in c6, 3.[[Nf3]] e la Donna in e7, non giocare l'Alfiere in f4 in automatico: [[Qb4+]] dà scacco e prende b2. Gioca [[Nc3]].",
+    "Trappola da sfruttare dopo 1...e6: se il Nero ha la Donna in f6 e spinge g5, [[Be5]] vince la qualità (Torre per Alfiere)."
+  ],
+  "principles": [
+    { "id": "lo-same-setup", "ifOpponent": "risponde a 1.d4 con una mossa tranquilla (e6, d6, g6, c6)", "thenI": "gioco lo stesso schema con [[Bf4]]", "why": "Un solo sistema per quasi tutte le risposte: meno da ricordare." },
+    { "id": "lo-take-englund", "ifOpponent": "gioca il gambetto 1...e5", "thenI": "prendo con [[dxe5]] e sviluppo con [[Nf3]] e [[Nc3]]", "why": "Un pedone in più è un vantaggio vero; il Nero ha solo trappole, non un attacco." },
+    { "id": "lo-guard-b2", "ifOpponent": "ha la Donna in e7 o in b6 che punta verso b4 o b2", "thenI": "controllo b2 prima di muovere l'Alfiere c1", "why": "L'Alfiere in c1 è l'unico difensore di b2: se esce, la Donna nera prende il pedone, spesso con scacco." },
+    { "id": "lo-c5-space", "ifOpponent": "risponde 1...c5", "thenI": "avanzo con [[d5]]", "why": "Il pedone in d5 prende spazio e chiude il Nero; lo schema Londra qui sarebbe passivo." },
+    { "id": "lo-greedy-check", "ifOpponent": "lascia un pezzo attaccato e non difeso", "thenI": "lo prendo, dopo aver controllato gli scacchi dell'avversario", "why": "Prima si contano attaccanti e difensori, poi si prende: così non cadi in una trappola." }
+  ],
+  "glossary": [
+    { "term": "Gambetto", "definition": "Un'apertura in cui si offre un pedone per sviluppare più in fretta o creare trappole." },
+    { "term": "Qualità", "definition": "La differenza tra una Torre e un Alfiere o un Cavallo. Vincere la qualità significa prendere una Torre dando un pezzo minore." },
+    { "term": "Mossa automatica", "definition": "Una mossa giocata per abitudine senza controllare la posizione: è il modo più comune di cadere in una trappola." }
+  ],
+  "sources": [],
+  "approved": true
+}

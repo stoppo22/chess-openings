@@ -8,11 +8,14 @@ export function writeFacts(openingId) {
   const dir = path.join(root, '.cache/facts', openingId);
   fs.mkdirSync(dir, { recursive: true });
   const out = {};
-  for (const v of opening.variations) {
-    const { _noAlt, ...facts } = buildFacts(opening, v.id, (w) => console.warn('WARN', w));
-    fs.writeFileSync(path.join(dir, `${v.id}.json`), JSON.stringify(facts, null, 1));
-    out[v.id] = facts;
-    console.log(`${v.id}: ${facts.positions.length} positions, alternatives ${_noAlt ? `missing in ${_noAlt}` : 'present'}, hash ${facts.factsHash.slice(0, 8)}`);
+  // Every variation that has positions, including the fallback one (e.g. london-other, caro-kann-root).
+  const ids = [...new Set(Object.values(opening.positions).map((p) => p.variationId))];
+  for (const id of ids) {
+    const { _noAlt, ...facts } = buildFacts(opening, id, (w) => console.warn('WARN', w));
+    if (!facts.positions.length) continue;
+    fs.writeFileSync(path.join(dir, `${id}.json`), JSON.stringify(facts, null, 1));
+    out[id] = facts;
+    console.log(`${id}: ${facts.positions.length} positions, alternatives ${_noAlt ? `missing in ${_noAlt}` : 'present'}, hash ${facts.factsHash.slice(0, 8)}`);
   }
   return out;
 }
