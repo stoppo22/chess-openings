@@ -1,0 +1,49 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "hillbilly-bc4",
+  "title": "Contro l'Alfiere in c4: prendi il centro con tempo",
+  "summary": "Il Bianco sviluppa l'Alfiere in c4 subito. Tu rispondi [[d5]]: il pedone attacca l'Alfiere e prende il centro. Dopo il cambio in d5 e la ripresa [[cxd5]] hai un pedone centrale e il Bianco deve ancora spostare l'Alfiere. Poi sviluppa con [[Nc6]] e [[Nf6]], e punisci le uscite premature della Donna.",
+  "pawnStructure": {
+    "description": "Dopo 2...[[d5]] 3.exd5 [[cxd5]] tu hai il pedone in d5, il Bianco non ha pedoni al centro.",
+    "forMe": "Il pedone d5 ti dà il centro e attacca di nuovo l'Alfiere bianco: guadagni tempo per lo sviluppo.",
+    "forOpponent": "Il Bianco deve spostare l'Alfiere (in b3 o con scacco in b5) e spesso esce presto con la Donna."
+  },
+  "myPlan": [
+    "Gioca [[d5]] subito: attacchi l'Alfiere in c4 e prendi il centro.",
+    "Riprendi con [[cxd5]] e sviluppa i Cavalli in c6 e f6.",
+    "Se il Bianco porta la Donna in f3, sviluppa attaccandola: [[Bg4]].",
+    "Quando puoi, spingi [[e5]]: con due pedoni al centro sei tu a comandare."
+  ],
+  "opponentPlan": [
+    "Ritirare l'Alfiere in b3 o dare scacco in b5.",
+    "Uscire con la Donna in f3 per attaccare d5 e f7.",
+    "Sviluppo rapido dei Cavalli in c3 e f3."
+  ],
+  "pieces": [
+    { "piece": "Pedone d", "squares": ["d5"], "why": "Attacca l'Alfiere in c4 e prende il centro: è la mossa che dà il tono alla variante." },
+    { "piece": "Cavallo di Donna", "squares": ["c6"], "why": "Difende d4 ed e5 per la tua spinta centrale e copre lo scacco in b5." },
+    { "piece": "Cavallo di Re", "squares": ["f6"], "why": "Difende d5 e il lato di Re." },
+    { "piece": "Alfiere campochiaro", "squares": ["g4", "f5"], "why": "In g4 attacca la Donna bianca se esce in f3: sviluppi e guadagni tempo." }
+  ],
+  "breaks": [
+    "[[e5]]: con il pedone d5 già al centro, la spinta in e5 ti dà un centro forte."
+  ],
+  "tactics": [
+    "Sviluppo con tempo: contro la Donna in f3, [[Bg4]] la attacca e il Bianco deve spostarla di nuovo.",
+    "Contro la spinta c4 del Bianco: prendi con [[dxc4]]."
+  ],
+  "traps": [
+    "Se il Bianco gioca la Donna in f3 troppo presto, [[Bg4]] la attacca sviluppando un pezzo: il Bianco deve spostarla di nuovo e resta indietro nello sviluppo."
+  ],
+  "principles": [
+    { "id": "hb-d5", "ifOpponent": "sviluppa subito l'Alfiere in c4", "thenI": "rispondo [[d5]]", "why": "Il pedone attacca l'Alfiere e prende il centro nello stesso tempo." },
+    { "id": "hb-tempo-queen", "ifOpponent": "esce presto con la Donna", "thenI": "sviluppo un pezzo che la attacca, come [[Bg4]] quando è in f3", "why": "Ogni volta che la Donna deve spostarsi, il Bianco perde un tempo e tu sviluppi gratis." },
+    { "id": "hb-center", "ifOpponent": "non controlla la casa e5", "thenI": "spingo [[e5]]", "why": "Con i pedoni in d5 ed e5 hai il centro e i tuoi pezzi hanno più spazio." }
+  ],
+  "glossary": [
+    { "term": "Tempo", "definition": "Una mossa. Guadagnare un tempo significa costringere l'avversario a una mossa inutile mentre tu sviluppi." },
+    { "term": "Sviluppo con tempo", "definition": "Mettere in gioco un pezzo che nello stesso momento attacca qualcosa dell'avversario." }
+  ],
+  "sources": [],
+  "approved": true
+}

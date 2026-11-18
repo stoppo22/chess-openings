@@ -1,0 +1,50 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "exchange-cxd5",
+  "title": "Variante di Cambio: struttura simmetrica, vince chi sviluppa meglio",
+  "summary": "Il Bianco cambia in d5 e tu riprendi con [[cxd5]]. Ora la struttura è quasi simmetrica e nessuno ha debolezze: conta lo sviluppo. Porti fuori i Cavalli ([[Nf6]], [[Nc6]]) e soprattutto l'Alfiere campochiaro, in g4 o f5, prima di chiudere con [[e6]].",
+  "pawnStructure": {
+    "description": "Il Bianco ha il pedone in d4, tu in d5. La colonna c è aperta per te, la colonna e per il Bianco.",
+    "forMe": "La colonna c aperta è la tua strada per le Torri. Il tuo pedone d5 è solido e controlla e4 e c4.",
+    "forOpponent": "Il Bianco ha la colonna e aperta e può puntare sul lato di Re, ma nessun pedone nero è debole."
+  },
+  "myPlan": [
+    "Riprendi con [[cxd5]]: apri la colonna c per le tue Torri.",
+    "Sviluppa i Cavalli in f6 e c6: insieme premono su d4.",
+    "Porta fuori l'Alfiere campochiaro (g4 o f5) prima di [[e6]], come in tutta la Caro-Kann.",
+    "Dopo l'arrocco, Torri sulla colonna c."
+  ],
+  "opponentPlan": [
+    "Sviluppo con Alfiere in d3 e Cavallo in f3, poi pressione sul lato di Re.",
+    "Scacco in b5 con l'Alfiere per disturbare lo sviluppo.",
+    "La spinta c4 (Attacco Panov) per creare gioco al centro."
+  ],
+  "pieces": [
+    { "piece": "Alfiere campochiaro", "squares": ["g4", "f5"], "why": "In g4 inchioda il Cavallo in f3 contro la Donna in d1 (la casa e2 è vuota): il Cavallo non può muoversi senza perdere la Donna." },
+    { "piece": "Cavallo di Donna", "squares": ["c6"], "why": "Attacca d4 e copre lo scacco in b5." },
+    { "piece": "Cavallo di Re", "squares": ["f6"], "why": "Difende d5 e il tuo Re." },
+    { "piece": "Torri", "squares": ["c8"], "why": "La colonna c è aperta: lì le Torri lavorano." }
+  ],
+  "breaks": [
+    "e5 (più avanti): quando i pezzi sono pronti, libera la posizione al centro.",
+    "Contro c4 del Bianco: sviluppa con [[Nf6]] e premi su d4."
+  ],
+  "tactics": [
+    "Inchiodatura: con il Cavallo bianco in f3 e la Donna in d1, [[Bg4]] blocca il Cavallo.",
+    "Scacco in b5: rispondi coprendo con [[Nc6]], che sviluppa un pezzo nello stesso tempo."
+  ],
+  "traps": [],
+  "principles": [
+    { "id": "ex-recapture-c", "ifOpponent": "cambia in d5", "thenI": "riprendo con [[cxd5]]", "why": "Così apro la colonna c per le mie Torri e tengo un pedone al centro." },
+    { "id": "ex-bishop-out", "ifOpponent": "sviluppa con calma", "thenI": "porto fuori l'Alfiere campochiaro prima di [[e6]]", "why": "È la stessa regola di tutta la Caro-Kann: dopo [[e6]] l'Alfiere resterebbe chiuso." },
+    { "id": "ex-pin", "ifOpponent": "mette il Cavallo in f3 con la Donna ancora in d1", "thenI": "inchiodo con [[Bg4]]", "why": "Il Cavallo inchiodato non difende più bene d4 e il Bianco deve perdere tempo per liberarlo." },
+    { "id": "ex-check-b5", "ifOpponent": "dà scacco con l'Alfiere in b5", "thenI": "copro con [[Nc6]]", "why": "Copro lo scacco sviluppando un pezzo, senza perdere tempo." }
+  ],
+  "glossary": [
+    { "term": "Struttura simmetrica", "definition": "I pedoni dei due giocatori sono disposti quasi allo stesso modo: nessuno ha debolezze, decide lo sviluppo." },
+    { "term": "Colonna aperta", "definition": "Una colonna senza pedoni: le Torri che la occupano diventano molto attive." },
+    { "term": "Inchiodatura", "definition": "Un pezzo non può muoversi perché scoprirebbe un pezzo più importante dietro di lui, come il Cavallo in f3 davanti alla Donna." }
+  ],
+  "sources": [],
+  "approved": true
+}
