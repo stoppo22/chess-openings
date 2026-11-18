@@ -16,6 +16,10 @@ interface DashboardProps {
   onImportBackup: (fileText: string) => Promise<void>;
 }
 
+/** ["e4","c6","d4"] -> "1.e4 c6 2.d4" */
+const formatLine = (moves: string[]) =>
+  moves.map((m, i) => (i % 2 === 0 ? `${i / 2 + 1}.${m}` : m)).join(' ');
+
 export const Dashboard: React.FC<DashboardProps> = ({
   opening,
   openings,
@@ -30,6 +34,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onImportBackup,
 }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [backupMessage, setBackupMessage] = useState<string | null>(null);
 
   const repStats = computeCardStats(cards, 'repertoire');
@@ -45,6 +50,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
     repStats.total > 0
       ? Math.round(((repStats.total - repStats.newCount) / repStats.total) * 100)
       : 0;
+
+  const learned = repStats.total - repStats.newCount;
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -64,244 +71,158 @@ export const Dashboard: React.FC<DashboardProps> = ({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Top Course Banner — Chessable / Chess.com style */}
-      <div className="bg-[#262421] border border-[#3c3934] rounded-md p-6 sm:p-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2.5">
-            {openings.length > 1 && (
-              <select
-                aria-label="Scegli apertura"
-                value={opening.id}
-                onChange={(e) => onSelectOpening(e.target.value)}
-                className="w-full sm:w-auto px-3 py-2.5 rounded bg-[#161512] border border-[#3c3934] text-[#e8e6e3] text-base"
-              >
-                {openings.map((o) => (
-                  <option key={o.id} value={o.id}>
-                    {o.name}
-                  </option>
-                ))}
-              </select>
-            )}
-            <div className="flex flex-wrap items-center gap-2.5 text-sm text-[#9e9c99]">
-              <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#161512] border border-[#3c3934] text-[#e8e6e3] font-medium">
-                <span
-                  className={`w-3 h-3 rounded-sm border border-[#9e9c99] inline-block ${
-                    opening.playerColor === 'white' ? 'bg-[#e8e6e3]' : 'bg-[#161512]'
-                  }`}
-                />
-                Repertorio {opening.playerColor === 'white' ? 'Bianco' : 'Nero'}
-              </span>
-              <span className="px-2.5 py-1 rounded bg-[#161512] border border-[#3c3934]">
-                Fascia {opening.buildConfig.ratingBandLabel}
-              </span>
-              <span className="px-2.5 py-1 rounded bg-[#161512] border border-[#3c3934]">
-                {isPersisted ? 'Storage persistente' : 'Storage locale'}
-              </span>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#ffffff] tracking-tight">
-              {opening.name}
-            </h1>
-            <p className="text-base text-[#9e9c99] max-w-3xl leading-relaxed">
-              {opening.description}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
-            <button
-              onClick={() => onStartLearn()}
-              className="flex-1 sm:flex-initial px-5 py-3 rounded-md bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] font-semibold text-base border border-[#4a4742] transition"
-            >
-              Impara linee
-            </button>
-            <button
-              onClick={() => onStartDrill()}
-              className="flex-1 sm:flex-initial px-5 py-3 rounded-md bg-[#3692e7] hover:bg-[#2b7bc6] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#1e5a94] transition"
-            >
-              Gioca una partita (Sparring)
-            </button>
-            <button
-              onClick={() => onStartReview()}
-              className="flex-1 sm:flex-initial px-6 py-3 rounded-md bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
-            >
-              Ripassa ({dailyQueue.length})
-            </button>
-          </div>
-        </div>
-
-        {/* Course Progress Bar */}
-        <div className="mt-7 pt-6 border-t border-[#36332e]">
-          <div className="flex items-center justify-between text-sm text-[#9e9c99] mb-2.5">
-            <span>
-              Avanzamento repertorio:{' '}
-              <strong className="text-[#e8e6e3] tabular-nums">
-                {repStats.total - repStats.newCount} / {repStats.total}
-              </strong>{' '}
-              mosse studiate ({studiedPct}%)
-            </span>
-            <span className="tabular-nums">
-              Limite nuove: {SRS_DAILY_LIMITS.MAX_NEW_CARDS_PER_DAY}/giorno
-            </span>
-          </div>
-          <div className="w-full h-2.5 bg-[#161512] rounded-sm overflow-hidden">
-            <div
-              className="h-full bg-[#81b64c] transition-all"
-              style={{ width: `${studiedPct}%` }}
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8">
+      <header className="space-y-3">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h1 className="text-[26px] sm:text-3xl leading-tight">{opening.name}</h1>
+          <span className="inline-flex items-center gap-1.5 text-[13px] text-muted">
+            <i
+              className={`w-3 h-3 rounded-full border border-muted ${
+                opening.playerColor === 'white' ? 'bg-transparent' : 'bg-muted'
+              }`}
             />
-          </div>
+            {opening.playerColor === 'white' ? 'Col Bianco' : 'Col Nero'}
+          </span>
+        </div>
+        {openings.length > 1 && (
+          <select
+            aria-label="Scegli apertura"
+            value={opening.id}
+            onChange={(e) => onSelectOpening(e.target.value)}
+            className="w-full sm:w-auto min-h-[44px] px-3 rounded-[10px] bg-surface border border-border text-text text-base"
+          >
+            {openings.map((o) => (
+              <option key={o.id} value={o.id}>
+                {o.name}
+              </option>
+            ))}
+          </select>
+        )}
+        <p className="text-[15px] text-muted">
+          Mosse scelte da Stockfish e dalle partite dei Grandi Maestri; risposte e errori tipici
+          dei giocatori {opening.buildConfig.ratingBandLabel}.
+        </p>
+      </header>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-5">
-            <div className="bg-[#1e1c1a] border border-[#33302c] rounded px-4 py-3.5">
-              <div className="text-xs uppercase tracking-wider text-[#8c8a87]">Mosse totali</div>
-              <div className="text-2xl font-bold text-[#e8e6e3] tabular-nums mt-1">
-                {repStats.total}
-              </div>
-            </div>
-            <div className="bg-[#1e1c1a] border border-[#33302c] rounded px-4 py-3.5">
-              <div className="text-xs uppercase tracking-wider text-[#8c8a87]">Da ripassare</div>
-              <div className="text-2xl font-bold text-[#e69d00] tabular-nums mt-1">
-                {repStats.dueReviewCount}
-              </div>
-            </div>
-            <div className="bg-[#1e1c1a] border border-[#33302c] rounded px-4 py-3.5">
-              <div className="text-xs uppercase tracking-wider text-[#8c8a87]">Nuove</div>
-              <div className="text-2xl font-bold text-[#e8e6e3] tabular-nums mt-1">
-                {repStats.newCount}
-              </div>
-            </div>
-            <div className="bg-[#1e1c1a] border border-[#33302c] rounded px-4 py-3.5">
-              <div className="text-xs uppercase tracking-wider text-[#8c8a87]">Consolidate</div>
-              <div className="text-2xl font-bold text-[#81b64c] tabular-nums mt-1">
-                {repStats.reviewCount}
-              </div>
-            </div>
-            <div className="bg-[#1e1c1a] border border-[#33302c] rounded px-4 py-3.5 col-span-2 sm:col-span-1">
-              <div className="text-xs uppercase tracking-wider text-[#8c8a87]">
-                Punisci errori
-              </div>
-              <div className="text-2xl font-bold text-[#e8e6e3] tabular-nums mt-1">
-                {punishStats.total}
-              </div>
-            </div>
+      <section className="bg-surface border border-border rounded-xl p-4 sm:p-6 space-y-4">
+        <button
+          onClick={() => onStartReview()}
+          disabled={dailyQueue.length === 0}
+          className="btn-primary w-full"
+        >
+          {dailyQueue.length === 0 ? 'Niente da ripassare oggi' : `Ripassa oggi · ${dailyQueue.length}`}
+        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button onClick={() => onStartLearn()} className="btn-secondary">
+            Impara nuove mosse
+          </button>
+          <button onClick={() => onStartDrill()} className="btn-secondary">
+            Partita di allenamento
+          </button>
+        </div>
+        <div className="space-y-2 pt-2">
+          <p className="text-sm">
+            {learned} di {repStats.total} mosse imparate · {punishStats.total} esercizi
+            &lsquo;punisci l&rsquo;errore&rsquo; · {SRS_DAILY_LIMITS.MAX_NEW_CARDS_PER_DAY} nuove al
+            giorno
+          </p>
+          <div
+            className="h-1.5 bg-bg rounded-full overflow-hidden"
+            role="progressbar"
+            aria-valuenow={studiedPct}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            <div className="h-full bg-accent transition-all" style={{ width: `${studiedPct}%` }} />
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Capitoli / Varianti */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-[#9e9c99]">
-            Capitoli del Repertorio ({opening.variations.length})
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="space-y-3">
+        <h2 className="text-xl">Varianti ({opening.variations.length})</h2>
+        <ul className="bg-surface border border-border rounded-xl divide-y divide-border overflow-hidden">
           {opening.variations.map((v) => {
             const varCards = cards.filter(
               (c) => c.variationId === v.id && c.cardType === 'repertoire'
             );
             const varStats = computeCardStats(varCards);
-            const varStudied = varStats.total - varStats.newCount;
             const varPct =
-              varStats.total > 0 ? Math.round((varStudied / varStats.total) * 100) : 0;
-
+              varStats.total > 0
+                ? Math.round(((varStats.total - varStats.newCount) / varStats.total) * 100)
+                : 0;
+            const open = expandedId === v.id;
             return (
-              <div
-                key={v.id}
-                className="bg-[#262421] border border-[#3c3934] rounded-md p-6 flex flex-col justify-between gap-5"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 text-sm">
-                    <span className="font-mono px-2.5 py-0.5 rounded bg-[#161512] text-[#bababa] border border-[#3c3934]">
-                      {v.ecoCode}
-                    </span>
-                    <span className="text-[#9e9c99] tabular-nums">
-                      {varStats.total} mosse •{' '}
-                      <strong className="text-[#e8e6e3]">{varStats.dueReviewCount}</strong> in
-                      scadenza
-                    </span>
+              <li key={v.id}>
+                <button
+                  onClick={() => setExpandedId(open ? null : v.id)}
+                  aria-expanded={open}
+                  className="w-full text-left px-4 py-3 min-h-[44px] space-y-1.5 hover:bg-bg transition"
+                >
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="font-semibold">{v.name}</span>
+                    <span className="text-[13px] text-muted shrink-0">{v.ecoCode}</span>
                   </div>
-
-                  <h3 className="text-xl font-bold text-[#ffffff] mt-3">{v.name}</h3>
-                  <p className="text-sm text-[#9e9c99] mt-1.5 leading-relaxed">{v.subtitle}</p>
-
-                  <div className="mt-4 text-sm font-mono text-[#e8e6e3] bg-[#161512] px-3.5 py-2.5 rounded border border-[#33302c]">
-                    {v.rootMovesSan.join(' ')}
+                  <div className="text-[13px] text-muted break-words">
+                    {formatLine(v.rootMovesSan)}
                   </div>
-
-                  <div className="mt-4">
-                    <div className="w-full h-2 bg-[#161512] rounded-sm overflow-hidden">
-                      <div
-                        className="h-full bg-[#81b64c]"
-                        style={{ width: `${varPct}%` }}
-                      />
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-1 bg-bg rounded-full overflow-hidden">
+                      <div className="h-full bg-accent" style={{ width: `${varPct}%` }} />
                     </div>
+                    {varStats.dueReviewCount > 0 && (
+                      <span className="text-[13px] text-warn shrink-0">
+                        {varStats.dueReviewCount} da ripassare
+                      </span>
+                    )}
                   </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 pt-1">
-                  <button
-                    onClick={() => onStartLearn(v.id)}
-                    className="flex-1 px-3.5 py-2.5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-sm font-semibold border border-[#4a4742] transition"
-                  >
-                    Studia
-                  </button>
-                  <button
-                    onClick={() => onStartDrill(v.id)}
-                    className="flex-1 px-3.5 py-2.5 rounded bg-[#3692e7] hover:bg-[#2b7bc6] text-[#ffffff] text-sm font-bold transition"
-                  >
-                    Gioca una partita
-                  </button>
-                  <button
-                    onClick={() => onStartReview(v.id)}
-                    className="flex-1 px-3.5 py-2.5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] text-sm font-bold transition"
-                  >
-                    Ripassa
-                  </button>
-                </div>
-              </div>
+                </button>
+                {open && (
+                  <div className="px-4 pb-4 grid grid-cols-3 gap-2">
+                    <button onClick={() => onStartLearn(v.id)} className="btn-secondary !px-2">
+                      Studia
+                    </button>
+                    <button onClick={() => onStartReview(v.id)} className="btn-secondary !px-2">
+                      Ripassa
+                    </button>
+                    <button onClick={() => onStartDrill(v.id)} className="btn-secondary !px-2">
+                      Gioca
+                    </button>
+                  </div>
+                )}
+              </li>
             );
           })}
-        </div>
-      </div>
+        </ul>
+      </section>
 
-      {/* Dati & Backup Locale */}
-      <div className="bg-[#262421] border border-[#3c3934] rounded-md px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-sm font-bold uppercase tracking-wider text-[#9e9c99]">
-            Backup progressi FSRS
-          </h2>
-          <p className="text-sm text-[#8c8a87] mt-1">
-            Esporta o ripristina i tuoi dati di ripasso in formato JSON.
+      <details className="bg-surface border border-border rounded-xl group">
+        <summary className="px-4 py-3 min-h-[44px] flex items-center cursor-pointer text-[15px] font-medium list-none">
+          Salva o ripristina i progressi
+        </summary>
+        <div className="px-4 pb-4 space-y-3">
+          <p className="text-sm text-muted">
+            I progressi restano su questo dispositivo
+            {isPersisted ? '' : ' e il browser potrebbe cancellarli'}. Salva un file per tenerne una
+            copia o per spostarli altrove.
           </p>
-          {backupMessage && (
-            <p className="text-sm mt-1.5 font-medium text-[#81b64c]">{backupMessage}</p>
-          )}
+          {backupMessage && <p className="text-sm font-medium text-accent">{backupMessage}</p>}
+          <div className="flex flex-wrap gap-3">
+            <button onClick={onExportBackup} className="btn-secondary">
+              Salva i progressi
+            </button>
+            <button onClick={() => fileInputRef.current?.click()} className="btn-secondary">
+              Ripristina da file
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json,.json"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </div>
         </div>
-
-        <div className="flex items-center gap-3 shrink-0">
-          <button
-            onClick={onExportBackup}
-            className="px-4 py-2.5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-sm font-semibold border border-[#4a4742] transition"
-          >
-            Esporta JSON
-          </button>
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2.5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] text-sm font-semibold border border-[#4a4742] transition"
-          >
-            Importa JSON
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="application/json,.json"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-        </div>
-      </div>
+      </details>
     </div>
   );
 };

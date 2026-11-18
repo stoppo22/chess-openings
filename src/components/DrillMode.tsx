@@ -5,6 +5,7 @@ import type { CommonMistake, OpeningRepertoireFile, OpponentMoveBranch } from '.
 import { getLastMoveInfo, normalizeFen } from '../services/fen';
 import { formatMoveLabel } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
+import { ModeHeader } from './ModeHeader';
 import { EvalBar } from './EvalBar';
 import {
   analyzeWrongPlayerMove,
@@ -355,15 +356,15 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
   const customSquareStyles: Record<string, React.CSSProperties> = {};
   if (lastMove) {
     customSquareStyles[lastMove.from] = {
-      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+      backgroundColor: 'rgba(214, 178, 74, 0.45)',
     };
     customSquareStyles[lastMove.to] = {
-      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+      backgroundColor: 'rgba(214, 178, 74, 0.45)',
     };
   }
   if (selectedSquare && canPlayerMoveNow) {
     customSquareStyles[selectedSquare] = {
-      backgroundColor: 'rgba(255, 255, 51, 0.45)',
+      backgroundColor: 'rgba(214, 178, 74, 0.7)',
     };
     try {
       const chess = new Chess(displayFen);
@@ -383,14 +384,14 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
   if (usedHintInMove && expectedMove && canPlayerMoveNow) {
     customSquareStyles[expectedMove.from] = {
       backgroundColor: 'rgba(54, 146, 231, 0.45)',
-      boxShadow: 'inset 0 0 0 3px #3692e7',
+      boxShadow: 'inset 0 0 0 3px rgb(var(--accent))',
     };
   }
 
   const customArrows = useMemo(() => {
     if (activeTrap && activeTrap.solved) {
       return [
-        [activeTrap.mistake.punishFrom, activeTrap.mistake.punishTo, 'rgba(129, 182, 76, 0.88)'],
+        [activeTrap.mistake.punishFrom, activeTrap.mistake.punishTo, 'rgba(46, 94, 78, 0.9)'],
       ] as Array<[any, any, string?]>;
     }
     if (isLineFinished && middlegameGuide) {
@@ -416,65 +417,45 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
   }, [activeTrap, isLineFinished, middlegameGuide, selectedIdeaId]);
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 space-y-3 sm:space-y-5">
       {/* Top Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#262421] border border-[#3c3934] rounded-md px-5 py-3.5">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={onBack}
-            className="px-4 py-2 rounded bg-[#383633] hover:bg-[#45423e] text-sm font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
-          >
-            ← Dashboard
-          </button>
-          <div className="h-5 w-px bg-[#3c3934]" />
-          <div>
-            <div className="flex items-center gap-2.5">
-              <span className="text-sm font-bold text-[#ffffff]">
-                Sparring (Avversario Fascia {opening.buildConfig.ratingBandLabel})
-              </span>
-              <span className="text-xs px-2.5 py-0.5 rounded bg-[#161512] text-[#81b64c] border border-[#3c3934] font-semibold tabular-nums">
-                Linee completate: {gamesCompleted}
-              </span>
-            </div>
-            <div className="text-sm font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-xl">
-              {activeTrap
-                ? `${currentNode.pgnPath} ${currentNode.moveNumber}. ${activeTrap.mistake.opponentMoveSan}?`
-                : currentNode.pgnPath || 'Posizione iniziale'}
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <label className="inline-flex items-center gap-2 text-sm text-[#9e9c99] cursor-pointer">
+      <ModeHeader
+        onBack={onBack}
+        title={`Partita di allenamento · fascia ${opening.buildConfig.ratingBandLabel}`}
+        line={
+          activeTrap
+            ? `${currentNode.pgnPath} ${currentNode.moveNumber}. ${activeTrap.mistake.opponentMoveSan}?`
+            : currentNode.pgnPath
+        }
+      >
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1">
+          <label className="inline-flex items-center gap-2 text-sm text-muted cursor-pointer min-h-[32px]">
             <input
               type="checkbox"
               checked={includeTraps}
               onChange={(e) => setIncludeTraps(e.target.checked)}
-              className="rounded border-[#4a4742] bg-[#161512]"
+              className="accent-[rgb(var(--accent))] w-4 h-4"
             />
-            Simula anche errori avversari da punire
+            Includi errori da punire
           </label>
-
-          <button
-            onClick={() => startNewGame(selectedVariationId)}
-            className="px-4 py-2 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] text-sm font-bold transition"
-          >
+          <span className="text-[13px] text-muted">Linee completate: {gamesCompleted}</span>
+          <button onClick={() => startNewGame(selectedVariationId)} className="btn-secondary w-full sm:w-auto">
             Nuova partita
           </button>
         </div>
-      </div>
+      </ModeHeader>
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         {/* EvalBar + Chessboard */}
         <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
+          <div className="w-full max-w-[560px] lg:max-w-[620px] flex flex-col lg:flex-row items-stretch gap-3">
             <EvalBar
               evalForPlayer={activeEvalForPlayer}
               deltaForPlayer={activeEvalDelta}
               playerColor={opening.playerColor}
             />
-            <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
+            <div className="order-1 lg:order-2 flex-1 aspect-square rounded-[10px] overflow-hidden border border-border bg-surface">
               <Chessboard
                 id="drill-board"
                 position={displayFen}
@@ -489,8 +470,9 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                 onSquareClick={handleSquareClick}
                 customSquareStyles={customSquareStyles}
                 customArrows={customArrows}
-                customDarkSquareStyle={{ backgroundColor: '#739552' }}
-                customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
+                customNotationStyle={{ fontSize: '11px', fontWeight: 500, color: '#4A3F33' }}
+                customDarkSquareStyle={{ backgroundColor: '#b0957a' }}
+                customLightSquareStyle={{ backgroundColor: '#eee6d3' }}
               />
             </div>
           </div>
@@ -499,29 +481,17 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
         {/* Right Panel */}
         <div className="lg:col-span-5 space-y-5">
           {/* Variation Filter */}
-          <div className="bg-[#262421] border border-[#3c3934] rounded-md p-4 space-y-2.5">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#9e9c99]">
-              Filtra variante da allenare:
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => startNewGame(undefined)}
-                className={`px-3 py-1.5 rounded text-xs font-semibold border transition ${
-                  !selectedVariationId
-                    ? 'bg-[#81b64c] text-[#ffffff] border-[#81b64c]'
-                    : 'bg-[#1e1c1a] text-[#bababa] border-[#3c3934] hover:text-[#ffffff]'
-                }`}
-              >
-                Tutte (Casuale 0-1400)
-              </button>
-              {opening.variations.map((v) => (
+          <div className="space-y-2">
+            <div className="text-[13px] text-muted">Variante da allenare</div>
+            <div className="scroll-row -mx-4 px-4 sm:mx-0 sm:px-0">
+              {[{ id: undefined as string | undefined, name: 'Tutte' }, ...opening.variations].map((v) => (
                 <button
-                  key={v.id}
+                  key={v.id ?? 'all'}
                   onClick={() => startNewGame(v.id)}
-                  className={`px-3 py-1.5 rounded text-xs font-semibold border transition ${
+                  className={`shrink-0 min-h-[44px] px-4 rounded-[10px] text-sm font-medium border transition ${
                     selectedVariationId === v.id
-                      ? 'bg-[#81b64c] text-[#ffffff] border-[#81b64c]'
-                      : 'bg-[#1e1c1a] text-[#bababa] border-[#3c3934] hover:text-[#ffffff]'
+                      ? 'bg-accent text-accent-ink border-accent'
+                      : 'bg-surface text-text border-border'
                   }`}
                 >
                   {v.name.split('(')[0].trim()}
@@ -531,29 +501,28 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
           </div>
 
           {/* Active Game Status Panel */}
-          <div className="bg-[#262421] border border-[#3c3934] rounded-md overflow-hidden">
-            <div className="px-5 py-3.5 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between">
-              <span className="text-sm font-bold uppercase tracking-wider text-[#e8e6e3]">
+          <div className="bg-surface border border-border rounded-xl overflow-hidden">
+            <div className="px-5 py-3.5 bg-bg border-b border-border flex items-center justify-between">
+              <span className="text-sm font-semibold  text-text">
                 {isLineFinished || (activeTrap && activeTrap.solved)
-                  ? 'Linea completata!'
+                  ? 'Linea completata'
                   : canPlayerMoveNow
                     ? `Mossa ${currentNode.moveNumber} • Tocca a te`
                     : 'L\'avversario sta muovendo...'}
               </span>
               {totalMistakesMade > 0 && (
-                <span className="text-xs text-[#f29b98] font-semibold tabular-nums">
-                  Imprecisioni in questa partita: {totalMistakesMade}
+                <span className="text-[13px] text-danger font-semibold tabular-nums">
+                  Errori in questa partita: {totalMistakesMade}
                 </span>
               )}
             </div>
 
             <div className="p-5 space-y-4">
               {lastMove && !isLineFinished && (
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161512] border border-[#3c3934] text-xs font-mono text-[#e8e6e3]">
-                  <span className="w-2.5 h-2.5 rounded-sm bg-[#9bc700] inline-block" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[10px] bg-bg border border-border text-[13px] text-text">
                   <span>
                     Ultima mossa dell'avversario:{' '}
-                    <strong className="text-[#ffffff]">
+                    <strong className="text-text">
                       {formatMoveLabel(lastMove.moveNumber, lastMove.color, lastMove.san)}
                     </strong>
                   </span>
@@ -562,12 +531,12 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
 
               {feedback.type !== 'idle' && feedback.message && (
                 <div
-                  className={`rounded px-4 py-3 text-sm font-semibold border ${
+                  className={`rounded-[10px] px-4 py-3 text-sm font-semibold border ${
                     feedback.type === 'wrong'
-                      ? 'bg-[#b33430]/20 border-[#b33430] text-[#f29b98]'
+                      ? 'bg-danger/20 border-danger text-danger'
                       : feedback.type === 'trap-triggered'
-                        ? 'bg-[#e69d00]/20 border-[#e69d00] text-[#f5d076]'
-                        : 'bg-[#81b64c]/20 border-[#81b64c] text-[#e8e6e3]'
+                        ? 'bg-warn/15 border-warn text-warn'
+                        : 'bg-accent/20 border-accent text-text'
                   }`}
                 >
                   {feedback.message}
@@ -576,53 +545,56 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
 
               {canPlayerMoveNow && expectedMove && (
                 <div className="space-y-3">
-                  <p className="text-base text-[#e8e6e3]">
+                  <p className="text-base text-text">
                     {activeTrap
                       ? 'Trova la mossa che punisce l’errore dell’avversario sulla scacchiera.'
                       : 'Gioca la mossa del tuo repertorio sulla scacchiera.'}
                   </p>
-                  <button
-                    onClick={() => {
-                      setUsedHintInMove(true);
-                      setSelectedSquare(expectedMove.from);
-                    }}
-                    disabled={usedHintInMove}
-                    className="px-4 py-2 rounded bg-[#383633] hover:bg-[#45423e] disabled:opacity-50 text-sm font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
-                  >
-                    {usedHintInMove
-                      ? `Suggerimento: muovi il pezzo da ${expectedMove.from.toUpperCase()}`
-                      : 'Mostra suggerimento'}
-                  </button>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={() => {
+                        setUsedHintInMove(true);
+                        setSelectedSquare(expectedMove.from);
+                      }}
+                      disabled={usedHintInMove}
+                      className="btn-secondary"
+                    >
+                      {usedHintInMove
+                        ? `Muovi il pezzo da ${expectedMove.from.toUpperCase()}`
+                        : 'Suggerimento'}
+                    </button>
+                    <span className="text-[13px] text-muted">conta come errore nel ripasso</span>
+                  </div>
                 </div>
               )}
 
               {/* End of Trap or End of Line */}
               {activeTrap && activeTrap.solved && (
-                <div className="space-y-4 pt-2 border-t border-[#33302c]">
-                  <div className="bg-[#1e1c1a] border border-[#33302c] rounded p-4 text-sm space-y-1">
-                    <div className="font-semibold text-[#ffffff]">
-                      Sequenza punitiva consigliata da Stockfish:
+                <div className="space-y-4 pt-2 border-t border-border">
+                  <div className="bg-bg border border-border rounded-[10px] p-4 text-sm space-y-1">
+                    <div className="font-semibold text-text">
+                      Sequenza consigliata da Stockfish
                     </div>
-                    <div className="font-mono text-[#81b64c]">
+                    <div className="text-accent">
                       {activeTrap.mistake.pvSan.join(' ')}
                     </div>
                   </div>
                   <button
                     onClick={() => startNewGame(selectedVariationId)}
-                    className="w-full py-3 px-5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
+                    className="btn-primary w-full"
                   >
-                    Gioca un&rsquo;altra partita →
+                    Un&rsquo;altra partita
                   </button>
                 </div>
               )}
 
               {isLineFinished && middlegameGuide && (
                 <div className="space-y-4">
-                  <div className="bg-[#1e1c1a] border border-[#81b64c]/50 rounded p-4 space-y-2">
-                    <div className="text-sm font-bold text-[#81b64c]">
+                  <div className="bg-bg border border-accent/50 rounded-[10px] p-4 space-y-2">
+                    <div className="text-sm font-semibold text-accent">
                       Hai completato tutta la linea d&rsquo;apertura fino a fine repertorio!
                     </div>
-                    <p className="text-sm text-[#bababa]">
+                    <p className="text-sm text-text">
                       Ecco i piani di mediogioco e le frecce d&rsquo;attacco da questa posizione:
                     </p>
                   </div>
@@ -635,22 +607,22 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                           key={idea.id}
                           type="button"
                           onClick={() => setSelectedIdeaId(idea.id)}
-                          className={`w-full text-left rounded p-3.5 border transition space-y-1 ${
+                          className={`w-full text-left rounded-[10px] p-3.5 border transition space-y-1 ${
                             isSelected
-                              ? 'bg-[#1e1c1a] border-[#81b64c]'
-                              : 'bg-[#1e1c1a] border-[#33302c] hover:border-[#4a4742]'
+                              ? 'bg-bg border-accent'
+                              : 'bg-bg border-border hover:border-border'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#81b64c]">
+                            <span className="text-[11px] font-semibold  text-accent">
                               {idea.category}
                             </span>
-                            <span className="text-xs font-mono text-[#e8e6e3]">
+                            <span className="text-[13px] text-text">
                               {idea.movesLabel}
                             </span>
                           </div>
-                          <div className="text-sm font-bold text-[#ffffff]">{idea.title}</div>
-                          <p className="text-xs text-[#bababa]">{idea.description}</p>
+                          <div className="text-sm font-semibold text-text">{idea.title}</div>
+                          <p className="text-[13px] text-text">{idea.description}</p>
                         </button>
                       );
                     })}
@@ -658,9 +630,9 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
 
                   <button
                     onClick={() => startNewGame(selectedVariationId)}
-                    className="w-full py-3 px-5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
+                    className="btn-primary w-full"
                   >
-                    Gioca un&rsquo;altra partita →
+                    Un&rsquo;altra partita
                   </button>
                 </div>
               )}

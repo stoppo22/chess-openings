@@ -139,10 +139,10 @@ export const App: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#161512] text-[#e8e6e3] flex items-center justify-center p-6">
-        <div className="max-w-md bg-[#262421] border border-[#b33430] rounded-md p-5 space-y-2">
-          <h1 className="text-base font-bold text-[#e8e6e3]">Errore caricamento repertorio</h1>
-          <p className="text-xs text-[#bababa]">{error}</p>
+      <div className="min-h-screen bg-bg text-text flex items-center justify-center p-6">
+        <div className="max-w-md bg-surface border border-danger rounded-xl p-5 space-y-2">
+          <h1 className="text-base font-semibold text-text">Errore caricamento repertorio</h1>
+          <p className="text-[13px] text-text">{error}</p>
         </div>
       </div>
     );
@@ -150,20 +150,20 @@ export const App: React.FC = () => {
 
   if (!openingData) {
     return (
-      <div className="min-h-screen bg-[#161512] text-[#bababa] flex items-center justify-center">
+      <div className="min-h-screen bg-bg text-text flex items-center justify-center">
         <div className="text-sm">Caricamento repertorio...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#161512] text-[#e8e6e3] pb-10">
+    <div className="min-h-screen bg-bg text-text pb-10">
       {swUpdateReady && isSessionActive && (
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-3">
           <button
             type="button"
             onClick={applySwUpdateReload}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#3692e7] hover:bg-[#2b7bc6] text-white text-sm font-semibold transition"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-surface hover:bg-bg border border-border text-text text-sm font-semibold transition"
           >
             <span>Aggiornamento disponibile, tocca per ricaricare</span>
           </button>

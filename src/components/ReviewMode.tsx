@@ -5,6 +5,7 @@ import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../t
 import { formatMoveLabel, getLastMoveInfo } from '../services/fen';
 import { analyzeWrongPlayerMove, type WrongMoveAnalysis } from '../services/moveAnalyzer';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
+import { ModeHeader } from './ModeHeader';
 import { EvalBar } from './EvalBar';
 
 interface ReviewModeProps {
@@ -94,20 +95,17 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   if (sessionQueue.length === 0 || currentIndex >= sessionQueue.length) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16">
-        <div className="bg-[#262421] border border-[#3c3934] rounded-md p-8 text-center space-y-5">
-          <div className="text-sm font-bold uppercase tracking-wider text-[#81b64c]">
-            Sessione terminata
-          </div>
-          <h2 className="text-2xl font-bold text-[#ffffff]">Ripasso giornaliero completato</h2>
-          <p className="text-base text-[#9e9c99]">
+        <div className="bg-surface border border-border rounded-xl p-8 text-center space-y-5">
+          <h2 className="text-2xl text-text">Ripasso di oggi completato</h2>
+          <p className="text-base text-muted">
             Hai completato tutte le posizioni in scadenza per oggi (incluso il limite giornaliero di
-            10 nuove card).
+            10 nuove mosse).
           </p>
           <button
             onClick={onBack}
-            className="inline-flex items-center justify-center px-6 py-3 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base transition"
+            className="btn-primary"
           >
-            ← Torna alla Dashboard
+            Torna all'inizio
           </button>
         </div>
       </div>
@@ -218,15 +216,15 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const customSquareStyles: Record<string, React.CSSProperties> = {};
   if (lastOpponentMove && feedback.type !== 'solved') {
     customSquareStyles[lastOpponentMove.from] = {
-      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+      backgroundColor: 'rgba(214, 178, 74, 0.45)',
     };
     customSquareStyles[lastOpponentMove.to] = {
-      backgroundColor: 'rgba(155, 199, 0, 0.41)',
+      backgroundColor: 'rgba(214, 178, 74, 0.45)',
     };
   }
   if (selectedSquare && feedback.type !== 'solved') {
     customSquareStyles[selectedSquare] = {
-      backgroundColor: 'rgba(255, 255, 51, 0.45)',
+      backgroundColor: 'rgba(214, 178, 74, 0.7)',
     };
     try {
       const chess = new Chess(boardFen);
@@ -246,7 +244,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   if (usedHint && feedback.type !== 'solved') {
     customSquareStyles[currentCard.correctFrom] = {
       backgroundColor: 'rgba(54, 146, 231, 0.45)',
-      boxShadow: 'inset 0 0 0 3px #3692e7',
+      boxShadow: 'inset 0 0 0 3px rgb(var(--accent))',
     };
   }
 
@@ -273,68 +271,44 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   }, [wrongMoveAnalysis, currentCard]);
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 space-y-3 sm:space-y-5">
       {/* Top Bar */}
-      <div className="bg-[#262421] border border-[#3c3934] rounded-md px-5 py-3.5 space-y-2.5">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={onBack}
-              className="px-4 py-2 rounded bg-[#383633] hover:bg-[#45423e] text-sm font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
-            >
-              ← Esci
-            </button>
-            <div className="h-5 w-px bg-[#3c3934]" />
-            <div>
-              <div className="flex items-center gap-2.5">
-                <span className="text-sm font-bold text-[#e8e6e3] tabular-nums">
-                  Posizione {currentIndex + 1} / {sessionQueue.length}
-                </span>
-                <span
-                  className={`text-xs px-2.5 py-0.5 rounded font-semibold border ${
-                    currentCard.cardType === 'punish'
-                      ? 'bg-[#b33430]/20 text-[#f29b98] border-[#b33430]/40'
-                      : 'bg-[#1e1c1a] text-[#bababa] border-[#3c3934]'
-                  }`}
-                >
-                  {currentCard.cardType === 'punish' ? 'Punisci Errore' : 'Repertorio'}
-                </span>
-              </div>
-              <div className="text-sm font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-xl">
-                {currentCard.pgnPath}
-              </div>
-            </div>
-          </div>
-
-          {hasPunishCards && (
-            <label className="inline-flex items-center gap-2 text-sm text-[#9e9c99] cursor-pointer">
-              <input
-                type="checkbox"
-                checked={includePunish}
-                onChange={(e) => setIncludePunish(e.target.checked)}
-                className="rounded border-[#4a4742] bg-[#161512]"
-              />
-              Includi card &ldquo;Punisci Errori&rdquo;
-            </label>
-          )}
+      <ModeHeader
+        onBack={onBack}
+        title={
+          <>
+            Ripasso <span className="text-muted font-normal tabular-nums">· {currentIndex + 1} di {sessionQueue.length}</span>
+          </>
+        }
+        line={currentCard.pgnPath}
+      >
+        <div className="h-1.5 bg-bg rounded-full overflow-hidden">
+          <div className="h-full bg-accent transition-all" style={{ width: `${progressPct}%` }} />
         </div>
-
-        <div className="w-full h-1.5 bg-[#161512] rounded-sm overflow-hidden">
-          <div className="h-full bg-[#81b64c] transition-all" style={{ width: `${progressPct}%` }} />
-        </div>
-      </div>
+        {hasPunishCards && (
+          <label className="inline-flex items-center gap-2 text-sm text-muted cursor-pointer min-h-[32px] px-1">
+            <input
+              type="checkbox"
+              checked={includePunish}
+              onChange={(e) => setIncludePunish(e.target.checked)}
+              className="accent-[rgb(var(--accent))] w-4 h-4"
+            />
+            Includi esercizi &lsquo;punisci l&rsquo;errore&rsquo;
+          </label>
+        )}
+      </ModeHeader>
 
       {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         {/* Chessboard + EvalBar */}
         <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
+          <div className="w-full max-w-[560px] lg:max-w-[620px] flex flex-col lg:flex-row items-stretch gap-3">
             <EvalBar
               evalForPlayer={activeEvalForPlayer}
               deltaForPlayer={activeEvalDelta}
               playerColor={opening.playerColor}
             />
-            <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
+            <div className="order-1 lg:order-2 flex-1 aspect-square rounded-[10px] overflow-hidden border border-border bg-surface">
               <Chessboard
                 id="review-board"
                 position={boardFen}
@@ -354,13 +328,14 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                         [
                           currentCard.correctFrom as Square,
                           currentCard.correctTo as Square,
-                          'rgba(129, 182, 76, 0.85)',
+                          'rgba(46, 94, 78, 0.9)',
                         ],
                       ]
                     : []
                 }
-                customDarkSquareStyle={{ backgroundColor: '#739552' }}
-                customLightSquareStyle={{ backgroundColor: '#ebecd0' }}
+                customNotationStyle={{ fontSize: '11px', fontWeight: 500, color: '#4A3F33' }}
+                customDarkSquareStyle={{ backgroundColor: '#b0957a' }}
+                customLightSquareStyle={{ backgroundColor: '#eee6d3' }}
               />
             </div>
           </div>
@@ -368,18 +343,15 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
 
         {/* MoveTrainer Prompt & Evaluation Panel */}
         <div className="lg:col-span-5">
-          <div className="bg-[#262421] border border-[#3c3934] rounded-md overflow-hidden">
-            <div className="px-5 py-3.5 bg-[#1e1c1a] border-b border-[#3c3934] flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="w-3 h-3 rounded-sm bg-[#161512] border border-[#9e9c99] inline-block" />
-                <span className="text-sm font-bold uppercase tracking-wider text-[#e8e6e3]">
-                  {currentCard.cardType === 'punish'
-                    ? `Punisci l'errore (${opening.buildConfig.ratingBandLabel})`
-                    : 'Tocca a te — Trova la mossa'}
-                </span>
-              </div>
+          <div className="bg-surface border border-border rounded-xl overflow-hidden">
+            <div className="px-4 py-3 border-b border-border flex items-center justify-between gap-3">
+              <span className="text-[15px] font-semibold">
+                {currentCard.cardType === 'punish'
+                  ? `Punisci l'errore (${opening.buildConfig.ratingBandLabel})`
+                  : 'Tocca a te: trova la mossa'}
+              </span>
               {wrongAttempts > 0 && (
-                <span className="text-sm text-[#f29b98] font-semibold tabular-nums">
+                <span className="text-sm text-danger tabular-nums shrink-0">
                   Errori: {wrongAttempts}
                 </span>
               )}
@@ -388,89 +360,87 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
             <div className="p-6 space-y-5">
               <div className="space-y-2">
                 {lastOpponentMove && (
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161512] border border-[#3c3934] text-xs font-mono text-[#e8e6e3]">
-                    <span className="w-2.5 h-2.5 rounded-sm bg-[#9bc700] inline-block" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[10px] bg-bg border border-border text-[13px] text-text">
                     <span>
                       Ultima mossa dell'avversario:{' '}
-                      <strong className="text-[#ffffff]">
+                      <strong className="text-text">
                         {formatMoveLabel(lastOpponentMove.moveNumber, lastOpponentMove.color, lastOpponentMove.san)}
                       </strong>
                     </span>
                   </div>
                 )}
-                <h2 className="text-lg font-bold text-[#ffffff] leading-snug">
+                <h2 className="text-lg font-semibold text-text leading-snug">
                   {currentCard.cardType === 'punish' && currentCard.mistakeContext
                     ? `L'avversario ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Gioca la confutazione.`
                     : 'Esegui la mossa del tuo repertorio sulla scacchiera.'}
                 </h2>
-                <p className="text-sm text-[#9e9c99]">
+                <p className="text-sm text-muted">
                   Tocca un pezzo per vedere le mosse legali o trascinalo sulla casa di destinazione.
                 </p>
               </div>
 
               {/* Wrong Move Feedback */}
               {feedback.type === 'wrong' && (
-                <div className="bg-[#b33430]/20 border border-[#b33430] text-[#f29b98] rounded px-4 py-3 text-sm font-semibold">
+                <div className="bg-danger/20 border border-danger text-danger rounded-[10px] px-4 py-3 text-sm font-semibold">
                   {feedback.message}
                 </div>
               )}
 
               {/* Hint Button (before solving) */}
               {feedback.type !== 'solved' && (
-                <div className="pt-3 border-t border-[#33302c] flex items-center justify-between">
+                <div className="pt-3 border-t border-border flex flex-wrap items-center">
                   <button
                     onClick={handleUseHint}
                     disabled={usedHint}
-                    className="px-4 py-2.5 rounded bg-[#383633] hover:bg-[#45423e] disabled:opacity-50 text-sm font-semibold text-[#e8e6e3] border border-[#4a4742] transition"
+                    className="btn-secondary"
                   >
-                    {usedHint
-                      ? `Suggerimento attivo: muovi da ${currentCard.correctFrom.toUpperCase()}`
-                      : 'Mostra suggerimento (valuta Again)'}
+                    {usedHint ? `Muovi il pezzo da ${currentCard.correctFrom.toUpperCase()}` : 'Suggerimento'}
                   </button>
+                  <span className="text-[13px] text-muted ml-3">conta come errore nel ripasso</span>
                 </div>
               )}
 
-              {/* Solved Feedback + Stats + FSRS Scheduling Buttons */}
+              {/* Solved Feedback + Stats + buttons */}
               {feedback.type === 'solved' && (
-                <div className="space-y-5 pt-3 border-t border-[#33302c]">
-                  <div className="bg-[#81b64c]/20 border border-[#81b64c] text-[#e8e6e3] rounded px-4 py-3 text-base font-bold">
+                <div className="space-y-5 pt-3 border-t border-border">
+                  <div className="bg-accent/10 border border-accent text-accent rounded-[10px] px-4 py-3 text-base font-semibold">
                     {feedback.message}
                   </div>
 
                   {/* Stats Table for Repertoire Card */}
                   {currentCard.cardType === 'repertoire' && currentNode?.playerMove && (
-                    <div className="border border-[#33302c] rounded divide-y divide-[#33302c] text-sm bg-[#1e1c1a]">
-                      <div className="px-4 py-2.5 flex items-center justify-between">
-                        <span className="text-[#9e9c99]">Database Masters GM</span>
-                        <span className="font-semibold text-[#e8e6e3] tabular-nums">
+                    <div className="border border-border rounded-[10px] divide-y divide-border text-sm bg-bg">
+                      <div className="px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                        <span className="text-muted">Database Masters GM</span>
+                        <span className="font-semibold text-text tabular-nums">
                           {currentNode.playerMove.gmStats.totalGames.toLocaleString('it-IT')}{' '}
                           partite
                           {currentNode.playerMove.gmStats.totalGames > 0 &&
-                            ` (B ${currentNode.playerMove.gmStats.whitePct}% • P ${currentNode.playerMove.gmStats.drawPct}% • N ${currentNode.playerMove.gmStats.blackPct}%)`}
+                            ` (Bianco ${currentNode.playerMove.gmStats.whitePct}% · Patta ${currentNode.playerMove.gmStats.drawPct}% · Nero ${currentNode.playerMove.gmStats.blackPct}%)`}
                         </span>
                       </div>
 
-                      <div className="px-4 py-2.5 flex items-center justify-between">
-                        <span className="text-[#9e9c99]">
+                      <div className="px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                        <span className="text-muted">
                           Fascia {opening.buildConfig.ratingBandLabel}
                         </span>
-                        <span className="font-semibold text-[#e8e6e3] tabular-nums">
+                        <span className="font-semibold text-text tabular-nums">
                           {(currentNode.playerMove.bandStats?.totalGames || 0).toLocaleString(
                             'it-IT'
                           )}{' '}
                           partite
                           {currentNode.playerMove.bandStats &&
                             currentNode.playerMove.bandStats.totalGames > 0 &&
-                            ` (B ${currentNode.playerMove.bandStats.whitePct}% • P ${currentNode.playerMove.bandStats.drawPct}% • N ${currentNode.playerMove.bandStats.blackPct}%)`}
+                            ` (Bianco ${currentNode.playerMove.bandStats.whitePct}% · Patta ${currentNode.playerMove.bandStats.drawPct}% · Nero ${currentNode.playerMove.bandStats.blackPct}%)`}
                         </span>
                       </div>
 
                       <div className="px-4 py-2.5 space-y-1">
                         <div className="flex items-center justify-between">
-                          <span className="text-[#9e9c99]">
-                            Stockfish (d{currentNode.playerMove.engine.depth})
+                          <span className="text-muted">
+                            Stockfish
                           </span>
-                          <span className="font-mono font-bold text-[#e8e6e3] tabular-nums">
+                          <span className="font-semibold text-text tabular-nums">
                             {currentNode.playerMove.san}:{' '}
                             {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0
                               ? '+'
@@ -478,41 +448,41 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                             {currentNode.playerMove.engine.evalFromPlayerPerspective.toFixed(2)}
                             {currentNode.playerMove.engine.bestMoveSan !==
                               currentNode.playerMove.san &&
-                              ` (1ª scelta: ${currentNode.playerMove.engine.bestMoveSan} ${
+                              ` (prima scelta: ${currentNode.playerMove.engine.bestMoveSan} ${
                                 -currentNode.playerMove.engine.bestEvalPawns >= 0 ? '+' : ''
                               }${(-currentNode.playerMove.engine.bestEvalPawns).toFixed(2)})`}
                           </span>
                         </div>
-                        <div className="font-mono text-xs text-[#8c8a87] truncate">
-                          PV: {currentNode.playerMove.engine.pvSan.join(' ')}
+                        <div className="text-[13px] text-muted truncate">
+                          Linea: {currentNode.playerMove.engine.pvSan.join(' ')}
                         </div>
                       </div>
                     </div>
                   )}
 
-                  {/* Punish Card Details */}
+                  {/* Punish details */}
                   {currentCard.cardType === 'punish' && currentCard.mistakeContext && (
-                    <div className="bg-[#1e1c1a] border border-[#33302c] rounded p-4 space-y-1.5 text-sm">
-                      <div className="font-semibold text-[#e8e6e3]">
-                        Errore avversario ({opening.buildConfig.ratingBandLabel}):{' '}
-                        <span className="font-mono">
+                    <div className="bg-bg border border-border rounded-[10px] p-4 space-y-1.5 text-sm">
+                      <div className="font-semibold text-text">
+                        Errore dell'avversario ({opening.buildConfig.ratingBandLabel}):{' '}
+                        <span className="">
                           {currentCard.mistakeContext.opponentMistakeSan}?
                         </span>{' '}
                         ({currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi •{' '}
                         {currentCard.mistakeContext.severity} • Freq:{' '}
                         {currentCard.mistakeContext.frequencyPct}%)
                       </div>
-                      <div className="text-[#9e9c99]">
+                      <div className="text-muted">
                         Punizione:{' '}
-                        <strong className="text-[#81b64c] font-mono">
+                        <strong className="text-accent ">
                           {currentCard.correctMoveSan}
                         </strong>{' '}
-                        • PV (d{currentCard.mistakeContext.depth || 20}):{' '}
-                        <span className="font-mono">{currentCard.mistakeContext.pvSan.join(' ')}</span>
+                        · linea:{' '}
+                        <span className="">{currentCard.mistakeContext.pvSan.join(' ')}</span>
                         {typeof currentCard.mistakeContext.finalEvalForPlayer === 'number' && (
                           <span>
                             {' '}
-                            • Eval per te:{' '}
+                            • Valutazione per te:{' '}
                             {currentCard.mistakeContext.finalEvalForPlayer >= 0 ? '+' : ''}
                             {currentCard.mistakeContext.finalEvalForPlayer.toFixed(2)}
                           </span>
@@ -521,28 +491,31 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                     </div>
                   )}
 
-                  {/* FSRS Grade Buttons */}
+                  {/* Grade buttons */}
                   <div className="pt-1">
                     {isForcedAgain ? (
+                      <div>
                       <button
                         onClick={() => handleAdvance(false)}
-                        className="w-full py-3 px-5 rounded bg-[#b33430] hover:bg-[#c93c38] text-[#ffffff] font-bold text-base transition"
+                        className="btn-primary w-full"
                       >
-                        Prossima posizione (Ripeti / Again) →
+                        Avanti
                       </button>
+                      <p className="text-[13px] text-muted mt-2">Questa posizione tornerà presto nel ripasso.</p>
+                      </div>
                     ) : (
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => handleAdvance(false)}
-                          className="flex-1 py-3 px-5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
+                          className="btn-primary flex-1"
                         >
-                          Continua (Good) →
+                          Continua
                         </button>
                         <button
                           onClick={() => handleAdvance(true)}
-                          className="py-3 px-5 rounded bg-[#383633] hover:bg-[#45423e] text-[#e8e6e3] font-semibold text-base border border-[#4a4742] transition"
+                          className="btn-secondary"
                         >
-                          Facile (Easy)
+                          Era facile
                         </button>
                       </div>
                     )}

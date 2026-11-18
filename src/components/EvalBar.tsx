@@ -6,16 +6,22 @@ interface EvalBarProps {
   evalForPlayer: number | null;
   /** Variazione opzionale (positiva = a tuo favore); null/undefined = non mostrare. */
   deltaForPlayer?: number | null;
-  /** Colore del giocatore: la sua metà della barra sta in basso, come la scacchiera. */
+  /** Colore del giocatore: la sua metà della barra sta in basso / a sinistra. */
   playerColor?: PlayerColor;
   label?: string;
+  /** 'auto': orizzontale sotto la scacchiera su telefono, verticale accanto da 1024px. */
+  orientation?: 'auto' | 'vertical' | 'horizontal';
 }
+
+const WHITE = '#F4F1E8';
+const BLACK = '#2A2823';
 
 export const EvalBar: React.FC<EvalBarProps> = ({
   evalForPlayer,
   deltaForPlayer,
   playerColor = 'black',
   label,
+  orientation = 'auto',
 }) => {
   const hasEval = evalForPlayer !== null;
   const ev = evalForPlayer ?? 0;
@@ -23,14 +29,21 @@ export const EvalBar: React.FC<EvalBarProps> = ({
   const playerPct = Math.round(50 + (Math.atan(clamped / 2.2) / (Math.PI / 2)) * 46);
   const formattedScore = hasEval ? `${ev >= 0 ? '+' : ''}${ev.toFixed(2)}` : '–';
   const playerIsAhead = ev >= 0;
-  const playerFill = playerColor === 'white' ? '#e8e6e3' : '#1e1c1a';
-  const opponentFill = playerColor === 'white' ? '#1e1c1a' : '#e8e6e3';
-  const textOnPlayer = playerColor === 'white' ? 'text-[#161512]' : 'text-[#e8e6e3]';
-  const textOnOpponent = playerColor === 'white' ? 'text-[#e8e6e3]' : 'text-[#161512]';
+  const playerFill = playerColor === 'white' ? WHITE : BLACK;
+  const opponentFill = playerColor === 'white' ? BLACK : WHITE;
+  const hasDelta = typeof deltaForPlayer === 'number' && Math.abs(deltaForPlayer) >= 0.25;
+  const delta = hasDelta ? (deltaForPlayer as number) : 0;
+  const deltaText = delta > 0 ? `+${delta.toFixed(1)}` : delta.toFixed(1);
+  const deltaClass = delta > 0 ? 'text-accent' : 'text-danger';
+
+  const showH = orientation !== 'vertical';
+  const showV = orientation !== 'horizontal';
+  const hCls = orientation === 'auto' ? 'lg:hidden' : '';
+  const vCls = orientation === 'auto' ? 'hidden lg:flex' : 'flex';
 
   return (
     <div
-      className="flex flex-col items-center select-none shrink-0"
+      className="order-2 lg:order-1 shrink-0 select-none"
       title={
         label ||
         (hasEval
@@ -38,37 +51,51 @@ export const EvalBar: React.FC<EvalBarProps> = ({
           : 'Valutazione non disponibile')
       }
     >
-      <div
-        className="w-7 sm:w-8 h-full min-h-[280px] rounded overflow-hidden border border-[#3c3934] flex flex-col justify-between relative shadow-inner"
-        style={{ backgroundColor: opponentFill }}
-      >
-        <div
-          className="w-full transition-all duration-300 ease-out"
-          style={{ height: `${100 - playerPct}%`, backgroundColor: opponentFill }}
-        />
-        <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-[#81b64c]/60 z-10 pointer-events-none" />
-        <div
-          className="w-full transition-all duration-300 ease-out"
-          style={{ height: `${playerPct}%`, backgroundColor: playerFill }}
-        />
-        <div
-          className={`absolute left-0 right-0 text-center text-[10px] sm:text-[11px] font-mono font-bold tabular-nums leading-none px-0.5 z-20 ${
-            playerIsAhead ? `bottom-1.5 ${textOnPlayer}` : `top-1.5 ${textOnOpponent}`
-          }`}
-        >
-          {formattedScore}
+      {showH && (
+        <div className={`flex items-center gap-3 ${hCls}`}>
+          <div
+            className="flex-1 h-1.5 rounded-full overflow-hidden border border-border flex"
+            style={{ backgroundColor: opponentFill }}
+          >
+            <div
+              className="h-full transition-all duration-300"
+              style={{ width: `${playerPct}%`, backgroundColor: playerFill }}
+            />
+          </div>
+          <div className="flex items-baseline gap-1.5 min-w-[88px] justify-end text-sm tabular-nums">
+            <span className="font-semibold text-text">{formattedScore}</span>
+            {hasDelta && <span className={`${deltaClass} text-[13px]`}>({deltaText})</span>}
+          </div>
         </div>
-      </div>
+      )}
 
-      {typeof deltaForPlayer === 'number' && Math.abs(deltaForPlayer) >= 0.25 && (
-        <div
-          className={`mt-1.5 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold tabular-nums border ${
-            deltaForPlayer > 0
-              ? 'bg-[#81b64c]/20 text-[#81b64c] border-[#81b64c]/50'
-              : 'bg-[#b33430]/20 text-[#f29b98] border-[#b33430]/50'
-          }`}
-        >
-          {deltaForPlayer > 0 ? `+${deltaForPlayer.toFixed(1)}` : deltaForPlayer.toFixed(1)}
+      {showV && (
+        <div className={`${vCls} flex-col items-center h-full w-12`}>
+          <div
+            className="w-full flex-1 min-h-[280px] rounded-[10px] overflow-hidden border border-border flex flex-col justify-end relative"
+            style={{ backgroundColor: opponentFill }}
+          >
+            <div
+              className="w-full transition-all duration-300"
+              style={{ height: `${playerPct}%`, backgroundColor: playerFill }}
+            />
+            <div
+              className="absolute left-0 right-0 text-center text-[12px] font-semibold tabular-nums leading-none"
+              style={{
+                [playerIsAhead ? 'bottom' : 'top']: 6,
+                color: playerIsAhead
+                  ? playerColor === 'white' ? BLACK : WHITE
+                  : playerColor === 'white' ? WHITE : BLACK,
+              }}
+            >
+              {formattedScore}
+            </div>
+          </div>
+          {hasDelta && (
+            <div className={`mt-2 text-[13px] font-semibold tabular-nums ${deltaClass}`}>
+              {deltaText}
+            </div>
+          )}
         </div>
       )}
     </div>
