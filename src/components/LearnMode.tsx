@@ -627,7 +627,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                               >
                                 <div className="flex flex-wrap items-baseline gap-x-2 text-sm tabular-nums">
                                   <span className="font-semibold text-[15px]">
-                                    {currentNode.moveNumber}.{opp.san}
+                                    {formatMoveLabel(currentNode.moveNumber, currentNode.turn, opp.san)}
                                   </span>
                                   <span className="text-muted">·</span>
                                   <span>{opp.frequencyPct.toLocaleString('it-IT')}%</span>
@@ -806,7 +806,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                             <div className="flex items-center justify-between gap-2 flex-wrap">
                               <div className="flex items-center gap-2.5 flex-wrap">
                                 <span className="text-base font-semibold text-text">
-                                  {currentNode.moveNumber}.{m.opponentMoveSan}?
+                                  {formatMoveLabel(currentNode.moveNumber, currentNode.turn, m.opponentMoveSan)}?
                                 </span>
                                 <span className="text-[13px] px-2.5 py-0.5 rounded-[10px] bg-danger/25 text-danger border border-danger/50 font-semibold tabular-nums">
                                   {m.evalLoss.toFixed(2)} pedoni persi ({m.severity === 'blunder' ? 'errore grave' : m.severity === 'mistake' ? 'errore' : 'imprecisione'})

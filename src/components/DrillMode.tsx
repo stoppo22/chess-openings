@@ -140,7 +140,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
           });
           setFeedback({
             type: 'trap-triggered',
-            message: `L'avversario (0-1400) ha commesso un errore: ${currentNode.moveNumber}. ${chosenMistake.opponentMoveSan}? (${chosenMistake.evalLoss.toFixed(2)} pedoni persi). Trova la punizione!`,
+            message: `L'avversario (0-1400) ha commesso un errore: ${formatMoveLabel(currentNode.moveNumber, currentNode.turn, chosenMistake.opponentMoveSan)}? (${chosenMistake.evalLoss.toFixed(2)} pedoni persi). Trova la punizione!`,
           });
         }, 420);
         return;
@@ -424,7 +424,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
         title={`Partita di allenamento · fascia ${opening.buildConfig.ratingBandLabel}`}
         line={
           activeTrap
-            ? `${currentNode.pgnPath} ${currentNode.moveNumber}. ${activeTrap.mistake.opponentMoveSan}?`
+            ? `${currentNode.pgnPath} ${formatMoveLabel(currentNode.moveNumber, currentNode.turn, activeTrap.mistake.opponentMoveSan)}?`
             : currentNode.pgnPath
         }
       >
