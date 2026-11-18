@@ -55,6 +55,33 @@ export function sees(ch, from) {
   }
   return out;
 }
+/** Pins made by the sliding piece on `from`: enemy piece in front of a more valuable enemy piece (or the king). */
+export function pinsFrom(ch, from) {
+  const pc = ch.get(from); const out = [];
+  for (const [df, dr] of RAYS[pc.type] ?? []) {
+    let f = FILES.indexOf(from[0]) + df, r = +from[1] + dr; const hit = [];
+    while (f >= 0 && f < 8 && r >= 1 && r <= 8 && hit.length < 2) {
+      const sq = FILES[f] + r, q = ch.get(sq);
+      if (q) hit.push({ sq, p: q });
+      f += df; r += dr;
+    }
+    const [a, b] = hit;
+    if (!(a && b && a.p.color !== pc.color && b.p.color !== pc.color && a.p.type !== 'k')) continue;
+    // Absolute pins (king behind) always count; relative ones only for a piece in front of a queen or rook.
+    if (b.p.type === 'k' || ('qr'.includes(b.p.type) && a.p.type !== 'p' && VAL[b.p.type] > VAL[a.p.type]))
+      out.push({ pinned: a, behind: b, absolute: b.p.type === 'k' });
+  }
+  return out;
+}
+/** Fork: the piece on `from` attacks two or more enemy targets that matter (king, or worth ≥ its own value, or undefended). */
+export function forkTargets(ch, from) {
+  const pc = ch.get(from);
+  const t = attackedBy(ch, from).filter((s) => {
+    const q = ch.get(s);
+    return q.type === 'k' || VAL[q.type] > VAL[pc.type] || (VAL[q.type] >= 3 && !attackersOf(ch, s, q.color).length);
+  });
+  return t.length >= 2 ? t : [];
+}
 const hangingLines = (ch) => occupied(ch).filter((x) => isHanging(ch, x.sq)).map((x) => {
   const cheap = Math.min(...attackersOf(ch, x.sq, opp(x.p.color)).map((a) => VAL[ch.get(a).type])) < VAL[x.p.type];
   // 'in presa' in Italian means capturable for free: use it only for undefended pieces.
@@ -74,6 +101,10 @@ export function boardFactLines(fen, sq, { slidersToo = true } = {}) {
     const def = attacksFrom(ch, sq).filter((t) => ch.get(t).color === p.color).map((t) => `${NAME[ch.get(t).type]} ${t}`);
     if (def.length) L.push(`${pn(p, sq)} difende: ${def.join(', ')}`);
     if (slidersToo && RAYS[p.type]) L.push(`${pn(p, sq)} vede: ${sees(ch, sq).map((x) => `${x.sq} (${x.p.color === p.color ? 'suo ' : ''}${NAME[x.p.type]})`).join(', ') || 'niente'}`);
+    for (const pin of pinsFrom(ch, sq))
+      L.push(`${pn(p, sq)} inchioda: ${pn(pin.pinned.p, pin.pinned.sq)} contro ${NAME[pin.behind.p.type]} ${pin.behind.sq} (${pin.absolute ? 'inchiodatura assoluta: non può muoversi' : 'inchiodatura relativa: se si muove, perde il pezzo dietro'})`);
+    const fork = forkTargets(ch, sq);
+    if (fork.length) L.push(`Forchetta: ${pn(p, sq)} attacca insieme ${fork.map((t) => `${NAME[ch.get(t).type]} ${t}`).join(', ')}`);
   }
   if (ch.inCheck()) L.push(`Scacco al Re ${COL[ch.turn()]}`);
   L.push(...hangingLines(ch));

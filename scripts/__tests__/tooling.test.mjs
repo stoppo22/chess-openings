@@ -108,3 +108,21 @@ describe('repertoire consistency', () => {
     });
   }
 });
+
+import { pinsFrom, forkTargets } from '../facts/facts-lib.mjs';
+import { Chess as Chess2 } from 'chess.js';
+describe('board facts: pins and forks', () => {
+  const play = (s) => { const c = new Chess2(); for (const m of s.split(' ')) c.move(m); return c; };
+  it('Bg4 pins the f3 knight to the queen (Caro-Kann 2.Nf3 d5 3.Nc3 Bg4)', () => {
+    const p = pinsFrom(play('e4 c6 Nf3 d5 Nc3 Bg4'), 'g4');
+    expect(p.map((x) => [x.pinned.sq, x.behind.sq, x.absolute])).toEqual([['f3', 'd1', false]]);
+  });
+  it('Bb4 pins the c3 knight to the king (Fantasy 3.f3 e6 4.Nc3 Bb4)', () => {
+    const p = pinsFrom(play('e4 c6 d4 d5 f3 e6 Nc3 Bb4'), 'b4');
+    expect(p.map((x) => [x.pinned.sq, x.behind.sq, x.absolute])).toEqual([['c3', 'e1', true]]);
+  });
+  it('Nxc7+ forks king, queen and rook (Englund line)', () => {
+    const c = play('d4 e5 dxe5 Nc6 Nf3 Qe7 Nc3 f6 Nd5 Qe6 Nxc7+');
+    expect(forkTargets(c, 'c7').sort()).toEqual(['a8', 'e6', 'e8']);
+  });
+});
