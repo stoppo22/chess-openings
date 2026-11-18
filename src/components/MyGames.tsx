@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { OpeningRepertoireFile } from '../types/repertoire';
 import { analyseGame, fetchRecentGames, summarise, type DeviationStat } from '../services/myGames';
-import { loadSummary, loadUsername, saveSummary, saveUsername, savePriority, saveContext, type CachedSummary } from '../services/gamesStore';
+import { loadSummary, loadUsername, saveSummary, saveUsername, savePriority, saveContext, type CachedSummary, type PriorityState } from '../services/gamesStore';
 
 const line = (opening: OpeningRepertoireFile, d: DeviationStat) => {
   const path = (opening.positions[d.normalizedFen]?.pgnPath ?? '').replace(/(\d+)\.\s+/g, '$1.');
@@ -11,7 +11,7 @@ const line = (opening: OpeningRepertoireFile, d: DeviationStat) => {
   return d.repertoireSan ? `${where}: hai giocato ${top}, il repertorio dice ${d.repertoireSan}` : `${where} — fuori dal repertorio (hai giocato ${top})`;
 };
 
-export const MyGames: React.FC<{ opening: OpeningRepertoireFile; onPriorityChange: (ids: string[]) => void }> = ({
+export const MyGames: React.FC<{ opening: OpeningRepertoireFile; onPriorityChange: (p: PriorityState) => void }> = ({
   opening,
   onPriorityChange,
 }) => {
@@ -81,9 +81,9 @@ export const MyGames: React.FC<{ opening: OpeningRepertoireFile; onPriorityChang
             {s.priorityCardIds.length > 0 && (
               <button
                 onClick={() => {
-                  savePriority(opening.id, s.priorityCardIds);
+                  const p = savePriority(opening.id, s.priorityCardIds);
                   saveContext(opening.id, s.contextByCardId ?? {});
-                  onPriorityChange(s.priorityCardIds);
+                  onPriorityChange(p);
                   setTrained(true);
                 }}
                 className="btn-primary w-full"

@@ -24,11 +24,18 @@ export function buildDailySession(
     targetMinutes = 10,
     lessons,
     priorityCardIds = [],
-  }: { targetMinutes?: number; lessons?: Record<string, PositionLesson>; priorityCardIds?: string[] } = {}
+    prioritySince,
+  }: { targetMinutes?: number; lessons?: Record<string, PositionLesson>; priorityCardIds?: string[]; prioritySince?: string } = {}
 ): SessionItem[] {
   const byId = new Map(cards.map((c) => [c.id, c]));
   // Positions from the user's own games go first, whatever their state, and don't use up the daily new-card limit.
-  const prioCards = [...new Set(priorityCardIds)].map((id) => byId.get(id)).filter((c): c is StoredFSRSCard => !!c).slice(0, MAX_PRIORITY);
+  // Once reviewed after "Allena…" was pressed, a card goes back to normal FSRS scheduling.
+  const reviewedSince = new Set(logs.filter((l) => !prioritySince || l.reviewedAt >= prioritySince).map((l) => l.cardId));
+  const prioCards = [...new Set(priorityCardIds)]
+    .filter((id) => !reviewedSince.has(id))
+    .map((id) => byId.get(id))
+    .filter((c): c is StoredFSRSCard => !!c)
+    .slice(0, MAX_PRIORITY);
   const prio = new Set(prioCards.map((c) => c.id));
   const queue = buildDailyReviewQueue({ cards: cards.filter((c) => !prio.has(c.id)), logs, openingId: opening.id, now });
 

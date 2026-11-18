@@ -32,15 +32,26 @@ export function loadSummary(openingId: string): CachedSummary | null {
 }
 export const saveSummary = (openingId: string, c: CachedSummary) => set(`chess-openings:games:${openingId}`, JSON.stringify(c));
 
-export function loadPriority(openingId: string): string[] {
+export interface PriorityState {
+  ids: string[];
+  /** When the user pressed "Allena…": a card stops being priority once reviewed after this time. */
+  since: string;
+}
+
+export function loadPriority(openingId: string): PriorityState {
   try {
     const v = JSON.parse(get(`chess-openings:priority:${openingId}`) ?? '[]');
-    return Array.isArray(v) ? v : [];
+    if (Array.isArray(v)) return { ids: v, since: new Date(0).toISOString() }; // old format
+    return v && Array.isArray(v.ids) && typeof v.since === 'string' ? v : { ids: [], since: new Date(0).toISOString() };
   } catch {
-    return [];
+    return { ids: [], since: new Date(0).toISOString() };
   }
 }
-export const savePriority = (openingId: string, ids: string[]) => set(`chess-openings:priority:${openingId}`, JSON.stringify(ids));
+export function savePriority(openingId: string, ids: string[]): PriorityState {
+  const state = { ids, since: new Date().toISOString() };
+  set(`chess-openings:priority:${openingId}`, JSON.stringify(state));
+  return state;
+}
 
 export function loadContext(openingId: string): Record<string, GameContext[]> {
   try {

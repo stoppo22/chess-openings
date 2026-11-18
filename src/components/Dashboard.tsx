@@ -49,10 +49,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const repStats = computeCardStats(cards, 'repertoire');
   const punishStats = computeCardStats(cards, 'punish');
-  const [priorityIds, setPriorityIds] = useState<string[]>(() => loadPriority(opening.id));
+  const [priority, setPriority] = useState(() => loadPriority(opening.id));
   const dailySession = buildDailySession(cards, logs, opening, new Date(), {
     lessons: lessonData.lessons,
-    priorityCardIds: priorityIds,
+    priorityCardIds: priority.ids,
+    prioritySince: priority.since,
   });
 
   const studiedPct =
@@ -211,7 +212,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </ul>
       </section>
 
-      <MyGames key={opening.id} opening={opening} onPriorityChange={setPriorityIds} />
+      <MyGames key={opening.id} opening={opening} onPriorityChange={setPriority} />
 
       <details className="bg-surface border border-border rounded-xl group">
         <summary className="px-4 py-3 min-h-[44px] flex items-center cursor-pointer text-[15px] font-medium list-none">

@@ -51,3 +51,13 @@ describe('buildDailySession priority from own games', () => {
     expect(s.slice(0, 2).map((i) => i.cardId)).toEqual(['n3', 'due1']);
   });
 });
+
+describe('priority cards leave the front once reviewed', () => {
+  it('drops a priority card reviewed after "Allena" and keeps the others first', () => {
+    const since = new Date(now.getTime() - 3600e3).toISOString();
+    const logs = [{ id: 'l1', cardId: 'n3', openingId: op.id, cardType: 'repertoire' as const, rating: 3, usedHint: false, wrongAttempts: 0, reviewedAt: now.toISOString() }];
+    const s = buildDailySession(cards, logs, op, now, { priorityCardIds: ['n3', 'n2'], prioritySince: since });
+    expect(s[0].cardId).toBe('n2'); // n3 is back under normal FSRS ordering, no longer forced to the front
+    expect(s.findIndex((i) => i.cardId === 'n3')).toBeGreaterThan(0);
+  });
+});
