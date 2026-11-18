@@ -67,7 +67,12 @@ export const MyGames: React.FC<{ opening: OpeningRepertoireFile; onPriorityChang
               <ul className="divide-y divide-border border border-border rounded-[10px]">
                 {s.deviations.slice(0, 5).map((d) => (
                   <li key={`${d.by}|${d.normalizedFen}`} className="px-3 py-2.5 text-[15px] leading-snug flex gap-3 justify-between">
-                    <span className="min-w-0 break-words">{line(opening, d)}</span>
+                    <span className="min-w-0 break-words">
+                      {line(opening, d)}
+                      {d.by === 'opponent' && (
+                        <span className="block text-[13px] text-muted mt-0.5">Non ancora nel repertorio: non entra nel ripasso.</span>
+                      )}
+                    </span>
                     <span className="text-[13px] text-muted shrink-0 tabular-nums">{d.count}×</span>
                   </li>
                 ))}
@@ -82,10 +87,10 @@ export const MyGames: React.FC<{ opening: OpeningRepertoireFile; onPriorityChang
                 }}
                 className="btn-primary w-full"
               >
-                Allena queste posizioni
+                {`Allena ${Math.min(s.priorityCardIds.length, 10)} posizioni dalle tue partite`}
               </button>
             )}
-            {trained && <p className="text-sm text-accent">Fatto: le trovi in cima al ripasso di oggi.</p>}
+            {trained && <p className="text-sm text-accent">Fatto: sono le prime di “Ripassa oggi”.</p>}
           </div>
         )}
       </div>
