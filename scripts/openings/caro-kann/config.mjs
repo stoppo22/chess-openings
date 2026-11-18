@@ -10,7 +10,9 @@ export const OPENING_CONFIG = {
   // Fase d'ingresso: finché la sequenza è prefisso stretto di una root (o altRoot) di variante e ply <= maxPly,
   // l'avversario può giocare solo mosse che restano su una root. Reach riparte da 1.0.
   // unconditionalPlies: ply in cui non si applicano MIN_BAND_GAMES / MIN_BRANCH_FREQ.
-  leadIn: { maxPly: 4, unconditionalPlies: [2] },
+  // unconditionalSeqs: mosse d'ingresso rare ma volute (ignorano MIN_BAND_GAMES / MIN_BRANCH_FREQ).
+  leadIn: { maxPly: 4, unconditionalPlies: [2], unconditionalSeqs: [['e4', 'c6', 'd4', 'd5', 'f3']] },
+  maxPositionsCap: 900, // override per-apertura (default 600)
   fallbackVariation: {
     id: 'caro-kann-root',
     name: 'Caro-Kann: Impianto Principale (1.e4 c6 2.d4 d5)',
@@ -55,6 +57,47 @@ export const OPENING_CONFIG = {
       matchPrefixes: [['e4', 'c6', 'Bc4']],
       // Posizioni extra in cui la reach riparte da 1.0 (senza vincolare la fase d'ingresso).
       reachResetMovesSan: [['e4', 'c6', 'Bc4', 'd5', 'exd5', 'cxd5']],
+      maxPly: 10,
+      minReach: 0.035,
+    },
+    {
+      id: 'two-knights-nf3',
+      name: 'Due Cavalli (2.Nf3 d5)',
+      subtitle: 'Sviluppo del cavallo prima di d4: rispondi 2...d5 e sfida il centro',
+      ecoCode: 'B10',
+      rootMovesSan: ['e4', 'c6', 'Nf3', 'd5'],
+      matchPrefixes: [['e4', 'c6', 'Nf3']],
+      maxPly: 10,
+      minReach: 0.035,
+    },
+    {
+      id: 'two-knights-nc3',
+      name: 'Due Cavalli (2.Nc3 d5)',
+      subtitle: 'Cavallo in c3 al posto di d4: 2...d5 e poi ...dxe4 o ...Nf6',
+      ecoCode: 'B10',
+      rootMovesSan: ['e4', 'c6', 'Nc3', 'd5'],
+      matchPrefixes: [['e4', 'c6', 'Nc3']],
+      maxPly: 10,
+      minReach: 0.035,
+    },
+    {
+      id: 'queen-sorties',
+      name: 'Uscite di Donna (2.Qf3 / 2.Qh5)',
+      subtitle: 'Donna sviluppata presto: sviluppa i pezzi e guadagna tempi sulla donna',
+      ecoCode: 'B10',
+      rootMovesSan: ['e4', 'c6', 'Qf3'],
+      altRootMovesSan: [['e4', 'c6', 'Qh5']],
+      matchPrefixes: [['e4', 'c6', 'Qf3'], ['e4', 'c6', 'Qh5']],
+      maxPly: 10,
+      minReach: 0.035,
+    },
+    {
+      id: 'fantasy-f3',
+      name: 'Variante Fantasia (3.f3)',
+      subtitle: 'Il bianco sostiene e4 con f3: contrattacca il centro con ...dxe4 o ...e6',
+      ecoCode: 'B12',
+      rootMovesSan: ['e4', 'c6', 'd4', 'd5', 'f3'],
+      matchPrefixes: [['e4', 'c6', 'd4', 'd5', 'f3']],
       maxPly: 10,
       minReach: 0.035,
     },

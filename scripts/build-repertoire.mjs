@@ -892,6 +892,7 @@ async function main() {
             allowBranch =
               leadIn.has(m.san) &&
               (LEAD_IN.unconditionalPlies.includes(ply) ||
+                (LEAD_IN.unconditionalSeqs || []).some((q) => q.length === ply + 1 && isPrefix(moveSequenceSan, q) && q[ply] === m.san) ||
                 (mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES && freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ));
             if (allowBranch) branchReach = 1.0;
           } else {

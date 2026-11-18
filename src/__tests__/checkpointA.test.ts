@@ -171,7 +171,8 @@ describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A + B)', () => {
           const chess = new Chess(node.fullFen);
           const move = chess.move(opp.san);
           expect(move).not.toBeNull();
-          expect(opp.frequencyPct).toBeGreaterThanOrEqual(2.0);
+          // fase d'ingresso (ply <= 4): mosse volute da config, anche rare (es. 3.f3)
+          if (node.ply > 4) expect(opp.frequencyPct).toBeGreaterThanOrEqual(2.0);
         }
 
         const mistakes = node.commonMistakes || [];
