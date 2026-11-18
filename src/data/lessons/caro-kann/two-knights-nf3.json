@@ -1,0 +1,270 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "two-knights-nf3",
+  "writtenBy": "lesson-writer (sonnet)",
+  "factsHash": "7b237120b7fd604e915c8150a3ecf948919a0f8d908f2e0664a7e682931e3463",
+  "lessons": [
+    {
+      "normalizedFen": "rnbqkbnr/pp1ppppp/2p5/8/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il pedone e4 non ha difese: [[d5]] lo attacca subito e costringe il Bianco a reagire. I maestri la giocano nel 98.1% dei casi.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "planQuiz": {
+        "correct": "Attaccare subito il pedone e4 con [[d5]]",
+        "distractors": [
+          "Giocare [[e6]] e lasciare e4 tranquillo",
+          "Giocare [[h6]], una mossa di pedone che non attacca nulla"
+        ],
+        "distractorPrincipleIds": [
+          "tk-d5",
+          "tk-d5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3P4/8/5N2/PPPP1PPP/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il pedone bianco in d5 è attaccato due volte e non è difeso: riprendo con [[cxd5]] e il centro torna in equilibrio. I maestri scelgono questa ripresa nel 99.6% dei casi.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.34 rispetto a [[cxd5]]: lascia il pedone bianco in d5 invece di riprenderlo subito."
+      },
+      "planQuiz": {
+        "correct": "Riprendere subito il pedone con [[cxd5]]",
+        "distractors": [
+          "Giocare [[Bg4]] e lasciare il pedone bianco in d5",
+          "Giocare [[Nf6]] senza riprendere il pedone"
+        ],
+        "distractorPrincipleIds": [
+          "tk-d5",
+          "tk-d5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3pP3/8/5N2/PPPP1PPP/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Dopo la spinta e5 porto fuori l'Alfiere campochiaro con [[Bg4]]: attacca il Cavallo in f3 e non resta chiuso dietro i pedoni quando giocherò [[e6]]. I maestri la scelgono nel 56.5% dei casi.",
+      "conceptRefs": [
+        "tk-pin"
+      ],
+      "whyNot": {
+        "san": "Bf5",
+        "text": "[[Bf5]] è l'alternativa più giocata a questo livello (34.4% dei giocatori) e per il motore vale come [[Bg4]]: non è un errore."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N2N2/PPPP1PPP/R1BQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "[[Bg4]] porta fuori l'Alfiere campochiaro e attacca il Cavallo in f3, prima di giocare [[e6]]. È la scelta dei maestri (55.9%).",
+      "conceptRefs": [
+        "tk-pin"
+      ],
+      "whyNot": {
+        "san": "dxe4",
+        "text": "[[dxe4]] è l'alternativa più giocata a questo livello (39.2% dei giocatori) e per il motore vale solo 0.15 in meno: non è un errore, ma [[Bg4]] sviluppa un pezzo."
+      },
+      "opponentMistake": {
+        "san": "exd5",
+        "punishSan": "cxd5",
+        "text": "Dopo la presa in d5 il pedone bianco resta attaccato 2 volte e difeso 1: riprendo con [[cxd5]] e la posizione è pari. Il Bianco ha perso 0.4."
+      },
+      "planQuiz": {
+        "correct": "Sviluppare l'Alfiere campochiaro con [[Bg4]] prima di chiudere con [[e6]]",
+        "distractors": [
+          "Giocare [[e6]] subito, chiudendo l'Alfiere campochiaro",
+          "Giocare [[Qa5]] e muovere la Donna presto"
+        ],
+        "distractorPrincipleIds": [
+          "tk-pin",
+          "tk-pin"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/3P1N2/PPP2PPP/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Con [[dxe4]] il pedone minaccia il Cavallo in f3 e la Donna attacca d3. I maestri la giocano nel 43.5% dei casi.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (28.7% dei giocatori) e per il motore vale quasi come [[dxe4]] (0.05 in meno): nessun errore."
+      },
+      "opponentMistake": {
+        "san": "Ne5",
+        "punishSan": "Qa5+",
+        "text": "Dopo il salto del Cavallo, il Cavallo in e5 non ha difese. [[Qa5+]] dà scacco e per il motore il Bianco ha perso 2.49."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/8/2N2N2/PPPP1PPP/R1BQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il Cavallo in c3 attacca d5. [[Nc6]] sviluppa un pezzo verso il centro; il pedone d5 è già difeso dalla Donna.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (37.7% dei giocatori) e per il motore è pari: scelta di gusto."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/1B1p4/8/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il Bianco ha dato scacco con l'Alfiere. [[Nc6]] blocca la diagonale e sviluppa un pezzo.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] è l'alternativa più giocata a questo livello (39.9% dei giocatori) e per il motore è pari: nessun errore."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3pP3/3P2b1/5N2/PPP2PPP/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Ora che l'Alfiere è fuori, [[e6]] chiude la struttura e sostiene d5.",
+      "conceptRefs": [
+        "tk-pin"
+      ],
+      "whyNot": {
+        "san": "c5",
+        "text": "[[c5]] è l'alternativa più giocata a questo livello (19.9% dei giocatori) e per il motore è quasi pari (0.05 in meno), ma [[e6]] è più solida."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3pP3/6b1/5N2/PPPPBPPP/RNBQK2R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Chiudo con [[e6]]: sostiene d5. I maestri la giocano nell'85.7% dei casi.",
+      "conceptRefs": [
+        "tk-pin"
+      ],
+      "whyNot": {
+        "san": "Bxf3",
+        "text": "[[Bxf3]] vale 0.31 in meno di [[e6]] e cede il cambio senza necessità."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3p4/4P1b1/2N2N1P/PPPP1PP1/R1BQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il pedone h3 attacca il mio Alfiere in g4, che non ha difese. Invece di ritirarlo cambio con [[Bxf3]]: tolgo il Cavallo e non perdo tempo. Il Bianco riprende quasi sempre con la Donna ([[Qxf3]], 85.8%). I maestri la giocano nell'88.5% dei casi.",
+      "conceptRefs": [
+        "tk-trade-h3"
+      ],
+      "whyNot": {
+        "san": "Bh5",
+        "text": "[[Bh5]] è l'alternativa più giocata a questo livello (41% dei giocatori) e per il motore è pari: non è un errore. [[Bxf3]] ti lascia una struttura sana."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3p4/4P1b1/2N2N2/PPPPBPPP/R1BQK2R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il Bianco non ha attaccato l'Alfiere: finisco lo sviluppo con [[e6]], che sostiene d5. I maestri la giocano nel 67.4% dei casi.",
+      "conceptRefs": [
+        "tk-pin"
+      ],
+      "whyNot": {
+        "san": "Bxf3",
+        "text": "[[Bxf3]] è l'alternativa più giocata a questo livello (18.2% dei giocatori) e per il motore è quasi pari (0.07 in meno): non è un errore."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3P4/6b1/2N2N2/PPPP1PPP/R1BQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il Bianco ha preso in d5: riprendo con [[cxd5]]. Il pedone bianco è attaccato e posso riprenderlo subito.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.49 rispetto a [[cxd5]]: lascia il pedone bianco dov'è invece di riprenderlo."
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/4P3/5N2/PPP2PPP/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Cambio le Donne con [[Qxd1+]]: dà scacco e il Re bianco deve riprendere ([[Kxd1]]). Il Re resta al centro senza arroccare. I maestri la giocano nel 99% dei casi.",
+      "conceptRefs": [
+        "tk-d5"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p4/8/2N2N2/PPPP1PPP/R1BQK2R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il Bianco attacca il Cavallo in c6. [[Nf6]] sviluppa un pezzo e difende il pedone d5.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (27.6% dei giocatori) e per il motore è pari: nessun errore."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/3pP3/3P2b1/5N1P/PPP2PP1/RNBQKB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Il pedone h3 attacca di nuovo l'Alfiere senza difese: cambio con [[Bxf3]] invece di ritirarlo.",
+      "conceptRefs": [
+        "tk-trade-h3"
+      ],
+      "whyNot": {
+        "san": "Bh5",
+        "text": "[[Bh5]] è l'alternativa più giocata a questo livello (39% dei giocatori) ma vale 0.34 in meno di [[Bxf3]]."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/3pP3/3P2b1/5N2/PPP1BPPP/RNBQK2R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "[[c5]] attacca il pedone d4 e rompe la catena bianca.",
+      "conceptRefs": [
+        "tk-pin",
+        "tk-trade-h3"
+      ],
+      "whyNot": {
+        "san": "Nd7",
+        "text": "[[Nd7]] è l'alternativa più giocata a questo livello (10.9% dei giocatori) e per il motore vale 0.14 in meno: non è un errore grave, ma [[c5]] attacca subito d4."
+      },
+      "opponentMistake": {
+        "san": "h3",
+        "punishSan": "Bxf3",
+        "text": "Dopo h3 il mio Alfiere in g4 non ha difese: lo cambio con [[Bxf3]] prima che sia catturato. Il motore dice che il Bianco ha perso 0.53."
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/3p4/4P3/2N2Q1P/PPPP1PP1/R1B1KB1R b KQkq -",
+      "variationId": "two-knights-nf3",
+      "why": "Dopo la ripresa con la Donna, [[e6]] sostiene d5 e sistema la struttura. I maestri la giocano nel 75% dei casi.",
+      "conceptRefs": [
+        "tk-pin"
+      ],
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (15.8% dei giocatori) e per il motore è pari: non è un errore."
+      }
+    },
+    {
+      "normalizedFen": "rnb1kbnr/pp2pppp/2p5/8/4P3/5N2/PPP2PPP/RNBK1B1R b kq -",
+      "variationId": "two-knights-nf3",
+      "why": "[[Nf6]] attacca il pedone e4, che non ha difese. I maestri la giocano nel 60.3% dei casi.",
+      "conceptRefs": [
+        "tk-d5"
+      ],
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è l'alternativa più giocata a questo livello (6.9% dei giocatori) e per il motore vale quasi come [[Nf6]] (0.09 in meno)."
+      },
+      "opponentMistake": {
+        "san": "Bc4",
+        "punishSan": "Nxe4",
+        "text": "Dopo lo sviluppo dell'Alfiere il pedone e4 resta senza difese: lo prendo con [[Nxe4]]. Il Bianco ha perso 0.71."
+      }
+    }
+  ]
+}

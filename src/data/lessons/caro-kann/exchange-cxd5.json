@@ -180,6 +180,18 @@
       "conceptRefs": [
         "ex-bishop-out"
       ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P1B2/2N5/PPP2PPP/R2QKBNR b KQkq -",
+      "variationId": "exchange-cxd5",
+      "why": "L'Alfiere in f4 attacca il Cavallo in b8, ma il Cavallo è difeso: nessuna fretta. Gioco [[a6]] e poi sviluppo con [[Nc6]]. I maestri scelgono [[a6]] nell'81% dei casi.",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (12.6%) ed è altrettanto buona (costa 0.08): porta fuori l'Alfiere campochiaro. [[a6]] è però la scelta dei maestri."
+      },
+      "conceptRefs": [
+        "ex-bishop-out"
+      ]
     }
   ]
 }

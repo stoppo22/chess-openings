@@ -1552,6 +1552,23 @@
         "text": "[[Nf6]] perde 0.33 ed è giocata nel 50.8% dei casi: il Bianco può dare scacco con [[Ne5+]]. [[Nd7]] lo evita."
       },
       "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/2p2n2/8/3P4/2N1BQ2/PPP3PP/R3KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "[[g6]] prepara [[Bg7]] e tiene libero il mio Alfiere campochiaro per [[Bf5]] più avanti: è la scelta del motore, la linea continua con [[Qg3]] [[Bg7]] [[Nf3]] [[Bf5]].",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (57.2%) e costa solo 0.18 rispetto a [[g6]]: è una buona alternativa, ma il motore preferisce [[g6]]."
+      },
+      "opponentMistake": {
+        "san": "O-O-O",
+        "punishSan": "Bg4",
+        "text": "Se il Bianco arrocca lungo con [[O-O-O]] (58.3% dei casi) perde 1: rispondo [[Bg4]] e il motore vede 1.45 per me."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
     }
   ]
 }

@@ -1,0 +1,498 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "queen-sorties",
+  "writtenBy": "lesson-writer (sonnet)",
+  "factsHash": "cf83db7e9495a81d43cc83411fcb5a26fa8ae0b6a7d42416ab6706d2a4e01104",
+  "lessons": [
+    {
+      "normalizedFen": "rnbqkbnr/pp1ppppp/2p5/8/4P3/5Q2/PPPP1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "La Donna in f3 attacca f7, ma f7 è difeso e da sola la Donna non può fare molto. Con [[d5]] prendo il centro e attacco il pedone e4: è la risposta base contro l'uscita di Donna.",
+      "conceptRefs": [
+        "qs-d5"
+      ],
+      "planQuiz": {
+        "correct": "Rispondere [[d5]]: prendo il centro e attacco il pedone e4",
+        "distractors": [
+          "Giocare [[e6]]: passivo, lascio al Bianco il centro senza [[d5]]",
+          "Giocare [[d6]]: chiudo il mio Alfiere e non contrasto e4"
+        ],
+        "distractorPrincipleIds": [
+          "qs-d5",
+          "qs-d5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp1ppppp/2p5/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "La Donna in h5 attacca f7 e h7, entrambi difesi una volta. Con [[d5]] prendo il centro e il pedone e4 resta senza difesa: sono io a dettare il ritmo, non la Donna.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (31.7%) ed è altrettanto buona per il motore (perdita 0, contro 0.05 per [[d5]]). Sono due strade valide; io scelgo [[d5]] perché occupo subito il centro."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ],
+      "planQuiz": {
+        "correct": "Rispondere [[d5]] e poi sviluppare [[Nf6]] contro la Donna in h5",
+        "distractors": [
+          "Giocare [[g6]] per cacciare la Donna, senza occupare il centro",
+          "Giocare [[d6]]: passivo, il pedone e4 non è più sotto attacco"
+        ],
+        "distractorPrincipleIds": [
+          "qs-d5",
+          "qs-d5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3P4/8/5Q2/PPPP1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha preso in d5: riprendo con [[cxd5]]. Così ho il pedone centrale e il Bianco non ne ha; poi sviluppo i pezzi attaccando la Donna.",
+      "conceptRefs": [
+        "qs-d5"
+      ],
+      "planQuiz": {
+        "correct": "Riprendere con [[cxd5]] e sviluppare con tempo contro la Donna",
+        "distractors": [
+          "Giocare [[e5]] senza riprendere: lascio il pedone bianco in d5 e apro il gioco troppo presto",
+          "Giocare [[g6]] senza riprendere: perdo il mio pedone centrale"
+        ],
+        "distractorPrincipleIds": [
+          "qs-d5",
+          "qs-d5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3pP3/8/5Q2/PPPP1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha spinto in e5. Con [[e6]] difendo il pedone d5 e tengo il centro saldo; poi attacco la catena di pedoni bianchi con [[c5]].",
+      "whyNot": {
+        "san": "c5",
+        "text": "[[c5]] è l'alternativa più giocata a questo livello (11.7%) e per il motore è appena migliore: perdita 0 contro 0.09 per [[e6]]. Sono due strade valide; [[e6]] difende subito d5."
+      },
+      "opponentMistake": {
+        "san": "Nh3",
+        "punishSan": "c5",
+        "text": "Se il Bianco gioca [[Nh3]] (15.6% dei casi) perde 0.71: rispondo [[c5]] e attacco il centro bianco. Il mio pedone d5 resta ben difeso (difeso 3 volte)."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N2Q2/PPPP1PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Cavallo in c3 attacca d5. Con [[dxe4]] chiarisco il centro e il mio pedone in e4 attacca la Donna in f3, che vale più di un pedone: il Bianco deve muoverla. È sviluppo con tempo. I maestri giocano questa mossa nel 54.4% dei casi.",
+      "whyNot": {
+        "san": "d4",
+        "text": "[[d4]] è l'alternativa più giocata a questo livello (14.5%) ed è altrettanto buona (perdita 0, contro 0.08 per [[dxe4]]). Io scelgo [[dxe4]] perché costringe subito la Donna a muoversi."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/3P1Q2/PPP2PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha spinto il pedone in d3, una mossa lenta. Con la Donna fuori posto prendo spazio al centro con [[e5]].",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (35%), ma per il motore costa 0.18 rispetto a [[e5]]. Funziona comunque; [[e5]] prende più spazio."
+      },
+      "opponentMistake": {
+        "san": "exd5",
+        "punishSan": "cxd5",
+        "text": "Se il Bianco prende [[exd5]] (23.8% dei casi) perde 0.47: riprendo con [[cxd5]], e il motore vede 0.63 per me. Dopo [[exd5]] il pedone bianco in d5 è attaccato 2 volte e difeso 1."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/2P1P3/5Q2/PP1P1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha spinto c4 contro il mio d5. Con [[dxe4]] prendo, e il mio pedone attacca la Donna in f3: il Bianco deve muoverla. Dopo [[Qxe4]] posso giocare [[Nf6]], altro sviluppo con tempo.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è l'alternativa più giocata a questo livello (13.3%), ma costa 0.4 rispetto a [[dxe4]]: non guadagno nessun tempo sulla Donna."
+      },
+      "opponentMistake": {
+        "san": "Qf4",
+        "punishSan": "Nf6",
+        "text": "Se il Bianco ritira la Donna con [[Qf4]] (8% dei casi) perde 0.85: gioco [[Nf6]], sviluppo un pezzo e il motore vede 1.41 per me."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3P3Q/8/8/PPPP1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha preso in d5: riprendo con [[cxd5]] e il centro è mio. Poi sviluppo i pezzi contro la Donna in h5.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (7.6%) ed è altrettanto buona (perdita 0). Riprendere subito con [[cxd5]] è più lineare."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ],
+      "planQuiz": {
+        "correct": "Riprendere con [[cxd5]] e poi sviluppare con tempo ([[Nc6]], [[Bf5]])",
+        "distractors": [
+          "Giocare [[Qd6]]: porto fuori anche la mia Donna e perdo tempo",
+          "Giocare [[a6]]: mossa lenta che non sviluppa nulla"
+        ],
+        "distractorPrincipleIds": [
+          "qs-tempo",
+          "qs-tempo"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3pP2Q/8/8/PPPP1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha spinto e5. Con la Donna lontana dal gioco uso la rottura centrale: [[c5]] attacca il centro bianco. Se arriva lo scacco in b5, copro con [[Nc6]].",
+      "whyNot": {
+        "san": "g6",
+        "text": "[[g6]] è l'alternativa più giocata a questo livello (43.2%), ma costa 0.31 rispetto a [[c5]]: è passiva, io voglio contrastare il centro."
+      },
+      "opponentMistake": {
+        "san": "e6",
+        "punishSan": "Bxe6",
+        "text": "Se il Bianco spinge [[e6]] (12.5% dei casi) regala un pedone: lo prendo con [[Bxe6]], perché il pedone in e6 è attaccato 2 volte e non è difeso. Il Bianco perde 1.04."
+      },
+      "conceptRefs": [
+        "qs-d5",
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p3Q/4P3/2N5/PPPP1PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Cavallo in c3 attacca d5. [[Nf6]] attacca la Donna in h5, che non è difesa, e difende d5 e h7: sviluppo con tempo.",
+      "whyNot": {
+        "san": "g6",
+        "text": "[[g6]] è l'alternativa più giocata a questo livello (16.6%), ma costa 0.32 rispetto a [[Nf6]]: cacciare la Donna con un pedone non sviluppa nulla."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p3Q/4P3/5N2/PPPP1PPP/RNB1KB1R b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "[[Nf6]] attacca due bersagli senza difesa: la Donna in h5 e il pedone e4. Sviluppo un pezzo e il Bianco ha troppo da sistemare.",
+      "whyNot": {
+        "san": "dxe4",
+        "text": "[[dxe4]] è l'alternativa più giocata a questo livello (34.9%), ma costa 0.47 rispetto a [[Nf6]]: [[Nf6]] attacca Donna e pedone insieme."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/2P5/5Q2/PP1P1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il pedone c4 attacca d5 (attaccato 2 volte, difeso 1). [[Nf6]] lo difende e sviluppa un pezzo.",
+      "whyNot": {
+        "san": "dxc4",
+        "text": "[[dxc4]] è l'alternativa più giocata a questo livello (24.8%), ma costa 0.18 rispetto a [[Nf6]]. È accettabile; con [[Nf6]] tengo il pedone centrale."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/1B1p4/8/5Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco dà scacco in b5. Copro con [[Nc6]]: sviluppo un pezzo senza perdere tempo, e il Cavallo difende la Donna e i pedoni a7 ed e7.",
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] è l'alternativa più giocata a questo livello (29.6%), ma costa 0.48 rispetto a [[Nc6]]: dopo [[Bd7]] il Bianco prende il pedone con [[Qxd5]]."
+      },
+      "conceptRefs": [
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/8/2N2Q2/PPPP1PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Cavallo in c3 attacca d5 (attaccato 2 volte, difeso 1). [[Nf6]] aggiunge una difesa e sviluppa un pezzo.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è l'alternativa più giocata a questo livello (15.2%) ed è altrettanto buona (perdita 0, contro 0.04 per [[Nf6]]). [[Nf6]] però sviluppa subito un pezzo."
+      },
+      "opponentMistake": {
+        "san": "d3",
+        "punishSan": "Nc6",
+        "text": "Se il Bianco gioca [[d3]] (15.1% dei casi) perde 0.77: rispondo [[Nc6]] e sviluppo un altro pezzo. Il mio pedone d5 resta difeso 2 volte."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p4/3P4/5Q2/PPP2PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il pedone bianco in d4 non è difeso. [[Nc6]] lo attacca e sviluppa un pezzo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (48.7%) ed è quasi uguale (0.04 di differenza): è un'altra buona via. [[Nc6]] attacca d4 subito."
+      },
+      "opponentMistake": {
+        "san": "c4",
+        "punishSan": "Nxd4",
+        "text": "Se il Bianco spinge [[c4]] (8% dei casi) lascia d4 senza difesa: lo prendo con [[Nxd4]]. Il motore vede 0.86 per me."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp3ppp/2p1p3/3pP3/3P4/5Q2/PPP2PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il mio pedone [[c5]] attacca d4, che non è difeso: colpisco la base della catena bianca con la spinta centrale.",
+      "whyNot": {
+        "san": "Ne7",
+        "text": "[[Ne7]] è l'alternativa più giocata a questo livello (12.2%), ma costa 0.17 rispetto a [[c5]]: è passiva, [[c5]] mette subito pressione su d4."
+      },
+      "opponentMistake": {
+        "san": "Be3",
+        "punishSan": "Qb6",
+        "text": "Se il Bianco difende con [[Be3]] (13.9% dei casi) perde 0.54: d4 è difeso una volta, ma il motore consiglia [[Qb6]], con 0.67 per me."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/4N3/5Q2/PPPP1PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Cavallo bianco in e4 non attacca nulla. [[Nd7]] sviluppa il Cavallo di Donna e prepara [[Ngf6]]. I maestri scelgono [[Nd7]] nel 67% dei casi.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è l'alternativa più giocata a questo livello (54.9%) ed è altrettanto buona (perdita 0, contro 0.04 per [[Nd7]]). [[Nd7]] è la scelta dei maestri."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/2P1Q3/8/PP1P1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "La Donna in e4 non è difesa. [[Nf6]] la attacca e sviluppa un pezzo: il Bianco deve muoverla ancora e io guadagno un altro tempo.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è l'alternativa più giocata a questo livello (3.7%), ma costa 0.33 rispetto a [[Nf6]]: non guadagno nessun tempo sulla Donna."
+      },
+      "opponentMistake": {
+        "san": "Qf3",
+        "punishSan": "e5",
+        "text": "Se il Bianco rimette la Donna in [[Qf3]] (67.4% dei casi) perde 0.46: rispondo [[e5]] e prendo il centro, con 0.82 per me."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/1B1p3Q/8/8/PPPP1PPP/RNB1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco dà scacco in b5. Copro con [[Nc6]]: sviluppo un pezzo senza perdere tempo.",
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] è l'alternativa più giocata a questo livello (35.6%), ma costa 0.51 rispetto a [[Nc6]]: dopo [[Bd7]] il Bianco prende il pedone con [[Qxd5]]."
+      },
+      "conceptRefs": [
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p3Q/8/2N5/PPPP1PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Cavallo in c3 attacca d5 (attaccato 2 volte, difeso 1). [[Nf6]] attacca la Donna in h5, che non è difesa, e difende d5: sviluppo con tempo e proteggo il pedone.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è l'alternativa più giocata a questo livello (10.9%), ma costa 0.36 rispetto a [[Nf6]]: con [[Nf6]] sviluppo e attacco la Donna insieme."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p3Q/2P5/8/PP1P1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il pedone c4 attacca d5 (attaccato 2 volte, difeso 1). [[Nf6]] attacca la Donna in h5, che non è difesa, e difende d5.",
+      "whyNot": {
+        "san": "dxc4",
+        "text": "[[dxc4]] è l'alternativa più giocata a questo livello (20.8%), ma costa 0.5 rispetto a [[Nf6]]: con [[Nf6]] sviluppo e attacco la Donna."
+      },
+      "opponentMistake": {
+        "san": "Qe5",
+        "punishSan": "Nc6",
+        "text": "Se il Bianco gioca [[Qe5]] (9.2% dei casi) perde 0.83: il motore consiglia [[Nc6]], che sviluppa un pezzo, e vede 1.54 per me."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/3p3Q/8/5N2/PPPP1PPP/RNB1KB1R b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "[[Nf6]] attacca la Donna in h5, che non è difesa, e difende h7 e d5. È sviluppo con tempo contro l'uscita di Donna.",
+      "whyNot": {
+        "san": "g6",
+        "text": "[[g6]] è l'alternativa più giocata a questo livello (10.3%), ma costa 0.23 rispetto a [[Nf6]]: cacciare la Donna con un pedone non sviluppa."
+      },
+      "opponentMistake": {
+        "san": "Qf5",
+        "punishSan": "Bxf5",
+        "text": "Se il Bianco gioca [[Qf5]] (5.5% dei casi) è un errore grave (perde 7.1): la Donna è attaccata e non difesa, la prendo con [[Bxf5]] usando l'Alfiere campochiaro. Il motore vede 7.52 per me."
+      },
+      "conceptRefs": [
+        "qs-tempo",
+        "qs-free-queen"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/8/1BppP2Q/8/8/PPPP1PPP/RNB1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco dà scacco in b5. Copro con [[Nc6]]: sviluppo un pezzo e attacco il pedone e5 (attaccato 1 volta, difeso 1).",
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] è l'alternativa più giocata a questo livello (52.3%), ma costa 2.67 rispetto a [[Nc6]]: il motore vede [[e6]] [[g6]] [[exd7+]] e io sto peggio."
+      },
+      "opponentMistake": {
+        "san": "d3",
+        "punishSan": "Qa5+",
+        "text": "Se il Bianco gioca [[d3]] (7.1% dei casi) perde 1.32: l'Alfiere b5 e la Donna h5 non sono difesi, e il motore consiglia [[Qa5+]], con 1.45 per me."
+      },
+      "conceptRefs": [
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3P4/8/5Q2/PP1P1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha preso in d5 con il pedone: riprendo con [[Nxd5]]. Tengo il centro e non porto fuori la Donna.",
+      "whyNot": {
+        "san": "Qxd5",
+        "text": "[[Qxd5]] è l'alternativa più giocata a questo livello (21.1%), ma costa 0.28 rispetto a [[Nxd5]]. Nella linea del motore segue [[Nc3]] e la Donna deve già spostarsi con [[Qd6]]: perdo tempo."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2B5/3p4/8/5Q2/PPPP1PPP/RNB1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha preso in c6 dando scacco, ma il suo Alfiere non è difeso: lo riprendo con [[bxc6]]. Il pedone in c6 difende d5.",
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] costa 3.45 rispetto a [[bxc6]]: lascia vivo l'Alfiere bianco, che attacca b7 e d5."
+      },
+      "conceptRefs": [
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/1B1p4/8/2N2Q2/PPPP1PPP/R1B1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco dà scacco in b5. Copro con [[Nc6]]: sviluppo un pezzo senza perdere tempo.",
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] è l'alternativa più giocata a questo livello (28.9%) ed è quasi uguale (0.03 di differenza). [[Nc6]] sviluppa un pezzo nuovo."
+      },
+      "opponentMistake": {
+        "san": "Nh3",
+        "punishSan": "e5",
+        "text": "Se il Bianco gioca [[Nh3]] (7% dei casi) perde 0.67: rispondo [[e5]] e prendo il centro, con 0.94 per me."
+      },
+      "conceptRefs": [
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/3P4/2N2Q2/PPP2PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il pedone bianco in d4 non è difeso. [[Nc6]] lo attacca e sviluppa un pezzo; poi l'Alfiere campochiaro può andare in g4 di fronte alla Donna in f3.",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (47.6%) ed è quasi uguale (0.04 di differenza). [[Nc6]] attacca d4 subito."
+      },
+      "opponentMistake": {
+        "san": "Nge2",
+        "punishSan": "Nb4",
+        "text": "Se il Bianco gioca [[Nge2]] (11.3% dei casi) perde 0.68: rispondo [[Nb4]], con 0.95 per me."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2B5/3p3Q/8/8/PPPP1PPP/RNB1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Bianco ha preso in c6 dando scacco, ma il suo Alfiere non è difeso: lo riprendo con [[bxc6]]. Il pedone in c6 difende d5.",
+      "whyNot": {
+        "san": "Bd7",
+        "text": "[[Bd7]] costa 3.25 rispetto a [[bxc6]]: lascia vivo l'Alfiere bianco, che attacca b7 e d5."
+      },
+      "opponentMistake": {
+        "san": "Qf3",
+        "punishSan": "e5",
+        "text": "Se il Bianco porta la Donna in [[Qf3]] (6.4% dei casi) perde 0.43: rispondo [[e5]] e prendo il centro, con 0.91 per me."
+      },
+      "conceptRefs": [
+        "qs-check-b5"
+      ]
+    },
+    {
+      "normalizedFen": "r1bqkbnr/pp2pppp/2n5/1B1p3Q/8/2N5/PPPP1PPP/R1B1K1NR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "Il Cavallo in c3 attacca d5 (attaccato 2 volte, difeso 1). [[Nf6]] attacca la Donna in h5, che non è difesa, e difende d5 e h7: sviluppo con tempo.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è l'alternativa più giocata a questo livello (11.1%) ed è altrettanto buona (perdita 0). Con [[Nf6]] però attacco la Donna e guadagno un tempo."
+      },
+      "conceptRefs": [
+        "qs-tempo"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/8/2N2Q2/PPPP1PPP/R1B1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "La Donna in f3 attacca f6 e d5, ma entrambi sono difesi 2 volte. [[Nc6]] sviluppa un pezzo e prepara [[e5]].",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (48.3%), ma costa 0.34 rispetto a [[Nc6]]: il motore preferisce sviluppare prima il Cavallo."
+      },
+      "opponentMistake": {
+        "san": "Nge2",
+        "punishSan": "e5",
+        "text": "Se il Bianco gioca [[Nge2]] (5.2% dei casi) perde 0.57: rispondo [[e5]] e prendo il centro, con 1.28 per me."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/5n2/3p4/2P5/5Q2/PP1P1PPP/RNB1KBNR b KQkq -",
+      "variationId": "queen-sorties",
+      "why": "La Donna in f3 attacca f6 e d5, ma entrambi sono difesi 2 volte. [[Nc6]] sviluppa un pezzo e mantiene la tensione su d5: dopo [[cxd5]] riprendo con [[Nxd5]].",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è l'alternativa più giocata a questo livello (40.3%), ma costa 0.17 rispetto a [[Nc6]]. È una buona via; [[Nc6]] sviluppa prima il Cavallo."
+      },
+      "opponentMistake": {
+        "san": "Nc3",
+        "punishSan": "Nd4",
+        "text": "Se il Bianco gioca [[Nc3]] (6.1% dei casi) perde 0.6: il motore consiglia [[Nd4]], con 1.64 per me."
+      },
+      "conceptRefs": [
+        "qs-d5"
+      ]
+    }
+  ]
+}

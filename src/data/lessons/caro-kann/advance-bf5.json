@@ -1776,6 +1776,72 @@
         "san": "c5",
         "text": "[[c5]] è l'alternativa più giocata a questo livello (28.2% dei giocatori) e per il motore va bene quasi quanto [[Ne7]]: perde solo 0.09, quindi non è un errore."
       }
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1pp1/2p1p2p/3pPb2/3P2P1/2N2N1P/PPP2P2/R1BQKB1R b KQkq -",
+      "variationId": "advance-bf5",
+      "why": "Il pedone g4 attacca il mio Alfiere campochiaro in f5, e lo attacca con un pezzo di minor valore. Lo sposto con [[Bh7]]: resta sulla diagonale attiva e punta il pedone c2.",
+      "whyNot": {
+        "san": "Bg6",
+        "text": "[[Bg6]] è l'alternativa più giocata a questo livello (13.4%), ma costa 0.11 rispetto a [[Bh7]]. È una buona via; [[Bh7]] mantiene la pressione su c2."
+      },
+      "opponentMistake": {
+        "san": "g5",
+        "punishSan": "hxg5",
+        "text": "Se il Bianco spinge [[g5]] (12.9% dei casi) perde 0.54: prendo con [[hxg5]] e dopo [[Nxg5]] l'Alfiere torna in [[Bf5]]."
+      },
+      "conceptRefs": [
+        "adv-pawn-attack"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1pp1/2p1p2p/3pPb2/3P4/2NB1N1P/PPP2PP1/R1BQK2R b KQkq -",
+      "variationId": "advance-bf5",
+      "why": "Il Bianco offre il cambio in d3. Accetto con [[Bxd3]]: il mio Alfiere campochiaro ha già fatto il suo lavoro e dopo [[Qxd3]] posso sviluppare con [[Ne7]].",
+      "whyNot": {
+        "san": "Ne7",
+        "text": "[[Ne7]] è l'alternativa più giocata a questo livello (12.4%) ed è altrettanto buona (perdita 0). Io cambio subito con [[Bxd3]]: così non lascio al Bianco la scelta."
+      },
+      "conceptRefs": [
+        "adv-bd3-trade"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/pp1nnppp/2p1p3/3pPb2/3P4/2NBBN2/PPP2PPP/R2QK2R b KQkq -",
+      "variationId": "advance-bf5",
+      "why": "Il Bianco offre il cambio in d3. Accetto con [[Bxd3]]: dopo [[Qxd3]] posso rompere con [[c5]] contro il pedone d4.",
+      "whyNot": {
+        "san": "Qb6",
+        "text": "[[Qb6]] è l'alternativa più giocata a questo livello (11.7%), ma costa 0.12 rispetto a [[Bxd3]]. Cambiare l'Alfiere subito è più semplice."
+      },
+      "conceptRefs": [
+        "adv-bd3-trade",
+        "adv-c5-break"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1pp1/2p1p2p/3pP3/3P4/2NQ1N1P/PPP2PP1/R1B1K2R b KQkq -",
+      "variationId": "advance-bf5",
+      "why": "Il Bianco ha finito di sviluppare e tiene la catena d4–e5. Rompo con [[c5]]: il pedone attacca d4, che è difeso 2 volte, e apre il gioco ai miei pezzi.",
+      "whyNot": {
+        "san": "Ne7",
+        "text": "[[Ne7]] è l'alternativa più giocata a questo livello (21.2%) ed è altrettanto buona (perdita 0). Con [[c5]] attacco subito il centro bianco."
+      },
+      "conceptRefs": [
+        "adv-c5-break"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qk1nr/pp3ppp/4p3/2bpP3/8/2NQB3/PPP2PPP/R3K1NR b KQkq -",
+      "variationId": "advance-bf5",
+      "why": "Il Bianco ha giocato l'Alfiere in e3 e il mio Alfiere in c5 è attaccato e non difeso. Lo cambio con [[Bxe3]] invece di ritirarlo, così non perdo tempo. Dopo [[fxe3]] continuo lo sviluppo con [[Nc6]].",
+      "whyNot": {
+        "san": "Qb6",
+        "text": "[[Qb6]] è l'alternativa più giocata a questo livello (7.8%), ma costa 0.19 rispetto a [[Bxe3]]."
+      },
+      "conceptRefs": [
+        "adv-c5-break"
+      ]
     }
   ]
 }
