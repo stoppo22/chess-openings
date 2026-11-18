@@ -43,7 +43,7 @@ export const LessonPanel: React.FC<{
                 onClick={() => onOpenPrinciple(p.id)}
                 className="text-[13px] text-accent underline underline-offset-2 text-left min-h-[32px]"
               >
-                Capisci il principio: <RichText text={p.ifOpponent} />
+                Principio: se l'avversario <RichText text={p.ifOpponent} />, io <RichText text={p.thenI} />
               </button>
             </li>
           ))}

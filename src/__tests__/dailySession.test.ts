@@ -17,10 +17,10 @@ const cards = [
 ];
 
 describe('buildDailySession', () => {
-  it('orders due, then 2 new, then 1 punish; skips future', () => {
+  it('orders due, then new (daily limit), then punish; skips future', () => {
     const s = buildDailySession(cards, [], op, now);
-    expect(s.map((i) => i.cardId)).toEqual(['due1', 'due2', 'n1', 'n2', 'p1']);
-    expect(s.map((i) => i.kind)).toEqual(['review', 'review', 'new', 'new', 'punish']);
+    expect(s.map((i) => i.cardId)).toEqual(['due1', 'due2', 'n1', 'n2', 'n3', 'p1', 'p2']);
+    expect(s.map((i) => i.kind)).toEqual(['review', 'review', 'new', 'new', 'new', 'punish', 'punish']);
   });
   it('adds a planQuiz slot when a lesson has one', () => {
     const lessons = { n1: { planQuiz: {} } as unknown as PositionLesson };
@@ -29,7 +29,7 @@ describe('buildDailySession', () => {
   });
   it('pulls priority cards forward', () => {
     const s = buildDailySession(cards, [], op, now, { priorityCardIds: ['due2', 'n3', 'p2'] });
-    expect(s.map((i) => i.cardId)).toEqual(['due2', 'due1', 'n3', 'n1', 'p2']);
+    expect(s.map((i) => i.cardId)).toEqual(['due2', 'due1', 'n3', 'n1', 'n2', 'p2', 'p1']);
   });
   it('respects daily limit already used and time budget', () => {
     const logs = Array.from({ length: 10 }, (_, i) => ({

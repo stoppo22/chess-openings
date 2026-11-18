@@ -1,6 +1,6 @@
 import type { PositionLesson } from '../types/lessons';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
-import { buildDailyReviewQueue, State } from './srs';
+import { buildDailyReviewQueue, SRS_DAILY_LIMITS, State } from './srs';
 
 export interface SessionItem {
   kind: 'review' | 'new' | 'punish' | 'planQuiz';
@@ -10,8 +10,9 @@ export interface SessionItem {
 }
 
 export const SECONDS_PER_ITEM = 25;
-const MAX_NEW_REPERTOIRE = 2;
-const MAX_NEW_PUNISH = 1;
+// New cards follow the app's daily limits; the time budget below still caps the session.
+const MAX_NEW_REPERTOIRE = SRS_DAILY_LIMITS.MAX_NEW_CARDS_PER_DAY - SRS_DAILY_LIMITS.MAX_NEW_PUNISH_PER_DAY;
+const MAX_NEW_PUNISH = SRS_DAILY_LIMITS.MAX_NEW_PUNISH_PER_DAY;
 
 export function buildDailySession(
   cards: StoredFSRSCard[],
