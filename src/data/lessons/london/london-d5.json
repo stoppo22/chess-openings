@@ -313,7 +313,7 @@
       "why": "[[c3]] difende d4, il bersaglio della rottura al centro, e completa la piramide d4–e3–c3.",
       "whyNot": {
         "san": "Nf3",
-        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -408,7 +408,7 @@
       "why": "[[c3]] difende d4, il bersaglio della rottura al centro, e completa la piramide d4–e3–c3.",
       "whyNot": {
         "san": "Nf3",
-        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -420,7 +420,7 @@
       "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
       "whyNot": {
         "san": "Nd2",
-        "text": "L'alternativa più giocata a questo livello è [[Nd2]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nd2]] ed è altrettanto buona: il motore la separa solo di 0.08. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -514,7 +514,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Nf3",
-        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -644,7 +644,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Bd3",
-        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.06. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.06. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -805,7 +805,7 @@
       "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
       "whyNot": {
         "san": "Nbd2",
-        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "opponentMistake": {
         "san": "Ba5",
@@ -893,7 +893,7 @@
       "why": "[[c3]] difende d4, il bersaglio della rottura al centro, e completa la piramide d4–e3–c3.",
       "whyNot": {
         "san": "Nbd2",
-        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -917,7 +917,7 @@
       "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
       "whyNot": {
         "san": "Nbd2",
-        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nbd2]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -1169,7 +1169,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Nf3",
-        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Nf3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -1236,7 +1236,7 @@
       "why": "[[c3]] attacca l'Alfiere nero in b4, che non è difeso: lo costringe a decidere e completa la piramide.",
       "whyNot": {
         "san": "Bd3",
-        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "opponentMistake": {
         "san": "Ba5",
@@ -1253,7 +1253,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Bd3",
-        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -1294,7 +1294,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Bd3",
-        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la separa solo di 0.09. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "opponentMistake": {
         "san": "Qe7",
@@ -1347,7 +1347,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "h3",
-        "text": "L'alternativa più giocata a questo livello è [[h3]] ed è altrettanto buona: il motore la separa solo di 0.03. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[h3]] ed è altrettanto buona: il motore la separa solo di 0.03. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -1424,7 +1424,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Bd3",
-        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
@@ -1829,7 +1829,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "Bd3",
-        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[Bd3]] ed è altrettanto buona: il motore la valuta alla pari. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "opponentMistake": {
         "san": "e5",
@@ -1991,7 +1991,7 @@
       "why": "[[c3]] completa la piramide di pedoni e rinforza d4. La risposta del Nero è tranquilla: niente da punire né da temere.",
       "whyNot": {
         "san": "c4",
-        "text": "L'alternativa più giocata a questo livello è [[c4]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[c3]] perché completa la piramide, che è la struttura da conoscere a memoria."
+        "text": "L'alternativa più giocata a questo livello è [[c4]] ed è altrettanto buona: il motore la separa solo di 0.05. Il repertorio preferisce [[c3]] perché completa la piramide, la base solida su cui poggia tutto lo schema."
       },
       "conceptRefs": [
         "ld5-develop"
