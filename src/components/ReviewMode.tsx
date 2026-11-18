@@ -11,6 +11,7 @@ import { EvalBar } from './EvalBar';
 import { PlanQuiz } from './PlanQuiz';
 import { RichText } from './RichText';
 import type { SessionItem } from '../services/dailySession';
+import { loadContext } from '../services/gamesStore';
 import { findPunishLesson } from '../services/quiz';
 import type { LoadedLessons } from '../data/lessons';
 
@@ -51,6 +52,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   );
   const sessionQueue = items;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [gameContext] = useState(() => loadContext(opening.id));
 
   const [boardFen, setBoardFen] = useState<string>('');
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
@@ -325,6 +327,17 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     };
   }
 
+  const ctxs = gameContext[currentCard.id] ?? [];
+  const gc = ctxs[0];
+  const lesson = lessonData?.lessons[currentCard.normalizedFen];
+  const nodeLabel = (san: string) => (currentNode ? formatMoveLabel(currentNode.moveNumber, currentNode.turn, san) : san);
+  const alt = currentNode?.playerMove?.alternatives?.find((a) => a.san === gc?.mySan);
+  const signed = (n: number) => `${n >= 0 ? '+' : ''}${n.toFixed(2)}`;
+  const oppLabel =
+    gc?.opponentMistakeSan && lastOpponentMove?.san === gc.opponentMistakeSan
+      ? formatMoveLabel(lastOpponentMove.moveNumber, lastOpponentMove.color, gc.opponentMistakeSan)
+      : gc?.opponentMistakeSan;
+  const punishText = gc ? findPunishLesson(opening, lessonData?.lessons, currentCard)?.opponentMistake?.text : undefined;
   const isForcedAgain = usedHint || wrongAttempts > 0;
   const progressPct = Math.round(((currentIndex + 1) / sessionQueue.length) * 100);
 
@@ -355,6 +368,42 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
           </label>
         )}
       </ModeHeader>
+
+      {gc && (
+        <div className="bg-surface border border-border rounded-xl px-4 py-3 space-y-1.5 text-[15px] leading-snug">
+          <div className="text-[13px] font-semibold text-muted">Dalle tue partite</div>
+          <p>
+            Contro <strong>{gc.opponent}</strong> · {new Date(gc.date).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit' })}
+            {gc.kind === 'my-deviation'
+              ? ` — qui hai giocato ${nodeLabel(gc.mySan)}.`
+              : ` — l'avversario ha giocato ${oppLabel} e tu hai risposto ${nodeLabel(gc.mySan)}.`}{' '}
+            <a href={gc.url} target="_blank" rel="noopener noreferrer" className="text-accent underline">
+              Apri la partita
+            </a>
+            {ctxs.length > 1 && <span className="text-muted">{` · e altre ${ctxs.length - 1} partite`}</span>}
+          </p>
+          {feedback.type === 'solved' && gc.kind === 'my-deviation' && (
+            <>
+              {gc.repertoireSan && <p>Il repertorio dice <strong>{nodeLabel(gc.repertoireSan)}</strong>.</p>}
+              <p>
+                {alt
+                  ? `${nodeLabel(gc.mySan)} vale ${signed(alt.evalFromPlayerPerspective)}, perde ${alt.evalLossVsBest.toFixed(2)} rispetto alla migliore.`
+                  : `${nodeLabel(gc.mySan)} non è tra le mosse analizzate dal motore.`}
+              </p>
+              {lesson?.whyNot?.san === gc.mySan && <p><RichText text={lesson.whyNot.text} /></p>}
+            </>
+          )}
+          {feedback.type === 'solved' && gc.kind === 'missed-punish' && (
+            <>
+              <p>
+                Era un errore: <strong>{oppLabel}</strong> perde {(gc.evalLoss ?? 0).toFixed(2)}. La punizione era{' '}
+                <strong>{gc.punishSan && nodeLabel(gc.punishSan)}</strong>.
+              </p>
+              {punishText && <p><RichText text={punishText} /></p>}
+            </>
+          )}
+        </div>
+      )}
 
       {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">

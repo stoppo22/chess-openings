@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { OpeningRepertoireFile } from '../types/repertoire';
 import { analyseGame, fetchRecentGames, summarise, type DeviationStat } from '../services/myGames';
-import { loadSummary, loadUsername, saveSummary, saveUsername, savePriority, type CachedSummary } from '../services/gamesStore';
+import { loadSummary, loadUsername, saveSummary, saveUsername, savePriority, saveContext, type CachedSummary } from '../services/gamesStore';
 
 const line = (opening: OpeningRepertoireFile, d: DeviationStat) => {
   const path = (opening.positions[d.normalizedFen]?.pgnPath ?? '').replace(/(\d+)\.\s+/g, '$1.');
@@ -82,6 +82,7 @@ export const MyGames: React.FC<{ opening: OpeningRepertoireFile; onPriorityChang
               <button
                 onClick={() => {
                   savePriority(opening.id, s.priorityCardIds);
+                  saveContext(opening.id, s.contextByCardId ?? {});
                   onPriorityChange(s.priorityCardIds);
                   setTrained(true);
                 }}

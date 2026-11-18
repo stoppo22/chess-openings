@@ -1,4 +1,4 @@
-import type { GamesSummary } from './myGames';
+import type { GameContext, GamesSummary } from './myGames';
 
 const get = (k: string): string | null => {
   try {
@@ -41,3 +41,14 @@ export function loadPriority(openingId: string): string[] {
   }
 }
 export const savePriority = (openingId: string, ids: string[]) => set(`chess-openings:priority:${openingId}`, JSON.stringify(ids));
+
+export function loadContext(openingId: string): Record<string, GameContext[]> {
+  try {
+    const v = JSON.parse(get(`chess-openings:context:${openingId}`) ?? '{}');
+    return v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  } catch {
+    return {};
+  }
+}
+export const saveContext = (openingId: string, c: Record<string, GameContext[]>) =>
+  set(`chess-openings:context:${openingId}`, JSON.stringify(c));

@@ -76,6 +76,9 @@ export interface PunishEvent {
 
 export interface GameAnalysis {
   url: string;
+  opponent: string;
+  myColor: 'white' | 'black';
+  endTime: number; // unix seconds
   openingId: string;
   leftBook?: LeftBook; // absent: the game stayed in book to the end
   missedPunish?: PunishEvent;
@@ -103,7 +106,13 @@ export function analyseGame(
   const start = moves.findIndex((mv) => opening.positions[normalizeFen(mv.before)]);
   if (start < 0 || start > 2) return null;
 
-  const out: GameAnalysis = { url: game.url, openingId: opening.id };
+  const out: GameAnalysis = {
+    url: game.url,
+    opponent: myColor === 'white' ? game.black : game.white,
+    myColor,
+    endTime: game.endTime,
+    openingId: opening.id,
+  };
   let inBook = true;
   let pending: { fen: string; m: NonNullable<ReturnType<typeof findMistake>> } | null = null;
 
@@ -169,15 +178,31 @@ export interface GamesSummary {
   foundPunish: number;
   /** Card ids (srs.ts format) to pull forward in review. */
   priorityCardIds: string[];
+  /** Why each card is in the priority list: up to 3 games, newest first. */
+  contextByCardId: Record<string, GameContext[]>;
+}
+
+export interface GameContext {
+  url: string;
+  opponent: string;
+  date: string; // ISO
+  kind: 'my-deviation' | 'missed-punish';
+  mySan: string;
+  repertoireSan?: string;
+  opponentMistakeSan?: string;
+  punishSan?: string;
+  evalLoss?: number;
 }
 
 export function summarise(analyses: GameAnalysis[]): GamesSummary {
   const dev = new Map<string, DeviationStat>();
   const prio = new Map<string, number>();
+  const ctx: Record<string, GameContext[]> = {};
   let missed = 0;
   let found = 0;
   for (const a of analyses) {
     const l = a.leftBook;
+    const base = { url: a.url, opponent: a.opponent, date: new Date(a.endTime * 1000).toISOString() };
     if (l) {
       const key = `${l.by}|${l.normalizedFen}`;
       const d = dev.get(key) ?? { normalizedFen: l.normalizedFen, by: l.by, count: 0, moves: {}, repertoireSan: l.repertoireSan };
@@ -187,19 +212,31 @@ export function summarise(analyses: GameAnalysis[]): GamesSummary {
       if (l.by === 'me') {
         const id = buildCardId(a.openingId, 'repertoire', l.normalizedFen);
         prio.set(id, (prio.get(id) ?? 0) + 1);
+        (ctx[id] ??= []).push({ ...base, kind: 'my-deviation', mySan: l.playedSan, repertoireSan: l.repertoireSan });
       }
     }
     if (a.punished) found++;
     if (a.missedPunish) {
       missed++;
-      prio.set(a.missedPunish.cardId, (prio.get(a.missedPunish.cardId) ?? 0) + 1);
+      const m = a.missedPunish;
+      prio.set(m.cardId, (prio.get(m.cardId) ?? 0) + 1);
+      (ctx[m.cardId] ??= []).push({
+        ...base,
+        kind: 'missed-punish',
+        mySan: m.mySan,
+        opponentMistakeSan: m.opponentMoveSan,
+        punishSan: m.punishMoveSan,
+        evalLoss: m.evalLoss,
+      });
     }
   }
+  for (const id in ctx) ctx[id] = ctx[id].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
   return {
     games: analyses.length,
     deviations: [...dev.values()].sort((a, b) => b.count - a.count),
     missedPunish: missed,
     foundPunish: found,
     priorityCardIds: [...prio.entries()].sort((a, b) => b[1] - a[1]).map(([id]) => id),
+    contextByCardId: ctx,
   };
 }

@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { analyseGame, summarise, type MyGame } from '../services/myGames';
 import { buildCardId, getFenFromSanMoves } from '../services/fen';
+import { loadContext, saveContext } from '../services/gamesStore';
 import { fakeOpening } from './fixtures';
 
 const op = fakeOpening();
-const g = (pgn: string, white = 'Me', black = 'Opp'): MyGame => ({ pgn, white, black, timeClass: 'rapid', endTime: 0, url: pgn });
+const g = (pgn: string, white = 'Me', black = 'Opp', endTime = 0): MyGame => ({ pgn, white, black, timeClass: 'rapid', endTime, url: pgn });
 
 describe('analyseGame', () => {
   it('missed punish + opponent left book', () => {
@@ -41,5 +42,28 @@ describe('summarise', () => {
     expect(s.foundPunish).toBe(1);
     expect(s.priorityCardIds).toContain(buildCardId('fake', 'repertoire', getFenFromSanMoves([]).normalizedFen));
     expect(s.priorityCardIds).toContain(buildCardId('fake', 'punish', getFenFromSanMoves(['e4', 'f6']).normalizedFen));
+  });
+  it('builds context per card, newest first, max 3', () => {
+    const as = [1, 2, 3, 4].map((t) => analyseGame(g('1. d4 d5 *', 'Me', `O${t}`, 1700000000 + t), 'me', op)!);
+    as.push(analyseGame(g('1. e4 f6 2. Nf3 *', 'Me', 'Zed', 1700000100), 'me', op)!);
+    const s = summarise(as);
+    const dev = s.contextByCardId[buildCardId('fake', 'repertoire', getFenFromSanMoves([]).normalizedFen)];
+    expect(dev.map((c) => c.opponent)).toEqual(['O4', 'O3', 'O2']);
+    expect(dev[0]).toMatchObject({ kind: 'my-deviation', mySan: 'd4', repertoireSan: 'e4', url: '1. d4 d5 *' });
+    expect(dev[0].date).toBe(new Date(1700000004000).toISOString());
+    const mp = s.contextByCardId[buildCardId('fake', 'punish', getFenFromSanMoves(['e4', 'f6']).normalizedFen)][0];
+    expect(mp).toMatchObject({ kind: 'missed-punish', opponent: 'Zed', mySan: 'Nf3', opponentMistakeSan: 'f6', punishSan: 'd4', evalLoss: 2 });
+  });
+});
+
+describe('gamesStore context', () => {
+  it('round-trips and tolerates garbage', () => {
+    const store: Record<string, string> = {};
+    (globalThis as any).localStorage = { getItem: (k: string) => store[k] ?? null, setItem: (k: string, v: string) => (store[k] = v) };
+    const c = { x: [{ url: 'u', opponent: 'o', date: 'd', kind: 'my-deviation' as const, mySan: 'd4' }] };
+    saveContext('fake', c);
+    expect(loadContext('fake')).toEqual(c);
+    store['chess-openings:context:fake'] = '[1]';
+    expect(loadContext('fake')).toEqual({});
   });
 });
