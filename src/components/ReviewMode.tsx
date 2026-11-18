@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
-import { getLastMoveInfo } from '../services/fen';
+import { formatMoveLabel, getLastMoveInfo } from '../services/fen';
 import { analyzeWrongPlayerMove, type WrongMoveAnalysis } from '../services/moveAnalyzer';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
 import { EvalBar } from './EvalBar';
@@ -144,7 +144,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
         fullFen: currentCard.fullFen,
         moveNumber: lastOpponentMove?.moveNumber || 4,
         ply: 8,
-        turn: 'b' as const,
+        turn: (opening.playerColor === 'white' ? 'w' : 'b') as 'w' | 'b',
         isPlayerTurn: true,
         pgnPath: currentCard.pgnPath,
         moveSequenceSan: [],
@@ -253,16 +253,16 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const isForcedAgain = usedHint || wrongAttempts > 0;
   const progressPct = Math.round(((currentIndex + 1) / sessionQueue.length) * 100);
 
-  const baseEvalForBlack = useMemo(() => {
+  const baseEvalForPlayer = useMemo(() => {
     if (currentCard.cardType === 'punish' && currentCard.mistakeContext) {
-      return currentCard.mistakeContext.finalEvalForPlayer ?? 1.5;
+      return currentCard.mistakeContext.finalEvalForPlayer ?? null;
     }
-    return currentNode?.playerMove?.engine.evalFromPlayerPerspective ?? 0.0;
+    return currentNode?.playerMove?.engine.evalFromPlayerPerspective ?? null;
   }, [currentCard, currentNode]);
 
-  const activeEvalForBlack = wrongMoveAnalysis
-    ? wrongMoveAnalysis.estimatedEvalForBlack
-    : baseEvalForBlack;
+  const activeEvalForPlayer = wrongMoveAnalysis
+    ? (wrongMoveAnalysis.evalForPlayer ?? baseEvalForPlayer)
+    : baseEvalForPlayer;
 
   const activeEvalDelta = useMemo(() => {
     if (wrongMoveAnalysis) return wrongMoveAnalysis.evalDrop;
@@ -329,7 +329,11 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
         {/* Chessboard + EvalBar */}
         <div className="lg:col-span-7 flex flex-col items-center">
           <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
-            <EvalBar evalForBlack={activeEvalForBlack} deltaForBlack={activeEvalDelta} />
+            <EvalBar
+              evalForPlayer={activeEvalForPlayer}
+              deltaForPlayer={activeEvalDelta}
+              playerColor={opening.playerColor}
+            />
             <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
               <Chessboard
                 id="review-board"
@@ -371,7 +375,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                 <span className="text-sm font-bold uppercase tracking-wider text-[#e8e6e3]">
                   {currentCard.cardType === 'punish'
                     ? `Punisci l'errore (${opening.buildConfig.ratingBandLabel})`
-                    : 'Tocca al Nero — Trova la mossa'}
+                    : 'Tocca a te — Trova la mossa'}
                 </span>
               </div>
               {wrongAttempts > 0 && (
@@ -387,16 +391,16 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161512] border border-[#3c3934] text-xs font-mono text-[#e8e6e3]">
                     <span className="w-2.5 h-2.5 rounded-sm bg-[#9bc700] inline-block" />
                     <span>
-                      Ultima mossa del Bianco:{' '}
+                      Ultima mossa dell'avversario:{' '}
                       <strong className="text-[#ffffff]">
-                        {lastOpponentMove.moveNumber}. {lastOpponentMove.san}
+                        {formatMoveLabel(lastOpponentMove.moveNumber, lastOpponentMove.color, lastOpponentMove.san)}
                       </strong>
                     </span>
                   </div>
                 )}
                 <h2 className="text-lg font-bold text-[#ffffff] leading-snug">
                   {currentCard.cardType === 'punish' && currentCard.mistakeContext
-                    ? `Il Bianco ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Gioca la confutazione.`
+                    ? `L'avversario ha giocato ${currentCard.mistakeContext.opponentMistakeSan}? (${currentCard.mistakeContext.evalLoss.toFixed(2)} pedoni persi). Gioca la confutazione.`
                     : 'Esegui la mossa del tuo repertorio sulla scacchiera.'}
                 </h2>
                 <p className="text-sm text-[#9e9c99]">
@@ -508,7 +512,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                         {typeof currentCard.mistakeContext.finalEvalForPlayer === 'number' && (
                           <span>
                             {' '}
-                            • Eval Nero:{' '}
+                            • Eval per te:{' '}
                             {currentCard.mistakeContext.finalEvalForPlayer >= 0 ? '+' : ''}
                             {currentCard.mistakeContext.finalEvalForPlayer.toFixed(2)}
                           </span>
@@ -516,21 +520,6 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
                       </div>
                     </div>
                   )}
-
-                  {/* Strategic Note (Repertoire only) */}
-                  {currentCard.cardType === 'repertoire' &&
-                    (currentNode?.aiCommentUnverified ||
-                      currentNode?.playerMove?.aiCommentUnverified) && (
-                      <div className="bg-[#1e1c1a] border border-[#33302c] rounded p-4 space-y-1.5">
-                        <div className="text-xs font-bold uppercase tracking-wider text-[#8c8a87]">
-                          Piano strategico (Commento AI, non verificato)
-                        </div>
-                        <p className="text-sm text-[#bababa] leading-relaxed">
-                          {currentNode.aiCommentUnverified ||
-                            currentNode.playerMove?.aiCommentUnverified}
-                        </p>
-                      </div>
-                    )}
 
                   {/* FSRS Grade Buttons */}
                   <div className="pt-1">

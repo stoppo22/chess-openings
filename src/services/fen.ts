@@ -95,3 +95,8 @@ export function getLastMoveInfo(pgnOrMoves: string | string[]): LastMoveInfo | n
     return null;
   }
 }
+
+/** Notazione con numero di mossa: bianco `5.Nf3`, nero `5...Nf6`. */
+export function formatMoveLabel(moveNumber: number, color: 'w' | 'b', san: string): string {
+  return color === 'w' ? `${moveNumber}.${san}` : `${moveNumber}...${san}`;
+}

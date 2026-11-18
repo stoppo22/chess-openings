@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from './types/repertoire';
 import {
   exportBackupJson,
@@ -11,6 +11,7 @@ import {
 } from './services/storage';
 import { syncOpeningCards } from './services/srs';
 import { applySwUpdateReload, isSwUpdateReady, subscribeSwUpdate } from './services/swUpdate';
+import { OPENINGS, loadOpening } from './data/openings';
 import { Dashboard } from './components/Dashboard';
 import { DrillMode } from './components/DrillMode';
 import { LearnMode } from './components/LearnMode';
@@ -22,10 +23,25 @@ type ActiveView =
   | { mode: 'drill'; variationId?: string }
   | { mode: 'review'; variationId?: string };
 
+const OPENING_KEY = 'chess-openings:selected-opening';
+
+function readSelectedOpening(): string {
+  try {
+    const id = localStorage.getItem(OPENING_KEY);
+    if (id && OPENINGS.some((o) => o.id === id)) return id;
+  } catch {
+    // storage non disponibile: usa il primo
+  }
+  return OPENINGS[0].id;
+}
+
 export const App: React.FC = () => {
+  const [openingId, setOpeningId] = useState<string>(readSelectedOpening);
   const [openingData, setOpeningData] = useState<OpeningRepertoireFile | null>(null);
-  const [cards, setCards] = useState<StoredFSRSCard[]>([]);
-  const [logs, setLogs] = useState<ReviewLogEntry[]>([]);
+  const [allCards, setCards] = useState<StoredFSRSCard[]>([]);
+  const [allLogs, setLogs] = useState<ReviewLogEntry[]>([]);
+  const cards = useMemo(() => allCards.filter((c) => c.openingId === openingId), [allCards, openingId]);
+  const logs = useMemo(() => allLogs.filter((l) => l.openingId === openingId), [allLogs, openingId]);
   const [isPersisted, setIsPersisted] = useState<boolean>(false);
   const [activeView, setActiveView] = useState<ActiveView>({ mode: 'dashboard' });
   const [reviewFinished, setReviewFinished] = useState<boolean>(false);
@@ -56,8 +72,7 @@ export const App: React.FC = () => {
         const persisted = await requestPersistentStorage();
         if (mounted) setIsPersisted(persisted);
 
-        const mod = await import('./data/openings/caro-kann.json');
-        const opening = (mod.default || mod) as unknown as OpeningRepertoireFile;
+        const opening = await loadOpening(openingId);
 
         const [storedCards, storedLogs] = await Promise.all([getAllCards(), getAllLogs()]);
         const syncedCards = syncOpeningCards(opening, storedCards);
@@ -76,11 +91,21 @@ export const App: React.FC = () => {
         }
       }
     }
+    setOpeningData(null);
     initApp();
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [openingId]);
+
+  const handleSelectOpening = (id: string) => {
+    try {
+      localStorage.setItem(OPENING_KEY, id);
+    } catch {
+      // ignora: la scelta vale solo per la sessione
+    }
+    setOpeningId(id);
+  };
 
   const handleCardReviewed = async (updatedCard: StoredFSRSCard, log: ReviewLogEntry) => {
     await saveCardAndLog(updatedCard, log);
@@ -148,6 +173,8 @@ export const App: React.FC = () => {
       {activeView.mode === 'dashboard' && (
         <Dashboard
           opening={openingData}
+          openings={OPENINGS}
+          onSelectOpening={handleSelectOpening}
           cards={cards}
           logs={logs}
           isPersisted={isPersisted}

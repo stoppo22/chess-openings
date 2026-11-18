@@ -3,7 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { Chess } from 'chess.js';
-import { normalizeFen } from './repertoire-seeds.mjs';
+import { normalizeFen } from './lib/fen.mjs';
 import { StockfishRunner } from './stockfish-runner.mjs';
 
 const __filename = fileURLToPath(import.meta.url);

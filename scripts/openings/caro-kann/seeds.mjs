@@ -1,72 +1,8 @@
 import { Chess } from 'chess.js';
+import { normalizeFen } from '../../lib/fen.mjs';
+import { OPENING_CONFIG, SEED_LINES } from './config.mjs';
 
-export function normalizeFen(fen) {
-  const parts = fen.trim().split(/\s+/);
-  return `${parts[0]} ${parts[1]} ${parts[2]} ${parts[3]}`;
-}
-
-export const CARO_KANN_CONFIG = {
-  id: 'caro-kann',
-  name: 'Caro-Kann Defence',
-  playerColor: 'black',
-  description:
-    'Repertorio solido col Nero contro 1.e4 basato sul Database Lichess (fascia 0-1400 per le risposte avversarie) e validato con Database Grandi Maestri + Stockfish 16 (depth 18).',
-  rootMovesSan: ['e4', 'c6', 'd4', 'd5'],
-  allowedWhiteMove2San: ['d4', 'Bc4'],
-  allowedWhiteMove3San: ['e5', 'Nc3', 'Nd2', 'exd5'],
-  variations: [
-    {
-      id: 'advance-bf5',
-      name: 'Variante di Spinta (3.e5 Bf5)',
-      subtitle: "Sviluppo attivo dell'alfiere camposcuro fuori dalla catena di pedoni prima di ...e6",
-      ecoCode: 'B12',
-      rootMovesSan: ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5'],
-    },
-    {
-      id: 'classical-bf5',
-      name: 'Variante Classica (4.Nxe4 Bf5)',
-      subtitle: 'Cambio centrale 3...dxe4 seguito da 4...Bf5 per sfidare subito il cavallo centralizzato',
-      ecoCode: 'B18',
-      rootMovesSan: ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5'],
-    },
-    {
-      id: 'exchange-cxd5',
-      name: 'Variante di Cambio & Panov (3.exd5 cxd5)',
-      subtitle: 'Struttura simmetrica solida con sviluppo naturale ...Nc6, ...Nf6, ...Bg4 e controllo della colonna c',
-      ecoCode: 'B13',
-      rootMovesSan: ['e4', 'c6', 'd4', 'd5', 'exd5', 'cxd5'],
-    },
-    {
-      id: 'hillbilly-bc4',
-      name: "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
-      subtitle: "Controgioco immediato al centro con 2...d5 guadagnando tempo sull'Alfiere in c4",
-      ecoCode: 'B10',
-      rootMovesSan: ['e4', 'c6', 'Bc4', 'd5'],
-    },
-  ],
-};
-
-/**
- * Linee principali di partenza (seed espliciti verificati).
- */
-export const SEED_LINES = [
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5'],
-  ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5'],
-  ['e4', 'c6', 'd4', 'd5', 'Nd2', 'dxe4', 'Nxe4', 'Bf5'],
-  ['e4', 'c6', 'd4', 'd5', 'exd5', 'cxd5'],
-  ['e4', 'c6', 'Bc4', 'd5'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'Nf3', 'e6', 'Be2', 'Nd7', 'O-O', 'Ne7', 'Nbd2', 'h6'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'Nf3', 'e6', 'Be2', 'Nd7', 'O-O', 'Ne7', 'c3', 'h6'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'Nc3', 'e6', 'g4', 'Bg6', 'Nge2', 'c5', 'h4', 'h6'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'h4', 'h5', 'Bd3', 'Bxd3', 'Qxd3', 'e6', 'Nf3', 'Qa5+'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'h4', 'h5', 'c4', 'e6', 'Nc3', 'Nd7'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'Nd2', 'e6', 'Nb3', 'Nd7', 'Nf3', 'h6'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'Bd3', 'Bxd3', 'Qxd3', 'e6', 'Nf3', 'Qa5+'],
-  ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5', 'c3', 'e6', 'Be3', 'Qb6'],
-  ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5', 'Ng3', 'Bg6', 'h4', 'h6', 'Nf3', 'Nd7', 'h5', 'Bh7'],
-  ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5', 'Ng3', 'Bg6', 'Nf3', 'Nd7', 'h4', 'h6', 'h5', 'Bh7'],
-  ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5', 'Ng3', 'Bg6', 'Bc4', 'e6', 'N1e2', 'Nf6'],
-];
+const PLAYER_TURN = OPENING_CONFIG.playerColor === 'white' ? 'w' : 'b';
 
 // BEGIN_APPROVED_BY_FEN
 export const APPROVED_MOVES_BY_FEN = {
@@ -1763,21 +1699,6 @@ export const APPROVED_META_BY_FEN = {
 };
 // END_APPROVED_BY_FEN
 
-export const AI_COMMENTS_UNVERIFIED_BY_FEN = {
-  'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq -':
-    "1...c6 prepara la spinta centrale ...d5 al tratto successivo mantenendo aperta la diagonale per lo sviluppo dell'alfiere camposcuro.",
-  'rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -':
-    "Con 2...d5 contestiamo subito il centro del Bianco mantenendo libera la diagonale c8-h3.",
-  'rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq -':
-    "Nella Variante di Spinta giochiamo 3...Bf5 per sviluppare l'alfiere fuori dalla catena di pedoni prima di consolidare con ...e6.",
-  'rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -':
-    "Con 3...dxe4 apriamo la colonna d e prepariamo lo sviluppo attivo dell'alfiere camposcuro nella Variante Classica.",
-  'rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPPN1PPP/R1BQKBNR b KQkq -':
-    'Anche contro 3.Nd2 semplifichiamo al centro per rientrare nella struttura della Variante Classica.',
-  'rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -':
-    "4...Bf5 sviluppa attivamente l'alfiere camposcuro fuori dalla catena di pedoni prima di chiudere con ...e6.",
-};
-
 export const ARROWS_BY_FEN = {
   'rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq -': [
     ['c8', 'f5', '#f59e0b'],
@@ -1801,7 +1722,7 @@ export function getInitialSeedFensSet() {
       if (!m) {
         throw new Error(`Invalid seed move "${san}" at FEN ${normFen}`);
       }
-      if (turn === 'b') {
+      if (turn === PLAYER_TURN) {
         set.add(normFen);
       }
     }
@@ -1822,7 +1743,7 @@ export function getApprovedSeedMap() {
       if (!m) {
         throw new Error(`Invalid seed move "${san}" at FEN ${normFen}`);
       }
-      if (turn === 'b') {
+      if (turn === PLAYER_TURN) {
         map.set(normFen, { san: m.san, source: 'seed' });
       }
     }

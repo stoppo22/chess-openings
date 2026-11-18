@@ -52,12 +52,28 @@ export interface PlayerMoveChoice {
    */
   bandStats?: MoveStats;
   engine: EngineMoveEvaluation;
-  arrows?: Array<[string, string, string?]>;
+  /** Regola usata per scegliere la mossa (masters_freq | lichess_2200_plus | band_0_1400 | engine_best). */
+  selectionRule?: string;
   /**
-   * ⚠️ Commento didattico generato dall'AI e NON verificato da fonte ufficiale.
-   * Massimo 1-2 frasi sull'idea strategica della posizione.
+   * Tutte le linee multipv della STESSA ricerca Stockfish (stessa depth) della mossa scelta,
+   * mossa scelta inclusa. Unica fonte ammessa per valutare una mossa sbagliata in UI e lezioni.
    */
-  aiCommentUnverified?: string;
+  alternatives?: EngineAlternative[];
+  arrows?: Array<[string, string, string?]>;
+}
+
+export interface EngineAlternative {
+  san: string;
+  uci: string;
+  evalFromPlayerPerspective: number; // + = buono per chi studia il repertorio
+  evalLossVsBest: number; // >= 0
+  depth: number;
+  pvSan: string[]; // max 6 semimosse, a partire da questa mossa
+  /** % di questa mossa tra le partite Masters nella posizione (assente se Masters non ha dati). */
+  gmPct?: number;
+  gmGames?: number;
+  /** % di questa mossa nella fascia di rating avversari (es. 0-1400). */
+  bandPct?: number;
 }
 
 export interface OpponentMoveBranch {
@@ -137,10 +153,6 @@ export interface PositionNode {
    * Primi 3 errori comuni nella fascia 0-1400 ordinati per (frequencyPct * evalLoss).
    */
   commonMistakes?: CommonMistake[];
-  /**
-   * ⚠️ Breve nota strategica AI non verificata sulla posizione.
-   */
-  aiCommentUnverified?: string;
 }
 
 export interface VariationSummary {

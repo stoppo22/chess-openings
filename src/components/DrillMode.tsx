@@ -3,12 +3,14 @@ import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile, OpponentMoveBranch } from '../types/repertoire';
 import { getLastMoveInfo, normalizeFen } from '../services/fen';
+import { formatMoveLabel } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
 import { EvalBar } from './EvalBar';
 import {
   analyzeWrongPlayerMove,
   explainOpponentMistake,
-  getNodeEvalForBlack,
+  getNodeEvalForPlayer,
+  nodeMoveLabel,
   type WrongMoveAnalysis,
 } from '../services/moveAnalyzer';
 
@@ -212,6 +214,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
         to: activeTrap.mistake.to as Square,
         san: activeTrap.mistake.opponentMoveSan,
         moveNumber: currentNode.moveNumber,
+        color: (opening.playerColor === 'white' ? 'b' : 'w') as 'w' | 'b',
       };
     }
     return getLastMoveInfo(currentNode.moveSequenceSan);
@@ -241,24 +244,24 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
 
   // Calcola l'evaluazione corrente di Stockfish dal punto di vista del Nero
   const prevNormFen = historyFens.length > 1 ? historyFens[historyFens.length - 2] : undefined;
-  const baseEvalForBlack = getNodeEvalForBlack(opening, currentNode, prevNormFen);
+  const baseEvalForPlayer = getNodeEvalForPlayer(opening, currentNode, prevNormFen);
 
-  const activeEvalForBlack = useMemo(() => {
+  const activeEvalForPlayer = useMemo(() => {
     if (activeTrap) {
       return activeTrap.mistake.finalEvalForPlayer;
     }
     if (wrongMoveAnalysis) {
-      return wrongMoveAnalysis.estimatedEvalForBlack;
+      return wrongMoveAnalysis.evalForPlayer ?? baseEvalForPlayer;
     }
-    return baseEvalForBlack;
-  }, [activeTrap, wrongMoveAnalysis, baseEvalForBlack]);
+    return baseEvalForPlayer;
+  }, [activeTrap, wrongMoveAnalysis, baseEvalForPlayer]);
 
   const activeEvalDelta = useMemo(() => {
     if (activeTrap) {
       return activeTrap.mistake.evalLoss;
     }
     if (wrongMoveAnalysis) {
-      return -wrongMoveAnalysis.evalDrop;
+      return wrongMoveAnalysis.evalDrop;
     }
     return null;
   }, [activeTrap, wrongMoveAnalysis]);
@@ -284,10 +287,10 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
       if (activeTrap) {
         setActiveTrap({ ...activeTrap, solved: true });
         setGamesCompleted((prev) => prev + 1);
-        const whyExplanation = explainOpponentMistake(activeTrap.mistake);
+        const whyExplanation = explainOpponentMistake(activeTrap.mistake, opening.playerColor);
         setFeedback({
           type: 'correct',
-          message: `Ottimo! Hai punito ${activeTrap.mistake.opponentMoveSan}? con ${expectedMove.san} (Eval Nero: ${
+          message: `Ottimo! Hai punito ${activeTrap.mistake.opponentMoveSan}? con ${expectedMove.san} (Eval per te: ${
             activeTrap.mistake.finalEvalForPlayer >= 0 ? '+' : ''
           }${activeTrap.mistake.finalEvalForPlayer.toFixed(2)}). ${whyExplanation}`,
         });
@@ -297,7 +300,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
       const nextNorm = currentNode.playerMove!.nextNormalizedFen;
       setFeedback({
         type: 'correct',
-        message: `Esatto: ${currentNode.moveNumber}...${expectedMove.san}`,
+        message: `Esatto: ${nodeMoveLabel(currentNode, expectedMove.san)}`,
       });
       if (opening.positions[nextNorm]) {
         setHistoryFens((prev) => [...prev, nextNorm]);
@@ -310,6 +313,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
         activeTrap
           ? {
               ...currentNode,
+              playerMove: undefined,
               fullFen: activeTrap.mistake.afterMistakeFullFen,
             }
           : currentNode,
@@ -319,7 +323,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
       setWrongMoveAnalysis(analysis);
       setFeedback({
         type: 'wrong',
-        message: `No, non è questa (${moveObj.san}, ~-${analysis.evalDrop.toFixed(1)}): ${analysis.explanation}`,
+        message: `No, non è questa (${moveObj.san}). ${analysis.explanation}`,
       });
       return false;
     }
@@ -426,7 +430,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
           <div>
             <div className="flex items-center gap-2.5">
               <span className="text-sm font-bold text-[#ffffff]">
-                Sparring da 1.e4 (Avversario Fascia {opening.buildConfig.ratingBandLabel})
+                Sparring (Avversario Fascia {opening.buildConfig.ratingBandLabel})
               </span>
               <span className="text-xs px-2.5 py-0.5 rounded bg-[#161512] text-[#81b64c] border border-[#3c3934] font-semibold tabular-nums">
                 Linee completate: {gamesCompleted}
@@ -435,7 +439,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
             <div className="text-sm font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-xl">
               {activeTrap
                 ? `${currentNode.pgnPath} ${currentNode.moveNumber}. ${activeTrap.mistake.opponentMoveSan}?`
-                : currentNode.pgnPath || '1. e4'}
+                : currentNode.pgnPath || 'Posizione iniziale'}
             </div>
           </div>
         </div>
@@ -455,7 +459,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
             onClick={() => startNewGame(selectedVariationId)}
             className="px-4 py-2 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] text-sm font-bold transition"
           >
-            Nuova partita da 1.e4
+            Nuova partita
           </button>
         </div>
       </div>
@@ -465,7 +469,11 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
         {/* EvalBar + Chessboard */}
         <div className="lg:col-span-7 flex flex-col items-center">
           <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
-            <EvalBar evalForBlack={activeEvalForBlack} deltaForBlack={activeEvalDelta} />
+            <EvalBar
+              evalForPlayer={activeEvalForPlayer}
+              deltaForPlayer={activeEvalDelta}
+              playerColor={opening.playerColor}
+            />
             <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
               <Chessboard
                 id="drill-board"
@@ -529,8 +537,8 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                 {isLineFinished || (activeTrap && activeTrap.solved)
                   ? 'Linea completata!'
                   : canPlayerMoveNow
-                    ? `Mossa ${currentNode.moveNumber} • Tocca a TE (Nero)`
-                    : 'Il Bianco sta muovendo...'}
+                    ? `Mossa ${currentNode.moveNumber} • Tocca a te`
+                    : 'L\'avversario sta muovendo...'}
               </span>
               {totalMistakesMade > 0 && (
                 <span className="text-xs text-[#f29b98] font-semibold tabular-nums">
@@ -544,9 +552,9 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161512] border border-[#3c3934] text-xs font-mono text-[#e8e6e3]">
                   <span className="w-2.5 h-2.5 rounded-sm bg-[#9bc700] inline-block" />
                   <span>
-                    Ultima mossa del Bianco:{' '}
+                    Ultima mossa dell'avversario:{' '}
                     <strong className="text-[#ffffff]">
-                      {lastMove.moveNumber}. {lastMove.san}
+                      {formatMoveLabel(lastMove.moveNumber, lastMove.color, lastMove.san)}
                     </strong>
                   </span>
                 </div>
@@ -570,7 +578,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                 <div className="space-y-3">
                   <p className="text-base text-[#e8e6e3]">
                     {activeTrap
-                      ? 'Trova la mossa che punisce l’errore del Bianco sulla scacchiera.'
+                      ? 'Trova la mossa che punisce l’errore dell’avversario sulla scacchiera.'
                       : 'Gioca la mossa del tuo repertorio sulla scacchiera.'}
                   </p>
                   <button
@@ -603,7 +611,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                     onClick={() => startNewGame(selectedVariationId)}
                     className="w-full py-3 px-5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
                   >
-                    Gioca un&rsquo;altra partita da 1.e4 →
+                    Gioca un&rsquo;altra partita →
                   </button>
                 </div>
               )}
@@ -652,7 +660,7 @@ export const DrillMode: React.FC<DrillModeProps> = ({ opening, initialVariationI
                     onClick={() => startNewGame(selectedVariationId)}
                     className="w-full py-3 px-5 rounded bg-[#81b64c] hover:bg-[#95bb4a] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#537a2b] transition"
                   >
-                    Gioca un&rsquo;altra partita da 1.e4 →
+                    Gioca un&rsquo;altra partita →
                   </button>
                 </div>
               )}

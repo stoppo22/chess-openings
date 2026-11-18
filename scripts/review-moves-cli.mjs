@@ -1,14 +1,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline';
-import { fileURLToPath } from 'node:url';
-import { APPROVED_MOVES_BY_FEN, APPROVED_META_BY_FEN } from './repertoire-seeds.mjs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
-const REVIEW_MOVES_PATH = path.join(ROOT_DIR, 'review-moves.json');
-const SEEDS_FILE_PATH = path.join(__dirname, 'repertoire-seeds.mjs');
+const OPENING_ID = (process.argv.find((a) => a.startsWith('--opening=')) || '').slice('--opening='.length);
+const OPENINGS_DIR = path.join(__dirname, 'openings');
+if (!OPENING_ID || !fs.existsSync(path.join(OPENINGS_DIR, OPENING_ID, 'seeds.mjs'))) {
+  console.error(`❌ Specifica --opening=<id>. Disponibili: ${fs.readdirSync(OPENINGS_DIR).join(', ')}`);
+  process.exit(1);
+}
+const REVIEW_MOVES_PATH = path.join(ROOT_DIR, `review-moves.${OPENING_ID}.json`);
+const SEEDS_FILE_PATH = path.join(OPENINGS_DIR, OPENING_ID, 'seeds.mjs');
+const { APPROVED_MOVES_BY_FEN, APPROVED_META_BY_FEN } = await import(pathToFileURL(SEEDS_FILE_PATH).href);
 
 function updateSeedsFile(updatedMoves, updatedMeta) {
   const currentContent = fs.readFileSync(SEEDS_FILE_PATH, 'utf8');
@@ -18,7 +24,7 @@ function updateSeedsFile(updatedMoves, updatedMeta) {
   const endIdx = currentContent.indexOf(endMarker);
 
   if (beginIdx === -1 || endIdx === -1) {
-    throw new Error('Markers BEGIN_APPROVED_BY_FEN / END_APPROVED_BY_FEN non trovati in scripts/repertoire-seeds.mjs');
+    throw new Error(`Markers BEGIN_APPROVED_BY_FEN / END_APPROVED_BY_FEN non trovati in scripts/openings/${OPENING_ID}/seeds.mjs`);
   }
 
   const movesJson = JSON.stringify(updatedMoves, null, 2);
@@ -32,7 +38,7 @@ function updateSeedsFile(updatedMoves, updatedMeta) {
 
 async function main() {
   if (!fs.existsSync(REVIEW_MOVES_PATH)) {
-    console.log('✅ Nessun file review-moves.json presente: tutte le posizioni sono già confermate nei seed!');
+    console.log(`✅ Nessun file review-moves.${OPENING_ID}.json presente: tutte le posizioni sono già confermate nei seed!`);
     return;
   }
 
@@ -40,7 +46,7 @@ async function main() {
   const items = reviewData.positions || [];
 
   if (items.length === 0) {
-    console.log('✅ Nessuna posizione da rivedere in review-moves.json.');
+    console.log(`✅ Nessuna posizione da rivedere in review-moves.${OPENING_ID}.json.`);
     return;
   }
 
@@ -92,7 +98,7 @@ async function main() {
     }
     updateSeedsFile(updatedMoves, updatedMeta);
     console.log('----------------------------------------------------------');
-    console.log(`💾 Salvate ${addedCount} mosse in scripts/repertoire-seeds.mjs!`);
+    console.log(`💾 Salvate ${addedCount} mosse in scripts/openings/${OPENING_ID}/seeds.mjs!`);
     return;
   }
 
@@ -151,7 +157,7 @@ async function main() {
   rl.close();
   if (addedCount > 0) {
     updateSeedsFile(updatedMoves, updatedMeta);
-    console.log(`\n💾 Salvate ${addedCount} mosse in scripts/repertoire-seeds.mjs!`);
+    console.log(`\n💾 Salvate ${addedCount} mosse in scripts/openings/${OPENING_ID}/seeds.mjs!`);
   }
 }
 

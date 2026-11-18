@@ -205,7 +205,7 @@ describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A + B)', () => {
     }
   });
 
-  it('builds verified middlegame continuations and strategic ideas with arrows for every leaf node', () => {
+  it('builds verified middlegame continuations (engine plan only, no hard-coded ideas) with arrows for every leaf node', () => {
     const leaves = Object.values(caroKann.positions).filter(
       (n) => !n.isPlayerTurn && (!n.opponentMoves || n.opponentMoves.length === 0)
     );
@@ -214,7 +214,7 @@ describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A + B)', () => {
     for (const leaf of leaves) {
       const guide = buildMiddlegameGuide(caroKann, leaf);
       expect(guide.continuationSteps.length).toBeGreaterThan(0);
-      expect(guide.ideas.length).toBeGreaterThanOrEqual(2);
+      expect(guide.ideas.every((i) => i.id === 'engine-plan')).toBe(true);
       for (const idea of guide.ideas) {
         expect(idea.arrows.length).toBeGreaterThan(0);
         for (const [from, to] of idea.arrows) {

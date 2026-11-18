@@ -3,13 +3,13 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { Chess } from 'chess.js';
-import { normalizeFen } from './repertoire-seeds.mjs';
+import { normalizeFen } from './lib/fen.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CARO_KANN_FILE = path.join(ROOT_DIR, 'src', 'data', 'openings', 'caro-kann.json');
-const BUILD_WARNINGS_FILE = path.join(ROOT_DIR, 'build-warnings.json');
+const BUILD_WARNINGS_FILE = path.join(ROOT_DIR, 'build-warnings.caro-kann.json');
 
 function pickRandomItems(arr, count, seed = 42) {
   const copy = [...arr];

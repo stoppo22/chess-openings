@@ -3,11 +3,14 @@ import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { CommonMistake, OpeningRepertoireFile } from '../types/repertoire';
 import { getLastMoveInfo } from '../services/fen';
+import { formatMoveLabel } from '../services/fen';
 import { buildMiddlegameGuide } from '../services/middlegameIdeas';
 import {
   analyzeWrongPlayerMove,
   explainOpponentMistake,
-  getNodeEvalForBlack,
+  getNodeEvalForPlayer,
+  colorLetter,
+  nodeMoveLabel,
   type WrongMoveAnalysis,
 } from '../services/moveAnalyzer';
 import { EvalBar } from './EvalBar';
@@ -128,7 +131,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
             [
               nextStep.from,
               nextStep.to,
-              nextStep.turn === 'b' ? 'rgba(129, 182, 76, 0.88)' : 'rgba(54, 146, 231, 0.85)',
+              nextStep.turn === colorLetter(opening.playerColor) ? 'rgba(129, 182, 76, 0.88)' : 'rgba(54, 146, 231, 0.85)',
             ],
           ] as Array<[any, any, string?]>;
         }
@@ -246,7 +249,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
         navigateToFen(matchingOpp.nextNormalizedFen);
         return true;
       } else {
-        // Se il Bianco gioca sulla scacchiera uno degli errori comuni presenti nel nodo, apri subito l'analisi dell'errore!
+        // Se l'avversario gioca sulla scacchiera uno degli errori comuni presenti nel nodo, apri subito l'analisi dell'errore!
         const matchingMistake = (currentNode.commonMistakes || []).find(
           (m) => m.opponentMoveSan === moveObj.san
         );
@@ -254,12 +257,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
           setSelectedSquare(null);
           setWrongMoveAnalysis(null);
           setActiveMistakePreview({ mistake: matchingMistake, pvStep: 0 });
-          setMoveFeedback(explainOpponentMistake(matchingMistake));
+          setMoveFeedback(explainOpponentMistake(matchingMistake, opening.playerColor));
           return false;
         }
         setSelectedSquare(null);
         setMoveFeedback(
-          `No, non è questa (${moveObj.san}). Gioca una delle risposte del Bianco presenti nel repertorio.`
+          `No, non è questa (${moveObj.san}). Gioca una delle risposte dell'avversario presenti nel repertorio.`
         );
         return false;
       }
@@ -341,20 +344,20 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     return all.some((m) => m.severity === 'inaccuracy');
   }, [currentNode.commonMistakes]);
 
-  const baseEvalForBlack = useMemo(
-    () => getNodeEvalForBlack(opening, currentNode, previousNormFen),
+  const baseEvalForPlayer = useMemo(
+    () => getNodeEvalForPlayer(opening, currentNode, previousNormFen),
     [opening, currentNode, previousNormFen]
   );
 
-  const activeEvalForBlack = useMemo(() => {
+  const activeEvalForPlayer = useMemo(() => {
     if (activeMistakePreview) {
       return activeMistakePreview.mistake.finalEvalForPlayer;
     }
     if (wrongMoveAnalysis) {
-      return wrongMoveAnalysis.estimatedEvalForBlack;
+      return wrongMoveAnalysis.evalForPlayer ?? baseEvalForPlayer;
     }
-    return baseEvalForBlack;
-  }, [activeMistakePreview, wrongMoveAnalysis, baseEvalForBlack]);
+    return baseEvalForPlayer;
+  }, [activeMistakePreview, wrongMoveAnalysis, baseEvalForPlayer]);
 
   const activeEvalDelta = useMemo(() => {
     if (activeMistakePreview) {
@@ -381,7 +384,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
           <div>
             <div className="text-sm font-bold text-[#e8e6e3]">{currentNode.variationName}</div>
             <div className="text-sm font-mono text-[#9e9c99] truncate max-w-xs sm:max-w-xl">
-              {currentNode.pgnPath || '1. e4'}
+              {currentNode.pgnPath || 'Posizione iniziale'}
             </div>
           </div>
         </div>
@@ -408,7 +411,11 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
         {/* Chessboard + EvalBar Column */}
         <div className="lg:col-span-7 flex flex-col items-center">
           <div className="w-full max-w-[min(78vh,720px)] flex items-stretch gap-2.5">
-            <EvalBar evalForBlack={activeEvalForBlack} deltaForBlack={activeEvalDelta} />
+            <EvalBar
+              evalForPlayer={activeEvalForPlayer}
+              deltaForPlayer={activeEvalDelta}
+              playerColor={opening.playerColor}
+            />
             <div className="flex-1 aspect-square rounded overflow-hidden shadow-xl border border-[#3c3934] bg-[#262421]">
               <Chessboard
                 id="learn-board"
@@ -441,7 +448,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
             <button
               onClick={() => handleResetToRoot()}
               className="px-4 py-2 rounded bg-[#1e1c1a] hover:bg-[#312e2b] text-sm font-semibold text-[#bababa] transition"
-              title="Torna a 1.e4"
+              title="Torna all'inizio"
             >
               |◀ Inizio
             </button>
@@ -485,8 +492,8 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                 <span className="text-sm font-bold uppercase tracking-wider text-[#e8e6e3]">
                   Mossa {currentNode.moveNumber} •{' '}
                   {currentNode.isPlayerTurn
-                    ? 'Tocca al Nero (Tua mossa)'
-                    : `Tocca al Bianco (Avversario ${opening.buildConfig.ratingBandLabel})`}
+                    ? 'Tocca a te'
+                    : `Tocca all'avversario (${opening.buildConfig.ratingBandLabel})`}
                 </span>
               </div>
               {currentNode.ecoCode && (
@@ -507,7 +514,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                       </div>
                       <div className="flex flex-wrap items-center gap-3 mt-1.5">
                         <span className="text-3xl font-bold text-[#ffffff] font-mono">
-                          {currentNode.moveNumber}...{currentNode.playerMove.san}
+                          {nodeMoveLabel(currentNode, currentNode.playerMove.san)}
                         </span>
                         <span className="px-2.5 py-1 rounded bg-[#312e2b] border border-[#4a4742] text-sm font-mono font-bold text-[#e8e6e3] tabular-nums">
                           {currentNode.playerMove.engine.evalFromPlayerPerspective >= 0 ? '+' : ''}
@@ -653,7 +660,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                   {currentNode.opponentMoves && currentNode.opponentMoves.length > 0 ? (
                     <>
                       <div className="text-sm text-[#9e9c99]">
-                        Mosse più giocate dal Bianco nella fascia{' '}
+                        Mosse più giocate dall'avversario nella fascia{' '}
                         <strong className="text-[#e8e6e3]">
                           {opening.buildConfig.ratingBandLabel}
                         </strong>{' '}
@@ -724,11 +731,11 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                 Come proseguire da qui: piani, rotture e attacchi
                               </h3>
                             </div>
-                            {middlegameGuide.evalFromBlackPerspective !== null && (
+                            {middlegameGuide.evalForPlayer !== null && (
                               <span className="px-2.5 py-1 rounded bg-[#262421] border border-[#3c3934] text-xs font-mono font-bold text-[#e8e6e3] tabular-nums">
-                                Eval Nero:{' '}
-                                {middlegameGuide.evalFromBlackPerspective >= 0 ? '+' : ''}
-                                {middlegameGuide.evalFromBlackPerspective.toFixed(2)}
+                                Eval per te:{' '}
+                                {middlegameGuide.evalForPlayer >= 0 ? '+' : ''}
+                                {middlegameGuide.evalForPlayer.toFixed(2)}
                               </span>
                             )}
                           </div>
@@ -752,14 +759,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                                       className={`px-2 py-0.5 rounded transition ${
                                         isActive
                                           ? 'bg-[#81b64c] text-[#ffffff] font-bold'
-                                          : step.turn === 'b'
+                                          : step.turn === colorLetter(opening.playerColor)
                                             ? 'text-[#e8e6e3] hover:bg-[#262421]'
                                             : 'text-[#9e9c99] hover:bg-[#262421]'
                                       }`}
                                     >
-                                      {step.turn === 'w'
-                                        ? `${step.moveNumber}.${step.san}`
-                                        : `${step.moveNumber}...${step.san}`}
+                                      {formatMoveLabel(step.moveNumber, step.turn, step.san)}
                                     </button>
                                   );
                                 })}
@@ -811,67 +816,6 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                             </div>
                           )}
                         </div>
-
-                        {/* Clickable Middlegame Ideas with Arrows */}
-                        <div className="space-y-2.5">
-                          <div className="flex items-center justify-between gap-2 flex-wrap">
-                            <span className="text-xs font-bold uppercase tracking-wider text-[#9e9c99]">
-                              Tocca un piano per vedere le frecce sulla scacchiera:
-                            </span>
-                            <button
-                              onClick={() => {
-                                setActiveMistakePreview(null);
-                                setContinuationStep(0);
-                                setSelectedIdeaId('all');
-                              }}
-                              className={`px-3 py-1 rounded text-xs font-semibold border transition ${
-                                selectedIdeaId === 'all' && continuationStep === 0
-                                  ? 'bg-[#81b64c] text-[#ffffff] border-[#81b64c]'
-                                  : 'bg-[#1e1c1a] text-[#bababa] border-[#3c3934] hover:text-[#ffffff]'
-                              }`}
-                            >
-                              Mostra tutte le frecce
-                            </button>
-                          </div>
-
-                          <div className="space-y-2.5">
-                            {middlegameGuide.ideas.map((idea) => {
-                              const isSelected =
-                                selectedIdeaId === idea.id && continuationStep === 0;
-                              return (
-                                <button
-                                  key={idea.id}
-                                  type="button"
-                                  onClick={() => {
-                                    setActiveMistakePreview(null);
-                                    setContinuationStep(0);
-                                    setSelectedIdeaId(idea.id);
-                                  }}
-                                  className={`w-full text-left rounded p-4 border transition space-y-1.5 ${
-                                    isSelected
-                                      ? 'bg-[#1e1c1a] border-[#81b64c]'
-                                      : 'bg-[#1e1c1a] border-[#33302c] hover:border-[#4a4742]'
-                                  }`}
-                                >
-                                  <div className="flex items-center justify-between gap-2 flex-wrap">
-                                    <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#262421] text-[#81b64c] border border-[#3c3934]">
-                                      {idea.category}
-                                    </span>
-                                    <span className="text-xs font-mono text-[#e8e6e3] bg-[#161512] px-2.5 py-0.5 rounded border border-[#33302c]">
-                                      {idea.movesLabel}
-                                    </span>
-                                  </div>
-                                  <div className="text-base font-bold text-[#ffffff]">
-                                    {idea.title}
-                                  </div>
-                                  <p className="text-sm text-[#bababa] leading-relaxed">
-                                    {idea.description}
-                                  </p>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
                       </div>
                     )
                   )}
@@ -879,20 +823,6 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
               )}
             </div>
           </div>
-
-          {/* Strategic Note (Unverified AI comment, repertoire only) */}
-          {!activeMistakePreview &&
-            currentNode.isPlayerTurn &&
-            (currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified) && (
-              <div className="bg-[#262421] border border-[#3c3934] rounded-md p-5 space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#9e9c99]">
-                  Piano strategico (Commento AI, non verificato)
-                </div>
-                <p className="text-sm text-[#bababa] leading-relaxed">
-                  {currentNode.aiCommentUnverified || currentNode.playerMove?.aiCommentUnverified}
-                </p>
-              </div>
-            )}
 
           {/* Common Mistakes Panel (Checkpoint B) */}
           {!currentNode.isPlayerTurn &&
@@ -967,12 +897,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                               </strong>{' '}
                               • PV (d{m.depth}):{' '}
                               <span className="font-mono text-[#9e9c99]">{m.pvSan.join(' ')}</span>{' '}
-                              (Eval Nero: {m.finalEvalForPlayer >= 0 ? '+' : ''}
+                              (Eval per te: {m.finalEvalForPlayer >= 0 ? '+' : ''}
                               {m.finalEvalForPlayer.toFixed(2)})
                             </div>
 
                             <div className="text-xs text-[#9e9c99] mt-1.5 leading-relaxed bg-[#161512] px-3 py-2 rounded border border-[#33302c]">
-                              {explainOpponentMistake(m)}
+                              {explainOpponentMistake(m, opening.playerColor)}
                             </div>
 
                             {isSelected && (

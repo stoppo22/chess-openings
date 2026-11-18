@@ -11,7 +11,10 @@
     "smoke:stockfish": "node scripts/smoke-test-stockfish.mjs",
     "build:repertoire": "node scripts/build-repertoire.mjs",
     "review:moves": "node scripts/review-moves-cli.mjs",
-    "verify:caro-kann": "node scripts/verify-caro-kann-report.mjs"
+    "verify:caro-kann": "node scripts/verify-caro-kann-report.mjs",
+    "facts": "node scripts/facts/build-facts.mjs",
+    "lessons:verify": "node scripts/lessons/verify-lessons.mjs",
+    "studies:import": "node scripts/studies/import-study.mjs"
   },
   "dependencies": {
     "chess.js": "^1.0.0-beta.8",

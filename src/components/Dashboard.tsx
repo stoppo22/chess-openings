@@ -4,6 +4,8 @@ import { buildDailyReviewQueue, computeCardStats, SRS_DAILY_LIMITS } from '../se
 
 interface DashboardProps {
   opening: OpeningRepertoireFile;
+  openings: Array<{ id: string; name: string }>;
+  onSelectOpening: (id: string) => void;
   cards: StoredFSRSCard[];
   logs: ReviewLogEntry[];
   isPersisted: boolean;
@@ -16,6 +18,8 @@ interface DashboardProps {
 
 export const Dashboard: React.FC<DashboardProps> = ({
   opening,
+  openings,
+  onSelectOpening,
   cards,
   logs,
   isPersisted,
@@ -65,10 +69,28 @@ export const Dashboard: React.FC<DashboardProps> = ({
       <div className="bg-[#262421] border border-[#3c3934] rounded-md p-6 sm:p-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2.5">
+            {openings.length > 1 && (
+              <select
+                aria-label="Scegli apertura"
+                value={opening.id}
+                onChange={(e) => onSelectOpening(e.target.value)}
+                className="w-full sm:w-auto px-3 py-2.5 rounded bg-[#161512] border border-[#3c3934] text-[#e8e6e3] text-base"
+              >
+                {openings.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.name}
+                  </option>
+                ))}
+              </select>
+            )}
             <div className="flex flex-wrap items-center gap-2.5 text-sm text-[#9e9c99]">
               <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#161512] border border-[#3c3934] text-[#e8e6e3] font-medium">
-                <span className="w-3 h-3 rounded-sm bg-[#161512] border border-[#9e9c99] inline-block" />
-                Repertorio Nero
+                <span
+                  className={`w-3 h-3 rounded-sm border border-[#9e9c99] inline-block ${
+                    opening.playerColor === 'white' ? 'bg-[#e8e6e3]' : 'bg-[#161512]'
+                  }`}
+                />
+                Repertorio {opening.playerColor === 'white' ? 'Bianco' : 'Nero'}
               </span>
               <span className="px-2.5 py-1 rounded bg-[#161512] border border-[#3c3934]">
                 Fascia {opening.buildConfig.ratingBandLabel}
@@ -97,7 +119,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               onClick={() => onStartDrill()}
               className="flex-1 sm:flex-initial px-5 py-3 rounded-md bg-[#3692e7] hover:bg-[#2b7bc6] text-[#ffffff] font-bold text-base shadow-[0_2px_0_0_#1e5a94] transition"
             >
-              Gioca da 1.e4 (Sparring)
+              Gioca una partita (Sparring)
             </button>
             <button
               onClick={() => onStartReview()}
@@ -229,7 +251,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     onClick={() => onStartDrill(v.id)}
                     className="flex-1 px-3.5 py-2.5 rounded bg-[#3692e7] hover:bg-[#2b7bc6] text-[#ffffff] text-sm font-bold transition"
                   >
-                    Gioca da 1.e4
+                    Gioca una partita
                   </button>
                   <button
                     onClick={() => onStartReview(v.id)}

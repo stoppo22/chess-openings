@@ -1,23 +1,47 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { Chess } from 'chess.js';
-import {
-  CARO_KANN_CONFIG,
-  AI_COMMENTS_UNVERIFIED_BY_FEN,
-  ARROWS_BY_FEN,
-  APPROVED_MOVES_BY_FEN,
-  APPROVED_META_BY_FEN,
-  getApprovedSeedMap,
-  normalizeFen,
-} from './repertoire-seeds.mjs';
+import { normalizeFen } from './lib/fen.mjs';
 import { StockfishRunner, STOCKFISH_PACKAGE_INFO } from './stockfish-runner.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
-const SEEDS_FILE_PATH = path.join(__dirname, 'repertoire-seeds.mjs');
+const OPENINGS_DIR = path.join(__dirname, 'openings');
+
+const OPENING_ID = (process.argv.find((a) => a.startsWith('--opening=')) || '').slice('--opening='.length);
+if (!OPENING_ID || !fs.existsSync(path.join(OPENINGS_DIR, OPENING_ID, 'config.mjs'))) {
+  const avail = fs.existsSync(OPENINGS_DIR)
+    ? fs.readdirSync(OPENINGS_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)
+    : [];
+  console.error(`❌ Specifica --opening=<id>. Aperture disponibili: ${avail.join(', ') || '(nessuna)'}`);
+  process.exit(1);
+}
+const SEEDS_FILE_PATH = path.join(OPENINGS_DIR, OPENING_ID, 'seeds.mjs');
+const { OPENING_CONFIG } = await import(pathToFileURL(path.join(OPENINGS_DIR, OPENING_ID, 'config.mjs')).href);
+const {
+  ARROWS_BY_FEN,
+  APPROVED_MOVES_BY_FEN,
+  APPROVED_META_BY_FEN,
+  getApprovedSeedMap,
+} = await import(pathToFileURL(SEEDS_FILE_PATH).href);
+
+const PLAYER_COLOR = OPENING_CONFIG.playerColor; // 'white' | 'black'
+const PLAYER_TURN = PLAYER_COLOR === 'white' ? 'w' : 'b';
+const START_MOVES = OPENING_CONFIG.startMovesSan || [];
+const LEAD_IN = OPENING_CONFIG.leadIn || { maxPly: 0, unconditionalPlies: [] };
+const allRoots = (v) => [v.rootMovesSan, ...(v.altRootMovesSan || [])];
+const isPrefix = (a, b) => a.length <= b.length && a.every((x, i) => x === b[i]);
+const isRootOfAnyVariation = (seq) =>
+  OPENING_CONFIG.variations.some((v) => [...allRoots(v), ...(v.reachResetMovesSan || [])].some((r) => r.length === seq.length && isPrefix(seq, r)));
+// Mosse avversarie ammesse nella fase d'ingresso (null = fase finita, regola normale).
+function leadInAllowed(seq, ply) {
+  if (ply > LEAD_IN.maxPly) return null;
+  const roots = OPENING_CONFIG.variations.flatMap(allRoots).filter((r) => r.length > seq.length && isPrefix(seq, r));
+  return roots.length ? new Set(roots.map((r) => r[seq.length])) : null;
+}
 
 /**
  * UNICO PARAMETRO DI CONFIGURAZIONE PER LA FASCIA DI RATING (0-1400)
@@ -75,10 +99,10 @@ export const BUILD_DEFAULTS = {
 };
 
 const LICHESS_CACHE_DIR = path.join(ROOT_DIR, '.cache', 'lichess');
-const REVIEW_MOVES_PATH = path.join(ROOT_DIR, 'review-moves.json');
-const BUILD_WARNINGS_PATH = path.join(ROOT_DIR, 'build-warnings.json');
+const REVIEW_MOVES_PATH = path.join(ROOT_DIR, `review-moves.${OPENING_ID}.json`);
+const BUILD_WARNINGS_PATH = path.join(ROOT_DIR, `build-warnings.${OPENING_ID}.json`);
 const OUTPUT_DIR = path.join(ROOT_DIR, 'src', 'data', 'openings');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, 'caro-kann.json');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, `${OPENING_ID}.json`);
 
 function loadEnvToken() {
   if (process.env.LICHESS_TOKEN && process.env.LICHESS_TOKEN.trim()) {
@@ -239,35 +263,14 @@ function formatMoveStats(raw) {
 }
 
 function detectVariation(moveSequenceSan) {
-  const seq = moveSequenceSan.join(' ');
-  if (seq.startsWith('e4 c6 d4 d5 e5')) {
-    return {
-      variationId: 'advance-bf5',
-      variationName: 'Variante di Spinta (3.e5 Bf5)',
-    };
+  for (const v of OPENING_CONFIG.variations) {
+    const prefixes = v.matchPrefixes || [v.rootMovesSan];
+    if (prefixes.some((p) => isPrefix(p, moveSequenceSan))) {
+      return { variationId: v.id, variationName: v.name };
+    }
   }
-  if (seq.startsWith('e4 c6 d4 d5 Nc3') || seq.startsWith('e4 c6 d4 d5 Nd2')) {
-    return {
-      variationId: 'classical-bf5',
-      variationName: 'Variante Classica (4.Nxe4 Bf5)',
-    };
-  }
-  if (seq.startsWith('e4 c6 d4 d5 exd5')) {
-    return {
-      variationId: 'exchange-cxd5',
-      variationName: 'Variante di Cambio & Panov (3.exd5 cxd5)',
-    };
-  }
-  if (seq.startsWith('e4 c6 Bc4')) {
-    return {
-      variationId: 'hillbilly-bc4',
-      variationName: "Attacco dell'Alfiere / Hillbilly (2.Bc4 d5)",
-    };
-  }
-  return {
-    variationId: 'caro-kann-root',
-    variationName: 'Caro-Kann: Impianto Principale (1.e4 c6 2.d4 d5)',
-  };
+  const f = OPENING_CONFIG.fallbackVariation;
+  return { variationId: f.id, variationName: f.name };
 }
 
 /**
@@ -311,7 +314,7 @@ function classifyMistakeSeverity(evalLoss) {
 
 async function main() {
   console.log('==========================================================');
-  console.log(`🏗️  BUILD REPERTORIO — FASE 1 (CHECKPOINT ${BUILD_DEFAULTS.CHECKPOINT}: CARO-KANN)`);
+  console.log(`🏗️  BUILD REPERTORIO — FASE 1 (CHECKPOINT ${BUILD_DEFAULTS.CHECKPOINT}: ${OPENING_CONFIG.name})`);
   console.log('==========================================================');
   console.log('Configurazione parametri:');
   console.log(`  • Fascia di rating (unica): ${RATING_BAND.label} (buckets API: ${RATING_BAND.buckets.join(',')})`);
@@ -351,7 +354,7 @@ async function main() {
   const buildWarnings = [];
 
   const initialChess = new Chess();
-  initialChess.move('e4');
+  for (const m of START_MOVES) initialChess.move(m);
   const rootFullFen = initialChess.fen();
   const rootNormalizedFen = normalizeFen(rootFullFen);
 
@@ -362,8 +365,8 @@ async function main() {
     {
       fullFen: rootFullFen,
       normalizedFen: rootNormalizedFen,
-      moveSequenceSan: ['e4'],
-      ply: 1,
+      moveSequenceSan: [...START_MOVES],
+      ply: START_MOVES.length,
     },
   ];
   const visitedFens = new Set([rootNormalizedFen]);
@@ -382,13 +385,12 @@ async function main() {
 
     const chess = new Chess(fullFen);
     const turn = chess.turn();
-    const isPlayerTurn = turn === 'b'; // Nero nella Caro-Kann
+    const isPlayerTurn = turn === PLAYER_TURN;
     const moveNumber = Math.floor(ply / 2) + 1;
     const { variationId, variationName } = detectVariation(moveSequenceSan);
-    const isSecondaryVariation =
-      variationId === 'exchange-cxd5' || variationId === 'hillbilly-bc4';
-    const maxPly = isSecondaryVariation ? 10 : BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2;
-    const effectiveMinReach = isSecondaryVariation ? 0.035 : BUILD_DEFAULTS.MIN_REACH;
+    const variationCfg = OPENING_CONFIG.variations.find((v) => v.id === variationId);
+    const maxPly = variationCfg?.maxPly ?? BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2;
+    const effectiveMinReach = variationCfg?.minReach ?? BUILD_DEFAULTS.MIN_REACH;
     const pgnChess = new Chess();
     for (const m of moveSequenceSan) pgnChess.move(m);
     const pgnPath = pgnChess
@@ -410,9 +412,6 @@ async function main() {
       variationId,
       variationName,
       reachPct: Number((nodeReach * 100).toFixed(2)),
-      ...(AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen]
-        ? { aiCommentUnverified: AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen] }
-        : {}),
     };
 
     if (isPlayerTurn) {
@@ -703,6 +702,45 @@ async function main() {
               ? 'masters_freq'
               : 'engine_best');
 
+      const mastersPosTotal = positionGmStats.totalGames;
+      const bandPosTotal = formatMoveStats(bandForPlayerData).totalGames;
+      const pctOf = (rawMoves, san, uciMove, total) => {
+        const r = (rawMoves || []).find((m) => m.san === san || m.uci === uciMove);
+        return r && total > 0 ? { pct: Number(((formatMoveStats(r).totalGames / total) * 100).toFixed(1)), games: formatMoveStats(r).totalGames } : null;
+      };
+      const altSources = (multiPvEval.lines || [])
+        .filter((l) => l.moveSan && l.moveUci)
+        .map((l) => ({ san: l.moveSan, uci: l.moveUci, score: l.scoreSideToMovePawns, pv: l.pvSan }));
+      if (!altSources.some((l) => l.uci === uci)) {
+        altSources.push({ san: moveObj.san, uci, score: chosenBlackEval, pv: chosenSameDepth.pvSan });
+      }
+      const alternatives = altSources.map((l) => {
+        const pvChess = new Chess(fullFen);
+        const pvSan = [];
+        for (const san of l.pv || []) {
+          if (pvSan.length >= 6) break;
+          try {
+            const pm = pvChess.move(san);
+            if (!pm) break;
+            pvSan.push(pm.san);
+          } catch {
+            break;
+          }
+        }
+        const gm = pctOf(mastersData.moves, l.san, l.uci, mastersPosTotal);
+        const band = pctOf(bandForPlayerData.moves, l.san, l.uci, bandPosTotal);
+        return {
+          san: l.san,
+          uci: l.uci,
+          evalFromPlayerPerspective: l.score,
+          evalLossVsBest: Math.max(0, Number((bestBlackEval - l.score).toFixed(2))),
+          depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
+          pvSan: pvSan.length ? pvSan : [l.san],
+          ...(gm ? { gmPct: gm.pct, gmGames: gm.games } : {}),
+          ...(band ? { bandPct: band.pct } : {}),
+        };
+      });
+
       node.playerMove = {
         san: moveObj.san,
         uci,
@@ -726,20 +764,15 @@ async function main() {
           depth: BUILD_DEFAULTS.STOCKFISH_DEPTH,
           pvSan: chosenSameDepth.pvSan,
         },
+        alternatives,
         ...(ARROWS_BY_FEN[normalizedFen] ? { arrows: ARROWS_BY_FEN[normalizedFen] } : {}),
-        ...(AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen]
-          ? { aiCommentUnverified: AI_COMMENTS_UNVERIFIED_BY_FEN[normalizedFen] }
-          : {}),
       };
 
       positions[normalizedFen] = node;
 
       // Il giocatore gioca la sua unica mossa con probabilità 1.0 nel repertorio:
       // se siamo sul tronco di ingresso (fino a 3...Bf5 o 4...Bf5), la radice della variante parte con reach = 1.0
-      const isVariationRootAfterMove =
-        (ply === 3 && variationId === 'hillbilly-bc4' && moveObj.san === 'd5') ||
-        (ply === 5 && (moveObj.san === 'Bf5' || moveObj.san === 'cxd5')) ||
-        (ply === 7 && moveObj.san === 'Bf5');
+      const isVariationRootAfterMove = isRootOfAnyVariation([...moveSequenceSan, moveObj.san]);
       const nextReach = isVariationRootAfterMove ? 1.0 : nodeReach;
 
       reachByFen.set(
@@ -778,6 +811,7 @@ async function main() {
       const rawMoves = Array.isArray(bandData.moves) ? bandData.moves : [];
       const totalPosBandGames = positionBandStats.totalGames;
       const opponentMoves = [];
+      const leadIn = leadInAllowed(moveSequenceSan, ply);
 
       if (ply < maxPly) {
         for (const m of rawMoves) {
@@ -785,19 +819,16 @@ async function main() {
           const freq = totalPosBandGames > 0 ? mBandStats.totalGames / totalPosBandGames : 0;
 
           // Calcola la probabilità cumulativa (reach) dall'inizio della variante
-          // Nei primi tratti di definizione della variante (ply 2 = 2.d4, ply 4 = 3.e5/Nc3, ply 6 in Classica = 4.Nxe4),
-          // se è la mossa che definisce la variante, reach parte da 1.0; altrimenti nodeReach * freq.
+          // Nella fase d'ingresso (config.leadIn) solo le mosse che restano su una root di variante, reach 1.0;
+          // altrimenti nodeReach * freq.
           let branchReach = nodeReach * freq;
           let allowBranch = false;
 
-          if (ply === 2) {
-            allowBranch = (CARO_KANN_CONFIG.allowedWhiteMove2San || ['d4']).includes(m.san);
-            if (allowBranch) branchReach = 1.0;
-          } else if (ply === 4 && variationId !== 'hillbilly-bc4') {
+          if (leadIn) {
             allowBranch =
-              CARO_KANN_CONFIG.allowedWhiteMove3San.includes(m.san) &&
-              mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES &&
-              freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ;
+              leadIn.has(m.san) &&
+              (LEAD_IN.unconditionalPlies.includes(ply) ||
+                (mBandStats.totalGames >= BUILD_DEFAULTS.MIN_BAND_GAMES && freq >= BUILD_DEFAULTS.MIN_BRANCH_FREQ));
             if (allowBranch) branchReach = 1.0;
           } else {
             allowBranch =
@@ -859,7 +890,7 @@ async function main() {
 
   if (autoAcceptedCount > 0) {
     saveUpdatedSeedsFile(updatedSeedMoves, updatedSeedMeta);
-    console.log(`💾 Salvate ${autoAcceptedCount} mosse in scripts/repertoire-seeds.mjs (--auto-accept).`);
+    console.log(`💾 Salvate ${autoAcceptedCount} mosse in scripts/openings/${OPENING_ID}/seeds.mjs (--auto-accept).`);
   }
 
   const sfStats = sfRunner.getStats();
@@ -875,7 +906,7 @@ async function main() {
 
   if (buildWarnings.length > 0) {
     fs.writeFileSync(BUILD_WARNINGS_PATH, JSON.stringify(buildWarnings, null, 2), 'utf8');
-    console.warn(`⚠️  Generato build-warnings.json con ${buildWarnings.length} segnalazioni.`);
+    console.warn(`⚠️  Generato ${path.basename(BUILD_WARNINGS_PATH)} con ${buildWarnings.length} segnalazioni.`);
   } else if (fs.existsSync(BUILD_WARNINGS_PATH)) {
     fs.unlinkSync(BUILD_WARNINGS_PATH);
   }
@@ -886,7 +917,7 @@ async function main() {
       JSON.stringify(
         {
           generatedAt: new Date().toISOString(),
-          openingId: CARO_KANN_CONFIG.id,
+          openingId: OPENING_CONFIG.id,
           ratingBand: RATING_BAND.label,
           unresolvedCount: unresolvedForReview.length,
           positions: unresolvedForReview,
@@ -900,9 +931,9 @@ async function main() {
     console.log(
       `🛑 BUILD FERMATO: Trovate ${unresolvedForReview.length} posizioni in cui tocca a te non ancora confermate nei seed.`
     );
-    console.log(`📄 Proposte salvate in: review-moves.json`);
+    console.log(`📄 Proposte salvate in: review-moves.${OPENING_ID}.json`);
     console.log(
-      `👉 Usa "npm run review:moves" per rivederle in blocco e salvarle in scripts/repertoire-seeds.mjs.`
+      `👉 Usa "npm run review:moves -- --opening=${OPENING_ID}" per rivederle in blocco e salvarle in scripts/openings/${OPENING_ID}/seeds.mjs.`
     );
     console.log('==========================================================');
     process.exit(2);
@@ -1074,7 +1105,7 @@ async function main() {
 
         const punishMoveUci = `${punishMoveObj.from}${punishMoveObj.to}${punishMoveObj.promotion || ''}`;
         const finalEvalPawns = evalD20.scoreWhitePawns;
-        const finalEvalForPlayer = Number((-finalEvalPawns).toFixed(2));
+        const finalEvalForPlayer = Number((PLAYER_COLOR === 'white' ? finalEvalPawns : -finalEvalPawns).toFixed(2));
         const impactScore = Number((cand.frequencyPct * deepLoss).toFixed(2));
 
         confirmedMistakes.push({
@@ -1116,20 +1147,25 @@ async function main() {
 
   const finalSfStats = sfRunner.getStats();
 
-  const variationsWithFen = CARO_KANN_CONFIG.variations.map((v) => {
+  const variationsWithFen = OPENING_CONFIG.variations.map((v) => {
     const c = new Chess();
     for (const s of v.rootMovesSan) c.move(s);
+    const { id, name, subtitle, ecoCode, rootMovesSan } = v;
     return {
-      ...v,
+      id,
+      name,
+      subtitle,
+      ecoCode,
+      rootMovesSan,
       rootNormalizedFen: normalizeFen(c.fen()),
     };
   });
 
   const repertoirePayload = {
-    id: CARO_KANN_CONFIG.id,
-    name: CARO_KANN_CONFIG.name,
-    playerColor: CARO_KANN_CONFIG.playerColor,
-    description: CARO_KANN_CONFIG.description,
+    id: OPENING_CONFIG.id,
+    name: OPENING_CONFIG.name,
+    playerColor: OPENING_CONFIG.playerColor,
+    description: OPENING_CONFIG.description,
     checkpoint: BUILD_DEFAULTS.CHECKPOINT,
     generatedAt: new Date().toISOString(),
     ratingBand: RATING_BAND,
@@ -1165,7 +1201,7 @@ async function main() {
 
   console.log('\n==========================================================');
   console.log('✅ BUILD REPERTORIO COMPLETATO CON SUCCESSO!');
-  console.log(`📁 File generato:          src/data/openings/caro-kann.json`);
+  console.log(`📁 File generato:          src/data/openings/${OPENING_ID}.json`);
   console.log(`📦 Dimensione file:        ${fileSizeBytes} bytes (${fileSizeKB} KB)`);
   console.log(`⏱️  Tempo medio Stockfish:  ${sfStats.avgMsPerPosition} ms / posizione`);
   console.log('==========================================================');
