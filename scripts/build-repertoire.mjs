@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { Chess } from 'chess.js';
 import { normalizeFen } from './lib/fen.mjs';
-import { StockfishRunner, STOCKFISH_PACKAGE_INFO } from './stockfish-runner.mjs';
+import { StockfishPool, STOCKFISH_PACKAGE_INFO } from './stockfish-runner.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,6 +31,14 @@ const {
 const PLAYER_COLOR = OPENING_CONFIG.playerColor; // 'white' | 'black'
 const PLAYER_TURN = PLAYER_COLOR === 'white' ? 'w' : 'b';
 const START_MOVES = OPENING_CONFIG.startMovesSan || [];
+const PREF_SAN = OPENING_CONFIG.preferredPlayerMovesSan || [];
+const PREF_MAX_PLY = OPENING_CONFIG.preferredMaxPly ?? 0;
+// Restringe ai candidati già entro tolleranza che stanno nella lista di sistema (null = nessun effetto).
+const preferredSubset = (tolerant, ply) => {
+  if (!PREF_SAN.length || ply > PREF_MAX_PLY) return null;
+  const sub = tolerant.filter((c) => PREF_SAN.includes(c.san));
+  return sub.length > 0 && sub.length < tolerant.length ? sub : null;
+};
 const LEAD_IN = OPENING_CONFIG.leadIn || { maxPly: 0, unconditionalPlies: [] };
 const allRoots = (v) => [v.rootMovesSan, ...(v.altRootMovesSan || [])];
 const isPrefix = (a, b) => a.length <= b.length && a.every((x, i) => x === b[i]);
@@ -95,7 +103,7 @@ export const BUILD_DEFAULTS = {
   MISTAKE_MIN_LOSS: 0.40, // >= 0.40 inaccuracy, >= 1.00 mistake, >= 2.50 blunder
   MAX_MISTAKES_PER_POS: 3, // primi 3 per posizione ordinati per frequenza * perdita
   MAX_PUNISH_PV_MOVES: 6, // PV max 6 mosse
-  API_DELAY_MS: 950,
+  API_DELAY_MS: Number(process.env.API_DELAY_MS || 0), // richieste comunque strettamente una alla volta
 };
 
 const LICHESS_CACHE_DIR = path.join(ROOT_DIR, '.cache', 'lichess');
@@ -130,6 +138,14 @@ function loadEnvToken() {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+// Coda seriale: Lichess ammette una sola richiesta alla volta.
+let lichessChain = Promise.resolve();
+const serialLichess = (fn) => {
+  const r = lichessChain.then(fn);
+  lichessChain = r.catch(() => {});
+  return r;
+};
 
 async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
   fs.mkdirSync(LICHESS_CACHE_DIR, { recursive: true });
@@ -167,8 +183,18 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
       ? `https://explorer.lichess.ovh/masters?fen=${encodeURIComponent(fen)}&moves=20&topGames=4`
       : `https://explorer.lichess.ovh/lichess?variant=standard&fen=${encodeURIComponent(fen)}&ratings=${encodeURIComponent(bucketsStr)}&speeds=${encodeURIComponent(speedsStr)}&moves=20&topGames=0&recentGames=0`;
 
+  return serialLichess(async () => {
+  if (fs.existsSync(cacheFile)) {
+    try {
+      const cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+      statsCounter.apiCacheHits += 1;
+      return cached;
+    } catch {
+      // Fall through to fetch
+    }
+  }
   while (true) {
-    await sleep(BUILD_DEFAULTS.API_DELAY_MS);
+    if (BUILD_DEFAULTS.API_DELAY_MS > 0) await sleep(BUILD_DEFAULTS.API_DELAY_MS);
     statsCounter.apiLiveCalls += 1;
     let res;
     try {
@@ -186,6 +212,7 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
 
     if (res.status === 429) {
       console.warn('⚠️  [Rate Limit 429] Lichess Explorer: attendo 61 secondi prima di riprovare...');
+      BUILD_DEFAULTS.API_DELAY_MS = Math.max(BUILD_DEFAULTS.API_DELAY_MS, 1000); // dopo un 429 rallenta per il resto della run
       await sleep(61_000);
       continue;
     }
@@ -208,9 +235,11 @@ async function fetchLichessEndpoint(endpointType, fen, token, statsCounter) {
       fetchedAt: new Date().toISOString(),
       data: json,
     };
-    fs.writeFileSync(cacheFile, JSON.stringify(payload, null, 2));
+    fs.writeFileSync(`${cacheFile}.${process.pid}.tmp`, JSON.stringify(payload, null, 2));
+    fs.renameSync(`${cacheFile}.${process.pid}.tmp`, cacheFile);
     return payload;
   }
+  });
 }
 
 function saveUpdatedSeedsFile(updatedMoves, updatedMeta) {
@@ -341,7 +370,7 @@ async function main() {
   const updatedSeedMeta = { ...APPROVED_META_BY_FEN };
   let autoAcceptedCount = 0;
 
-  const sfRunner = new StockfishRunner({ useCache: true });
+  const sfRunner = new StockfishPool();
   await sfRunner.init();
 
   const statsCounter = {
@@ -371,15 +400,22 @@ async function main() {
   ];
   const visitedFens = new Set([rootNormalizedFen]);
 
-  while (queue.length > 0) {
+  const capExceeded = () => {
     if (visitedFens.size > BUILD_DEFAULTS.MAX_POSITIONS_CAP) {
       console.error(
         `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP})!`
       );
       process.exit(1);
     }
+  };
 
-    const current = queue.shift();
+  // Elabora un nodo senza toccare lo stato condiviso (reach/visited/positions): restituisce
+  // node, figli candidati, operazioni di reach, warning e review; il merge avviene in ordine deterministico.
+  async function processNode(current) {
+    const children = [];
+    const reachOps = [];
+    const warns = [];
+    const unresolved = [];
     const { fullFen, normalizedFen, moveSequenceSan, ply } = current;
     const nodeReach = reachByFen.get(normalizedFen) ?? 1.0;
 
@@ -488,11 +524,17 @@ async function main() {
             });
           }
 
-          recommended = evaluatedCandidates
-            .filter((c) => c.within030Threshold)
-            .sort((a, b) => b.masterGames - a.masterGames || a.evalLossVsBest - b.evalLossVsBest);
+          const byMasters = (arr) =>
+            [...arr].sort((a, b) => b.masterGames - a.masterGames || a.evalLossVsBest - b.evalLossVsBest);
+          const within030 = evaluatedCandidates.filter((c) => c.within030Threshold);
+          recommended = byMasters(within030);
           if (recommended.length === 0) {
             recommended = [...evaluatedCandidates].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
+          }
+          const prefSub = preferredSubset(within030, ply);
+          if (prefSub && byMasters(prefSub)[0].san !== recommended[0].san) {
+            recommended = byMasters(prefSub);
+            selectionRule = 'system_move';
           }
         } else {
           // < 50 partite Masters — NUOVA REGOLA A 4 PASSI:
@@ -552,32 +594,38 @@ async function main() {
           const candidates015 = evaluatedCandidates.filter((c) => c.within015Threshold);
           const pool = candidates015.length > 0 ? candidates015 : evaluatedCandidates;
 
-          const byHighBand = [...pool].sort(
-            (a, b) => b.highBandGames - a.highBandGames || a.evalLossVsBest - b.evalLossVsBest
-          );
-          const byLowBand = [...pool].sort(
-            (a, b) => b.lowBandGames - a.lowBandGames || a.evalLossVsBest - b.evalLossVsBest
-          );
-          const byEngine = [...pool].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
-
-          if (
-            highBandPosStats.totalGames >= BUILD_DEFAULTS.MIN_HIGH_BAND_GAMES &&
-            byHighBand[0] &&
-            byHighBand[0].highBandGames > 0
-          ) {
-            selectionRule = 'lichess_2200_plus';
-            recommended = byHighBand;
-          } else if (
-            lowBandPosStats.totalGames >= BUILD_DEFAULTS.MIN_LOW_BAND_GAMES_FOR_CHOICE &&
-            byLowBand[0] &&
-            byLowBand[0].lowBandGames > 0
-          ) {
-            selectionRule = 'band_0_1400';
-            recommended = byLowBand;
-          } else {
-            selectionRule = 'engine_best';
-            recommended = byEngine;
+          const pick = (pl) => {
+            const byHighBand = [...pl].sort(
+              (a, b) => b.highBandGames - a.highBandGames || a.evalLossVsBest - b.evalLossVsBest
+            );
+            const byLowBand = [...pl].sort(
+              (a, b) => b.lowBandGames - a.lowBandGames || a.evalLossVsBest - b.evalLossVsBest
+            );
+            const byEngine = [...pl].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
+            if (
+              highBandPosStats.totalGames >= BUILD_DEFAULTS.MIN_HIGH_BAND_GAMES &&
+              byHighBand[0] &&
+              byHighBand[0].highBandGames > 0
+            ) {
+              return { rule: 'lichess_2200_plus', list: byHighBand };
+            }
+            if (
+              lowBandPosStats.totalGames >= BUILD_DEFAULTS.MIN_LOW_BAND_GAMES_FOR_CHOICE &&
+              byLowBand[0] &&
+              byLowBand[0].lowBandGames > 0
+            ) {
+              return { rule: 'band_0_1400', list: byLowBand };
+            }
+            return { rule: 'engine_best', list: byEngine };
+          };
+          let chosen = pick(pool);
+          const prefSub = candidates015.length > 0 ? preferredSubset(candidates015, ply) : null;
+          if (prefSub) {
+            const restricted = pick(prefSub);
+            if (restricted.list[0].san !== chosen.list[0].san) chosen = { rule: 'system_move', list: restricted.list };
           }
+          selectionRule = chosen.rule;
+          recommended = chosen.list;
         }
 
         if (autoAccept && recommended[0]) {
@@ -598,7 +646,7 @@ async function main() {
           };
           autoAcceptedCount += 1;
         } else {
-          unresolvedForReview.push({
+          unresolved.push({
             normalizedFen,
             fullFen,
             pgnPath,
@@ -612,8 +660,7 @@ async function main() {
             allEvaluatedMoves: evaluatedCandidates,
           });
 
-          positions[normalizedFen] = node;
-          continue;
+          return { node, children, reachOps, warns, unresolved };
         }
       }
 
@@ -666,7 +713,7 @@ async function main() {
       if (evalLossVsBest < 0) {
         const msg = `⚠️ Warning di incoerenza (${pgnPath}): la tua mossa ${moveObj.san} (${chosenBlackEval}) risulta migliore della bestMove ${multiPvEval.bestMoveSan} (${bestBlackEval}) di ${Math.abs(evalLossVsBest).toFixed(2)} pedoni.`;
         console.warn(msg);
-        buildWarnings.push({
+        warns.push({
           type: 'inconsistency',
           normalizedFen,
           pgnPath,
@@ -680,7 +727,7 @@ async function main() {
       } else if (evalLossVsBest > BUILD_DEFAULTS.WARNING_MAX_LOSS) {
         const msg = `⚠️ Warning perdita valutazione (${pgnPath}): la tua mossa ${moveObj.san} perde ${evalLossVsBest.toFixed(2)} pedoni rispetto a ${multiPvEval.bestMoveSan}.`;
         console.warn(msg);
-        buildWarnings.push({
+        warns.push({
           type: 'eval_loss_exceeded',
           normalizedFen,
           pgnPath,
@@ -768,29 +815,19 @@ async function main() {
         ...(ARROWS_BY_FEN[normalizedFen] ? { arrows: ARROWS_BY_FEN[normalizedFen] } : {}),
       };
 
-      positions[normalizedFen] = node;
-
       // Il giocatore gioca la sua unica mossa con probabilità 1.0 nel repertorio:
       // se siamo sul tronco di ingresso (fino a 3...Bf5 o 4...Bf5), la radice della variante parte con reach = 1.0
       const isVariationRootAfterMove = isRootOfAnyVariation([...moveSequenceSan, moveObj.san]);
       const nextReach = isVariationRootAfterMove ? 1.0 : nodeReach;
 
-      reachByFen.set(
-        nextNormalizedFen,
+      reachOps.push(
         isVariationRootAfterMove
-          ? 1.0
-          : Math.max(reachByFen.get(nextNormalizedFen) || 0, nextReach)
+          ? { fen: nextNormalizedFen, mode: 'set', value: 1.0 }
+          : { fen: nextNormalizedFen, mode: 'max', value: nextReach }
       );
 
-      if (ply + 1 <= maxPly && !visitedFens.has(nextNormalizedFen)) {
-        visitedFens.add(nextNormalizedFen);
-        if (visitedFens.size > BUILD_DEFAULTS.MAX_POSITIONS_CAP) {
-          console.error(
-            `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP})!`
-          );
-          process.exit(1);
-        }
-        queue.push({
+      if (ply + 1 <= maxPly) {
+        children.push({
           fullFen: nextFullFen,
           normalizedFen: nextNormalizedFen,
           moveSequenceSan: [...moveSequenceSan, moveObj.san],
@@ -860,31 +897,40 @@ async function main() {
             reachPct: Number((branchReach * 100).toFixed(2)),
           });
 
-          reachByFen.set(
-            nextNormalizedFen,
-            (reachByFen.get(nextNormalizedFen) || 0) + branchReach
-          );
-
-          if (!visitedFens.has(nextNormalizedFen)) {
-            visitedFens.add(nextNormalizedFen);
-            if (visitedFens.size > BUILD_DEFAULTS.MAX_POSITIONS_CAP) {
-              console.error(
-                `❌ STOP DI SICUREZZA: Il numero di posizioni (${visitedFens.size}) supera MAX_POSITIONS_CAP (${BUILD_DEFAULTS.MAX_POSITIONS_CAP})!`
-              );
-              process.exit(1);
-            }
-            queue.push({
-              fullFen: nextFullFen,
-              normalizedFen: nextNormalizedFen,
-              moveSequenceSan: [...moveSequenceSan, moveObj.san],
-              ply: ply + 1,
-            });
-          }
+          reachOps.push({ fen: nextNormalizedFen, mode: 'add', value: branchReach });
+          children.push({
+            fullFen: nextFullFen,
+            normalizedFen: nextNormalizedFen,
+            moveSequenceSan: [...moveSequenceSan, moveObj.san],
+            ply: ply + 1,
+          });
         }
       }
 
       node.opponentMoves = opponentMoves;
-      positions[normalizedFen] = node;
+    }
+    return { node, children, reachOps, warns, unresolved };
+  }
+
+  // Espansione livello per livello (tutti i nodi di un ply in parallelo), merge in ordine originale.
+  while (queue.length > 0) {
+    capExceeded();
+    const level = queue.splice(0, queue.length);
+    const results = await Promise.all(level.map(processNode));
+    for (const r of results) {
+      positions[r.node.normalizedFen] = r.node;
+      buildWarnings.push(...r.warns);
+      unresolvedForReview.push(...r.unresolved);
+      for (const op of r.reachOps) {
+        const cur = reachByFen.get(op.fen) || 0;
+        reachByFen.set(op.fen, op.mode === 'set' ? op.value : op.mode === 'add' ? cur + op.value : Math.max(cur, op.value));
+      }
+      for (const c of r.children) {
+        if (visitedFens.has(c.normalizedFen)) continue;
+        visitedFens.add(c.normalizedFen);
+        capExceeded();
+        queue.push(c);
+      }
     }
   }
 
@@ -958,11 +1004,13 @@ async function main() {
     );
 
     let totalMistakesFound = 0;
-    for (let idx = 0; idx < opponentNodesList.length; idx++) {
-      const node = opponentNodesList[idx];
+    const processMistakes = async (node) => {
+      const warns = [];
+
+
       if (node.ply >= maxPly) {
         node.commonMistakes = [];
-        continue;
+        return { warns };
       }
 
       const bandRes = await fetchLichessEndpoint('lichess', node.fullFen, token, statsCounter);
@@ -972,7 +1020,7 @@ async function main() {
 
       if (totalPosBandGames === 0 || rawMoves.length === 0) {
         node.commonMistakes = [];
-        continue;
+        return { warns };
       }
 
       const frequentMoves = [];
@@ -1002,7 +1050,7 @@ async function main() {
 
       if (frequentMoves.length === 0) {
         node.commonMistakes = [];
-        continue;
+        return { warns };
       }
 
       // 1) Screening a depth 14 (ricerca unica sulla posizione prima della mossa)
@@ -1033,7 +1081,7 @@ async function main() {
 
       if (screenedCandidates.length === 0) {
         node.commonMistakes = [];
-        continue;
+        return { warns };
       }
 
       // 2) Rivalutazione a depth 20 con multipv 2 di tutte le candidate (vale la classificazione più profonda)
@@ -1058,7 +1106,7 @@ async function main() {
         if (deepLoss < 0) {
           const msg = `⚠️ Warning di incoerenza errore comune (${node.pgnPath}): ${cand.moveObj.san} (${evalD20.scoreSideToMovePawns}) risulta migliore della bestMove ${deepBeforeEval.bestMoveSan} (${bestWhiteScoreD20}) a depth ${BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH}.`;
           console.warn(msg);
-          buildWarnings.push({
+          warns.push({
             type: 'mistake_inconsistency',
             normalizedFen: node.normalizedFen,
             pgnPath: node.pgnPath,
@@ -1133,8 +1181,13 @@ async function main() {
 
       confirmedMistakes.sort((a, b) => b.impactScore - a.impactScore || b.evalLoss - a.evalLoss);
       node.commonMistakes = confirmedMistakes.slice(0, BUILD_DEFAULTS.MAX_MISTAKES_PER_POS);
-      totalMistakesFound += node.commonMistakes.length;
+      return { warns };
+    };
+    const mistakeResults = await Promise.all(opponentNodesList.map(processMistakes));
+    for (const r of mistakeResults) {
+      buildWarnings.push(...r.warns);
     }
+    for (const n of opponentNodesList) totalMistakesFound += n.commonMistakes.length;
 
     console.log(`✅ Checkpoint B completato: ${totalMistakesFound} errori comuni confermati a depth ${BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH}.`);
   }

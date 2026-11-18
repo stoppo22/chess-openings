@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
+import { Worker, threadId } from 'node:worker_threads';
 import { Chess } from 'chess.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -262,7 +264,10 @@ export class StockfishRunner {
     };
 
     if (this.useCache && !bypassCache) {
-      fs.writeFileSync(cacheFile, JSON.stringify(result, null, 2), 'utf8');
+      // scrittura atomica: più worker condividono la cache
+      const tmp = `${cacheFile}.${process.pid}.${threadId}.tmp`;
+      fs.writeFileSync(tmp, JSON.stringify(result, null, 2), 'utf8');
+      fs.renameSync(tmp, cacheFile);
     }
 
     return { ...result, fromCache: false, elapsedMs };
@@ -275,6 +280,80 @@ export class StockfishRunner {
       cacheHits: this.cacheHits,
       totalComputeMs: this.totalComputeMs,
       avgMsPerPosition: avgMs,
+    };
+  }
+}
+
+/**
+ * Pool di N worker_threads, ognuno con il proprio StockfishRunner (stessa cache su disco).
+ * Stessa interfaccia di StockfishRunner (init / evaluatePosition / getStats).
+ */
+export class StockfishPool {
+  constructor({ size = Number(process.env.STOCKFISH_WORKERS) || Math.max(1, Math.min(8, os.cpus().length - 2)) } = {}) {
+    this.size = size;
+    this.idle = [];
+    this.waiting = [];
+    this.jobs = new Map();
+    this.nextId = 1;
+    this.totalEvalCalls = 0;
+    this.cacheHits = 0;
+    this.totalComputeMs = 0;
+    this.ready = null;
+  }
+
+  init() {
+    this.ready ??= Promise.all(
+      Array.from({ length: this.size }, () => {
+        const w = new Worker(new URL('./stockfish-worker.mjs', import.meta.url));
+        w.unref();
+        w.on('message', (m) => {
+          if (m.type === 'ready') return this.release(w);
+          const job = this.jobs.get(m.id);
+          this.jobs.delete(m.id);
+          this.release(w);
+          if (m.error) return job.reject(new Error(m.error));
+          const r = m.result;
+          this.totalEvalCalls += 1;
+          if (r.fromCache) this.cacheHits += 1;
+          this.totalComputeMs += Number(r.elapsedMs || (r.fromCache ? 250 : 0));
+          job.resolve(r);
+        });
+        w.on('error', (e) => {
+          console.error('Errore worker Stockfish:', e);
+          process.exit(1);
+        });
+        return new Promise((resolve) => (w._ready = resolve));
+      })
+    );
+    return this.ready;
+  }
+
+  release(w) {
+    if (w._ready) {
+      w._ready();
+      w._ready = null;
+    }
+    const next = this.waiting.shift();
+    if (next) next(w);
+    else this.idle.push(w);
+  }
+
+  async evaluatePosition(fen, opts = {}) {
+    await this.init();
+    const w = this.idle.pop() ?? (await new Promise((resolve) => this.waiting.push(resolve)));
+    return new Promise((resolve, reject) => {
+      const id = this.nextId++;
+      this.jobs.set(id, { resolve, reject });
+      w.postMessage({ id, fen, opts });
+    });
+  }
+
+  getStats() {
+    return {
+      totalEvalCalls: this.totalEvalCalls,
+      cacheHits: this.cacheHits,
+      totalComputeMs: this.totalComputeMs,
+      avgMsPerPosition: this.totalEvalCalls > 0 ? Math.round(this.totalComputeMs / this.totalEvalCalls) : 0,
     };
   }
 }
