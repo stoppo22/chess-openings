@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { parsePgn, walkGame } from '../lib/pgn.mjs';
 import { verifyLessons, verifyConcept } from '../lib/verify.mjs';
-import { buildFacts, assertLegal } from '../facts/facts-lib.mjs';
+import { Chess } from 'chess.js';
+import { buildFacts, assertLegal, buildBoardFacts } from '../facts/facts-lib.mjs';
 
 describe('pgn', () => {
   const g = parsePgn(`[Event "x"]
@@ -69,5 +70,25 @@ describe('facts legality', () => {
     const a = { san: 'd4', evalFromPlayerPerspective: 0, evalLossVsBest: 0.1, pvSan: ['d4', 'd5'] };
     expect(buildFacts(op(a), 'v').positions[0].allowedSan).toContain('d4');
     expect(() => buildFacts(op({ ...a, pvSan: ['d4', 'Nf6', 'Nf6'] }), 'v')).toThrow(/ILLEGAL/);
+  });
+});
+
+describe('boardFacts', () => {
+  const play = (sans) => { const c = new Chess(); sans.forEach((s) => c.move(s)); return c; };
+  it('knight on g5 does not attack f5', async () => {
+    const { Chess: C } = await import('chess.js');
+    const ch = new C('4k3/8/8/5bN1/8/8/8/4K3 w - - 0 1');
+    const { attacksFrom } = await import('../facts/facts-lib.mjs');
+    expect(attacksFrom(ch, 'g5')).not.toContain('f5');
+    expect(attacksFrom(ch, 'g5')).toEqual([]);
+  });
+  it('after Bd3 in the Classical the pawn d4 is undefended and hanging', () => {
+    const seq = ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5', 'f3'];
+    const bf = buildBoardFacts({
+      fullFen: play(seq).fen(), moveSequenceSan: seq, myMoveSan: 'e6',
+      mistakes: [{ san: 'Bd3', afterFen: play([...seq, 'e6', 'Bd3']).fen() }],
+    });
+    expect(bf.s2.Bd3.join('|')).toContain('Pedone bianco d4 (attaccato 1, difeso 0');
+    expect(bf.s1.join('|')).toContain('Pedone nero e6 difende: Alfiere f5');
   });
 });

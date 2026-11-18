@@ -1,0 +1,1557 @@
+{
+  "openingId": "caro-kann",
+  "variationId": "classical-bf5",
+  "writtenBy": "lesson-writer (sonnet)",
+  "factsHash": "21e6c02875ebe497e4ebf95beba7f26806def97c5352cbe73ebfa6fc69271dab",
+  "lessons": [
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Prendo il pedone con [[dxe4]]: il Bianco perde il suo pedone centrale e io preparo l'uscita dell'Alfiere. È la mossa dei GM nel 93.4% dei casi.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.05 e si gioca nel 20.5% dei casi, ma dopo e5 il Bianco prende spazio; con la presa il centro si apre e l'Alfiere esce subito."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Aprire il centro prendendo il pedone e sviluppare l'Alfiere attivo",
+        "distractors": [
+          "Chiudere il centro e tenere l'Alfiere dietro i pedoni",
+          "Ignorare il pedone e spingere subito il pedone in c5"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-free-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Bf5]] subito: l'Alfiere esce fuori dalla catena di pedoni prima che io chiuda la diagonale con e6. È il pezzo che dà il nome alla variante.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.18: il Bianco cambia con [[Nxf6+]] e mi rovina i pedoni dopo la ripresa. Un Alfiere attivo è il piano del repertorio, e i GM lo scelgono nel 55.4% dei casi."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ],
+      "planQuiz": {
+        "correct": "Portare l'Alfiere fuori dalla catena di pedoni prima di chiuderla",
+        "distractors": [
+          "Sviluppare i Cavalli e lasciare l'Alfiere in c8 per ora",
+          "Cambiare subito il Cavallo e rovinare i miei pedoni"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-bishop-retreat"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N2P2/PPP3PP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha spinto il pedone in f3. Prendo con [[exf3]]: ha offerto un pedone e deve perdere tempo per riprenderlo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.11: lascio al Bianco la scelta di riprendere in e4 con un centro comodo. Prendere in f3 è la risposta dei GM."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/3B4/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in d3. Rispondo [[e6]]: l'Alfiere resta protetto, la struttura non ha debolezze e sviluppo con calma.",
+      "whyNot": {
+        "san": "Qxd4",
+        "text": "Prendere il pedone d4 con la Donna è un pedone gratis, ma la Donna in centro diventa un bersaglio e il Bianco guadagna tempi. Il repertorio preferisce la struttura solida di [[e6]]."
+      },
+      "opponentMistake": {
+        "san": "Bg5",
+        "punishSan": "Qxd4",
+        "text": "Dopo [[Bg5]] il Bianco attacca la mia Donna, ma d4 resta senza difesa: [[Qxd4]] porta via la Donna dall'attacco e prende il pedone."
+      },
+      "conceptRefs": [
+        "cl-free-pawn",
+        "cl-bishop-retreat"
+      ],
+      "planQuiz": {
+        "correct": "Costruire una struttura senza debolezze e sviluppare con calma",
+        "distractors": [
+          "Prendere pedoni con la Donna e lasciarla esposta al centro",
+          "Spingere i pedoni vicino al mio Re per attaccare presto"
+        ],
+        "distractorPrincipleIds": [
+          "cl-free-pawn",
+          "cl-f3-diagonal"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3P4/6N1/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo mi attacca l'Alfiere: lo ritiro con [[Bg6]]. Resta sulla stessa diagonale attiva ed è protetto dal pedone h.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] perde 0.37: il Bianco prende l'Alfiere con [[Nxf5]] e rovina i miei pedoni dopo la ripresa. Ritirarlo in g6 evita il cambio sfavorevole."
+      },
+      "opponentMistake": {
+        "san": "Bd3",
+        "punishSan": "Qxd4",
+        "text": "Se il Bianco gioca [[Bd3]] dimentica che d4 non è difeso: la Donna prende subito con [[Qxd4]]."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat",
+        "cl-free-pawn"
+      ],
+      "planQuiz": {
+        "correct": "Ritirare l'Alfiere su una casa attiva e protetta",
+        "distractors": [
+          "Lasciarlo dove sta e permettere il cambio con pedoni doppiati",
+          "Ignorare il Cavallo e sviluppare un altro pezzo"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-h-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/5P2/PPP3PP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha spinto il pedone in f3 e ha indebolito la diagonale verso il suo Re. Rispondo con [[e6]], sviluppando senza fretta e tenendo pronto [[Bxe4]].",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla) e si gioca nel 14.5% dei casi. Il repertorio preferisce [[e6]] perché apre la diagonale dell'Alfiere di Re e protegge l'Alfiere in f5."
+      },
+      "opponentMistake": {
+        "san": "g4",
+        "punishSan": "Bxe4",
+        "text": "Se il Bianco gioca [[g4]] attacca l'Alfiere ma si indebolisce: prendo [[Bxe4]] e dopo [[fxe4]] lo scacco [[Qh4+]] è forte (diagonale e1–h4)."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ],
+      "planQuiz": {
+        "correct": "Sviluppare con calma e tenere d'occhio la diagonale debole del Bianco",
+        "distractors": [
+          "Attaccare subito con la Donna, ignorando lo sviluppo",
+          "Chiudere la posizione con pedoni e lasciare i pezzi indietro"
+        ],
+        "distractorPrincipleIds": [
+          "cl-f3-diagonal",
+          "cl-f3-diagonal"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ritira il Cavallo in c3: gioco [[Nf6]], sviluppo il Cavallo di Re e controllo e4 e d5.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è altrettanto buona per il motore (perdita nulla) e si gioca di più. Il repertorio sceglie [[Nf6]] perché dei casi e sviluppa un pezzo subito."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo di Re per controllare il centro",
+        "distractors": [
+          "Spingere subito il pedone h per chiudere l'Alfiere",
+          "Rimandare lo sviluppo e muovere ancora la Donna"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-h-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5bN1/3P4/8/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo in g5 prende di mira f7 e h7. Rispondo [[e6]]: la Donna ora attacca il Cavallo e l'Alfiere in f5 resta protetto.",
+      "whyNot": {
+        "san": "h6",
+        "text": "[[h6]] è quasi alla pari (perdita 0.04) e fa subito la domanda al Cavallo. Il repertorio preferisce [[e6]] perché libera l'Alfiere di Re e tiene la struttura compatta."
+      },
+      "opponentMistake": {
+        "san": "Nxf7",
+        "punishSan": "Kxf7",
+        "text": "Se il Bianco sacrifica con [[Nxf7]] non ha abbastanza compenso: riprendo con [[Kxf7]] e sono pezzo avanti."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Proteggere l'Alfiere e sviluppare, tenendo la struttura compatta",
+        "distractors": [
+          "Ignorare l'attacco e mettere la Donna in giro",
+          "Spingere i pedoni sul lato senza sviluppare"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-h-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/2N2b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo in c5 attacca il pedone b7. Rispondo [[b6]]: il Cavallo deve muoversi, e in b7 rischierebbe di restare intrappolato.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è quasi alla pari (perdita 0.07) e si gioca nel 29.1% dei casi. Il repertorio preferisce [[b6]] perché mette subito il Cavallo in difficoltà."
+      },
+      "opponentMistake": {
+        "san": "Nb7",
+        "punishSan": "Qc8",
+        "text": "Dopo [[Nb7]] la Donna attacca il Cavallo con [[Qc8]] e le case di fuga sono poche: il Bianco rischia di perdere un pezzo."
+      },
+      "conceptRefs": [
+        "cl-knight-c5"
+      ],
+      "planQuiz": {
+        "correct": "Cacciare il Cavallo e intrappolarlo se va in b7",
+        "distractors": [
+          "Ignorare il Cavallo e sviluppare un pezzo",
+          "Spingere subito un pedone e perdere tempo"
+        ],
+        "distractorPrincipleIds": [
+          "cl-knight-c5",
+          "cl-knight-c5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/5Q2/PPP2PPP/R1B1KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "La Donna in f3 attacca il mio Alfiere in f5. Gioco [[e6]]: lo proteggo e sviluppo. I GM scelgono questa mossa nell'88.2% dei casi.",
+      "whyNot": {
+        "san": "Bxe4",
+        "text": "Con [[Bxe4]] si cambia subito, ma perdo la coppia di Alfieri e l'Alfiere attivo senza motivo. Il motore dà una perdita di 0.21."
+      },
+      "opponentMistake": {
+        "san": "Bg5",
+        "punishSan": "Bxe4",
+        "text": "Con [[Bg5]] il Bianco attacca la mia Donna, ma io prendo [[Bxe4]] e dopo il cambio vinco materiale."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/3Q4/PPP2PPP/R1B1KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "La Donna bianca sta in d3 sulla stessa colonna di d4. Gioco [[e6]], sviluppo solido e senza debolezze.",
+      "whyNot": {
+        "san": "Qd5",
+        "text": "[[Qd5]] è altrettanto buona per il motore (perdita nulla) ma è più rischiosa: la Donna esce presto. Il repertorio preferisce [[e6]], mossa semplice."
+      },
+      "opponentMistake": {
+        "san": "Bg5",
+        "punishSan": "Bxe4",
+        "text": "Con [[Bg5]] il Bianco attacca la mia Donna, ma io prendo [[Bxe4]] e vinco materiale."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3P4/2N2N2/PPP3PP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha ripreso in f3. Sviluppo con [[Nf6]], che prepara l'uscita dell'Alfiere in f5.",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è la più giocata ma perde 0.34 rispetto a [[Nf6]]. Con [[Nf6]] sviluppo un pezzo e controllo il centro."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rnbqkbnr/pp2pppp/2p5/8/3P4/2N2Q2/PPP3PP/R1B1KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha ripreso con la Donna in f3. Rispondo [[Nf6]] e sviluppo un pezzo.",
+      "whyNot": {
+        "san": "Qxd4",
+        "text": "[[Qxd4]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]], che sviluppa e non espone la Donna."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B1N2/PPP2PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Sviluppo il Cavallo di Donna con [[Nd7]]: controlla e5 e lascia f6 libera per l'altro Cavallo. È la scelta dei GM.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla) e la gioca il 39.2% dei giocatori. Il repertorio preferisce [[Nd7]] perché evita la inchiodatura in f6 e prepara [[Ngf6]]."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo di Donna controllando e5 e c5",
+        "distractors": [
+          "Muovere ancora lo stesso pezzo e perdere tempo",
+          "Spingere il pedone a lato senza sviluppare"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-knight-c5"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PNB2/3B4/PPP2PPP/R2QK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in f4. Gioco [[Nf6]]: sviluppo e attacco il Cavallo in e4 (attaccato 2 volte, difeso 1).",
+      "whyNot": {
+        "san": "Qxd4",
+        "text": "[[Qxd4]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]] per sviluppare un pezzo senza esporre la Donna."
+      },
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Con [[Nd6+]] il Bianco perde un pezzo: [[Bxd6]] lo prende e il Bianco ha perso materiale."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/2PB4/PP3PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco gioca c3 per sostenere d4. Sviluppo con [[Nd7]], pronto a [[Ngf6]].",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nd7]] perché non permette [[Nxf6+]] con pedoni doppiati."
+      },
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Con [[Nd6+]] il Bianco regala un pezzo: [[Bxd6]] lo prende."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5bB1/3PN3/3B4/PPP2PPP/R2QK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in g5 attacca la mia Donna. La sposto con [[Qxd4]], che prende anche il pedone d4 rimasto senza difesa (pedone gratis).",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] sviluppa e para l'attacco, ma perde 0.27: lascio il pedone al Bianco. Con la Donna prendo il pedone e mi muovo nello stesso tempo."
+      },
+      "opponentMistake": {
+        "san": "f3",
+        "punishSan": "Qb6",
+        "text": "Dopo [[f3]] il Bianco è già un pedone sotto: [[Qb6]] mi tiene la Donna attiva e b2 resta senza difesa."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3BB3/PPP2PPP/R2QK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha sviluppato l'Alfiere in e3. Gioco [[Nf6]]: sviluppo e controllo e4.",
+      "whyNot": {
+        "san": "Nd7",
+        "text": "[[Nd7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]] perché sviluppa un pezzo e tiene d5 sotto controllo."
+      },
+      "opponentMistake": {
+        "san": "Nf3",
+        "punishSan": "Bxe4",
+        "text": "Dopo [[Nf3]] il Cavallo in e4 è attaccato 2 volte e difeso 1: [[Bxe4]] vince un pezzo."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/2N2b2/3P4/3B4/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo in c5 non difende d4, che è senza difesa: prendo [[Qxd4]] e attacco il Cavallo (anche lui senza difesa).",
+      "whyNot": {
+        "san": "Bxd3",
+        "text": "[[Bxd3]] cambia gli Alfieri e perde 0.18: dopo la ripresa il Cavallo non è più in pericolo. Prendere il pedone con [[Qxd4]] è più forte."
+      },
+      "opponentMistake": {
+        "san": "Nxb7",
+        "punishSan": "Bxd3",
+        "text": "Con [[Nxb7]] il Bianco dà via il Cavallo: [[Bxd3]] vince materiale."
+      },
+      "conceptRefs": [
+        "cl-knight-c5",
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3P4/3B2N1/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ritira il Cavallo in g3. Cambio gli Alfieri con [[Bxd3]]: alleggerisco la posizione e il pedone d4 conta meno.",
+      "whyNot": {
+        "san": "Bg6",
+        "text": "[[Bg6]] perde 0.18 e lascia al Bianco l'Alfiere in d3, attivo. Il cambio semplifica e il repertorio lo preferisce."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN1P1/3B4/PPP2P1P/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco spinge g4 per cacciare l'Alfiere. Ritiro in g6 con [[Bg6]]: resta attivo e protetto.",
+      "whyNot": {
+        "san": "Bxe4",
+        "text": "[[Bxe4]] è altrettanto buona per il motore (perdita nulla) e si gioca nel 39.4% dei casi. Il repertorio preferisce [[Bg6]] perché tiene la coppia di Alfieri."
+      },
+      "opponentMistake": {
+        "san": "Bg5",
+        "punishSan": "Qxd4",
+        "text": "Con [[Bg5]] il Bianco attacca la Donna, ma d4 è ancora senza difesa: [[Qxd4]] sposta la Donna e prende il pedone."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat",
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p3b1/8/3P4/5NN1/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Sviluppo il Cavallo di Donna in d7 con [[Nd7]]: controlla e5 e c5 e libera f6. I GM lo giocano nell'80.5% dei casi.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è altrettanto buona per il motore (perdita nulla) e si gioca nel 38.7% dei casi. Il repertorio preferisce [[Nd7]] perché prepara [[Ngf6]]."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Sviluppare il Cavallo di Donna in una casa utile",
+        "distractors": [
+          "Spingere il pedone a lato e bloccare l'Alfiere",
+          "Mettere la Donna in giro prima dello sviluppo"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-h-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p3b1/8/3P3P/6N1/PPP2PP1/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco spinge h4. Rispondo [[h6]] in tempo: se arriva h5 l'Alfiere si ritira in h7 senza rischiare la trappola.",
+      "whyNot": {
+        "san": "h5",
+        "text": "[[h5]] perde 0.4 rispetto a [[h6]]. I GM giocano [[h6]] quasi sempre."
+      },
+      "conceptRefs": [
+        "cl-h-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p3b1/8/3P4/3B2N1/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il pedone d4 è senza difesa: lo prendo con [[Qxd4]].",
+      "whyNot": {
+        "san": "Bxd3",
+        "text": "[[Bxd3]] perde 0.48 e si gioca nel 57.4% dei casi. Il cambio è comodo ma lascia sfuggire il pedone gratis."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p3b1/8/2BP4/6N1/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in c4 guarda f7 (difeso 2 volte). Rispondo [[e6]]: chiudo la diagonale e sviluppo l'Alfiere di Re.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è quasi alla pari (perdita 0.04) e si gioca nel 24.3% dei casi. Il repertorio preferisce [[e6]], scelta dell'86.6% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppp/2p3b1/8/3P4/2P3N1/PP3PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco gioca c3. Rispondo [[e6]] e sviluppo con solidità.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.09 ed è giocata nel 36.4% dei casi. Il repertorio preferisce [[e6]], mossa dei GM nel 56.6% dei casi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN1P1/5P2/PPP4P/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il pedone in g4 attacca il mio Alfiere: prendo il Cavallo con [[Bxe4]] e, dopo la ripresa, [[Qh4+]] è scacco sulla diagonale e1–h4.",
+      "whyNot": {
+        "san": "Bg6",
+        "text": "[[Bg6]] perde 0.68 ma si gioca nel 53.7% dei casi: l'Alfiere si ritira e il Bianco non è punito. [[Bxe4]] sfrutta la debolezza subito."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PNB2/5P2/PPP3PP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco gioca l'Alfiere in f4. Sviluppo con [[Nf6]].",
+      "whyNot": {
+        "san": "Nd7",
+        "text": "[[Nd7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]], che sviluppa e prepara il cambio in f6."
+      },
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Con [[Nd6+]] il Bianco regala un pezzo: [[Bxd6]] lo prende."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/2BPN3/5P2/PPP3PP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in c4. Prendo con [[Bxe4]] e dopo [[fxe4]] la diagonale e1–h4 è aperta.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.18: il Bianco può cambiare e tenere il centro. [[Bxe4]] va dritta al punto debole."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B1P2/PPP3PP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Prendo il pedone d4 con [[Qxd4]]: il Bianco non lo difende.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.5 e lascia il pedone al Bianco. Il pedone gratis è meglio."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5bB1/3PN3/5P2/PPP3PP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in g5 attacca la mia Donna. Rispondo [[Be7]]: lo metto davanti alla Donna e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla) e si gioca nel 10.3% dei casi. Il repertorio preferisce [[Be7]], giocata nel 51.7% dei casi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/5P2/PPP1N1PP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco sviluppa il Cavallo in e2. Rispondo [[Nf6]] e metto pressione su e4.",
+      "whyNot": {
+        "san": "Bxe4",
+        "text": "[[Bxe4]] è quasi alla pari (perdita 0.1). Il repertorio preferisce [[Nf6]], che mantiene la coppia di Alfieri."
+      },
+      "opponentMistake": {
+        "san": "g4",
+        "punishSan": "Nxe4",
+        "text": "Con [[g4]] il Bianco attacca l'Alfiere ma lascia il Cavallo in e4: [[Nxe4]] vince materiale."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/4BP2/PPP3PP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco mette l'Alfiere in e3. Gioco [[Nd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.08 ed è giocata nel 41.3% dei casi: cambia in f6 e lascia pedoni doppiati. Il repertorio preferisce [[Nd7]]."
+      },
+      "opponentMistake": {
+        "san": "Bc4",
+        "punishSan": "Bxe4",
+        "text": "Dopo [[Bc4]] il Cavallo in e4 è difeso solo dal pedone f3: [[Bxe4]] lo cambia e apre la diagonale e1–h4 contro il Re."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/2P2P2/PP4PP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco gioca c3. Prendo con [[Bxe4]]: dopo la ripresa la diagonale e1–h4 contro il Re bianco è aperta.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla) e si gioca nel 42.2% dei casi. Il repertorio preferisce [[Bxe4]] perché lascia debolezze nel campo bianco."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/5b2/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]] e sviluppo con solidità: i GM lo giocano nell'80% dei casi.",
+      "whyNot": {
+        "san": "Nbd7",
+        "text": "[[Nbd7]] perde 0.08 ed è giocata nel 12.3% dei casi. Il repertorio preferisce [[e6]] perché apre la diagonale dell'Alfiere."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Sviluppare con solidità e aprire la diagonale dell'Alfiere",
+        "distractors": [
+          "Spingere un pedone a lato senza sviluppare",
+          "Muovere ancora la Donna e perdere tempo"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-h-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/5b2/3P4/2NB4/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Cambio gli Alfieri con [[Bxd3]]: semplifico e il pedone d4 del Bianco conta meno.",
+      "whyNot": {
+        "san": "Bg6",
+        "text": "[[Bg6]] perde 0.22 e lascia l'Alfiere bianco attivo. Il cambio semplifica."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/5b2/2BP4/2N5/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in c4 attacca f7 (difeso 1 volta). Gioco [[e6]]: chiudo la diagonale.",
+      "whyNot": {
+        "san": "Nbd7",
+        "text": "[[Nbd7]] è quasi alla pari (perdita 0.04). Il repertorio preferisce [[e6]] perché apre l'Alfiere di Re."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/5bB1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere bianco inchioda il Cavallo. Gioco [[e6]] e sviluppo.",
+      "whyNot": {
+        "san": "h6",
+        "text": "[[h6]] è quasi alla pari (perdita 0.05). Il repertorio preferisce [[e6]] perché è più semplice."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/5b2/3P1B2/2N5/PPP2PPP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]]: mossa solida e pronta all'arrocco.",
+      "whyNot": {
+        "san": "Nbd7",
+        "text": "[[Nbd7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[e6]], giocata nel 70% dei casi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5bN1/3P4/5N2/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha portato anche il secondo Cavallo in f3. Gioco [[h6]] e chiedo al Cavallo in g5 di decidere: non voglio che resti lì a minacciare f7.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] perde 0.17 e lascia il Cavallo libero di restare in g5. Con [[h6]] lo costringo a muoversi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3Npp/2p1p3/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha sacrificato il Cavallo in f7. Riprendo con [[Kxf7]]: sono un pezzo avanti e il Re è al sicuro se gioco con calma.",
+      "whyNot": {
+        "san": "Bb4+",
+        "text": "[[Bb4+]] perde 1.81 ed è quasi mai giocata: lascia il Cavallo in f7 e non risolve nulla. Riprendere è semplice e vince materiale."
+      },
+      "opponentMistake": {
+        "san": "Qh5+",
+        "punishSan": "g6",
+        "text": "Se il Bianco continua con [[Qh5+]], rispondo [[g6]]: blocco lo scacco e la Donna deve ritirarsi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5bN1/2BP4/8/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere bianco guarda f7. Gioco [[Be7]] e sviluppo l'Alfiere di Re, pronto ad arroccare.",
+      "whyNot": {
+        "san": "h6",
+        "text": "[[h6]] è quasi alla pari (perdita 0.09) e si gioca nel 17.4% dei casi. Il repertorio preferisce [[Be7]], mossa più giocata e più naturale."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5bN1/3P4/3B4/PPP2PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in d3 guarda il mio; il pedone d4 non è difeso. Prendo [[Qxd4]], un pedone gratis (vedi il principio sul pedone libero).",
+      "whyNot": {
+        "san": "h6",
+        "text": "[[h6]] perde 0.39: caccia il Cavallo ma lascia al Bianco il tempo di difendere d4. Il pedone gratis vale di più."
+      },
+      "opponentMistake": {
+        "san": "Bxf5",
+        "punishSan": "Qxd1+",
+        "text": "Con [[Bxf5]] il Bianco cambia gli Alfieri: [[Qxd1+]] cambia anche le Donne e dopo [[Kxd1]] riprendo con [[exf5]], e sono a posto."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/p3pppp/1pp5/5b2/3P4/1N6/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo si è ritirato in b3 dopo la trappola mancata. Gioco [[e6]] e sviluppo: la mia struttura è solida.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è quasi alla pari (perdita 0.08) e si gioca nel 27.4% dei casi. Il repertorio preferisce [[e6]] perché dei casi."
+      },
+      "conceptRefs": [
+        "cl-knight-c5"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo in b7 attacca la mia Donna ed è senza difesa. Gioco [[Qc7]]: sposto la Donna e attacco il Cavallo.",
+      "whyNot": {
+        "san": "Qd7",
+        "text": "[[Qd7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Qc7]] perché è la mossa più giocata e attacca b7 direttamente."
+      },
+      "opponentMistake": {
+        "san": "Ba6",
+        "punishSan": "Nxa6",
+        "text": "Con [[Ba6]] il Bianco prova a salvare il Cavallo, ma [[Nxa6]] prende l'Alfiere e dopo [[Qxb7]] il Cavallo cade: sono avanti di materiale."
+      },
+      "conceptRefs": [
+        "cl-knight-c5"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/p3pppp/1pp5/5b2/3P4/3N4/PPP2PPP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo si ritira in d3. Prendo [[Qxd4]], il pedone senza difesa, con la Donna al centro.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] perde 0.21 e si gioca nel 23.3% dei casi. Il pedone d4 gratis è più prezioso di un'altra mossa di sviluppo."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B1Q2/PPP2PPP/R1B1K1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "La Donna bianca è in f3 e d4 non è difeso. Prendo con [[Qxd4]], un pedone gratis.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.3 ed è giocata nel 24.2% dei casi: sviluppa ma lascia il pedone. [[Qxd4]] è meglio."
+      },
+      "opponentMistake": {
+        "san": "Be3",
+        "punishSan": "Qxb2",
+        "text": "Con [[Be3]] il Bianco attacca la mia Donna, ma [[Qxb2]] prende un altro pedone."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/4BQ2/PPP2PPP/R3KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in e3. Gioco [[Nd7]], sviluppo e libero f6.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.08 ed è giocata nel 43.1% dei casi: dopo [[Nxf6+]] dovrei riprendere con [[gxf6]] e i miei pedoni si rovinano. Il repertorio preferisce [[Nd7]]."
+      },
+      "opponentMistake": {
+        "san": "O-O-O",
+        "punishSan": "Ndf6",
+        "text": "Dopo [[O-O-O]] il Bianco arrocca lungo; rispondo [[Ndf6]] e sviluppo senza problemi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/2P2Q2/PP3PPP/R1B1KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nd7]] e sviluppo con calma.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.04 ed è giocata nel 45.6% dei casi. Il repertorio preferisce [[Nd7]], giocata nel 40.5% dai GM, perché evita pedoni doppiati dopo [[Nxf6+]]."
+      },
+      "opponentMistake": {
+        "san": "Bg5",
+        "punishSan": "Bxe4",
+        "text": "Con [[Bg5]] il Bianco attacca la Donna, ma [[Bxe4]] cattura il Cavallo: se [[Qxe4]], [[Qxg5]] vince l'Alfiere."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PNB2/5Q2/PPP2PPP/R3KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in f4 lascia d4 senza difesa. Prendo con [[Qxd4]], pedone gratis.",
+      "whyNot": {
+        "san": "Nd7",
+        "text": "[[Nd7]] perde 1.17: lascia il pedone e il Bianco sta meglio. Prendere subito è molto meglio."
+      },
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Con [[Nd6+]] il Bianco regala un pezzo: [[Bxd6]] lo prende."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5bB1/3PN3/5Q2/PPP2PPP/R3KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco attacca la mia Donna con l'Alfiere in g5. Prendo con [[Bxe4]]: dopo [[Bxd8]] riprendo con [[Bxf3]] e sono avanti.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] perde 2.38: pareggia il materiale solo in apparenza e lascia il Bianco meglio. [[Bxe4]] approfitta della Donna bianca esposta."
+      },
+      "opponentMistake": {
+        "san": "Qf4",
+        "punishSan": "Qd5",
+        "text": "Se il Bianco gioca [[Qf4]], rispondo [[Qd5]] e centralizzo la Donna con tempo."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/2BPN3/5Q2/PPP2PPP/R1B1K1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Prendo con [[Qxd4]]: la Donna attacca l'Alfiere in c4 (senza difesa) e il Cavallo in e4.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.42 ed è giocata nel 21.9% dei casi: lascia il pedone. [[Qxd4]] è meglio."
+      },
+      "opponentMistake": {
+        "san": "b3",
+        "punishSan": "Bxe4",
+        "text": "Dopo [[b3]] il Cavallo in e4 è attaccato 2 volte e difeso 1: [[Bxe4]] vince un pezzo."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3Q1N2/PPP2PPP/R1B1KB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco sviluppa in f3. Gioco [[Nd7]], sviluppando con calma.",
+      "whyNot": {
+        "san": "Qd5",
+        "text": "[[Qd5]] è quasi alla pari (perdita 0.06). Il repertorio preferisce [[Nd7]], più semplice e meno esposta."
+      },
+      "opponentMistake": {
+        "san": "Nh4",
+        "punishSan": "Qxh4",
+        "text": "Se il Bianco gioca [[Nh4]], la Donna prende [[Qxh4]] e vinco un pezzo."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/5b2/3PNB2/3Q4/PPP2PPP/R3KBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere bianco va in f4. Gioco [[Nd7]], sviluppando senza fretta.",
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Dopo [[Nd6+]] prendo [[Bxd6]]: dopo la ripresa il mio Alfiere in f5 attacca la Donna in d3."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/2p2n2/8/2BP4/2N2N2/PPP3PP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in c4. Gioco [[Bf5]] e sviluppo l'Alfiere fuori dalla catena di pedoni.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] perde 0.3 ed è giocata nel 25% dei casi. Con [[Bf5]] l'Alfiere esce attivo e i GM lo giocano nell'88.9%."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/2p2n2/8/3P4/2NB1N2/PPP3PP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco mette l'Alfiere in d3. Gioco [[Bg4]]: lo attacco e inchiodo il Cavallo.",
+      "whyNot": {
+        "san": "g6",
+        "text": "[[g6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Bg4]], giocata nell'85.7% dai GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rnbqkb1r/pp2pppp/2p2n2/6B1/3P4/2N2N2/PPP3PP/R2QKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere bianco inchioda il mio Cavallo. Gioco [[Bg4]] e inchiodo anch'io il suo.",
+      "whyNot": {
+        "san": "h6",
+        "text": "[[h6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Bg4]], più giocata."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1ppp/2p1p3/5b2/3PN3/3B1N2/PPP2PPP/R1BQ1RK1 b kq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha arroccato. Gioco [[Ngf6]]: sviluppo il secondo Cavallo e preparo l'arrocco.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] perde 0.22. Il repertorio preferisce [[Ngf6]], giocata nel 43.8% dei casi."
+      },
+      "conceptRefs": [],
+      "planQuiz": {
+        "correct": "Completare lo sviluppo con il secondo Cavallo",
+        "distractors": [
+          "Spingere i pedoni sul lato del Re e lasciare i pezzi indietro",
+          "Muovere la Donna in giro senza motivo"
+        ],
+        "distractorPrincipleIds": [
+          "cl-bishop-retreat",
+          "cl-h-pawn"
+        ]
+      }
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1ppp/2p1p3/5b2/3PNB2/3B1N2/PPP2PPP/R2QK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in f4. Gioco [[Ngf6]]: sviluppo, e se [[Nd6+]] io prendo con [[Bxd6]].",
+      "whyNot": {
+        "san": "Bxe4",
+        "text": "[[Bxe4]] perde 0.16 e si gioca nell'8.8% dei casi. Il repertorio preferisce [[Ngf6]]."
+      },
+      "opponentMistake": {
+        "san": "O-O",
+        "punishSan": "Bxe4",
+        "text": "Dopo [[O-O]] il Cavallo in e4 è attaccato 2 volte e difeso 1: [[Bxe4]] vince materiale."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1ppp/2p1p3/5bB1/3PN3/3B1N2/PPP2PPP/R2QK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere bianco va in g5. Gioco [[Ngf6]]: sviluppo il Cavallo.",
+      "whyNot": {
+        "san": "Qb6",
+        "text": "[[Qb6]] perde 0.17 e si gioca nell'8.6% dei casi. Il repertorio preferisce [[Ngf6]] perché sviluppa."
+      },
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Con [[Nd6+]] il Bianco regala un pezzo: [[Bxd6]] lo prende."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pN2/5b2/3P1B2/3B4/PPP2PPP/R2QK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha cambiato in f6. Riprendo con la Donna [[Qxf6]]: lo faccio per tenere i pedoni sani (il 96.8% lo fa).",
+      "whyNot": {
+        "san": "gxf6",
+        "text": "[[gxf6]] perde 0.4: rovina i pedoni. Riprendere con la Donna è la scelta quasi unanime del 96.8%."
+      },
+      "opponentMistake": {
+        "san": "Nf3",
+        "punishSan": "Bxd3",
+        "text": "Se il Bianco gioca [[Nf3]], il mio Alfiere cambia con [[Bxd3]] e dopo la ripresa guadagno un tempo."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1ppp/2p1p3/5b2/3PN3/2PB1N2/PP3PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Sviluppo con [[Ngf6]]: il Cavallo va in f6 e il Bianco non ha un vantaggio.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] perde 0.14 e si gioca nel 10% dei casi. Il repertorio preferisce [[Ngf6]]."
+      },
+      "opponentMistake": {
+        "san": "O-O",
+        "punishSan": "Bxe4",
+        "text": "Dopo [[O-O]] il Cavallo in e4 è attaccato 2 volte e difeso 1: [[Bxe4]] vince materiale."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pN2/5b2/3P4/3BB3/PPP2PPP/R2QK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Riprendo con la Donna [[Qxf6]]: tengo i pedoni sani.",
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/8/3P4/3Q2N1/PPP2PPP/R1B1K1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha ripreso con la Donna. Gioco [[Nf6]] e sviluppo.",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] perde 0.13 e si gioca nel 12% dei casi. Il repertorio preferisce [[Nf6]], più giocata."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/3P4/3B1NN1/PPP2PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere in d3 attacca il mio in g6 (difeso 2 volte). Gioco [[e6]] e sviluppo con solidità.",
+      "whyNot": {
+        "san": "Bxd3",
+        "text": "[[Bxd3]] perde 0.09 ma è la mossa più giocata. Il repertorio preferisce [[e6]], giocata dai GM nel 51.7%, perché tengo l'Alfiere attivo."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/2BP4/5NN1/PPP2PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]] contro l'Alfiere in c4: lo blocco e sviluppo.",
+      "whyNot": {
+        "san": "Ngf6",
+        "text": "[[Ngf6]] è quasi alla pari (perdita 0.04). Il repertorio preferisce [[e6]], giocata dall'86.9% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/3P3P/5NN1/PPP2PP1/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco spinge h4. Rispondo [[h6]] in tempo: se arriva h5 l'Alfiere va in h7.",
+      "whyNot": {
+        "san": "h5",
+        "text": "[[h5]] perde 0.32 e blocca l'Alfiere in g6. Con [[h6]] ho una casa di ritirata (99.4% dei GM)."
+      },
+      "conceptRefs": [
+        "cl-h-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/3P4/5NN1/PPP1BPPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]] e sviluppo con calma.",
+      "whyNot": {
+        "san": "Ngf6",
+        "text": "[[Ngf6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[e6]], giocata dall'80.4% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/3P4/2P2NN1/PP3PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco gioca c3. Rispondo [[e6]] e sviluppo con solidità.",
+      "whyNot": {
+        "san": "Ngf6",
+        "text": "[[Ngf6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[e6]], giocata dall'87.5% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/3P3N/6N1/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo bianco in h4 attacca il mio Alfiere. Gioco [[e6]]: la Donna ora attacca il Cavallo, e dopo [[Nxg6]] riprendo con [[hxg6]].",
+      "whyNot": {
+        "san": "Ngf6",
+        "text": "[[Ngf6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[e6]], giocata dall'86.4% dei GM."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1npppp/2p3b1/8/3P1B2/5NN1/PPP2PPP/R2QKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "L'Alfiere bianco va in f4. Gioco [[e6]] e sviluppo.",
+      "whyNot": {
+        "san": "Ngf6",
+        "text": "[[Ngf6]] è quasi alla pari (perdita 0.05) e i GM la giocano nell'84.6%. Il repertorio preferisce [[e6]], più solida."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2ppp1/2p3bp/7P/3P4/6N1/PPP2PP1/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco spinge h5. Ritiro l'Alfiere con [[Bh7]]: la mossa h6 mi aveva preparato questa casa.",
+      "whyNot": {
+        "san": "Bf5",
+        "text": "[[Bf5]] perde 0.68 ed è quasi mai giocata: lascia l'Alfiere esposto."
+      },
+      "conceptRefs": [
+        "cl-h-pawn",
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2ppp1/2p3bp/8/3P3P/5NN1/PPP2PP1/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nd7]], sviluppo il Cavallo di Donna.",
+      "whyNot": {
+        "san": "e6",
+        "text": "[[e6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nd7]], giocata dall'80.4% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p1b1/8/2BP4/5NN1/PPP2PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nd7]], giocata dal 68.4% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p1b1/8/3P4/2PB2N1/PP3PPP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nf6]] e sviluppo.",
+      "whyNot": {
+        "san": "Bxd3",
+        "text": "[[Bxd3]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]], giocata dal 100% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p1b1/8/3P4/2P2NN1/PP3PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è quasi alla pari (perdita 0.05). Il repertorio preferisce [[Nd7]], giocata dal 75% dei GM."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/8/3PP1P1/8/PPP4P/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha spinto g4 e dopo i cambi ha ripreso con il pedone f in e4. Gioco [[Qh4+]]: la diagonale e1–h4 è aperta e il Re bianco è esposto.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.93 e rinuncia all'attacco sul Re."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pN2/5b2/3P1B2/5P2/PPP3PP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Riprendo con la Donna [[Qxf6]].",
+      "opponentMistake": {
+        "san": "Be5",
+        "punishSan": "Qg6",
+        "text": "Dopo [[Be5]] l'Alfiere bianco attacca la mia Donna: la sposto con [[Qg6]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/5b2/3PNB2/3B1P2/PPP3PP/R2QK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha messo l'Alfiere in d3. Prendo [[Qxd4]], un pedone gratis.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] perde 0.58 e lascia il pedone."
+      },
+      "opponentMistake": {
+        "san": "Nd6+",
+        "punishSan": "Bxd6",
+        "text": "Dopo [[Nd6+]] il Cavallo è attaccato 2 volte e difeso 1: [[Bxd6]] lo prende."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/8/2BPP3/8/PPP3PP/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Dopo il cambio in e4 e la ripresa del pedone f, gioco [[Qh4+]]: la diagonale e1–h4 è aperta perché il pedone f non c'è più.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 1.02 e rinuncia all'attacco."
+      },
+      "opponentMistake": {
+        "san": "g3",
+        "punishSan": "Qxe4+",
+        "text": "Dopo [[g3]] il pedone attacca la mia Donna, ma [[Qxe4+]] la sposta, prende il pedone e dà scacco."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn2kbnr/pp3ppp/2p1p3/5b2/3qN3/3B1P2/PPP1N1PP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Qb6]] e attacco il pedone b2.",
+      "whyNot": {
+        "san": "Qd8",
+        "text": "[[Qd8]] perde 0.27 e si gioca nel 31.1% dei casi. Il repertorio preferisce [[Qb6]]."
+      },
+      "opponentMistake": {
+        "san": "g4",
+        "punishSan": "Bxe4",
+        "text": "Dopo [[g4]] il pedone attacca il mio Alfiere: rispondo [[Bxe4]], cambiando l'Alfiere con il Cavallo, e il Bianco ha indebolito il proprio Re."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qk1nr/pp2Bppp/2p1p3/5b2/3PN3/5P2/PPP3PP/R2QKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha cambiato gli Alfieri. Riprendo con [[Nxe7]].",
+      "whyNot": {
+        "san": "Qxe7",
+        "text": "[[Qxe7]] è quasi alla pari (perdita 0.13). Il repertorio preferisce [[Nxe7]], giocata nel 55.5%."
+      },
+      "opponentMistake": {
+        "san": "Bd3",
+        "punishSan": "Qxd4",
+        "text": "Dopo [[Bd3]] il pedone d4 è senza difesa: [[Qxd4]] lo prende."
+      },
+      "conceptRefs": [
+        "cl-free-pawn"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pN2/5b2/3P4/5P2/PPP1N1PP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Riprendo con la Donna [[Qxf6]].",
+      "opponentMistake": {
+        "san": "Nf4",
+        "punishSan": "Bd6",
+        "text": "Con [[Nf4]] il Bianco mette il Cavallo in una casa debole: [[Bd6]] lo attacca e guadagno tempo."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3ppp/2p1p3/8/3PP3/2P5/PP4PP/R1BQKBNR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Dopo il cambio in e4 e la ripresa del pedone f, gioco [[Qh4+]]: la diagonale e1–h4 è aperta e il Re bianco è esposto.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.86 e rinuncia all'attacco."
+      },
+      "opponentMistake": {
+        "san": "g3",
+        "punishSan": "Qxe4+",
+        "text": "Con [[g3]] il Bianco copre, ma [[Qxe4+]] prende il pedone con scacco."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/5b2/3P4/2NB1N2/PPP2PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Cambio gli Alfieri con [[Bxd3]].",
+      "whyNot": {
+        "san": "Bg6",
+        "text": "[[Bg6]] perde 0.17 e si gioca nel 13.6% dei casi. Il cambio semplifica."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/5bB1/3P4/2N2N2/PPP2PPP/R2QKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Sviluppo con [[Be7]].",
+      "whyNot": {
+        "san": "h6",
+        "text": "[[h6]] è quasi alla pari (perdita 0.08). Il repertorio preferisce [[Be7]], giocata nel 52.3%."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/5b2/2BP4/2N2N2/PPP2PPP/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nbd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nbd7]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/5b2/3P1B2/2N2N2/PPP2PPP/R2QKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Bd6]] per cambiare l'Alfiere di f4.",
+      "whyNot": {
+        "san": "Bb4",
+        "text": "[[Bb4]] è quasi alla pari (perdita 0.1). Il repertorio preferisce [[Bd6]], giocata nel 30.7%."
+      },
+      "opponentMistake": {
+        "san": "Qd2",
+        "punishSan": "Bxf4",
+        "text": "Con [[Qd2]] il Bianco prova a coprirsi, ma [[Bxf4]] prende l'Alfiere e dopo [[Qxf4]] cambio pezzi e sono a posto."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/8/3P4/2NQ4/PPP2PPP/R1B1K1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]] e sviluppo.",
+      "whyNot": {
+        "san": "Nbd7",
+        "text": "[[Nbd7]] è quasi alla pari (perdita 0.08). Il repertorio preferisce [[e6]], giocata nel 78.9%."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3Np1/2p1p2p/5b2/3P4/5N2/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha sacrificato il Cavallo in f7. Riprendo con [[Kxf7]].",
+      "whyNot": {
+        "san": "Qa5+",
+        "text": "[[Qa5+]] perde 4.86 e rovina la posizione."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp3pp1/2p1p2p/5b2/3P4/5N1N/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Cavallo bianco va in h3. Gioco [[Nf6]] e sviluppo.",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] è quasi alla pari (perdita 0.05). Il repertorio preferisce [[Nf6]], giocata nel 33.7%."
+      },
+      "opponentMistake": {
+        "san": "Bf4",
+        "punishSan": "g5",
+        "text": "Dopo [[Bf4]] il pedone g5 attacca l'Alfiere. Se [[Bxb8]] riprendo con [[Rxb8]] e non ho perso nulla."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1q1bnr/pp3kpp/2p1p3/5b2/3P4/5N2/PPP2PPP/R1BQKB1R b KQ -",
+      "variationId": "classical-bf5",
+      "why": "Sviluppo con [[Nf6]].",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]], giocata nel 51.9%."
+      },
+      "opponentMistake": {
+        "san": "Bg5",
+        "punishSan": "Nbd7",
+        "text": "Con [[Bg5]] il Bianco prova ad attaccare, ma [[Nbd7]] sviluppa e difende senza problemi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/p4ppp/1pp1p3/5b2/3P4/1N3N2/PPP2PPP/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Bd6]] e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è altrettanto buona per il motore (perdita nulla) e si gioca nel 43.2% dei casi. Il repertorio preferisce [[Bd6]], giocata dai GM nel 51.2%."
+      },
+      "conceptRefs": [
+        "cl-knight-c5"
+      ]
+    },
+    {
+      "normalizedFen": "rn2kbnr/pp3ppp/2p1p3/5b2/3qN3/3B1Q2/PPP1NPPP/R1B1K2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Prendo [[Bxe4]]: il Cavallo bianco non è difeso.",
+      "whyNot": {
+        "san": "Qd8",
+        "text": "[[Qd8]] perde 0.17 e si gioca nel 20.6% dei casi."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/5b2/2BP4/2N2N2/PPP3PP/R1BQ1RK1 b kq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]] e sviluppo.",
+      "opponentMistake": {
+        "san": "Nh4",
+        "punishSan": "Bxc2",
+        "text": "Dopo [[Nh4]] il Cavallo in h4 e l'Alfiere in c4 sono senza difesa: [[Bxc2]] attacca la Donna in d1."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp2pppp/2p2n2/8/3P2b1/2NB1N2/PPP3PP/R1BQ1RK1 b kq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[e6]] e sviluppo.",
+      "whyNot": {
+        "san": "Bxf3",
+        "text": "[[Bxf3]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[e6]], giocata nel 60.5%."
+      },
+      "opponentMistake": {
+        "san": "Qe1",
+        "punishSan": "Bxf3",
+        "text": "Con [[Qe1]] il Bianco difende il Cavallo, ma [[Bxf3]] cambia il pezzo e dopo [[gxf3]] i suoi pedoni sono rovinati."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkb1r/pp1n1ppp/2p1pN2/5b2/3P4/3B1N2/PPP2PPP/R1BQ1RK1 b kq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha cambiato in f6. Riprendo con la Donna [[Qxf6]]: i pedoni restano sani e la Donna controlla il centro.",
+      "whyNot": {
+        "san": "Nxf6",
+        "text": "[[Nxf6]] perde 0.34 e si gioca nel 62.3% dei casi: è la ripresa più comune, ma dopo [[Bxf5]] e [[exf5]] ho pedoni peggiori. [[Qxf6]] tiene la struttura sana."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn2kb1r/pp3ppp/2p1pq2/5b2/3P4/3BBN2/PPP2PPP/R2QK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Cambio gli Alfieri con [[Bxd3]].",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Bxd3]]."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/8/3P4/3Q1NN1/PPP2PPP/R1B1K2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nbd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] è quasi alla pari (perdita 0.04). Il repertorio preferisce [[Nbd7]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/6B1/3P4/3Q2N1/PPP2PPP/R3K1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Sviluppo con [[Be7]].",
+      "whyNot": {
+        "san": "Nbd7",
+        "text": "[[Nbd7]] è quasi alla pari (perdita 0.04). Il repertorio preferisce [[Be7]], giocata nel 65.4%."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1n1ppp/2p1p1b1/8/2BP4/5NN1/PPP2PPP/R1BQ1RK1 b kq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Ngf6]] e sviluppo.",
+      "whyNot": {
+        "san": "Bd6",
+        "text": "[[Bd6]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Ngf6]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1nppp1/2p3bp/7P/3P4/5NN1/PPP2PP1/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco spinge h5. Ritiro l'Alfiere con [[Bh7]].",
+      "whyNot": {
+        "san": "Be4",
+        "text": "[[Be4]] perde 2.9 e dà via l'Alfiere."
+      },
+      "conceptRefs": [
+        "cl-h-pawn",
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkbnr/pp1nppp1/2p3bp/8/3P3P/3B1NN1/PPP2PP1/R1BQK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Cambio gli Alfieri con [[Bxd3]].",
+      "whyNot": {
+        "san": "Bh7",
+        "text": "[[Bh7]] perde 0.73 e dà un vantaggio al Bianco."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppb/2p4p/7P/3P4/5NN1/PPP2PP1/R1BQKB1R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] è quasi alla pari (perdita 0.05). Il repertorio preferisce [[Nd7]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qkbnr/pp2pppb/2p4p/7P/3P4/3B2N1/PPP2PP1/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Cambio gli Alfieri con [[Bxd3]].",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.12 e si gioca nel 13.5% dei casi."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "rn2kbnr/pp3ppp/2p1p3/8/3PP1Pq/8/PPPK3P/R1BQ1BNR b kq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nf6]] e sviluppo.",
+      "whyNot": {
+        "san": "Qf2+",
+        "text": "[[Qf2+]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nf6]]."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn2kbnr/pp3ppp/2p1p3/8/2BPP2q/6P1/PPP4P/R1BQK1NR b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Prendo con scacco [[Qxe4+]].",
+      "whyNot": {
+        "san": "Bb4+",
+        "text": "[[Bb4+]] perde 3.8 e rinuncia al guadagno."
+      },
+      "conceptRefs": [
+        "cl-f3-diagonal"
+      ]
+    },
+    {
+      "normalizedFen": "rn1qkb1r/pp3ppp/2p1pn2/8/3P4/2NQ1N2/PPP2PPP/R1B1K2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nbd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Nbd7]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1qk2r/pp2bppp/2p1pn2/5bB1/3P4/2NB1N2/PPP2PPP/R2QK2R b KQkq -",
+      "variationId": "classical-bf5",
+      "why": "Cambio gli Alfieri con [[Bxd3]].",
+      "whyNot": {
+        "san": "Bg4",
+        "text": "[[Bg4]] è quasi alla pari (perdita 0.07). Il repertorio preferisce [[Bxd3]], giocata nel 69.5%."
+      },
+      "conceptRefs": [
+        "cl-bishop-retreat"
+      ]
+    },
+    {
+      "normalizedFen": "r2qkb1r/pp1n1ppp/2p1pn2/5b2/2BP4/2N2N2/PPP2PPP/R1BQ1RK1 b kq -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Bd6]] e sviluppo.",
+      "whyNot": {
+        "san": "Be7",
+        "text": "[[Be7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Bd6]]."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1q1bnr/pp3kp1/2p1p2p/4Nb2/3P4/8/PPP2PPP/R1BQKB1R b KQ -",
+      "variationId": "classical-bf5",
+      "why": "Il Bianco ha dato scacco con il Cavallo. Ritiro il Re con [[Ke8]].",
+      "whyNot": {
+        "san": "Ke7",
+        "text": "[[Ke7]] perde 0.43 e mette il Re in una casa più esposta."
+      },
+      "conceptRefs": []
+    },
+    {
+      "normalizedFen": "rn1q1bnr/pp3kp1/2p1p2p/5b2/2BP4/5N2/PPP2PPP/R1BQK2R b KQ -",
+      "variationId": "classical-bf5",
+      "why": "Gioco [[Nd7]] e sviluppo.",
+      "whyNot": {
+        "san": "Nf6",
+        "text": "[[Nf6]] perde 0.33 ed è giocata nel 50.8% dei casi: il Bianco può dare scacco con [[Ne5+]]. [[Nd7]] lo evita."
+      },
+      "conceptRefs": []
+    }
+  ]
+}
