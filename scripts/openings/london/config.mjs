@@ -4,6 +4,7 @@ export const OPENING_CONFIG = {
   playerColor: 'white',
   description:
     'Repertorio solido col Bianco basato sul Database Lichess (fascia 0-1400 per le risposte avversarie) e validato con Database Grandi Maestri + Stockfish 16 (depth 18): 1.d4 e sistema di sviluppo con Alfiere in f4.',
+  maxPositionsCap: 900, // solo per Londra (Caro-Kann resta a 600)
   rootMovesSan: ['d4'],
   // 1.d4 è la mia prima mossa, forzata: l'albero parte dopo di essa.
   startMovesSan: ['d4'],
@@ -19,9 +20,7 @@ export const OPENING_CONFIG = {
   fallbackVariation: {
     id: 'london-other',
     name: 'Londra: altre risposte a 1.d4',
-    // come le varianti secondarie del Caro-Kann: albero più corto (tetto posizioni)
-    maxPly: 10,
-    minReach: 0.035,
+    minReach: 0.004, // come london-d5
   },
   variations: [
     {
@@ -31,6 +30,8 @@ export const OPENING_CONFIG = {
       ecoCode: 'D02',
       rootMovesSan: ['d4', 'd5', 'Bf4'],
       matchPrefixes: [['d4', 'd5']],
+      // reach riparte da 1.0 dopo la mia risposta anche contro 1...e6 / 1...e5 (varianti 'altre')
+      reachResetMovesSan: [['d4', 'e6', 'Bf4'], ['d4', 'e5', 'dxe5']],
       minReach: 0.004, // tiene l'albero sotto MAX_POSITIONS_CAP
     },
     {

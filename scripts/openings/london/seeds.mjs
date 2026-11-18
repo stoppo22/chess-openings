@@ -333,7 +333,208 @@ export const APPROVED_MOVES_BY_FEN = {
   "r1bqr1k1/pppn1pbp/3p1np1/4p3/3P1B2/2P1PN1P/PP1NBPP1/R2QK2R w KQ -": "dxe5",
   "r1bq1rk1/pppn1pbp/5np1/4p3/5B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -": "Nxe5",
   "r1bqr1k1/ppp2pbp/2np1np1/4p3/3P1B2/2P1PN1P/PP1NBPP1/R2QK2R w KQ -": "dxe5",
-  "r1bq1rk1/ppp2pbp/2n2np1/4p3/5B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -": "Nxe5"
+  "r1bq1rk1/ppp2pbp/2n2np1/4p3/5B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -": "Nxe5",
+  "rnbqkbnr/pp1ppppp/8/2p5/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": "d5",
+  "r1bqkbnr/pppppppp/2n5/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnbqkbnr/pppppp1p/6p1/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": "Bf4",
+  "rnbqkbnr/pp1ppppp/2p5/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": "Bf4",
+  "rnbqkbnr/ppp2ppp/3pp3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "r1bqkbnr/ppp1pppp/2np4/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqkbnr/ppp2ppp/3p4/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "exd6",
+  "r1bqkb1r/pppppppp/2n2n2/8/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "d5",
+  "rnbqkbnr/pp1p1ppp/4p3/2pP4/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "c4",
+  "rnbqkbnr/pp1p1ppp/4p3/2p5/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnb1kbnr/ppppqppp/8/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/ppppppbp/6p1/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnbqkbnr/pp2pppp/3p4/2pP4/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/pppp1ppp/8/2b1P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnb1kbnr/pppp1ppp/4pq2/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "r1bqkbnr/pppp1ppp/2n5/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnbqkbnr/pppp2pp/5p2/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "r1bqkbnr/pppp1ppp/2n1p3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnbqkb1r/pp1ppppp/5n2/2pP4/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "r1bqkbnr/ppp1pppp/2n5/3p4/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Bf4",
+  "rnbqk1nr/ppp2ppp/3p4/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Bf4",
+  "rnbqk1nr/ppp2ppp/3b4/8/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/ppp1ppbp/3p2p1/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "r1b1kbnr/ppppqppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "r1b1kbnr/ppppqppp/8/4n3/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "e4",
+  "rnbqk2r/ppp1nppp/3p4/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "exd6",
+  "r1b1kbnr/ppppqppp/8/8/4P3/2N2n2/PPP2PPP/R1BQKB1R w KQkq -": "Qxf3",
+  "rnb1kbnr/pppp1ppp/4p3/8/3P1B1q/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnbqk1nr/pppp1ppp/4p3/8/1b1P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "c3",
+  "rnbqkbnr/p1pp1ppp/1p2p3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnbqk1nr/pppp1ppp/8/4P3/1b6/8/PPP1PPPP/RNBQKBNR w KQkq -": "c3",
+  "rnbqkbnr/pp1p1ppp/2p1p3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/pppp1ppp/3bp3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "Bxd6",
+  "rnbqkbnr/pppp1p1p/4p3/6p1/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": "Bg3",
+  "rnbqkbnr/ppp2ppp/8/3pP3/8/8/PPP1PPPP/RNBQKBNR w KQkq d6": "Nf3",
+  "rnbqkbnr/pp1p1ppp/4p3/8/3p1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "exd4",
+  "rnbqkbnr/pp3ppp/2p1p3/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "e3",
+  "r1bqkbnr/ppp2ppp/2np4/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "exd6",
+  "rnbqkbnr/pppp2pp/8/4p3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nxe5",
+  "r1bqkbnr/pp1p1ppp/2n1p3/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "rnb1kbnr/pp1p1ppp/1q2p3/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Na3",
+  "r1bqkbnr/ppp2ppp/2npp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/ppp1bppp/3pp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqkbnr/ppp2pp1/3pp2p/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqkbnr/ppp3pp/3ppp2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqkbnr/pp3ppp/2ppp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqkb1r/ppp1nppp/3pp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "r1bqk1nr/pppp1ppp/2n1p3/8/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "rnb1kbnr/pp1p1ppp/4pq2/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "rnb1k1nr/pppp1ppp/4pq2/8/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "r1b1kbnr/pppp1ppp/2n1pq2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnb1kbnr/pppp1p1p/4pq2/6p1/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Be5",
+  "rnb1kbnr/ppp2ppp/3ppq2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnb1k1nr/pppp1ppp/3bpq2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Bxd6",
+  "rnb1k1nr/pppp1ppp/4p3/8/1b1P1B1q/4P3/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "rnb1kb1r/pppp1ppp/4pn2/8/3P1B1q/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnb1kbnr/pppp1p1p/4p3/6p1/3P1B1q/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Be5",
+  "rnbqk1nr/pppp1ppp/4p3/b7/3P1B2/2P5/PP2PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnbqk1nr/pppp1ppp/3bp3/8/3P1B2/2P5/PP2PPPP/RN1QKBNR w KQkq -": "Bg3",
+  "rn1qkbnr/pbpp1ppp/1p2p3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/pp1p1ppp/3pp3/8/3P4/8/PPP1PPPP/RN1QKBNR w KQkq -": "e4",
+  "rnbqkbnr/pppp3p/4p3/5pp1/3P4/6B1/PPP1PPPP/RN1QKBNR w KQkq -": "e3",
+  "rnbqkbnr/pppp1p2/4p3/6pp/3P4/6B1/PPP1PPPP/RN1QKBNR w KQkq -": "h3",
+  "r1bqk1nr/pppp1ppp/2n5/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Bf4",
+  "r1bqkbnr/pppp2pp/2n2p2/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "e4",
+  "r1bqkbnr/ppp2ppp/2n5/3pP3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq d6": "Bf4",
+  "r1bqk1nr/pppp1ppp/2n5/4P3/1b6/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "c3",
+  "rnbqk1nr/pppp1ppp/8/4P3/8/5N2/PPP1PbPP/RNBQKB1R w KQkq -": "Kxf2",
+  "rnbqk1nr/pppp2pp/5p2/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "rnbqk2r/ppppnppp/8/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Bg5",
+  "rnbqk2r/pppp1ppp/7n/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Bxh6",
+  "rnbqkbnr/pp3ppp/3p4/8/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Nc3",
+  "rnb1kbnr/ppp2ppp/3q4/8/8/8/PPP1PPPP/RNBQKBNR w KQkq -": "Qxd6",
+  "rnbqkbnr/ppp3pp/3p1p2/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "exf6",
+  "rnb1kbnr/ppp1qppp/3p4/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "exd6",
+  "rnb1kbnr/ppppq1pp/5p2/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "exf6",
+  "rnb1kbnr/pppp1ppp/8/4P3/1q6/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "r1bqkbnr/ppp2ppp/2n5/3pP3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Bf4",
+  "rnbqkbnr/ppp3pp/5p2/3pP3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "c4",
+  "rnbqk1nr/pppp1ppp/8/2b1P3/8/2P5/PP2PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/pppp1ppp/8/b3P3/8/2P5/PP2PPPP/RNBQKBNR w KQkq -": "Nf3",
+  "r1bqkbnr/ppp2pp1/2n1p2p/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "Nbd2",
+  "rnbqk1nr/ppp2ppp/4p3/b2p4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": "Nf3",
+  "r1bqkbnr/1pp2ppp/p1n1p3/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "Nbd2",
+  "r1bqk1nr/ppp2ppp/2nbp3/3p4/3P4/4P1B1/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnb1kbnr/pp3ppp/1q2p3/2pp4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": "Qb3",
+  "rnbqk1nr/ppp2ppp/3bp3/3p4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": "Bg3",
+  "rnbqk1nr/pp3ppp/2pbp3/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "Nbd2",
+  "rnbqkb1r/pp3ppp/2p1pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "Bd3",
+  "r1bqkbnr/pp1p1ppp/2n1p3/8/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "rnbqkbnr/ppp2p2/4p3/3p2pp/3P4/4P1B1/PPP2PPP/RN1QKBNR w KQkq -": "h4",
+  "rnbqkbnr/pp3ppp/4p3/3p4/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "rnbqkb1r/pp1p1ppp/4pn2/8/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -": "c3",
+  "r1bqk1nr/pppp1ppp/2n1p3/b7/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": "a4",
+  "rnb1kbnr/pp1p1ppp/4pq2/8/3p1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": "cxd4",
+  "rnb1k1nr/pppp1ppp/4pq2/b7/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": "b4",
+  "rnb1k1nr/pp1p1ppp/3ppq2/8/3P4/4P3/PPP2PPP/RN1QKBNR w KQkq -": "Nc3",
+  "rnbqk1nr/pppp1ppp/4p3/8/3P4/2P3b1/PP2PPPP/RN1QKBNR w KQkq -": "hxg3",
+  "rnbqk1nr/pp1p1ppp/4p3/3p4/3PP3/8/PPP2PPP/RN1QKBNR w KQkq -": "exd5",
+  "rnbqk2r/pp1p1ppp/3ppn2/8/3PP3/8/PPP2PPP/RN1QKBNR w KQkq -": "Bd3",
+  "rnbqk1nr/pp1p1ppp/3p4/4p3/3PP3/8/PPP2PPP/RN1QKBNR w KQkq -": "Nf3",
+  "r1b1kbnr/pppp1ppp/2n5/4P3/1q6/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "e4",
+  "r1b1kbnr/ppppq1pp/2n2p2/4P3/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "Nd5",
+  "r1bqk1nr/ppp2ppp/2nb4/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "r1bqkbnr/pp3ppp/2np4/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "e4",
+  "r1b1kbnr/ppp2ppp/2nq4/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Qxd6",
+  "r1bqk1nr/ppp2ppp/2np4/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "e3",
+  "r1bqk2r/ppppnppp/2n5/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "e3",
+  "r1bqk1nr/pppp2pp/2n2p2/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "e3",
+  "r1bqkbnr/pppp2pp/2n5/4p3/4P3/5N2/PPP2PPP/RNBQKB1R w KQkq -": "Bc4",
+  "r1bqkbnr/pppp2pp/5p2/4n3/4P3/5N2/PPP2PPP/RNBQKB1R w KQkq -": "Nxe5",
+  "r1bqk1nr/pppp1ppp/2n5/b3P3/8/2P2N2/PP2PPPP/RNBQKB1R w KQkq -": "Bf4",
+  "r1bqk1nr/pppp1ppp/2n5/2b1P3/8/2P2N2/PP2PPPP/RNBQKB1R w KQkq -": "Bf4",
+  "rnbqk1nr/ppp2ppp/8/2b1p3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "Qxd8+",
+  "rn1qk1nr/ppp2ppp/3p4/2b1P3/5Bb1/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "e3",
+  "rnbqk2r/ppp2ppp/3b1n2/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "rnbqk1nr/pppp2pp/8/2b1p3/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "Nxe5",
+  "rn1qk1nr/ppp2ppp/3b4/8/6b1/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "e3",
+  "rn1qk1nr/ppp2ppp/3bb3/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "e3",
+  "rnbqkb1r/pp3ppp/3p1n2/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "rnb1k1nr/ppp2ppp/3b4/8/8/8/PPP1PPPP/RNB1KBNR w KQkq -": "Nf3",
+  "rnb1kbnr/pp3ppp/3p4/8/8/8/PPP1PPPP/RNB1KBNR w KQkq -": "Nf3",
+  "rnb1kbnr/pppp2pp/5q2/4N3/8/8/PPP1PPPP/RNBQKB1R w KQkq -": "Nf3",
+  "rnbqkbnr/ppp3pp/3p4/4N3/8/8/PPP1PPPP/RNBQKB1R w KQkq -": "Nf3",
+  "rnbqkb1r/pppp2pp/5n2/4N3/8/8/PPP1PPPP/RNBQKB1R w KQkq -": "e4",
+  "r1b1kbnr/pp3ppp/1qn1p3/2pp4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -": "Qb3",
+  "r1b1kb1r/ppppqppp/5n2/4n3/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": "Bg5",
+  "rnbqk2r/pp3ppp/3bpn2/2pp4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -": "Bg3",
+  "r1bqk1nr/ppp2ppp/2nbp3/3p4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -": "Bg3",
+  "r1bqk1nr/ppp3pp/2nbpp2/3p4/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQkq -": "Bd3",
+  "rnbqk1nr/ppp2pp1/4p2p/3p4/3P4/4P1P1/PPP2PP1/RN1QKBNR w KQkq -": "Nf3",
+  "r1bqkbnr/pp3ppp/2n1p3/3p4/3P1B2/2P5/PP3PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqk1nr/ppp2ppp/4p3/3p4/3P4/2P1P1b1/PP3PPP/RN1QKBNR w KQkq -": "hxg3",
+  "r1bqkb1r/pp1p1ppp/2n1pn2/8/3P1B2/2P5/PP3PPP/RN1QKBNR w KQkq -": "Nf3",
+  "rnb1k1nr/pppp1ppp/1b2pq2/8/1P1P1B2/2P1P3/P4PPP/RN1QKBNR w KQkq -": "c4",
+  "r1b1kbnr/ppp1qppp/3p4/4n3/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": "Be2",
+  "r1b1kbnr/pp1pqppp/2p5/4n3/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": "Be2",
+  "r1b1kbnr/ppppqppp/2n5/8/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": "Bb5",
+  "r1bqk2r/ppp2ppp/2nb1n2/8/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "Bg5",
+  "r2qk1nr/ppp2ppp/2nb4/8/6b1/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "Bg5",
+  "r2qk1nr/ppp2ppp/2nbb3/8/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "e4",
+  "r1bqkb1r/pp3ppp/2np1n2/8/4P3/5N2/PPP2PPP/RNBQKB1R w KQkq -": "Nc3",
+  "r1b1k1nr/ppp2ppp/2nb4/8/8/5N2/PPP1PPPP/RNB1KB1R w KQkq -": "Nc3",
+  "r1bqk1nr/ppp2ppp/2n5/2b1p3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "Qxd8+",
+  "r2qk1nr/ppp2ppp/2np4/2b1P3/5Bb1/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "exd6",
+  "r1bqk2r/ppp1nppp/2np4/2b1P3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": "exd6",
+  "r1bq1rk1/ppppnppp/2n5/2b1P3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQ -": "Bd3",
+  "r1bqkb1r/pppp2pp/2n2n2/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": "Ng5",
+  "r1bqkbnr/pppp2p1/2n4p/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": "Nxe5",
+  "r1bqk1nr/pppp2pp/2n5/2b1p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": "Bxg8",
+  "r1bqkbnr/ppp3pp/2np4/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": "Ng5",
+  "r1bqk2r/ppp1nppp/2nP4/2b5/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "Nc3",
+  "r1bqkbnr/pppp2pp/8/4p3/4P3/8/PPP2PPP/RNBQKB1R w KQkq -": "Qh5+",
+  "rnbq1rk1/ppp1nppp/3P4/2b5/5B2/5N2/PPP1PPPP/RN1QKB1R w KQ -": "e3",
+  "rnbqk2r/pp2nppp/3p4/2b5/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "e3",
+  "rnbqk2r/ppp1nppp/3b4/8/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": "Bxd6",
+  "rnbk2nr/ppp2ppp/8/2b1p3/5B2/5N2/PPP1PPPP/RN2KB1R w KQ -": "Nxe5",
+  "rnb1k1nr/pppp2pp/5q2/2b1N3/8/2N5/PPP1PPPP/R1BQKB1R w KQkq -": "Nf3",
+  "rnbq1rk1/ppp2ppp/3b1n2/8/8/2N2N2/PPP1PPPP/R1BQKB1R w KQ -": "Bg5",
+  "rnbqk2r/ppp2ppp/3b4/8/6n1/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": "h3",
+  "r2qk1nr/ppp2ppp/2nb4/8/6b1/4PN2/PPP2PPP/RNBQKB1R w KQkq -": "Bd3",
+  "rnb1k1nr/pppp2pp/5q2/2b5/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": "Nc3",
+  "r1b1kb1r/ppppqppp/5n2/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": "Bg5",
+  "r1bqkb1r/pp3ppp/2n1pn2/3p4/3p1B2/2P1PN2/PP1N1PPP/R2QKB1R w KQkq -": "exd4",
+  "rnbq1rk1/ppp2ppp/4pn2/3p4/2PP4/4P1P1/PP3PP1/RN1QKBNR w KQ -": "Nc3",
+  "rnbqk2r/ppp2ppp/4pn2/8/2pP4/4P1P1/PP3PP1/RN1QKBNR w KQkq -": "Nf3",
+  "r1bqk2r/ppp2ppp/2n1pn2/3p4/2PP4/4P1P1/PP3PP1/RN1QKBNR w KQkq -": "Nf3",
+  "rnbqk2r/pp3ppp/2p1pn2/3p4/2PP4/4P1P1/PP3PP1/RN1QKBNR w KQkq -": "Nc3",
+  "r1b1kbnr/ppp1qppp/3p4/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": "Nd5",
+  "r1b1kbnr/pppp1ppp/8/8/1q2P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": "Bd2",
+  "r1b1kbnr/pppp1ppp/5q2/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": "Qg3",
+  "r1b1kbnr/pp1pqppp/2p5/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": "Bf4",
+  "r1b1kb1r/ppppqppp/5n2/6B1/4P3/2N2n2/PPP2PPP/R2QKB1R w KQkq -": "Qxf3",
+  "r1b1kb1r/ppppqpp1/5n1p/4n1B1/4P3/2N2N2/PPP2PPP/R2QKB1R w KQkq -": "Nd5",
+  "r1bq1rk1/ppp2ppp/2nb1n2/6B1/8/2N2N2/PPP1PPPP/R2QKB1R w KQ -": "e3",
+  "r1bqk2r/ppp2pp1/2nb1n1p/6B1/8/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "Bh4",
+  "r2qk1nr/ppp3pp/2nb1p2/6B1/6b1/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "Be3",
+  "r2qk2r/ppp2ppp/2nb1n2/6B1/6b1/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "e3",
+  "r1bnk1nr/ppp2ppp/8/2b1p3/5B2/4PN2/PPP2PPP/RN2KB1R w KQkq -": "Bxe5",
+  "r1bk2nr/ppp2ppp/2n5/2b1p3/5B2/4PN2/PPP2PPP/RN2KB1R w KQ -": "Nxe5",
+  "r1bqkb1r/ppp3pp/2n2n2/3pp1N1/2B1P3/8/PPP2PPP/RNBQK2R w KQkq -": "exd5",
+  "r1bqkbnr/pppp2p1/7p/4n3/2B1P3/8/PPP2PPP/RNBQK2R w KQkq -": "Qh5+",
+  "r1bqk1r1/pppp2pp/2n5/2b1p3/4P3/5N2/PPP2PPP/RNBQK2R w KQq -": "Qd5",
+  "r1bqkbnr/pppp3p/6p1/4p2Q/4P3/8/PPP2PPP/RNB1KB1R w KQkq -": "Qxe5+",
+  "r1bqk2r/ppp1nppp/2nb4/8/5B2/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "Bxd6",
+  "r1bqk2r/pp2nppp/2np4/2b5/5B2/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "e3",
+  "rn1k2nr/ppp2ppp/4b3/2b1N3/5B2/8/PPP1PPPP/RN2KB1R w KQ -": "e3",
+  "rnbqk2r/ppp2ppp/3b4/8/8/2N2N1P/PPP1PnP1/R1BQKB1R w KQkq -": "Kxf2",
+  "r1b1kb1r/ppppqpp1/5n1p/6B1/4P3/2N2Q2/PPP2PPP/R3KB1R w KQkq -": "Nd5",
+  "r1b1kb1r/ppp1qppp/3p1n2/6B1/4P3/2N2Q2/PPP2PPP/R3KB1R w KQkq -": "Nd5",
+  "r1b1kb1r/pppp1ppp/5n2/6B1/1q2P3/2N2Q2/PPP2PPP/R3KB1R w KQkq -": "e5",
+  "r1b1kbnr/pppq1ppp/3p4/3N4/4P3/5Q2/PPP2PPP/R1B1KB1R w KQkq -": "Bc4",
+  "r1bqk2r/ppp2p2/2nb1n1p/6p1/7B/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "Bg3",
+  "r1bnk1nr/ppp3pp/5p2/2b1B3/8/4PN2/PPP2PPP/RN2KB1R w KQkq -": "Bxc7",
+  "r3k1nr/ppp1q1pp/2nb1p2/8/6b1/2N1BN2/PPP1PPPP/R2QKB1R w KQkq -": "h3",
+  "r1bqkb1r/ppp3pp/2n5/3np1N1/2B5/8/PPP2PPP/RNBQK2R w KQkq -": "Bxd5",
+  "r1b1kbnr/ppppq2p/6p1/4Q3/4P3/8/PPP2PPP/RNB1KB1R w KQkq -": "Qxh8",
+  "r1bqk2r/pp2nppp/2np4/8/8/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": "e3",
+  "r1bq1rk1/ppp2ppp/4pn2/3pn3/3P4/3BP1P1/PPP2PP1/RN1QK2R w KQ -": "Bxh7+",
+  "r1bqkbnr/pp3ppp/2np4/8/8/2N5/PPP1PPPP/R1BQKBNR w KQkq -": "Nf3",
+  "rnbqkb1r/pp3ppp/3p1n2/8/8/2N5/PPP1PPPP/R1BQKBNR w KQkq -": "e4"
 };
 
 export const APPROVED_META_BY_FEN = {
@@ -2302,6 +2503,1212 @@ export const APPROVED_META_BY_FEN = {
   "r1bq1rk1/ppp2pbp/2n2np1/4p3/5B2/2P1PN1P/PP1N1PP1/R2QKB1R w KQ -": {
     "source": "accepted_proposal",
     "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pp1ppppp/8/2p5/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 8965
+  },
+  "r1bqkbnr/pppppppp/2n5/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1699
+  },
+  "rnbqkbnr/pppppp1p/6p1/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "user_choice",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 25171
+  },
+  "rnbqkbnr/pp1ppppp/2p5/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "user_choice",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1741
+  },
+  "rnbqkbnr/ppp2ppp/3pp3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 4
+  },
+  "r1bqkbnr/ppp1pppp/2np4/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 9
+  },
+  "rnbqkbnr/ppp2ppp/3p4/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 15
+  },
+  "r1bqkb1r/pppppppp/2n2n2/8/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 32
+  },
+  "rnbqkbnr/pp1p1ppp/4p3/2pP4/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 666
+  },
+  "rnbqkbnr/pp1p1ppp/4p3/2p5/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 121
+  },
+  "rnb1kbnr/ppppqppp/8/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnbqk1nr/ppppppbp/6p1/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 147
+  },
+  "rnbqkbnr/pp2pppp/3p4/2pP4/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 859
+  },
+  "rnbqk1nr/pppp1ppp/8/2b1P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pppp1ppp/4pq2/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 85
+  },
+  "rnbqkbnr/pppp2pp/5p2/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 6
+  },
+  "r1bqkbnr/pppp1ppp/2n1p3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnbqkb1r/pp1ppppp/5n2/2pP4/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1673
+  },
+  "r1bqkbnr/ppp1pppp/2n5/3p4/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 3192
+  },
+  "rnbqk1nr/ppp2ppp/3p4/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/ppp2ppp/3b4/8/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "rnbqk1nr/ppp1ppbp/3p2p1/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 108
+  },
+  "r1b1kbnr/ppppqppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 60
+  },
+  "r1b1kbnr/ppppqppp/8/4n3/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 16
+  },
+  "rnbqk2r/ppp1nppp/3p4/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/ppppqppp/8/8/4P3/2N2n2/PPP2PPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "rnb1kbnr/pppp1ppp/4p3/8/3P1B1q/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/4p3/8/1b1P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/p1pp1ppp/1p2p3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 44
+  },
+  "rnbqk1nr/pppp1ppp/8/4P3/1b6/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pp1p1ppp/2p1p3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/3bp3/8/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 3
+  },
+  "rnbqkbnr/pppp1p1p/4p3/6p1/3P1B2/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnbqkbnr/ppp2ppp/8/3pP3/8/8/PPP1PPPP/RNBQKBNR w KQkq d6": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pp1p1ppp/4p3/8/3p1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 12
+  },
+  "rnbqkbnr/pp3ppp/2p1p3/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 34
+  },
+  "r1bqkbnr/ppp2ppp/2np4/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 11
+  },
+  "rnbqkbnr/pppp2pp/8/4p3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pp1p1ppp/2n1p3/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 9
+  },
+  "rnb1kbnr/pp1p1ppp/1q2p3/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 39
+  },
+  "r1bqkbnr/ppp2ppp/2npp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/ppp1bppp/3pp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/ppp2pp1/3pp2p/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/ppp3pp/3ppp2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pp3ppp/2ppp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkb1r/ppp1nppp/3pp3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/pppp1ppp/2n1p3/8/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pp1p1ppp/4pq2/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pppp1ppp/4pq2/8/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/pppp1ppp/2n1pq2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pppp1p1p/4pq2/6p1/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/ppp2ppp/3ppq2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pppp1ppp/3bpq2/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pppp1ppp/4p3/8/1b1P1B1q/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kb1r/pppp1ppp/4pn2/8/3P1B1q/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pppp1p1p/4p3/6p1/3P1B1q/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/4p3/b7/3P1B2/2P5/PP2PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/3bp3/8/3P1B2/2P5/PP2PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rn1qkbnr/pbpp1ppp/1p2p3/8/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 29
+  },
+  "rnbqk1nr/pp1p1ppp/3pp3/8/3P4/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnbqkbnr/pppp3p/4p3/5pp1/3P4/6B1/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pppp1p2/4p3/6pp/3P4/6B1/PPP1PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/pppp1ppp/2n5/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pppp2pp/2n2p2/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 6
+  },
+  "r1bqkbnr/ppp2ppp/2n5/3pP3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq d6": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1bqk1nr/pppp1ppp/2n5/4P3/1b6/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/8/4P3/8/5N2/PPP1PbPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp2pp/5p2/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/ppppnppp/8/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/pppp1ppp/7n/2b1P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pp3ppp/3p4/8/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "punish_consistency",
+    "acceptedVia": "punish-consistency",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/ppp2ppp/3q4/8/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "rnbqkbnr/ppp3pp/3p1p2/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/ppp1qppp/3p4/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/ppppq1pp/5p2/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pppp1ppp/8/4P3/1q6/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/ppp2ppp/2n5/3pP3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/ppp3pp/5p2/3pP3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/8/2b1P3/8/2P5/PP2PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/8/b3P3/8/2P5/PP2PPPP/RNBQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/ppp2pp1/2n1p2p/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/ppp2ppp/4p3/b2p4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/1pp2ppp/p1n1p3/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1bqk1nr/ppp2ppp/2nbp3/3p4/3P4/4P1B1/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnb1kbnr/pp3ppp/1q2p3/2pp4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnbqk1nr/ppp2ppp/3bp3/3p4/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pp3ppp/2pbp3/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 14
+  },
+  "rnbqkb1r/pp3ppp/2p1pn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 35
+  },
+  "r1bqkbnr/pp1p1ppp/2n1p3/8/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/ppp2p2/4p3/3p2pp/3P4/4P1B1/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/pp3ppp/4p3/3p4/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 3
+  },
+  "rnbqkb1r/pp1p1ppp/4pn2/8/3P1B2/8/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 5
+  },
+  "r1bqk1nr/pppp1ppp/2n1p3/b7/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "punish_consistency",
+    "acceptedVia": "punish-consistency",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pp1p1ppp/4pq2/8/3p1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pppp1ppp/4pq2/b7/3P1B2/2P1P3/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pp1p1ppp/3ppq2/8/3P4/4P3/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp1ppp/4p3/8/3P4/2P3b1/PP2PPPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pp1p1ppp/4p3/3p4/3PP3/8/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/pp1p1ppp/3ppn2/8/3PP3/8/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pp1p1ppp/3p4/4p3/3PP3/8/PPP2PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/pppp1ppp/2n5/4P3/1q6/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/ppppq1pp/2n2p2/4P3/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/ppp2ppp/2nb4/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 3
+  },
+  "r1bqkbnr/pp3ppp/2np4/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/ppp2ppp/2nq4/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/ppp2ppp/2np4/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppppnppp/2n5/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/pppp2pp/2n2p2/2b1P3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pppp2pp/2n5/4p3/4P3/5N2/PPP2PPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "r1bqkbnr/pppp2pp/5p2/4n3/4P3/5N2/PPP2PPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/pppp1ppp/2n5/b3P3/8/2P2N2/PP2PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/pppp1ppp/2n5/2b1P3/8/2P2N2/PP2PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/ppp2ppp/8/2b1p3/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rn1qk1nr/ppp2ppp/3p4/2b1P3/5Bb1/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/ppp2ppp/3b1n2/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/pppp2pp/8/2b1p3/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rn1qk1nr/ppp2ppp/3b4/8/6b1/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rn1qk1nr/ppp2ppp/3bb3/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkb1r/pp3ppp/3p1n2/8/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/ppp2ppp/3b4/8/8/8/PPP1PPPP/RNB1KBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "rnb1kbnr/pp3ppp/3p4/8/8/8/PPP1PPPP/RNB1KBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1kbnr/pppp2pp/5q2/4N3/8/8/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkbnr/ppp3pp/3p4/4N3/8/8/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkb1r/pppp2pp/5n2/4N3/8/8/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/pp3ppp/1qn1p3/2pp4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 10
+  },
+  "r1b1kb1r/ppppqppp/5n2/4n3/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "rnbqk2r/pp3ppp/3bpn2/2pp4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 451
+  },
+  "r1bqk1nr/ppp2ppp/2nbp3/3p4/3P1B2/2P1PN2/PP3PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/ppp3pp/2nbpp2/3p4/3P1B2/4PN1P/PPP2PP1/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk1nr/ppp2pp1/4p2p/3p4/3P4/4P1P1/PPP2PP1/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pp3ppp/2n1p3/3p4/3P1B2/2P5/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 12
+  },
+  "rnbqk1nr/ppp2ppp/4p3/3p4/3P4/2P1P1b1/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkb1r/pp1p1ppp/2n1pn2/8/3P1B2/2P5/PP3PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pppp1ppp/1b2pq2/8/1P1P1B2/2P1P3/P4PPP/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/ppp1qppp/3p4/4n3/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1b1kbnr/pp1pqppp/2p5/4n3/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 2
+  },
+  "r1b1kbnr/ppppqppp/2n5/8/4P3/2N2N2/PPP2PPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppp2ppp/2nb1n2/8/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r2qk1nr/ppp2ppp/2nb4/8/6b1/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r2qk1nr/ppp2ppp/2nbb3/8/8/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkb1r/pp3ppp/2np1n2/8/4P3/5N2/PPP2PPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1k1nr/ppp2ppp/2nb4/8/8/5N2/PPP1PPPP/RNB1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/ppp2ppp/2n5/2b1p3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r2qk1nr/ppp2ppp/2np4/2b1P3/5Bb1/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppp1nppp/2np4/2b1P3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bq1rk1/ppppnppp/2n5/2b1P3/5B2/4PN2/PPP2PPP/RN1QKB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkb1r/pppp2pp/2n2n2/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1bqkbnr/pppp2p1/2n4p/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1nr/pppp2pp/2n5/2b1p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/ppp3pp/2np4/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1bqk2r/ppp1nppp/2nP4/2b5/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pppp2pp/8/4p3/4P3/8/PPP2PPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbq1rk1/ppp1nppp/3P4/2b5/5B2/5N2/PPP1PPPP/RN1QKB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/pp2nppp/3p4/2b5/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/ppp1nppp/3b4/8/5B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbk2nr/ppp2ppp/8/2b1p3/5B2/5N2/PPP1PPPP/RN2KB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnb1k1nr/pppp2pp/5q2/2b1N3/8/2N5/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbq1rk1/ppp2ppp/3b1n2/8/8/2N2N2/PPP1PPPP/R1BQKB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/ppp2ppp/3b4/8/6n1/2N2N2/PPP1PPPP/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r2qk1nr/ppp2ppp/2nb4/8/6b1/4PN2/PPP2PPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "rnb1k1nr/pppp2pp/5q2/2b5/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kb1r/ppppqppp/5n2/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkb1r/pp3ppp/2n1pn2/3p4/3p1B2/2P1PN2/PP1N1PPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "masters_freq",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 878
+  },
+  "rnbq1rk1/ppp2ppp/4pn2/3p4/2PP4/4P1P1/PP3PP1/RN1QKBNR w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/ppp2ppp/4pn2/8/2pP4/4P1P1/PP3PP1/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppp2ppp/2n1pn2/3p4/2PP4/4P1P1/PP3PP1/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "system_move",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/pp3ppp/2p1pn2/3p4/2PP4/4P1P1/PP3PP1/RN1QKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/ppp1qppp/3p4/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1b1kbnr/pppp1ppp/8/8/1q2P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/pppp1ppp/5q2/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/pp1pqppp/2p5/8/4P3/2N2Q2/PPP2PPP/R1B1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kb1r/ppppqppp/5n2/6B1/4P3/2N2n2/PPP2PPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kb1r/ppppqpp1/5n1p/4n1B1/4P3/2N2N2/PPP2PPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bq1rk1/ppp2ppp/2nb1n2/6B1/8/2N2N2/PPP1PPPP/R2QKB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppp2pp1/2nb1n1p/6B1/8/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r2qk1nr/ppp3pp/2nb1p2/6B1/6b1/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r2qk2r/ppp2ppp/2nb1n2/6B1/6b1/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bnk1nr/ppp2ppp/8/2b1p3/5B2/4PN2/PPP2PPP/RN2KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bk2nr/ppp2ppp/2n5/2b1p3/5B2/4PN2/PPP2PPP/RN2KB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkb1r/ppp3pp/2n2n2/3pp1N1/2B1P3/8/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 1
+  },
+  "r1bqkbnr/pppp2p1/7p/4n3/2B1P3/8/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk1r1/pppp2pp/2n5/2b1p3/4P3/5N2/PPP2PPP/RNBQK2R w KQq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pppp3p/6p1/4p2Q/4P3/8/PPP2PPP/RNB1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppp1nppp/2nb4/8/5B2/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/pp2nppp/2np4/2b5/5B2/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rn1k2nr/ppp2ppp/4b3/2b1N3/5B2/8/PPP1PPPP/RN2KB1R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqk2r/ppp2ppp/3b4/8/8/2N2N1P/PPP1PnP1/R1BQKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kb1r/ppppqpp1/5n1p/6B1/4P3/2N2Q2/PPP2PPP/R3KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kb1r/ppp1qppp/3p1n2/6B1/4P3/2N2Q2/PPP2PPP/R3KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kb1r/pppp1ppp/5n2/6B1/1q2P3/2N2Q2/PPP2PPP/R3KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/pppq1ppp/3p4/3N4/4P3/5Q2/PPP2PPP/R1B1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/ppp2p2/2nb1n1p/6p1/7B/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bnk1nr/ppp3pp/5p2/2b1B3/8/4PN2/PPP2PPP/RN2KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r3k1nr/ppp1q1pp/2nb1p2/8/6b1/2N1BN2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "lichess_2200_plus",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkb1r/ppp3pp/2n5/3np1N1/2B5/8/PPP2PPP/RNBQK2R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1b1kbnr/ppppq2p/6p1/4Q3/4P3/8/PPP2PPP/RNB1KB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqk2r/pp2nppp/2np4/8/8/2N2N2/PPP1PPPP/R2QKB1R w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "r1bq1rk1/ppp2ppp/4pn2/3pn3/3P4/3BP1P1/PPP2PP1/RN1QK2R w KQ -": {
+    "source": "accepted_proposal",
+    "selectionRule": "punish_consistency",
+    "acceptedVia": "punish-consistency",
+    "masterGamesAtPosition": 0
+  },
+  "r1bqkbnr/pp3ppp/2np4/8/8/2N5/PPP1PPPP/R1BQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
+    "acceptedVia": "accept-top",
+    "masterGamesAtPosition": 0
+  },
+  "rnbqkb1r/pp3ppp/3p1n2/8/8/2N5/PPP1PPPP/R1BQKBNR w KQkq -": {
+    "source": "accepted_proposal",
+    "selectionRule": "band_0_1400",
     "acceptedVia": "accept-top",
     "masterGamesAtPosition": 0
   }

@@ -109,6 +109,8 @@ export const BUILD_DEFAULTS = {
   API_DELAY_MS: Number(process.env.API_DELAY_MS || 0), // richieste comunque strettamente una alla volta
 };
 
+if (!process.env.MAX_POSITIONS_CAP && OPENING_CONFIG.maxPositionsCap) BUILD_DEFAULTS.MAX_POSITIONS_CAP = OPENING_CONFIG.maxPositionsCap;
+
 const LICHESS_CACHE_DIR = path.join(ROOT_DIR, '.cache', 'lichess');
 const REVIEW_MOVES_PATH = path.join(ROOT_DIR, `review-moves.${OPENING_ID}.json`);
 const BUILD_WARNINGS_PATH = path.join(ROOT_DIR, `build-warnings.${OPENING_ID}.json`);
