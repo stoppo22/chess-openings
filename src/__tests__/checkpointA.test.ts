@@ -57,6 +57,8 @@ describe('FSRS (ts-fsrs) Rating & Interval Rules', () => {
 
     expect(dueGood).toBeGreaterThan(dueAgain);
     expect(dueEasy).toBeGreaterThan(dueGood);
+    // "Era facile" dopo l'auto-voto: stesso id di log, così sostituisce quello automatico
+    expect(resEasy.logEntry.id).toBe(resGood.logEntry.id);
   });
 
   it('creates punish cards ONLY for mistakes with evalLoss >= 1.0 (mistake and blunder, never inaccuracy)', () => {
@@ -140,10 +142,10 @@ describe('FSRS (ts-fsrs) Rating & Interval Rules', () => {
 });
 
 describe('Caro-Kann Repertoire JSON Integrity (Checkpoint A + B)', () => {
-  it('respects MAX_POSITIONS_CAP <= 600 and uses rating band 0-1400', () => {
+  it('respects the configured MAX_POSITIONS_CAP and uses rating band 0-1400', () => {
     const nodes = Object.values(caroKann.positions);
     expect(nodes.length).toBeGreaterThan(20);
-    expect(nodes.length).toBeLessThanOrEqual(600);
+    expect(nodes.length).toBeLessThanOrEqual(caroKann.buildConfig.maxPositionsCap);
     expect(caroKann.buildConfig.ratingBandLabel).toBe('0-1400');
   });
 

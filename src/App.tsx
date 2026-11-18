@@ -117,7 +117,7 @@ export const App: React.FC = () => {
   const handleCardReviewed = async (updatedCard: StoredFSRSCard, log: ReviewLogEntry) => {
     await saveCardAndLog(updatedCard, log);
     setCards((prev) => prev.map((c) => (c.id === updatedCard.id ? updatedCard : c)));
-    setLogs((prev) => [...prev, log]);
+    setLogs((prev) => [...prev.filter((l) => l.id !== log.id), log]);
   };
 
   const handleExportBackup = async () => {

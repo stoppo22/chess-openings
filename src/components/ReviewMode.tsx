@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
 import type { ConceptPrinciple } from '../types/lessons';
@@ -65,6 +65,9 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     message?: string;
   }>({ type: 'idle' });
 
+  // Carta PRIMA dell'auto-voto + istante: serve per ri-votare "facile" sostituendo lo stesso log (stesso id).
+  const graded = useRef<{ before: StoredFSRSCard; at: Date; usedHint: boolean; wrongAttempts: number } | null>(null);
+
   const hasPunishCards = useMemo(() => cards.some((c) => c.cardType === 'punish'), [cards]);
 
   useEffect(() => {
@@ -105,6 +108,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     setWrongMoveAnalysis(null);
     setWrongLesson(null);
     setFeedback({ type: 'idle' });
+    graded.current = null;
 
     if (lastOpponentMove && lastOpponentMove.fenBefore !== currentCard.fullFen) {
       setBoardFen(lastOpponentMove.fenBefore);
@@ -196,6 +200,13 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
       setBoardFen(chess.fen());
       setSelectedSquare(null);
       setWrongMoveAnalysis(null);
+      // Registra subito (una volta sola: feedback 'solved' blocca ogni nuovo tentativo).
+      if (!graded.current) {
+        const at = new Date();
+        graded.current = { before: currentCard, at, usedHint, wrongAttempts };
+        const { updatedCard, logEntry } = gradeCard(currentCard, { usedHint, wrongAttempts }, at);
+        void onCardReviewed(updatedCard, logEntry);
+      }
       setFeedback({
         type: 'solved',
         message: `Mossa corretta: ${currentCard.correctMoveSan}`,
@@ -279,12 +290,16 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   };
 
   const handleAdvance = async (choseEasy: boolean) => {
-    const { updatedCard, logEntry } = gradeCard(currentCard, {
-      usedHint,
-      wrongAttempts,
-      choseEasy,
-    });
-    await onCardReviewed(updatedCard, logEntry);
+    const g = graded.current;
+    if (choseEasy && g) {
+      // Stesso `at` => stesso id di log: sostituisce quello automatico.
+      const { updatedCard, logEntry } = gradeCard(
+        g.before,
+        { usedHint: g.usedHint, wrongAttempts: g.wrongAttempts, choseEasy: true },
+        g.at
+      );
+      await onCardReviewed(updatedCard, logEntry);
+    }
     const nextIndex = currentIndex + 1;
     setCurrentIndex(nextIndex);
     if (nextIndex >= sessionQueue.length) {
