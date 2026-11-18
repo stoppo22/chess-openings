@@ -4,7 +4,7 @@
   "playerColor": "black",
   "description": "Repertorio solido col Nero contro 1.e4 basato sul Database Lichess (fascia 0-1400 per le risposte avversarie) e validato con Database Grandi Maestri + Stockfish 16 (depth 18).",
   "checkpoint": "B",
-  "generatedAt": "2026-11-18T13:37:57.086Z",
+  "generatedAt": "2026-11-18T15:00:33.075Z",
   "ratingBand": {
     "label": "0-1400",
     "buckets": [
@@ -38,7 +38,7 @@
     "maxPositionsCap": 600,
     "stockfishPackage": "stockfish@16.0.0 (stockfish-nnue-16-single.wasm)",
     "stockfishDepth": 18,
-    "avgStockfishMsPerPosition": 876
+    "avgStockfishMsPerPosition": 875
   },
   "variations": [
     {
@@ -39340,15 +39340,15 @@
         "blackPct": 0
       },
       "playerMove": {
-        "san": "Qc7",
-        "uci": "d8c7",
+        "san": "Qc8",
+        "uci": "d8c8",
         "from": "d8",
-        "to": "c7",
-        "nextNormalizedFen": "rn2kbnr/pNq1pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq -",
-        "nextFullFen": "rn2kbnr/pNq1pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 2 7",
+        "to": "c8",
+        "nextNormalizedFen": "rnq1kbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq -",
+        "nextFullFen": "rnq1kbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 2 7",
         "selectionSource": "accepted_proposal",
-        "selectionRule": "band_0_1400",
-        "acceptedVia": "accept-top",
+        "selectionRule": "punish_consistency",
+        "acceptedVia": "punish-consistency",
         "gmStats": {
           "white": 0,
           "draws": 0,
@@ -39359,31 +39359,31 @@
           "blackPct": 0
         },
         "bandStats": {
-          "white": 432,
-          "draws": 41,
-          "black": 1030,
-          "totalGames": 1503,
-          "whitePct": 28.7,
-          "drawPct": 2.7,
-          "blackPct": 68.5
+          "white": 36,
+          "draws": 4,
+          "black": 86,
+          "totalGames": 126,
+          "whitePct": 28.6,
+          "drawPct": 3.2,
+          "blackPct": 68.3
         },
         "engine": {
-          "evalPawns": -2.21,
-          "evalFromPlayerPerspective": 2.21,
+          "evalPawns": -2.17,
+          "evalFromPlayerPerspective": 2.17,
           "bestMoveSan": "Qd7",
           "bestMoveUci": "d8d7",
           "bestEvalPawns": -2.23,
-          "evalLossVsBest": 0.02,
+          "evalLossVsBest": 0.06,
           "depth": 18,
           "pvSan": [
-            "Qc7",
-            "g4",
-            "Bc8",
-            "Nh3",
-            "Bxb7",
-            "Bf4",
-            "Qd7",
-            "Bg2"
+            "Qc8",
+            "Ne2",
+            "Qxb7",
+            "Ng3",
+            "Bg6",
+            "f4",
+            "e6",
+            "f5"
           ]
         },
         "alternatives": [
@@ -46863,14 +46863,14 @@
       ],
       "commonMistakes": []
     },
-    "rn2kbnr/pNq1pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq -": {
-      "normalizedFen": "rn2kbnr/pNq1pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq -",
-      "fullFen": "rn2kbnr/pNq1pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 2 7",
+    "rnq1kbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq -": {
+      "normalizedFen": "rnq1kbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq -",
+      "fullFen": "rnq1kbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 2 7",
       "moveNumber": 7,
       "ply": 12,
       "turn": "w",
       "isPlayerTurn": false,
-      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc5 b6 6. Nb7 Qc7",
+      "pgnPath": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nc5 b6 6. Nb7 Qc8",
       "moveSequenceSan": [
         "e4",
         "c6",
@@ -46883,19 +46883,19 @@
         "Nc5",
         "b6",
         "Nb7",
-        "Qc7"
+        "Qc8"
       ],
       "variationId": "classical-bf5",
       "variationName": "Variante Classica (4.Nxe4 Bf5)",
       "reachPct": 2.01,
       "positionBandStats": {
-        "white": 430,
-        "draws": 39,
-        "black": 1017,
-        "totalGames": 1486,
-        "whitePct": 28.9,
-        "drawPct": 2.6,
-        "blackPct": 68.4
+        "white": 36,
+        "draws": 5,
+        "black": 89,
+        "totalGames": 130,
+        "whitePct": 27.7,
+        "drawPct": 3.8,
+        "blackPct": 68.5
       },
       "opponentMoves": [],
       "commonMistakes": [
@@ -46904,12 +46904,12 @@
           "opponentMoveUci": "f1a6",
           "from": "f1",
           "to": "a6",
-          "afterMistakeNormalizedFen": "rn2kbnr/pNq1pppp/Bpp5/5b2/3P4/8/PPP2PPP/R1BQK1NR b KQkq -",
-          "afterMistakeFullFen": "rn2kbnr/pNq1pppp/Bpp5/5b2/3P4/8/PPP2PPP/R1BQK1NR b KQkq - 3 7",
-          "frequencyPct": 30.5,
-          "totalBandGames": 453,
-          "evalLoss": 3.01,
-          "impactScore": 91.8,
+          "afterMistakeNormalizedFen": "rnq1kbnr/pN2pppp/Bpp5/5b2/3P4/8/PPP2PPP/R1BQK1NR b KQkq -",
+          "afterMistakeFullFen": "rnq1kbnr/pN2pppp/Bpp5/5b2/3P4/8/PPP2PPP/R1BQK1NR b KQkq - 3 7",
+          "frequencyPct": 34.6,
+          "totalBandGames": 45,
+          "evalLoss": 3,
+          "impactScore": 103.8,
           "severity": "blunder",
           "punishMoveSan": "Nxa6",
           "punishMoveUci": "b8a6",
@@ -46921,66 +46921,10 @@
             "Qxb7",
             "Ne2",
             "e6",
-            "Ng3"
+            "O-O"
           ],
-          "finalEvalPawns": -5.1,
-          "finalEvalForPlayer": 5.1,
-          "depth": 20
-        },
-        {
-          "opponentMoveSan": "Nc5",
-          "opponentMoveUci": "b7c5",
-          "from": "b7",
-          "to": "c5",
-          "afterMistakeNormalizedFen": "rn2kbnr/p1q1pppp/1pp5/2N2b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -",
-          "afterMistakeFullFen": "rn2kbnr/p1q1pppp/1pp5/2N2b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq - 3 7",
-          "frequencyPct": 11.8,
-          "totalBandGames": 175,
-          "evalLoss": 0.57,
-          "impactScore": 6.73,
-          "severity": "inaccuracy",
-          "punishMoveSan": "bxc5",
-          "punishMoveUci": "b6c5",
-          "punishFrom": "b6",
-          "punishTo": "c5",
-          "pvSan": [
-            "bxc5",
-            "dxc5",
-            "e6",
-            "Bd3",
-            "Bxd3",
-            "Qxd3"
-          ],
-          "finalEvalPawns": -2.66,
-          "finalEvalForPlayer": 2.66,
-          "depth": 20
-        },
-        {
-          "opponentMoveSan": "d5",
-          "opponentMoveUci": "d4d5",
-          "from": "d4",
-          "to": "d5",
-          "afterMistakeNormalizedFen": "rn2kbnr/pNq1pppp/1pp5/3P1b2/8/8/PPP2PPP/R1BQKBNR b KQkq -",
-          "afterMistakeFullFen": "rn2kbnr/pNq1pppp/1pp5/3P1b2/8/8/PPP2PPP/R1BQKBNR b KQkq - 0 7",
-          "frequencyPct": 7.5,
-          "totalBandGames": 112,
-          "evalLoss": 0.72,
-          "impactScore": 5.4,
-          "severity": "inaccuracy",
-          "punishMoveSan": "Nf6",
-          "punishMoveUci": "g8f6",
-          "punishFrom": "g8",
-          "punishTo": "f6",
-          "pvSan": [
-            "Nf6",
-            "dxc6",
-            "Nxc6",
-            "Nd6+",
-            "exd6",
-            "Nf3"
-          ],
-          "finalEvalPawns": -2.81,
-          "finalEvalForPlayer": 2.81,
+          "finalEvalPawns": -5.14,
+          "finalEvalForPlayer": 5.14,
           "depth": 20
         }
       ]

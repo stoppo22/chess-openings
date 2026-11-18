@@ -123,7 +123,7 @@ export const APPROVED_MOVES_BY_FEN = {
   "rn1qkbnr/pp3Npp/2p1p3/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -": "Kxf7",
   "rn1qkbnr/pp3ppp/2p1p3/5bN1/2BP4/8/PPP2PPP/R1BQK1NR b KQkq -": "Be7",
   "rn1qkbnr/pp3ppp/2p1p3/5bN1/3P4/3B4/PPP2PPP/R1BQK1NR b KQkq -": "Qxd4",
-  "rn1qkbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -": "Qc7",
+  "rn1qkbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -": "Qc8",
   "rn1qkbnr/p3pppp/1pp5/5b2/3P4/3N4/PPP2PPP/R1BQKBNR b KQkq -": "Qxd4",
   "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/3B1Q2/PPP2PPP/R1B1K1NR b KQkq -": "Qxd4",
   "rn1qkbnr/pp3ppp/2p1p3/5b2/3PN3/4BQ2/PPP2PPP/R3KBNR b KQkq -": "Nd7",
@@ -954,8 +954,8 @@ export const APPROVED_META_BY_FEN = {
   },
   "rn1qkbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -": {
     "source": "accepted_proposal",
-    "selectionRule": "band_0_1400",
-    "acceptedVia": "accept-top",
+    "selectionRule": "punish_consistency",
+    "acceptedVia": "punish-consistency",
     "masterGamesAtPosition": 0
   },
   "rn1qkbnr/p3pppp/1pp5/5b2/3P4/3N4/PPP2PPP/R1BQKBNR b KQkq -": {

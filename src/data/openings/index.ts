@@ -9,6 +9,7 @@ export interface OpeningEntry {
 
 export const OPENINGS: OpeningEntry[] = [
   { id: 'caro-kann', name: 'Caro-Kann', playerColor: 'black', load: () => import('./caro-kann.json') },
+  { id: 'london', name: 'Sistema Londra', playerColor: 'white', load: () => import('./london.json') },
 ];
 
 export async function loadOpening(id: string): Promise<OpeningRepertoireFile> {

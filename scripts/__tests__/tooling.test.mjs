@@ -92,3 +92,19 @@ describe('boardFacts', () => {
     expect(bf.s1.join('|')).toContain('Pedone nero e6 difende: Alfiere f5');
   });
 });
+
+describe('repertoire consistency', () => {
+  for (const id of ['caro-kann', 'london']) {
+    it(`${id}: punish move == repertoire move at the arrival node`, async () => {
+      const fs = await import('node:fs');
+      const d = JSON.parse(fs.readFileSync(new URL(`../../src/data/openings/${id}.json`, import.meta.url), 'utf8'));
+      const conflicts = [];
+      for (const n of Object.values(d.positions))
+        for (const cm of n.commonMistakes || []) {
+          const pm = d.positions[cm.afterMistakeNormalizedFen]?.playerMove;
+          if (pm && pm.san !== cm.punishMoveSan) conflicts.push(`${n.pgnPath} ${cm.opponentMoveSan}: ${cm.punishMoveSan} vs ${pm.san}`);
+        }
+      expect(conflicts).toEqual([]);
+    });
+  }
+});

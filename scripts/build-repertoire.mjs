@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { Chess } from 'chess.js';
 import { normalizeFen } from './lib/fen.mjs';
@@ -34,8 +35,10 @@ const START_MOVES = OPENING_CONFIG.startMovesSan || [];
 const PREF_SAN = OPENING_CONFIG.preferredPlayerMovesSan || [];
 const PREF_MAX_PLY = OPENING_CONFIG.preferredMaxPly ?? 0;
 // Restringe ai candidati già entro tolleranza che stanno nella lista di sistema (null = nessun effetto).
-const preferredSubset = (tolerant, ply) => {
+const PREF_EXCLUDE = OPENING_CONFIG.preferredExcludePrefixes || [];
+const preferredSubset = (tolerant, ply, seq) => {
   if (!PREF_SAN.length || ply > PREF_MAX_PLY) return null;
+  if (PREF_EXCLUDE.some((x) => x.length <= seq.length && x.every((m, i) => m === seq[i]))) return null;
   const sub = tolerant.filter((c) => PREF_SAN.includes(c.san));
   return sub.length > 0 && sub.length < tolerant.length ? sub : null;
 };
@@ -424,7 +427,9 @@ async function main() {
     const isPlayerTurn = turn === PLAYER_TURN;
     const moveNumber = Math.floor(ply / 2) + 1;
     const { variationId, variationName } = detectVariation(moveSequenceSan);
-    const variationCfg = OPENING_CONFIG.variations.find((v) => v.id === variationId);
+    const variationCfg =
+      OPENING_CONFIG.variations.find((v) => v.id === variationId) ??
+      (variationId === OPENING_CONFIG.fallbackVariation.id ? OPENING_CONFIG.fallbackVariation : undefined);
     const maxPly = variationCfg?.maxPly ?? BUILD_DEFAULTS.MAX_MOVES_DEPTH * 2;
     const effectiveMinReach = variationCfg?.minReach ?? BUILD_DEFAULTS.MIN_REACH;
     const pgnChess = new Chess();
@@ -531,7 +536,7 @@ async function main() {
           if (recommended.length === 0) {
             recommended = [...evaluatedCandidates].sort((a, b) => a.evalLossVsBest - b.evalLossVsBest);
           }
-          const prefSub = preferredSubset(within030, ply);
+          const prefSub = preferredSubset(within030, ply, moveSequenceSan);
           if (prefSub && byMasters(prefSub)[0].san !== recommended[0].san) {
             recommended = byMasters(prefSub);
             selectionRule = 'system_move';
@@ -619,13 +624,33 @@ async function main() {
             return { rule: 'engine_best', list: byEngine };
           };
           let chosen = pick(pool);
-          const prefSub = candidates015.length > 0 ? preferredSubset(candidates015, ply) : null;
+          const prefSub = candidates015.length > 0 ? preferredSubset(candidates015, ply, moveSequenceSan) : null;
           if (prefSub) {
             const restricted = pick(prefSub);
             if (restricted.list[0].san !== chosen.list[0].san) chosen = { rule: 'system_move', list: restricted.list };
           }
           selectionRule = chosen.rule;
           recommended = chosen.list;
+        }
+
+        // Mossa imposta da config (scelta dell'utente) se legale ed entro la perdita massima.
+        const forced = (OPENING_CONFIG.forcedPlayerMoves || []).find(
+          (f) => f.ply === ply && !(f.excludePrefixes || []).some((x) => x.every((m, i) => m === moveSequenceSan[i]))
+        );
+        if (forced) {
+          let fm = null;
+          try { fm = new Chess(fullFen).move(forced.san); } catch { /* illegale */ }
+          if (fm) {
+            const fuci = `${fm.from}${fm.to}${fm.promotion || ''}`;
+            const fe = await getMoveEvalAtSameDepth(sfRunner, fullFen, fm.san, fuci, posEval, BUILD_DEFAULTS.STOCKFISH_DEPTH);
+            const floss = Number((bestBlackEval - fe.scoreSideToMovePawns).toFixed(2));
+            if (floss <= forced.maxLoss) {
+              const existing = evaluatedCandidates.find((c) => c.san === fm.san);
+              const cand = existing || { san: fm.san, uci: fuci, evalLossVsBest: floss, evalForBlackPawns: fe.scoreSideToMovePawns, evalWhitePawns: fe.scoreWhitePawns, pvSan: fe.pvSan };
+              recommended = [cand, ...recommended.filter((c) => c.san !== fm.san)];
+              selectionRule = 'user_choice';
+            }
+          }
         }
 
         if (autoAccept && recommended[0]) {
@@ -1190,6 +1215,61 @@ async function main() {
     for (const n of opponentNodesList) totalMistakesFound += n.commonMistakes.length;
 
     console.log(`✅ Checkpoint B completato: ${totalMistakesFound} errori comuni confermati a depth ${BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH}.`);
+  }
+
+  // Coerenza errori comuni <-> repertorio: la punizione deve coincidere con la mia mossa nel nodo di arrivo.
+  const switches = new Map();
+  for (const opp of Object.values(positions)) {
+    for (const cm of opp.commonMistakes || []) {
+      const target = positions[cm.afterMistakeNormalizedFen];
+      const pm = target?.playerMove;
+      if (!pm || pm.san === cm.punishMoveSan) continue;
+      const alt = (pm.alternatives || []).find((a) => a.san === cm.punishMoveSan);
+      if (alt && alt.evalLossVsBest <= BUILD_DEFAULTS.CANDIDATE_MAX_LOSS) {
+        switches.set(target.normalizedFen, { san: cm.punishMoveSan, masters: target.positionGmStats?.totalGames || 0 });
+        continue;
+      }
+      const after = await sfRunner.evaluatePosition(cm.afterMistakeFullFen, {
+        depth: BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH,
+        multipv: BUILD_DEFAULTS.MISTAKE_CONFIRM_MULTIPV,
+      });
+      const mv = new Chess(cm.afterMistakeFullFen).move(pm.san);
+      const ev = await getMoveEvalAtSameDepth(sfRunner, cm.afterMistakeFullFen, mv.san, pm.uci, after, BUILD_DEFAULTS.MISTAKE_CONFIRM_DEPTH);
+      if (after.scoreSideToMovePawns - ev.scoreSideToMovePawns <= BUILD_DEFAULTS.CANDIDATE_MAX_LOSS) {
+        const pc = new Chess(cm.afterMistakeFullFen);
+        const pv = [];
+        for (const san of ev.pvSan || []) {
+          if (pv.length >= BUILD_DEFAULTS.MAX_PUNISH_PV_MOVES) break;
+          try { pv.push(pc.move(san).san); } catch { break; }
+        }
+        Object.assign(cm, {
+          punishMoveSan: pm.san,
+          punishMoveUci: pm.uci,
+          punishFrom: pm.from,
+          punishTo: pm.to,
+          pvSan: pv.length ? pv : [pm.san],
+        });
+      } else {
+        buildWarnings.push({
+          type: 'punish_conflict',
+          normalizedFen: opp.normalizedFen,
+          pgnPath: opp.pgnPath,
+          message: `⚠️ Conflitto punizione/repertorio (${opp.pgnPath} ${cm.opponentMoveSan}): punizione ${cm.punishMoveSan} vs mossa repertorio ${pm.san}.`,
+        });
+      }
+    }
+  }
+  if (switches.size > 0) {
+    const depth = Number(process.env.CONSISTENCY_PASS || 0);
+    if (depth >= 5) throw new Error('Coerenza punizioni: non converge dopo 5 passate');
+    for (const [fen, { san, masters }] of switches) {
+      console.log(`🔁 punish_consistency: ${fen} -> ${san}`);
+      updatedSeedMoves[fen] = san;
+      updatedSeedMeta[fen] = { source: 'accepted_proposal', selectionRule: 'punish_consistency', acceptedVia: 'punish-consistency', masterGamesAtPosition: masters };
+    }
+    saveUpdatedSeedsFile(updatedSeedMoves, updatedSeedMeta);
+    const r = spawnSync(process.execPath, process.argv.slice(1), { stdio: 'inherit', env: { ...process.env, CONSISTENCY_PASS: String(depth + 1) } });
+    process.exit(r.status ?? 1);
   }
 
   if (buildWarnings.length > 0) {
