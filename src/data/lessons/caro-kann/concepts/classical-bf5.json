@@ -20,7 +20,7 @@
     "Al tuo livello spesso gioca mosse aggressive ma premature come [[f3]] o [[Qf3]], che indeboliscono il suo Re o lasciano d4 senza difesa."
   ],
   "pieces": [
-    { "piece": "Alfiere camposcuro", "squares": ["f5", "g6", "h7"], "why": "È il pezzo che giustifica la variante: attivo fuori dai pedoni e sulla diagonale che punta al lato di Re bianco." },
+    { "piece": "Alfiere campochiaro", "squares": ["f5", "g6", "h7"], "why": "È il pezzo che giustifica la variante: attivo fuori dai pedoni e sulla diagonale che punta al lato di Re bianco." },
     { "piece": "Cavallo di Donna", "squares": ["d7"], "why": "Controlla e5 e c5, e lascia libera f6 all'altro Cavallo." },
     { "piece": "Cavallo di Re", "squares": ["f6"], "why": "Difende il tuo Re e contesta il Cavallo bianco in e4." },
     { "piece": "Donna", "squares": ["c7", "h4"], "why": "In c7 è al sicuro e controlla la diagonale verso h2. In h4 dà scacco se il Bianco indebolisce la diagonale e1–h4." }

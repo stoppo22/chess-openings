@@ -2,7 +2,7 @@
   "openingId": "caro-kann",
   "variationId": "advance-bf5",
   "title": "Variante di Spinta: l'Alfiere esce prima di chiudere la porta",
-  "summary": "Il Bianco spinge il pedone in e5 e prende spazio. Tu fai uscire subito l'Alfiere camposcuro in f5, poi chiudi la struttura con [[e6]] e attacchi la catena bianca dal basso con [[c5]].",
+  "summary": "Il Bianco spinge il pedone in e5 e prende spazio. Tu fai uscire subito l'Alfiere campochiaro in f5, poi chiudi la struttura con [[e6]] e attacchi la catena bianca dal basso con [[c5]].",
   "pawnStructure": {
     "description": "Il Bianco ha una catena di pedoni d4–e5 che punta verso il tuo lato di Re. Tu hai c6–d5–e6: una struttura compatta, senza punti deboli.",
     "forMe": "La catena bianca blocca il centro, quindi non rischi un attacco veloce al centro. Il suo punto debole è la base: il pedone d4. Lo colpisci con [[c5]].",
@@ -20,7 +20,7 @@
     "Cambiare il tuo Alfiere attivo con [[Bd3]]."
   ],
   "pieces": [
-    { "piece": "Alfiere camposcuro", "squares": ["f5", "g6", "e4"], "why": "Fuori dalla catena è il tuo pezzo migliore. Se viene attaccato da un pedone, si ritira restando attivo (g6 o e4), mai indietro in c8." },
+    { "piece": "Alfiere campochiaro", "squares": ["f5", "g6", "e4"], "why": "Fuori dalla catena è il tuo pezzo migliore. Se viene attaccato da un pedone, si ritira restando attivo (g6 o e4), mai indietro in c8." },
     { "piece": "Cavallo di Donna", "squares": ["d7"], "why": "Da d7 sostiene la spinta in c5 e non chiude il pedone c." },
     { "piece": "Cavallo di Re", "squares": ["e7", "f5", "c6"], "why": "f6 è controllata dal pedone e5, quindi passa da e7 e poi va in f5 o c6 a premere su d4." },
     { "piece": "Donna", "squares": ["a5", "b6", "a6"], "why": "Sulla diagonale verso b2 e d4 mette pressione. Spesso offre il cambio delle Donne in a6: senza Donne il Bianco non ha più attacco." }

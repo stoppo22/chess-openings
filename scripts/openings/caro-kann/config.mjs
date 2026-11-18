@@ -19,7 +19,7 @@ export const OPENING_CONFIG = {
     {
       id: 'advance-bf5',
       name: 'Variante di Spinta (3.e5 Bf5)',
-      subtitle: "Sviluppo attivo dell'alfiere camposcuro fuori dalla catena di pedoni prima di ...e6",
+      subtitle: "Sviluppo attivo dell'alfiere campochiaro fuori dalla catena di pedoni prima di ...e6",
       ecoCode: 'B12',
       rootMovesSan: ['e4', 'c6', 'd4', 'd5', 'e5', 'Bf5'],
       matchPrefixes: [['e4', 'c6', 'd4', 'd5', 'e5']],

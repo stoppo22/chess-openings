@@ -7,7 +7,7 @@
     {
       "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq -",
       "variationId": "advance-bf5",
-      "why": "Prima di chiudere la struttura gioco [[Bf5]] e faccio uscire l'Alfiere camposcuro: dopo [[e6]] resterebbe bloccato dietro i miei pedoni per tutta la partita. È l'idea centrale della variante.",
+      "why": "Prima di chiudere la struttura gioco [[Bf5]] e faccio uscire l'Alfiere campochiaro: dopo [[e6]] resterebbe bloccato dietro i miei pedoni per tutta la partita. È l'idea centrale della variante.",
       "conceptRefs": [
         "adv-bishop-first"
       ],
@@ -16,7 +16,7 @@
         "text": "[[c5]] è l'alternativa più giocata a questo livello (24.6% dei giocatori) e per il motore va bene quasi quanto [[Bf5]]: stessa valutazione, quindi non è un errore. Il repertorio sceglie [[Bf5]] perché è la scelta dei maestri (77.6%)."
       },
       "planQuiz": {
-        "correct": "Far uscire l'Alfiere camposcuro in f5, poi chiudere con [[e6]]",
+        "correct": "Far uscire l'Alfiere campochiaro in f5, poi chiudere con [[e6]]",
         "distractors": [
           "Giocare [[e6]] subito e sviluppare l'Alfiere più tardi",
           "Spingere subito il pedone c per attaccare d4, prima di sviluppare i pezzi"
