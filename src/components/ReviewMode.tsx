@@ -1,18 +1,27 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess, type Square } from 'chess.js';
+import type { ConceptPrinciple } from '../types/lessons';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
 import { formatLine, formatMoveLabel, getLastMoveInfo } from '../services/fen';
 import { analyzeWrongPlayerMove, type WrongMoveAnalysis } from '../services/moveAnalyzer';
 import { buildDailyReviewQueue, gradeCard } from '../services/srs';
 import { ModeHeader } from './ModeHeader';
 import { EvalBar } from './EvalBar';
+import { PlanQuiz } from './PlanQuiz';
+import { RichText } from './RichText';
+import type { SessionItem } from '../services/dailySession';
+import { findPunishLesson } from '../services/quiz';
+import type { LoadedLessons } from '../data/lessons';
 
 interface ReviewModeProps {
   opening: OpeningRepertoireFile;
   cards: StoredFSRSCard[];
   logs: ReviewLogEntry[];
   variationId?: string;
+  /** Sessione giornaliera già costruita (può contenere quiz sul piano). */
+  session?: SessionItem[];
+  lessonData?: LoadedLessons;
   onCardReviewed: (updatedCard: StoredFSRSCard, log: ReviewLogEntry) => Promise<void>;
   onBack: () => void;
   onSessionFinished?: () => void;
@@ -23,20 +32,24 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   cards,
   logs,
   variationId,
+  session,
+  lessonData,
   onCardReviewed,
   onBack,
   onSessionFinished,
 }) => {
   const [includePunish, setIncludePunish] = useState<boolean>(true);
-  const [sessionQueue, setSessionQueue] = useState<StoredFSRSCard[]>(() =>
-    buildDailyReviewQueue({
-      cards,
-      logs,
-      openingId: opening.id,
-      variationId,
-      includePunish: true,
-    })
+  const [items, setItems] = useState<SessionItem[]>(
+    () =>
+      session ??
+      buildDailyReviewQueue({ cards, logs, openingId: opening.id, variationId, includePunish: true }).map((c) => ({
+        kind: 'review' as const,
+        cardId: c.id,
+        card: c,
+        normalizedFen: c.normalizedFen,
+      }))
   );
+  const sessionQueue = items;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const [boardFen, setBoardFen] = useState<string>('');
@@ -44,6 +57,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const [usedHint, setUsedHint] = useState<boolean>(false);
   const [wrongAttempts, setWrongAttempts] = useState<number>(0);
   const [wrongMoveAnalysis, setWrongMoveAnalysis] = useState<WrongMoveAnalysis | null>(null);
+  const [wrongLesson, setWrongLesson] = useState<{ title: string; text: string; principle?: ConceptPrinciple } | null>(null);
   const [feedback, setFeedback] = useState<{
     type: 'idle' | 'wrong' | 'solved';
     message?: string;
@@ -52,6 +66,10 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
   const hasPunishCards = useMemo(() => cards.some((c) => c.cardType === 'punish'), [cards]);
 
   useEffect(() => {
+    if (session) {
+      if (session.length === 0) onSessionFinished?.();
+      return;
+    }
     const q = buildDailyReviewQueue({
       cards,
       logs,
@@ -59,14 +77,18 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
       variationId,
       includePunish,
     });
-    setSessionQueue(q);
+    setItems(
+      q.map((c) => ({ kind: 'review' as const, cardId: c.id, card: c, normalizedFen: c.normalizedFen }))
+    );
     setCurrentIndex(0);
     if (q.length === 0) {
       onSessionFinished?.();
     }
   }, [opening.id, variationId, includePunish]);
 
-  const currentCard = sessionQueue[currentIndex];
+  const currentItem = sessionQueue[currentIndex];
+  const currentCard = currentItem?.card as StoredFSRSCard;
+  const quizLesson = currentItem?.kind === 'planQuiz' ? lessonData?.lessons[currentItem.normalizedFen] : undefined;
   const currentNode = currentCard ? opening.positions[currentCard.normalizedFen] : undefined;
   const lastOpponentMove = useMemo(
     () => (currentCard ? getLastMoveInfo(currentCard.pgnPath) : null),
@@ -79,6 +101,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
     setUsedHint(false);
     setWrongAttempts(0);
     setWrongMoveAnalysis(null);
+    setWrongLesson(null);
     setFeedback({ type: 'idle' });
 
     if (lastOpponentMove && lastOpponentMove.fenBefore !== currentCard.fullFen) {
@@ -91,6 +114,25 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
       setBoardFen(currentCard.fullFen);
     }
   }, [currentCard, lastOpponentMove]);
+
+  const baseEvalForPlayer = useMemo(() => {
+    if (currentCard?.cardType === 'punish' && currentCard.mistakeContext) {
+      return currentCard.mistakeContext.finalEvalForPlayer ?? null;
+    }
+    return currentNode?.playerMove?.engine.evalFromPlayerPerspective ?? null;
+  }, [currentCard, currentNode]);
+
+  const activeEvalForPlayer = wrongMoveAnalysis
+    ? (wrongMoveAnalysis.evalForPlayer ?? baseEvalForPlayer)
+    : baseEvalForPlayer;
+
+  const activeEvalDelta = useMemo(() => {
+    if (wrongMoveAnalysis) return wrongMoveAnalysis.evalDrop;
+    if (currentCard?.cardType === 'punish' && currentCard.mistakeContext) {
+      return currentCard.mistakeContext.evalLoss;
+    }
+    return null;
+  }, [wrongMoveAnalysis, currentCard]);
 
   if (sessionQueue.length === 0 || currentIndex >= sessionQueue.length) {
     return (
@@ -110,6 +152,29 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
         </div>
       </div>
     );
+  }
+
+  const advanceQuiz = () => {
+    const next = currentIndex + 1;
+    setCurrentIndex(next);
+    if (next >= sessionQueue.length) onSessionFinished?.();
+  };
+
+  if (currentItem.kind === 'planQuiz' && quizLesson?.planQuiz) {
+    return (
+      <PlanQuiz
+        key={currentItem.normalizedFen}
+        lesson={quizLesson}
+        concept={lessonData?.concepts[quizLesson.variationId]}
+        fen={opening.positions[currentItem.normalizedFen].fullFen}
+        orientation={opening.playerColor}
+        onNext={advanceQuiz}
+      />
+    );
+  }
+  if (!currentCard) {
+    advanceQuiz();
+    return null;
   }
 
   const attemptMove = (from: string, to: string): boolean => {
@@ -155,6 +220,18 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
         currentCard.correctMoveSan
       );
       setWrongMoveAnalysis(analysis);
+      const lesson = lessonData?.lessons[currentCard.normalizedFen];
+      if (currentCard.cardType === 'repertoire' && lesson?.whyNot?.san === moveObj.san) {
+        const concept = lessonData?.concepts[lesson.variationId];
+        setWrongLesson({
+          title: 'Perché no',
+          text: lesson.whyNot.text,
+          principle: concept?.principles.find((p) => p.id === lesson.conceptRefs[0]),
+        });
+      } else if (currentCard.cardType === 'punish') {
+        const text = findPunishLesson(opening, lessonData?.lessons, currentCard)?.opponentMistake?.text;
+        setWrongLesson(text ? { title: "Perché l'errore si punisce", text } : null);
+      } else setWrongLesson(null);
       setFeedback({
         type: 'wrong',
         message: analysis.explanation,
@@ -250,25 +327,6 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
 
   const isForcedAgain = usedHint || wrongAttempts > 0;
   const progressPct = Math.round(((currentIndex + 1) / sessionQueue.length) * 100);
-
-  const baseEvalForPlayer = useMemo(() => {
-    if (currentCard.cardType === 'punish' && currentCard.mistakeContext) {
-      return currentCard.mistakeContext.finalEvalForPlayer ?? null;
-    }
-    return currentNode?.playerMove?.engine.evalFromPlayerPerspective ?? null;
-  }, [currentCard, currentNode]);
-
-  const activeEvalForPlayer = wrongMoveAnalysis
-    ? (wrongMoveAnalysis.evalForPlayer ?? baseEvalForPlayer)
-    : baseEvalForPlayer;
-
-  const activeEvalDelta = useMemo(() => {
-    if (wrongMoveAnalysis) return wrongMoveAnalysis.evalDrop;
-    if (currentCard.cardType === 'punish' && currentCard.mistakeContext) {
-      return currentCard.mistakeContext.evalLoss;
-    }
-    return null;
-  }, [wrongMoveAnalysis, currentCard]);
 
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 space-y-3 sm:space-y-5">
@@ -382,7 +440,18 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({
               {/* Wrong Move Feedback */}
               {feedback.type === 'wrong' && (
                 <div className="bg-danger/20 border border-danger text-danger rounded-[10px] px-4 py-3 text-sm font-semibold">
-                  {feedback.message}
+                  {wrongLesson ? 'Non è la mossa del repertorio.' : feedback.message}
+                </div>
+              )}
+              {feedback.type === 'wrong' && wrongLesson && (
+                <div className="bg-bg border border-border rounded-[10px] p-4 space-y-2 text-[15px] leading-relaxed">
+                  <div className="text-[13px] font-semibold text-muted">{wrongLesson.title}</div>
+                  <p><RichText text={wrongLesson.text} /></p>
+                  {wrongLesson.principle && (
+                    <p className="text-sm text-muted">
+                      Principio: se l&rsquo;avversario <RichText text={wrongLesson.principle.ifOpponent} /> — tu <RichText text={wrongLesson.principle.thenI} />
+                    </p>
+                  )}
                 </div>
               )}
 

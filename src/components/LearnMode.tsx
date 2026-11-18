@@ -16,10 +16,14 @@ import {
 import { ModeHeader } from './ModeHeader';
 import { WdlBar, WdlLegend } from './WdlBar';
 import { EvalBar } from './EvalBar';
+import { LessonPanel } from './LessonPanel';
+import { ConceptView } from './ConceptView';
+import type { LoadedLessons } from '../data/lessons';
 
 interface LearnModeProps {
   opening: OpeningRepertoireFile;
   initialVariationId?: string;
+  lessonData?: LoadedLessons;
   onBack: () => void;
 }
 
@@ -28,7 +32,7 @@ const formatGames = (n: number) =>
     ? `${(n / 1_000_000).toLocaleString('it-IT', { maximumFractionDigits: 1 })} mln partite`
     : `${n.toLocaleString('it-IT')} partite`;
 
-export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationId, onBack }) => {
+export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationId, lessonData, onBack }) => {
   const initialHistory = useMemo(() => {
     if (initialVariationId) {
       const v = opening.variations.find((item) => item.id === initialVariationId);
@@ -52,6 +56,8 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [moveFeedback, setMoveFeedback] = useState<string | null>(null);
   const [wrongMoveAnalysis, setWrongMoveAnalysis] = useState<WrongMoveAnalysis | null>(null);
+  const [conceptView, setConceptView] = useState<{ principleId?: string } | null>(null);
+  const [showAllReplies, setShowAllReplies] = useState<boolean>(false);
   const [showInaccuracies, setShowInaccuracies] = useState<boolean>(false);
   const [selectedIdeaId, setSelectedIdeaId] = useState<string>('all');
   const [continuationStep, setContinuationStep] = useState<number>(0);
@@ -174,6 +180,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     setSelectedIdeaId('all');
     setContinuationStep(0);
     setActiveMistakePreview(null);
+    setShowAllReplies(false);
     if (opening.positions[nextNormFen]) {
       setHistoryFens((prev) => [...prev, nextNormFen]);
     }
@@ -376,6 +383,12 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
     return null;
   }, [activeMistakePreview, wrongMoveAnalysis]);
 
+  const concept = lessonData?.concepts[currentNode.variationId];
+  const lesson = currentNode.isPlayerTurn ? lessonData?.lessons[currentNormFen] : undefined;
+  if (conceptView && concept) {
+    return <ConceptView page={concept} principleId={conceptView.principleId} onBack={() => setConceptView(null)} />;
+  }
+
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 space-y-3 sm:space-y-5">
       {/* Top Header Bar */}
@@ -397,6 +410,11 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
             </button>
           ))}
         </div>
+        {concept && (
+          <button onClick={() => setConceptView({})} className="btn-secondary w-full">
+            Capisci la variante
+          </button>
+        )}
       </ModeHeader>
 
       {/* Main Layout: Board Left + Explorer/Trainer Panel Right */}
@@ -516,6 +534,10 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
 
                   </div>
 
+                  {lesson && (
+                    <LessonPanel lesson={lesson} concept={concept} onOpenPrinciple={(principleId) => setConceptView({ principleId })} />
+                  )}
+
                   {/* Opening Explorer Bars (Masters + Band 0-1400) */}
                   <div className="border border-border rounded-[10px] overflow-hidden">
                     <div className="bg-bg px-4 py-2.5 text-[13px] font-semibold  text-muted border-b border-border">
@@ -594,7 +616,7 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                           <WdlLegend />
                         </div>
                         <div className="divide-y divide-border">
-                          {currentNode.opponentMoves.map((opp) => {
+                          {(showAllReplies ? currentNode.opponentMoves : currentNode.opponentMoves.slice(0, 3)).map((opp) => {
                             const canFollow = Boolean(opening.positions[opp.nextNormalizedFen]);
                             return (
                               <button
@@ -623,6 +645,14 @@ export const LearnMode: React.FC<LearnModeProps> = ({ opening, initialVariationI
                             );
                           })}
                         </div>
+                        {!showAllReplies && currentNode.opponentMoves.length > 3 && (
+                          <button
+                            onClick={() => setShowAllReplies(true)}
+                            className="w-full px-4 py-3 min-h-[44px] text-[15px] font-medium text-accent bg-surface hover:bg-bg border-t border-border"
+                          >
+                            Altre {currentNode.opponentMoves.length - 3} risposte
+                          </button>
+                        )}
                       </div>
                     </>
                   ) : (

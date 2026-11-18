@@ -12,6 +12,9 @@ import {
 import { syncOpeningCards } from './services/srs';
 import { applySwUpdateReload, isSwUpdateReady, subscribeSwUpdate } from './services/swUpdate';
 import { OPENINGS, loadOpening } from './data/openings';
+import { loadLessons, type LoadedLessons } from './data/lessons';
+import type { SessionItem } from './services/dailySession';
+import { ConceptView } from './components/ConceptView';
 import { Dashboard } from './components/Dashboard';
 import { DrillMode } from './components/DrillMode';
 import { LearnMode } from './components/LearnMode';
@@ -21,7 +24,8 @@ type ActiveView =
   | { mode: 'dashboard' }
   | { mode: 'learn'; variationId?: string }
   | { mode: 'drill'; variationId?: string }
-  | { mode: 'review'; variationId?: string };
+  | { mode: 'review'; variationId?: string; session?: SessionItem[] }
+  | { mode: 'concept'; variationId: string };
 
 const OPENING_KEY = 'chess-openings:selected-opening';
 
@@ -42,6 +46,7 @@ export const App: React.FC = () => {
   const [allLogs, setLogs] = useState<ReviewLogEntry[]>([]);
   const cards = useMemo(() => allCards.filter((c) => c.openingId === openingId), [allCards, openingId]);
   const logs = useMemo(() => allLogs.filter((l) => l.openingId === openingId), [allLogs, openingId]);
+  const [lessonData, setLessonData] = useState<LoadedLessons>({ concepts: {}, lessons: {} });
   const [isPersisted, setIsPersisted] = useState<boolean>(false);
   const [activeView, setActiveView] = useState<ActiveView>({ mode: 'dashboard' });
   const [reviewFinished, setReviewFinished] = useState<boolean>(false);
@@ -73,6 +78,8 @@ export const App: React.FC = () => {
         if (mounted) setIsPersisted(persisted);
 
         const opening = await loadOpening(openingId);
+        const ld = await loadLessons(openingId).catch(() => ({ concepts: {}, lessons: {} }));
+        if (mounted) setLessonData(ld);
 
         const [storedCards, storedLogs] = await Promise.all([getAllCards(), getAllLogs()]);
         const syncedCards = syncOpeningCards(opening, storedCards);
@@ -172,6 +179,7 @@ export const App: React.FC = () => {
 
       {activeView.mode === 'dashboard' && (
         <Dashboard
+          key={openingData.id}
           opening={openingData}
           openings={OPENINGS}
           onSelectOpening={handleSelectOpening}
@@ -184,6 +192,12 @@ export const App: React.FC = () => {
             setReviewFinished(false);
             setActiveView({ mode: 'review', variationId });
           }}
+          onStartDaily={(session) => {
+            setReviewFinished(false);
+            setActiveView({ mode: 'review', session });
+          }}
+          onOpenConcept={(variationId) => setActiveView({ mode: 'concept', variationId })}
+          lessonData={lessonData}
           onExportBackup={handleExportBackup}
           onImportBackup={handleImportBackup}
         />
@@ -193,6 +207,7 @@ export const App: React.FC = () => {
         <LearnMode
           opening={openingData}
           initialVariationId={activeView.variationId}
+          lessonData={lessonData}
           onBack={() => setActiveView({ mode: 'dashboard' })}
         />
       )}
@@ -211,8 +226,17 @@ export const App: React.FC = () => {
           cards={cards}
           logs={logs}
           variationId={activeView.variationId}
+          session={activeView.session}
+          lessonData={lessonData}
           onCardReviewed={handleCardReviewed}
           onSessionFinished={() => setReviewFinished(true)}
+          onBack={() => setActiveView({ mode: 'dashboard' })}
+        />
+      )}
+
+      {activeView.mode === 'concept' && lessonData.concepts[activeView.variationId] && (
+        <ConceptView
+          page={lessonData.concepts[activeView.variationId]}
           onBack={() => setActiveView({ mode: 'dashboard' })}
         />
       )}

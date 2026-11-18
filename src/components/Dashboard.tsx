@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import type { OpeningRepertoireFile, ReviewLogEntry, StoredFSRSCard } from '../types/repertoire';
-import { buildDailyReviewQueue, computeCardStats, SRS_DAILY_LIMITS } from '../services/srs';
+import { computeCardStats, SRS_DAILY_LIMITS } from '../services/srs';
+import { buildDailySession, type SessionItem } from '../services/dailySession';
+import { loadPriority } from '../services/gamesStore';
+import type { LoadedLessons } from '../data/lessons';
+import { MyGames } from './MyGames';
 
 interface DashboardProps {
   opening: OpeningRepertoireFile;
@@ -12,6 +16,9 @@ interface DashboardProps {
   onStartLearn: (variationId?: string) => void;
   onStartDrill: (variationId?: string) => void;
   onStartReview: (variationId?: string) => void;
+  onStartDaily: (session: SessionItem[]) => void;
+  onOpenConcept: (variationId: string) => void;
+  lessonData: LoadedLessons;
   onExportBackup: () => Promise<void>;
   onImportBackup: (fileText: string) => Promise<void>;
 }
@@ -30,6 +37,9 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onStartLearn,
   onStartDrill,
   onStartReview,
+  onStartDaily,
+  onOpenConcept,
+  lessonData,
   onExportBackup,
   onImportBackup,
 }) => {
@@ -39,11 +49,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const repStats = computeCardStats(cards, 'repertoire');
   const punishStats = computeCardStats(cards, 'punish');
-  const dailyQueue = buildDailyReviewQueue({
-    cards,
-    logs,
-    openingId: opening.id,
-    includePunish: true,
+  const [priorityIds, setPriorityIds] = useState<string[]>(() => loadPriority(opening.id));
+  const dailySession = buildDailySession(cards, logs, opening, new Date(), {
+    lessons: lessonData.lessons,
+    priorityCardIds: priorityIds,
   });
 
   const studiedPct =
@@ -106,11 +115,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
       <section className="bg-surface border border-border rounded-xl p-4 sm:p-6 space-y-4">
         <button
-          onClick={() => onStartReview()}
-          disabled={dailyQueue.length === 0}
+          onClick={() => onStartDaily(dailySession)}
+          disabled={dailySession.length === 0}
           className="btn-primary w-full"
         >
-          {dailyQueue.length === 0 ? 'Niente da ripassare oggi' : `Ripassa oggi · ${dailyQueue.length}`}
+          {dailySession.length === 0 ? 'Niente da ripassare oggi' : `Ripassa oggi · ${dailySession.length}`}
         </button>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button onClick={() => onStartLearn()} className="btn-secondary">
@@ -177,7 +186,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   </div>
                 </button>
                 {open && (
-                  <div className="px-4 pb-4 grid grid-cols-3 gap-2">
+                  <div className="px-4 pb-4 space-y-2">
+                    {lessonData.concepts[v.id] && (
+                      <button onClick={() => onOpenConcept(v.id)} className="btn-secondary w-full">
+                        Capisci la variante
+                      </button>
+                    )}
+                    <div className="grid grid-cols-3 gap-2">
                     <button onClick={() => onStartLearn(v.id)} className="btn-secondary !px-2">
                       Studia
                     </button>
@@ -187,6 +202,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     <button onClick={() => onStartDrill(v.id)} className="btn-secondary !px-2">
                       Gioca
                     </button>
+                    </div>
                   </div>
                 )}
               </li>
@@ -194,6 +210,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
           })}
         </ul>
       </section>
+
+      <MyGames key={opening.id} opening={opening} onPriorityChange={setPriorityIds} />
 
       <details className="bg-surface border border-border rounded-xl group">
         <summary className="px-4 py-3 min-h-[44px] flex items-center cursor-pointer text-[15px] font-medium list-none">
