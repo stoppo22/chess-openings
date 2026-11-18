@@ -27,9 +27,9 @@ describe('buildDailySession', () => {
     const s = buildDailySession(cards, [], op, now, { lessons });
     expect(s.at(-1)).toMatchObject({ kind: 'planQuiz', normalizedFen: 'n1' });
   });
-  it('pulls priority cards forward', () => {
+  it('puts priority cards first, in their own order', () => {
     const s = buildDailySession(cards, [], op, now, { priorityCardIds: ['due2', 'n3', 'p2'] });
-    expect(s.map((i) => i.cardId)).toEqual(['due2', 'due1', 'n3', 'n1', 'n2', 'p2', 'p1']);
+    expect(s.map((i) => i.cardId)).toEqual(['due2', 'n3', 'p2', 'due1', 'n1', 'n2', 'p1']);
   });
   it('respects daily limit already used and time budget', () => {
     const logs = Array.from({ length: 10 }, (_, i) => ({
@@ -38,5 +38,16 @@ describe('buildDailySession', () => {
     }));
     expect(buildDailySession(cards, logs, op, now).map((i) => i.cardId)).toEqual(['due1', 'due2']);
     expect(buildDailySession(cards, [], op, now, { targetMinutes: 1 })).toHaveLength(2); // 60s / 25s
+  });
+});
+
+describe('buildDailySession priority from own games', () => {
+  it('keeps priority cards first even when the daily new limit is used up', () => {
+    const today = now.toISOString();
+    const many = Array.from({ length: 12 }, (_, k) => card(`x${k}`, { priorityScore: 0.1 }));
+    const all = [...cards, ...many];
+    const logs = many.slice(0, 10).map((c, k) => ({ id: `l${k}`, cardId: c.id, openingId: op.id, cardType: 'repertoire' as const, rating: 3, usedHint: false, wrongAttempts: 0, reviewedAt: today }));
+    const s = buildDailySession(all, logs, op, now, { priorityCardIds: ['n3', 'due1'] });
+    expect(s.slice(0, 2).map((i) => i.cardId)).toEqual(['n3', 'due1']);
   });
 });

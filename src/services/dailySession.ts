@@ -13,6 +13,7 @@ export const SECONDS_PER_ITEM = 25;
 // New cards follow the app's daily limits; the time budget below still caps the session.
 const MAX_NEW_REPERTOIRE = SRS_DAILY_LIMITS.MAX_NEW_CARDS_PER_DAY - SRS_DAILY_LIMITS.MAX_NEW_PUNISH_PER_DAY;
 const MAX_NEW_PUNISH = SRS_DAILY_LIMITS.MAX_NEW_PUNISH_PER_DAY;
+const MAX_PRIORITY = 10;
 
 export function buildDailySession(
   cards: StoredFSRSCard[],
@@ -25,19 +26,20 @@ export function buildDailySession(
     priorityCardIds = [],
   }: { targetMinutes?: number; lessons?: Record<string, PositionLesson>; priorityCardIds?: string[] } = {}
 ): SessionItem[] {
-  const prio = new Set(priorityCardIds);
   const byId = new Map(cards.map((c) => [c.id, c]));
-  // Boost priority cards' score so srs.ts's own ranking (and daily limits) pulls them forward.
-  const boosted = cards.map((c) => (prio.has(c.id) ? { ...c, priorityScore: (c.priorityScore ?? 0) + 1e6 } : c));
-  const queue = buildDailyReviewQueue({ cards: boosted, logs, openingId: opening.id, now });
+  // Positions from the user's own games go first, whatever their state, and don't use up the daily new-card limit.
+  const prioCards = [...new Set(priorityCardIds)].map((id) => byId.get(id)).filter((c): c is StoredFSRSCard => !!c).slice(0, MAX_PRIORITY);
+  const prio = new Set(prioCards.map((c) => c.id));
+  const queue = buildDailyReviewQueue({ cards: cards.filter((c) => !prio.has(c.id)), logs, openingId: opening.id, now });
 
   const due = queue.filter((c) => c.state !== State.New);
-  due.sort((a, b) => Number(prio.has(b.id)) - Number(prio.has(a.id))); // stable: keeps due-date order within groups
   const fresh = queue.filter((c) => c.state === State.New);
   const newRep = fresh.filter((c) => c.cardType === 'repertoire').slice(0, MAX_NEW_REPERTOIRE);
   const newPunish = fresh.filter((c) => c.cardType === 'punish').slice(0, MAX_NEW_PUNISH);
+  const kindOf = (c: StoredFSRSCard) => (c.cardType === 'punish' ? 'punish' : c.state === State.New ? 'new' : 'review') as SessionItem['kind'];
 
   const items: SessionItem[] = [
+    ...prioCards.map((c) => ({ kind: kindOf(c), c })),
     ...due.map((c) => ({ kind: 'review' as const, c })),
     ...newRep.map((c) => ({ kind: 'new' as const, c })),
     ...newPunish.map((c) => ({ kind: 'punish' as const, c })),

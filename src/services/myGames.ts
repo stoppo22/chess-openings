@@ -118,7 +118,12 @@ export function analyseGame(
         evalLoss: m.evalLoss,
         punishMoveSan: m.punishMoveSan,
         mySan: mv.san,
-        cardId: buildCardId(opening.id, 'punish', m.afterMistakeNormalizedFen),
+        // srs.ts creates punish cards only for evalLoss >= 1.0; smaller mistakes are trained via the repertoire card there.
+        cardId: buildCardId(
+          opening.id,
+          m.evalLoss < 1.0 && opening.positions[m.afterMistakeNormalizedFen]?.playerMove ? 'repertoire' : 'punish',
+          m.afterMistakeNormalizedFen
+        ),
       };
       if (mv.san === m.punishMoveSan) out.punished = ev;
       else out.missedPunish = ev;
