@@ -2,7 +2,7 @@
   "openingId": "caro-kann",
   "variationId": "classical-bf5",
   "writtenBy": "lesson-writer (sonnet)",
-  "factsHash": "21e6c02875ebe497e4ebf95beba7f26806def97c5352cbe73ebfa6fc69271dab",
+  "factsHash": "6e7d4f0adab445655679eda5c6f42ed30245640b34ab4035c8238018924863f5",
   "lessons": [
     {
       "normalizedFen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -",
@@ -710,15 +710,15 @@
     {
       "normalizedFen": "rn1qkbnr/pN2pppp/1pp5/5b2/3P4/8/PPP2PPP/R1BQKBNR b KQkq -",
       "variationId": "classical-bf5",
-      "why": "Il Cavallo in b7 attacca la mia Donna ed è senza difesa. Gioco [[Qc7]]: sposto la Donna e attacco il Cavallo.",
+      "why": "Il Cavallo in b7 attacca la mia Donna ed è senza difesa. Gioco [[Qc8]]: sposto la Donna e attacco il Cavallo, che non ha più case sicure (a5 e c5 sono controllate dal pedone b6, d6 dal pedone e7, d8 dalla Donna e dal Re).",
       "whyNot": {
-        "san": "Qd7",
-        "text": "[[Qd7]] è altrettanto buona per il motore (perdita nulla). Il repertorio preferisce [[Qc7]] perché è la mossa più giocata e attacca b7 direttamente."
+        "san": "Qc7",
+        "text": "[[Qc7]] è l'alternativa più giocata a questo livello (64.2% dei giocatori) e per il motore vale quanto [[Qc8]]: anche lei attacca il Cavallo in trappola. Se la giochi va benissimo; il repertorio usa [[Qc8]] perché è la stessa mossa dell'esercizio 'punisci l'errore'."
       },
       "opponentMistake": {
         "san": "Ba6",
         "punishSan": "Nxa6",
-        "text": "Con [[Ba6]] il Bianco prova a salvare il Cavallo, ma [[Nxa6]] prende l'Alfiere e dopo [[Qxb7]] il Cavallo cade: sono avanti di materiale."
+        "text": "Con [[Ba6]] il Bianco prova a salvare il Cavallo, ma [[Nxa6]] prende l'Alfiere e poi [[Qxb7]] prende anche il Cavallo: due pezzi guadagnati."
       },
       "conceptRefs": [
         "cl-knight-c5"
