@@ -20,10 +20,35 @@
     "Sviluppo rapido dei Cavalli in c3 e f3."
   ],
   "pieces": [
-    { "piece": "Pedone d", "squares": ["d5"], "why": "Attacca l'Alfiere in c4 e prende il centro: è la mossa che dà il tono alla variante." },
-    { "piece": "Cavallo di Donna", "squares": ["c6"], "why": "Difende d4 ed e5 per la tua spinta centrale e copre lo scacco in b5." },
-    { "piece": "Cavallo di Re", "squares": ["f6"], "why": "Difende d5 e il lato di Re." },
-    { "piece": "Alfiere campochiaro", "squares": ["g4", "f5"], "why": "In g4 attacca la Donna bianca se esce in f3: sviluppi e guadagni tempo." }
+    {
+      "piece": "Pedone d",
+      "squares": [
+        "d5"
+      ],
+      "why": "Attacca l'Alfiere in c4 e prende il centro: è la mossa che dà il tono alla variante."
+    },
+    {
+      "piece": "Cavallo di Donna",
+      "squares": [
+        "c6"
+      ],
+      "why": "Difende d4 ed e5 per la tua spinta centrale e copre lo scacco in b5."
+    },
+    {
+      "piece": "Cavallo di Re",
+      "squares": [
+        "f6"
+      ],
+      "why": "Difende d5 e il lato di Re."
+    },
+    {
+      "piece": "Alfiere campochiaro",
+      "squares": [
+        "g4",
+        "f5"
+      ],
+      "why": "In g4 attacca la Donna bianca se esce in f3: sviluppi e guadagni tempo."
+    }
   ],
   "breaks": [
     "[[e5]]: con il pedone d5 già al centro, la spinta in e5 ti dà un centro forte."
@@ -36,13 +61,40 @@
     "Se il Bianco gioca la Donna in f3 troppo presto, [[Bg4]] la attacca sviluppando un pezzo: il Bianco deve spostarla di nuovo e resta indietro nello sviluppo."
   ],
   "principles": [
-    { "id": "hb-d5", "ifOpponent": "sviluppa subito l'Alfiere in c4", "thenI": "rispondo [[d5]]", "why": "Il pedone attacca l'Alfiere e prende il centro nello stesso tempo." },
-    { "id": "hb-tempo-queen", "ifOpponent": "esce presto con la Donna", "thenI": "sviluppo un pezzo che la attacca, come [[Bg4]] quando è in f3", "why": "Ogni volta che la Donna deve spostarsi, il Bianco perde un tempo e tu sviluppi gratis." },
-    { "id": "hb-center", "ifOpponent": "non controlla la casa e5", "thenI": "spingo [[e5]]", "why": "Con i pedoni in d5 ed e5 hai il centro e i tuoi pezzi hanno più spazio." }
+    {
+      "id": "hb-d5",
+      "ifOpponent": "sviluppa subito l'Alfiere in c4",
+      "thenI": "rispondo [[d5]]",
+      "why": "Il pedone attacca l'Alfiere e prende il centro nello stesso tempo."
+    },
+    {
+      "id": "hb-tempo-queen",
+      "ifOpponent": "esce presto con la Donna",
+      "thenI": "sviluppo un pezzo che la attacca, come [[Bg4]] quando è in f3",
+      "why": "Ogni volta che la Donna deve spostarsi, il Bianco perde un tempo e tu sviluppi gratis."
+    },
+    {
+      "id": "hb-center",
+      "ifOpponent": "non controlla la casa e5",
+      "thenI": "spingo [[e5]]",
+      "why": "Con i pedoni in d5 ed e5 hai il centro e i tuoi pezzi hanno più spazio."
+    },
+    {
+      "id": "hb-check-b5",
+      "ifOpponent": "dà scacco con l'Alfiere in b5",
+      "thenI": "copro con [[Nc6]] (va bene anche [[Bd7]])",
+      "why": "Copro lo scacco mettendo in gioco un pezzo. [[Nd7]] invece chiuderebbe la strada all'Alfiere in c8, e coprire con la Donna in d7 la farebbe perdere."
+    }
   ],
   "glossary": [
-    { "term": "Tempo", "definition": "Una mossa. Guadagnare un tempo significa costringere l'avversario a una mossa inutile mentre tu sviluppi." },
-    { "term": "Sviluppo con tempo", "definition": "Mettere in gioco un pezzo che nello stesso momento attacca qualcosa dell'avversario." }
+    {
+      "term": "Tempo",
+      "definition": "Una mossa. Guadagnare un tempo significa costringere l'avversario a una mossa inutile mentre tu sviluppi."
+    },
+    {
+      "term": "Sviluppo con tempo",
+      "definition": "Mettere in gioco un pezzo che nello stesso momento attacca qualcosa dell'avversario."
+    }
   ],
   "sources": [],
   "approved": true
